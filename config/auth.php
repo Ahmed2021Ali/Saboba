@@ -14,10 +14,9 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
+        'guard' => env('AUTH_GUARD', 'api'), // Set to 'api' for JWT
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -34,10 +33,9 @@ return [
     | Supported: "session"
     |
     */
-
     'guards' => [
-        'web' => [
-            'driver' => 'session',
+        'api' => [
+            'driver' => 'jwt', // Use JWT driver for API authentication
             'provider' => 'users',
         ],
     ],

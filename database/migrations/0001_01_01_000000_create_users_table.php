@@ -10,14 +10,16 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); 
+            $table->text('overview');
             $table->string('email')->unique()->nullable();
             $table->string('password');
             $table->string('phone')->index(); 
             $table->enum('type', ['personal', 'company', 'admin']);
-            $table->bigInteger('country_id')->unsigned()->nullable()->index(); // Using bigInteger
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade'); // Defining foreign key constraint
-            $table->string('whatsapp_number')->nullable();
+            $table->bigInteger('country_id')->unsigned()->nullable()->index(); 
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade'); 
             $table->string('contact_number')->nullable();
+            $table->string('whatsapp_number')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

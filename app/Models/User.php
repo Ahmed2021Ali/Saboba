@@ -9,26 +9,45 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
+class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Translatable;
+    use HasFactory, Notifiable;
 
-    // الحقول القابلة للترجمة
-    public $translatedAttributes = ['name', 'overview'];
 
-    // الحقول العادية
+
+
     protected $fillable = [
-        'email', 
-        'password', 
-        'phone', 
-        'type', 
-        'country_id', 
-        'whatsapp_number', 
+        'name',         
+        'email',
+        'password',
+        'phone',
+        'type',
+        'country_id',
+        'whatsapp_number',
         'contact_number',
+        'overview',     
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
