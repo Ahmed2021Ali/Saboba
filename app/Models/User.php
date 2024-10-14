@@ -2,21 +2,19 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
-{
-    use HasFactory, Translatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-    // الحقول القابلة للترجمة
-    public $translatedAttributes = ['name', 'overview'];
-    // الحقول العادية
+class User extends Authenticatable implements JWTSubject
+{
+    use HasFactory, Notifiable;
+
     protected $fillable = [
+        'name',
         'email',
         'password',
         'phone',
@@ -24,9 +22,27 @@ class User extends Authenticatable
         'country_id',
         'whatsapp_number',
         'contact_number',
+        'overview',
     ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
