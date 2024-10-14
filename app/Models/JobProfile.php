@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class JobProfile extends Model
 {
     use HasFactory;
+    protected $fillable=['nationality','gender','age','job_title','user_id'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

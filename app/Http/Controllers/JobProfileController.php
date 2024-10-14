@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobProfileRequest;
 use App\Http\Resources\JopProfileResource;
 use App\Models\JobProfile;
 use Illuminate\Http\Request;
@@ -10,20 +11,28 @@ class JobProfileController extends Controller
 {
     public function index()
     {
-        $jobs = JobProfile::all();
-        return response()->json(JopProfileResource::collection($jobs));
+        $job = JobProfile::where('user_id', auth()->user()->id)->first();
+        return response()->json(new JopProfileResource($job));
     }
 
-    public function store(Request $request)
+    public function store(JobProfileRequest $request)
     {
-        $request->validate([
-            'nationality' => 'required',
-            'gender' => 'required',
-            'age' => 'required',
-            'job_title' => 'required',
-            'user_id' => 'required',
+        $job = JobProfile::create([
+            ...$request->validated(),
+            'user_id' => auth()->user()->id,
         ]);
-        $job = JobProfile::create($request->validated());
         return response()->json(new JopProfileResource($job));
+    }
+
+    public function update(JobProfileRequest $request, JobProfile $job_profile)
+    {
+        $job_profile->update($request->validated());
+        return response()->json(new JopProfileResource($job_profile));
+    }
+
+    public function destroy(JobProfile $job_profile)
+    {
+        $job_profile->delete();
+        return response()->json(['message' => 'Delete Successfully'], 200);
     }
 }
