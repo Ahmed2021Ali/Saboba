@@ -7,7 +7,9 @@
     "require": {
         "php": "^8.2",
         "api-platform/laravel": "^4.0",
+        "astrotomic/laravel-translatable": "^11.15",
         "laravel/framework": "^11.9",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9"
     },
     "require-dev": {
