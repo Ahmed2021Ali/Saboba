@@ -15,18 +15,16 @@ class User extends Authenticatable
 
     // الحقول القابلة للترجمة
     public $translatedAttributes = ['name', 'overview'];
-
     // الحقول العادية
     protected $fillable = [
-        'email', 
-        'password', 
-        'phone', 
-        'type', 
-        'country_id', 
-        'whatsapp_number', 
+        'email',
+        'password',
+        'phone',
+        'type',
+        'country_id',
+        'whatsapp_number',
         'contact_number',
     ];
-
     public function country()
     {
         return $this->belongsTo(Country::class);

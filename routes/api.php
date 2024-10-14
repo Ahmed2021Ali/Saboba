@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -23,11 +24,9 @@ Route::post('/create-users', function (Request $request) {
         'overview' => 'nullable|string',
         'locale' => 'required|string',
     ]);
-
     if ($validator->fails()) {
         return response()->json($validator->errors(), 422);
     }
-
     $user = User::create($request->only('email', 'password', 'phone', 'type', 'country_id'));
     $user->translateOrNew($request->locale)->name = $request->name;
     $user->translateOrNew($request->locale)->overview = $request->overview;
@@ -70,3 +69,7 @@ Route::delete('/users/{id}', function ($id) {
     $user->delete();
     return response()->json(null, 204);
 });
+
+
+
+Route::resource('jop_profile', JobProfileController::class);

@@ -13,10 +13,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('locale'); // اللغة مثل en, ar
-            $table->string('name')->nullable(); 
-            $table->text('overview')->nullable(); 
-
-            $table->unique(['user_id', 'locale']); 
+            $table->string('name')->nullable();
+            $table->text('overview')->nullable();
+            $table->unique(['user_id', 'locale']);
         });
     }
 
