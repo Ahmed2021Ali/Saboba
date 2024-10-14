@@ -14,7 +14,7 @@ return new class extends Migration
             $table->text('overview');
             $table->string('email')->unique()->nullable();
             $table->string('password');
-            $table->string('phone')->index(); 
+            $table->string('phone')->index();
             $table->enum('type', ['personal', 'company', 'admin']);
             $table->bigInteger('country_id')->unsigned()->nullable()->index(); 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade'); 

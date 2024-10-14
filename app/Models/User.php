@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,11 +13,8 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
-
-
-
     protected $fillable = [
-        'name',         
+        'name',
         'email',
         'password',
         'phone',
@@ -27,7 +22,7 @@ class User extends Authenticatable implements JWTSubject
         'country_id',
         'whatsapp_number',
         'contact_number',
-        'overview',     
+        'overview',
     ];
 
     protected $hidden = [
@@ -49,5 +44,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function jobProfile()
+    {
+        return $this->hasOne(JobProfile::class);
     }
 }
