@@ -10,9 +10,8 @@ use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('register', [JWTAuthController::class, 'register']);
-Route::post('login', [JWTAuthController::class, 'login'])->name('login');
-Route::get('get-user', [JWTAuthController::class, 'getUser']);
+Route::post('/login', [JWTAuthController::class, 'login'])->name('login');
+Route::post('/register', [JWTAuthController::class, 'register']);
 
 Route::middleware([JwtMiddleware::class])->group(function () {
     Route::post('logout', [JWTAuthController::class, 'logout']);
@@ -24,6 +23,7 @@ Route::middleware([JwtMiddleware::class])->prefix('jobProfile')->group(function 
     Route::resource('eduction', EducationController::class);
     Route::resource('experience', ExperienceController::class);
     Route::resource('language', LanguageController::class);
+
     Route::resource('skills', SkillsController::class);
 });
 
