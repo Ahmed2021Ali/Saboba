@@ -13,11 +13,13 @@ class LanguageController extends Controller
     public function index()
     {
        dd(Auth::User()->userLanguages()) ;
-     //   return response()->json(Auth::User()->userLanguages);
+    //    return response()->json(Auth::user()->with('userLanguages'));
     }
 
     public function store(StoreLanguagesRequest $request)
     {
+        dd(Auth::User()->userLanguages) ;
+
         foreach ($request->languages_id as $language_id) {
             $language = Auth::User()->userLanguages()->where('language_id', $language_id)->first();
             if ($language) {
