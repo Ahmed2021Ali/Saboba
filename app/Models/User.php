@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use App\Http\Controllers\EducationController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,18 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+
+    public function educations()
+    {
+        return $this->hasMany(Education::class);
+    }
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
     public function userLanguages()
     {
         return $this->belongsToMany(Language::class, 'user_languages')->withPivot('language_id', 'user_id');

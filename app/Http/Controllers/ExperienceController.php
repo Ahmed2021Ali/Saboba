@@ -6,13 +6,14 @@ use App\Http\Requests\StoreExperienceRequest;
 use App\Http\Requests\UpdateExperienceRequest;
 use App\Http\Resources\ExperienceResource;
 use App\Models\Experience;
+use Illuminate\Support\Facades\Auth;
 
 class ExperienceController extends Controller
 {
     public function index()
     {
-        $experience = Experience::where('user_id', auth()->user()->id)->first();
-        return response()->json(new ExperienceResource($experience));
+        $experience = Auth::User()->experiences();
+        return response()->json(ExperienceResource::collection($experience));
     }
 
     public function store(StoreExperienceRequest $request)

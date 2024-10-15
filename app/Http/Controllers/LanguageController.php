@@ -13,5 +13,5 @@ class LanguageController extends Controller
         $languages = Auth::User()->userLanguages();
         return response()->json(LanguageResource::collection($languages));
     }
-    
+
 }

@@ -6,14 +6,15 @@ use App\Http\Requests\StoreEducationRequest;
 use App\Http\Requests\UpdateEducationRequest;
 use App\Http\Resources\EducationResource;
 use App\Models\Education;
+use Illuminate\Support\Facades\Auth;
 
 class EducationController extends Controller
 {
 
     public function index()
     {
-        $educate = Education::where('user_id', auth()->user()->id)->first();
-        return response()->json(new EducationResource($educate));
+        $educations = Auth::User()->educations();
+        return response()->json(EducationResource::collection($educations));
     }
 
     public function store(StoreEducationRequest $request)
