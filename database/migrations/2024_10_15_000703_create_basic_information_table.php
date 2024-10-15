@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('job_title');
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
-            $table->timestamps();
         });
     }
 
