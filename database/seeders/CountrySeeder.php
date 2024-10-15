@@ -10,17 +10,21 @@ class CountrySeeder extends Seeder
 {
     public function run()
     {
-        $countries = [
+        // بيانات الدولة (هنا بس دولة واحدة)
+        $countryData = [
             ['locale' => 'en', 'name' => 'Egypt'],
             ['locale' => 'ar', 'name' => 'مصر'],
             ['locale' => 'fr', 'name' => 'Égypte'],
-            // ممكن تضيف دول تانية هنا
         ];
 
-        foreach ($countries as $countryData) {
-            $country = Country::create(); // إنشاء الدولة بدون اسم
-            $country->translateOrNew($countryData['locale'])->name = $countryData['name'];
-            $country->save();
+        // إنشاء الدولة الجديدة
+        $country = Country::create(); // إنشاء الدولة بدون اسم
+
+        // إضافة الترجمات للبلد
+        foreach ($countryData as $data) {
+            $country->translateOrNew($data['locale'])->name = $data['name'];
         }
+
+        $country->save();
     }
 }
