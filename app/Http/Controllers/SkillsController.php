@@ -13,24 +13,29 @@ class SkillsController extends Controller
 {
     public function index()
     {
-        $languages = Auth::User()->userskills();
-        return response()->json(SkillsResource::collection($languages));
+        dd(Auth::User()->userSkills);
+        return response()->json([
+            'message' => ' User Skills',
+            'languages' => SkillsResource::collection(Auth::User()->userSkills),
+        ], 201);
     }
 
     public function store(StoreSkillsRequest $request)
     {
-        foreach ($request->skills_id as $skill_id) {
-            $language = Auth::User()->userLanguages()->where('language_id', $skill_id)->first();
-            if ($language) {
+        foreach ($request->skills_id as $skills_id) {
+            Auth::User()->userSkills()->attach($skills_id);
+            return response()->json([
+                'message' => 'your Language created successfully',
+            ], 201);
+/*            $skill = Auth::User()->userSkills()->where('skills_id', $skill_id)->first();
+            dd($skill);
+            if ($skill) {
                 return response()->json([
-                    'message' => 'your Language already exists', 'language' => $language->name,
+                    'message' => 'your Language already exists',
                 ], 201);
             } else {
-                Auth::User()->userLanguages()->attach($language_id);
-                return response()->json([
-                    'message' => 'your Language created successfully','language' => $language->name,
-                ], 201);
-            }
+
+            }*/
         }
     }
 
