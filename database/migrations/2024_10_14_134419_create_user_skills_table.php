@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('user_skills', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('skills_id')->references('id')->on('skills')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('skill_id')->references('id')->on('skills')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

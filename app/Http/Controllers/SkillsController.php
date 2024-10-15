@@ -13,7 +13,7 @@ class SkillsController extends Controller
 {
     public function index()
     {
-        dd(Auth::User()->userSkills);
+        dd(Auth::User()->userSkills());
         return response()->json([
             'message' => ' User Skills',
             'languages' => SkillsResource::collection(Auth::User()->userSkills),
@@ -22,8 +22,8 @@ class SkillsController extends Controller
 
     public function store(StoreSkillsRequest $request)
     {
-        foreach ($request->skills_id as $skills_id) {
-            Auth::User()->userSkills()->attach($skills_id);
+        foreach ($request->skills_id as $skill_id) {
+            Auth::User()->userSkills()->attach($skill_id);
             return response()->json([
                 'message' => 'your Language created successfully',
             ], 201);
