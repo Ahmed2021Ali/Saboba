@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Language;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class LanguageSeeder extends Seeder
@@ -14,7 +16,7 @@ class LanguageSeeder extends Seeder
         DB::table('languages')->delete();
         $languages = [
             [
-                'ar' => ['name' => 'العربية'],
+                'ar' => ['name' => 'عربية '],
                 'en' => ['name' => 'arabic '],
             ],
             [
@@ -23,10 +25,12 @@ class LanguageSeeder extends Seeder
             ],
         ];
         foreach ($languages as $language) {
-          //  foreach ($language as $key => $value) {
-             //   App::setLocale($key);
-                Language::create($language);
-         //   }
+            $lang = Language::create();
+            foreach ($language as $key => $value) {
+                $lang->translateOrNew($key)->name = $value;
+            }
+            $lang->save();
+
         }
     }
 }
