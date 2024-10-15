@@ -10,11 +10,11 @@ class Language extends Model
 {
     use HasFactory,Translatable;
 
-    protected $fillable = ['name'];
     public $translatedAttributes = ['name'];
 
-    /*    public function userLanguages()
-        {
-            return $this->belongsToMany(User::class, 'user_languages')->withPivot('user_id', 'language_id');
-        }*/
+
+    public function languageUsers()
+    {
+        return $this->belongsToMany(User::class, 'user_languages')->withPivot('language_id', 'user_id');
+    }
 }

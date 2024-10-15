@@ -28,7 +28,7 @@ class CountrySeeder extends Seeder
         foreach ($countriesData as $countryData) {
             // إنشاء الدولة الجديدة
             $country = Country::create(); // إنشاء الدولة بدون اسم
-            
+
             // إضافة الترجمات للبلد
             foreach ($countryData as $data) {
                 $country->translateOrNew($data['locale'])->name = $data['name'];

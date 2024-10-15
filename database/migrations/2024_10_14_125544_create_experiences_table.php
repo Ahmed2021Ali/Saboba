@@ -14,9 +14,9 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('description');
             $table->enum('employment_type', ['temporary', 'full_time', 'part_time', 'contract']);
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->boolean('status');
+            $table->string('start_date');
+            $table->string('end_date');
+            $table->string('status')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

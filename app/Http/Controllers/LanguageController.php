@@ -12,25 +12,25 @@ class LanguageController extends Controller
 {
     public function index()
     {
-        $languages = Auth::User()->userLanguages();
-        return response()->json(LanguageResource::collection($languages));
+       dd(Auth::User()->userLanguages()) ;
+     //   return response()->json(Auth::User()->userLanguages);
     }
 
     public function store(StoreLanguagesRequest $request)
     {
         foreach ($request->languages_id as $language_id) {
-            Auth::User()->userLanguages()->attach($language_id);
+            $language = Auth::User()->userLanguages()->where('language_id', $language_id)->first();
+            if ($language) {
+                return response()->json([
+                    'message' => 'your Language already exists', 'language' => $language->name,
+                ], 201);
+            } else {
+                Auth::User()->userLanguages()->attach($language_id);
+                return response()->json([
+                    'message' => 'your Language created successfully','language' => $language->name,
+                ], 201);
+            }
         }
-        return response()->json(LanguageResource::collection(Auth::User()->userLanguages()));
-    }
-
-    public function update(UpdateLanguagesRequest $request)
-    {
-        //  Auth::User()->userLanguages()->detach();
-        foreach ($request->languages_id as $language_id) {
-            Auth::User()->userLanguages()->attach($language_id);
-        }
-        return response()->json(LanguageResource::collection(Auth::User()->userLanguages()));
     }
 
     public function destroy(Language $language)

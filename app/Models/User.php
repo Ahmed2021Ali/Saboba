@@ -50,20 +50,26 @@ class User extends Authenticatable implements JWTSubject
 
     public function educations()
     {
-        return $this->hasMany(Education::class);
+        return $this->hasMany(Education::class)->select('id','specialization','university','employment_type','end_date','start_date')->get();
     }
 
     public function experiences()
     {
-        return $this->hasMany(Experience::class);
+        return $this->hasMany(Experience::class)->select('id','job_title','company_name','description','employment_type','start_date','end_date','status')->get();
     }
 
     public function userLanguages()
     {
         return $this->belongsToMany(Language::class, 'user_languages')->withPivot('language_id', 'user_id');
     }
+
     public function userskills()
     {
         return $this->belongsToMany(Skills::class, 'skill_user')->withPivot('skill_id', 'user_id');
+    }
+
+    public function basicInformation()
+    {
+        return $this->hasOne(BasicInformation::class)->select('job_title','nationality','gender','age')->first();
     }
 }

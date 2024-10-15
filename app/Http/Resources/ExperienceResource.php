@@ -20,4 +20,12 @@ class ExperienceResource extends JsonResource
             'status' => $this->status
         ];
     }
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        throw new \Illuminate\Validation\ValidationException(
+            $validator, response()->json([
+            'success' => false,
+            'errors' => $validator->errors(),401])
+        );
+    }
 }

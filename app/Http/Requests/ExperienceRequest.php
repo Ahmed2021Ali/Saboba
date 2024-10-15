@@ -5,9 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class BasicInformationRequest extends FormRequest
+class ExperienceRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -16,13 +15,15 @@ class BasicInformationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nationality' => ['nullable', 'string', 'min:2', 'max:150'],
-            'gender' => ['nullable', 'string', Rule::in(['male', 'female'])],
-            'age' => ['nullable', 'numeric', 'min:18', 'max:100'],
-            'job_title' => ['nullable', 'string', 'min:2', 'max:150'],
+            'job_title' => ['required', 'string','min:2', 'max:150'],
+            'company_name' => ['required', 'string','min:2', 'max:150'],
+            'description' => ['required', 'string','min:2', 'max:250'],
+            'employment_type' => ['required', 'string',Rule::in(['temporary', 'full_time', 'part_time', 'contract'])],
+            'status' => ['required', 'boolean'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
         ];
     }
-
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
         throw new \Illuminate\Validation\ValidationException(
