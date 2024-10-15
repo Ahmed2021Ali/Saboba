@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LanguageTranslation extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
-    public $timestamps = false;
+    protected $fillable = ['locale','name'];
+   // public $timestamps = false;
 }

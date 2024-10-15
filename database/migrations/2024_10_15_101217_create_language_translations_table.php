@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('language_translations', function (Blueprint $table) {
             $table->id();
-            $table->string('locale')->index();
+            $table->string('locale');
             $table->string('name');
             $table->unique(['language_id','locale']);
             $table->foreignId('language_id')->references('id')->on('languages')->onDelete('cascade');

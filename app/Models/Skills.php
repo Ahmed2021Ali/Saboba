@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Skills extends Model
 {
     use HasFactory,Translatable;
+    public $translatedAttributes = ['name'];
+
 }

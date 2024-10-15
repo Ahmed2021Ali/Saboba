@@ -9,18 +9,18 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('skill_translations', function (Blueprint $table) {
+        Schema::create('skills_translations', function (Blueprint $table) {
             $table->id();
             $table->string('locale')->index();
             $table->string('name');
-            $table->unique(['skill_id','locale']);
-            $table->foreignId('skill_id')->references('id')->on('skills')->onDelete('cascade');
+            $table->unique(['skills_id','locale']);
+            $table->foreignId('skills_id')->references('id')->on('skills')->onDelete('cascade');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('skill_translations');
+        Schema::dropIfExists('skills_translations');
     }
 };
