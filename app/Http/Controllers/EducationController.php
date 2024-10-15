@@ -2,38 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EducationRequest;
-use App\Http\Requests\JobProfileRequest;
+use App\Http\Requests\StoreEducationRequest;
+use App\Http\Requests\UpdateEducationRequest;
 use App\Http\Resources\EducationResource;
 use App\Models\Education;
-use App\Models\JobProfile;
+use Illuminate\Support\Facades\Auth;
 
 class EducationController extends Controller
 {
+
     public function index()
     {
-        $educate = Education::where('job_profile_id', auth()->user()->jobProfile()->id)->first();
-        return response()->json(new EducationResource($educate));
+        $educations = Auth::User()->educations();
+        return response()->json(EducationResource::collection($educations));
     }
 
-    public function store(EducationRequest $request)
+    public function store(StoreEducationRequest $request)
     {
         $educate = Education::create([
             ...$request->validated(),
-            'job_profile_id' => auth()->user()->jobProfile()->id,
+            'user_id' => auth()->user()->id,
         ]);
         return response()->json(new EducationResource($educate));
     }
 
-    public function update(EducationRequest $request, Education $educate)
+    public function update(UpdateEducationRequest $request, Education $education)
     {
-        /*        $job_profile->update($request->validated());
-                return response()->json(new JopProfileResource($job_profile));*/
+        $education->update($request->validated());
+        return response()->json(new EducationResource($education));
     }
 
-    public function destroy(Education $educate)
+    public function destroy(Education $education)
     {
-        $educate->delete();
+        $education->delete();
         return response()->json(['message' => 'Delete Successfully'], 200);
     }
 }

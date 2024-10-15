@@ -4,8 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EducationRequest extends FormRequest
+class UpdateExperienceRequest extends FormRequest
 {
+
     public function authorize(): bool
     {
         return true;
@@ -14,12 +15,13 @@ class EducationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'specialization' => ['nullable', 'string'],
-            'university' => ['nullable', 'string'],
+            'job_title' => ['nullable', 'string'],
+            'company_name' => ['nullable', 'string'],
+            'description' => ['nullable', 'string'],
             'employment_type' => ['nullable', 'string'],
+            'status' => ['nullable', 'boolean'],
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date'],
-            // 'job_profile_id'
         ];
     }
 }
