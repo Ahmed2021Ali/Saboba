@@ -12,8 +12,11 @@ class LanguageController extends Controller
 {
     public function index()
     {
-       dd(Auth::User()->userLanguages()) ;
-     //   return response()->json(Auth::User()->userLanguages);
+      // dd(Auth::User()->userLanguages) ;
+        return response()->json([
+            'message' => ' User Languages.',
+            'languages' => LanguageResource::collection(Auth::User()->userLanguages),
+        ], 201);
     }
 
     public function store(StoreLanguagesRequest $request)
@@ -22,12 +25,12 @@ class LanguageController extends Controller
             $language = Auth::User()->userLanguages()->where('language_id', $language_id)->first();
             if ($language) {
                 return response()->json([
-                    'message' => 'your Language already exists', 'language' => $language->name,
+                    'message' => 'your Language already exists',
                 ], 201);
             } else {
                 Auth::User()->userLanguages()->attach($language_id);
                 return response()->json([
-                    'message' => 'your Language created successfully','language' => $language->name,
+                    'message' => 'your Language created successfully',
                 ], 201);
             }
         }
