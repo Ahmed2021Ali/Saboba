@@ -10,5 +10,8 @@ class Skills extends Model
 {
     use HasFactory,Translatable;
     public $translatedAttributes = ['name'];
-
+    public function userskills()
+    {
+        return $this->belongsToMany(User::class, 'skill_user')->withPivot('skill_id', 'user_id');
+    }
 }

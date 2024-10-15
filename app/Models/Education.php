@@ -9,7 +9,9 @@ class Education extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['specialization', 'university', 'employment_type', 'end_date', 'start_date', 'user_id'];
+    protected $fillable = [
+        'specialization', 'university', 'employment_type', 'end_date', 'start_date', 'user_id'
+    ];
 
     public function user()
     {

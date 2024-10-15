@@ -5,9 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class BasicInformationRequest extends FormRequest
+class EducationRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -16,10 +15,11 @@ class BasicInformationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nationality' => ['nullable', 'string', 'min:2', 'max:150'],
-            'gender' => ['nullable', 'string', Rule::in(['male', 'female'])],
-            'age' => ['nullable', 'numeric', 'min:18', 'max:100'],
-            'job_title' => ['nullable', 'string', 'min:2', 'max:150'],
+            'specialization' => ['required', 'string', 'min:2', 'max:250'],
+            'university' => ['required', 'string', 'min:2', 'max:250'],
+            'employment_type' => ['required', 'string', Rule::in(['phd', 'master', 'without_certificate', 'diploma', 'college_student', 'high_school', 'grade_school'])],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
         ];
     }
 

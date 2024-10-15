@@ -5,33 +5,29 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BasicInformationRequest;
 use App\Http\Resources\BasicInformationResource;
 use App\Models\BasicInformation;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class BasicInformationController extends Controller
 {
+
     public function index()
     {
-        $job = BasicInformation::where('user_id', auth()->user()->id)->first();
-        return response()->json(new BasicInformationResource($job));
+        return response()->json([
+            'message' => 'your Basic Information .',
+            'basicInformation' => Auth::User()->basicInformation(),
+        ], 201);
     }
 
     public function store(BasicInformationRequest $request)
     {
-        $job = BasicInformation::create([
+        $basicInformation = BasicInformation::updateOrCreate(['user_id' => auth()->user()->id], [
             ...$request->validated(),
             'user_id' => auth()->user()->id,
         ]);
-        return response()->json(new BasicInformationResource($job));
-    }
-
-    public function update(BasicInformationRequest $request, BasicInformation $basicInformation)
-    {
-        $basicInformation->update($request->validated());
-        return response()->json(new BasicInformationResource($basicInformation));
-    }
-
-    public function destroy(BasicInformation $basicInformation)
-    {
-        $basicInformation->delete();
-        return response()->json(['message' => 'Delete Successfully'], 200);
+        return response()->json([
+            'message' => 'your Basic Information Created.',
+            'basicInformation' => $basicInformation,
+        ], 201);
     }
 }

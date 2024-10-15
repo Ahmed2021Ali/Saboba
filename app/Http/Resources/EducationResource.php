@@ -10,11 +10,11 @@ class EducationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'specialization' => $this->specialization,
-            'university' => $this->university,
-            'employment_type' => $this->employment_type,
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
+            'specialization' => $this->specialization??null,
+            'university' => $this->university??null,
+            'employment_type' => $this->employment_type??null,
+            'start_date' => $this->start_date??null,
+            'end_date' => $this->end_date??null,
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreEducationRequest;
-use App\Http\Requests\UpdateEducationRequest;
+use App\Http\Requests\EducationRequest;
 use App\Http\Resources\EducationResource;
+use App\Models\BasicInformation;
 use App\Models\Education;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,28 +13,29 @@ class EducationController extends Controller
 
     public function index()
     {
-        $educations = Auth::User()->educations();
-        return response()->json(EducationResource::collection($educations));
+        if (Auth::User()->educations()->isNotEmpty()) {
+            return response()->json(['message' => 'your Education ', 'education' => Auth::User()->educations()], 201);
+        }
+        return response()->json(['message' => 'No Educations for You'], 200);
     }
 
-    public function store(StoreEducationRequest $request)
+    public function store(EducationRequest $request)
     {
-        $educate = Education::create([
+        $educate = Education::updateOrCreate(['user_id' => auth()->user()->id], [
             ...$request->validated(),
             'user_id' => auth()->user()->id,
         ]);
-        return response()->json(new EducationResource($educate));
+        return response()->json(['message' => 'your Education created ', 'education' => $educate], 201);
     }
 
-    public function update(UpdateEducationRequest $request, Education $education)
-    {
-        $education->update($request->validated());
-        return response()->json(new EducationResource($education));
-    }
 
-    public function destroy(Education $education)
+    public function destroy($id)
     {
-        $education->delete();
-        return response()->json(['message' => 'Delete Successfully'], 200);
+        $education = Education::findOrFail($id);
+        if (auth()->user()->id === $education->user_id) {
+            $education->delete();
+            return response()->json(['message' => 'Delete Successfully'], 200);
+        }
+        return response()->json(['error' => 'invalid'], 500);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLanguagesRequest;
 use App\Http\Requests\StoreSkillsRequest;
 use App\Http\Requests\UpdateSkillsRequest;
 use App\Http\Resources\SkillsResource;
@@ -19,18 +20,18 @@ class SkillsController extends Controller
     public function store(StoreSkillsRequest $request)
     {
         foreach ($request->skills_id as $skill_id) {
-            Auth::User()->userskills()->attach($skill_id);
+            $language = Auth::User()->userLanguages()->where('language_id', $skill_id)->first();
+            if ($language) {
+                return response()->json([
+                    'message' => 'your Language already exists', 'language' => $language->name,
+                ], 201);
+            } else {
+                Auth::User()->userLanguages()->attach($language_id);
+                return response()->json([
+                    'message' => 'your Language created successfully','language' => $language->name,
+                ], 201);
+            }
         }
-        return response()->json(SkillsResource::collection(Auth::User()->userskills()));
-    }
-
-    public function update(UpdateSkillsRequest $request)
-    {
-        //  Auth::User()->userLanguages()->detach();
-        foreach ($request->skills_id as $skill_id) {
-            Auth::User()->userskills()->attach($skill_id);
-        }
-        return response()->json(SkillsResource::collection(Auth::User()->userskills()));
     }
 
     public function destroy(Skills $skills)

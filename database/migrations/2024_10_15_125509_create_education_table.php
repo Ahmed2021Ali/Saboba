@@ -13,8 +13,8 @@ return new class extends Migration
             $table->string('specialization');
             $table->string('university');
             $table->enum('employment_type', ['phd', 'master', 'without_certificate', 'diploma', 'college_student', 'high_school', 'grade_school']);
-            $table->date('end_date');
-            $table->date('start_date');
+            $table->string('end_date');
+            $table->string('start_date');
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
