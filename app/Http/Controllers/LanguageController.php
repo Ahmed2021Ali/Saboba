@@ -36,9 +36,9 @@ class LanguageController extends Controller
         }
     }
 
-    public function destroy(Language $language)
+    public function destroy($id)
     {
-        Auth::User()->userLanguages()->detach($language->id);
+        Auth::User()->userLanguages()->detach($id);
     }
 
 }
