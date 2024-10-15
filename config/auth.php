@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'defaults' => [
-        'guard' => env('AUTH_GUARD', 'api'), // Set to 'api' for JWT
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
-    ],
+'defaults' => [
+    'guard' => env('AUTH_GUARD', 'web'), // Set to 'web' for sessions by default, change to 'api' for JWT if needed
+    'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+],
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -33,12 +33,20 @@ return [
     | Supported: "session"
     |
     */
-    'guards' => [
-        'api' => [
-            'driver' => 'jwt', // Use JWT driver for API authentication
-            'provider' => 'users',
-        ],
+'guards' => [
+    // Guard للويب (Sessions)
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
     ],
+
+    // Guard للموبايل (JWT Token)
+    'api' => [
+        'driver' => 'jwt',  // JWT Driver
+        'provider' => 'users',
+        'hash' => false,
+    ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -60,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
