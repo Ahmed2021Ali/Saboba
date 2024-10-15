@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->boolean('status');
-            $table->foreignId('job_profile_id')->references('id')->on('job_profiles')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

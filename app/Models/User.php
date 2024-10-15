@@ -45,5 +45,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
+    public function userLanguages()
+    {
+        return $this->belongsToMany(Language::class, 'user_languages')->withPivot('language_id', 'user_id');
+    }
 }

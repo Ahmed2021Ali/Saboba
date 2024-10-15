@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EducationRequest;
 use App\Http\Requests\StoreEducationRequest;
 use App\Http\Requests\UpdateEducationRequest;
 use App\Http\Resources\EducationResource;

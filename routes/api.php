@@ -19,12 +19,12 @@ Route::middleware([JwtMiddleware::class])->group(function () {
 });
 
 
-Route::get('jobProfile', function () {
+Route::middleware([JwtMiddleware::class])->prefix('jobProfile')->group(function () {
     Route::resource('basicInformation', BasicInformationController::class);
     Route::resource('eduction', EducationController::class);
-
     Route::resource('experience', ExperienceController::class);
     Route::resource('language', LanguageController::class);
+
     Route::resource('skills', SkillsController::class);
 });
 
