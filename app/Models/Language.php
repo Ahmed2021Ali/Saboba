@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Language extends Model
 {
-    use HasFactory;
+    use HasFactory,Translatable;
 
-    protected $table = 'languages';
-    protected $fillable = ['name',];
+    protected $fillable = ['name'];
     public $translatedAttributes = ['name'];
 
     /*    public function userLanguages()

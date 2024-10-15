@@ -24,7 +24,6 @@ Route::middleware([JwtMiddleware::class])->prefix('jobProfile')->group(function 
     Route::resource('eduction', EducationController::class);
     Route::resource('experience', ExperienceController::class);
     Route::resource('language', LanguageController::class);
-
     Route::resource('skills', SkillsController::class);
 });
 

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Language;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +23,10 @@ class LanguageSeeder extends Seeder
             ],
         ];
         foreach ($languages as $language) {
-            Language::create($language);
+          //  foreach ($language as $key => $value) {
+             //   App::setLocale($key);
+                Language::create($language);
+         //   }
         }
     }
 }
