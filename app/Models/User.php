@@ -48,6 +48,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function jobProfile()
     {
-        return $this->hasOne(JobProfile::class);
+        return $this->hasOne(BasicInformation::class);
     }
 }

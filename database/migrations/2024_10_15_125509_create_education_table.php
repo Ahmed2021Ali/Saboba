@@ -15,7 +15,7 @@ return new class extends Migration
             $table->enum('employment_type', ['phd', 'master', 'without_certificate', 'diploma', 'college_student', 'high_school', 'grade_school']);
             $table->date('end_date');
             $table->date('start_date');
-            $table->foreignId('job_profile_id')->references('id')->on('job_profiles')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

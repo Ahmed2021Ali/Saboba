@@ -19,7 +19,6 @@ class EducationRequest extends FormRequest
             'employment_type' => ['nullable', 'string'],
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date'],
-            // 'job_profile_id'
         ];
     }
 }

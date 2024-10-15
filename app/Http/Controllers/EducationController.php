@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EducationRequest;
-use App\Http\Requests\JobProfileRequest;
 use App\Http\Resources\EducationResource;
 use App\Models\Education;
-use App\Models\JobProfile;
 
 class EducationController extends Controller
 {
     public function index()
     {
-        $educate = Education::where('job_profile_id', auth()->user()->jobProfile()->id)->first();
+        $educate = Education::where('user_id', auth()->user()->id)->first();
         return response()->json(new EducationResource($educate));
     }
 
@@ -20,20 +18,20 @@ class EducationController extends Controller
     {
         $educate = Education::create([
             ...$request->validated(),
-            'job_profile_id' => auth()->user()->jobProfile()->id,
+            'user_id' => auth()->user()->id,
         ]);
         return response()->json(new EducationResource($educate));
     }
 
-    public function update(EducationRequest $request, Education $educate)
+    public function update(EducationRequest $request, Education $education)
     {
-        /*        $job_profile->update($request->validated());
-                return response()->json(new JopProfileResource($job_profile));*/
+        $education->update($request->validated());
+        return response()->json(new EducationResource($education));
     }
 
-    public function destroy(Education $educate)
+    public function destroy(Education $education)
     {
-        $educate->delete();
+        $education->delete();
         return response()->json(['message' => 'Delete Successfully'], 200);
     }
 }

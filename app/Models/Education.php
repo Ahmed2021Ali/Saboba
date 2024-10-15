@@ -9,10 +9,10 @@ class Education extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['specialization', 'university', 'employment_type', 'end_date', 'start_date', 'job_profile_id'];
+    protected $fillable = ['specialization', 'university', 'employment_type', 'end_date', 'start_date', 'user_id'];
 
-    public function jobProfile()
+    public function user()
     {
-        return $this->belongsTo(JobProfile::class);
+        return $this->belongsTo(User::class);
     }
 }

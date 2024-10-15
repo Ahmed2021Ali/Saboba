@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     public function up(): void
     {
-        Schema::create('job_profiles', function (Blueprint $table) {
+        Schema::create('basic_information', function (Blueprint $table) {
             $table->id();
             $table->string('nationality');
             $table->enum('gender', ['male', 'female']);
@@ -16,10 +17,13 @@ return new class extends Migration
             $table->string('job_title');
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
+            $table->timestamps();
         });
     }
+
+
     public function down(): void
     {
-        Schema::dropIfExists('job_profiles');
+        Schema::dropIfExists('basic_information');
     }
 };
