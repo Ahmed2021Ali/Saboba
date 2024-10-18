@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CountryTranslation extends Model
+class CityTranslation extends Model
 {
     use HasFactory;
-    
-    protected $fillable = ['locale', 'name']; 
+
+    public $timestamps = false;
+    protected $fillable = ['name', 'locale', 'country_id'];
 }
