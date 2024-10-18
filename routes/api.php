@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\JWTAuthController;
 use App\Http\Controllers\BasicInformationController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Middleware\JwtMiddleware;
@@ -27,5 +28,16 @@ Route::middleware([JwtMiddleware::class])->prefix('jobProfile')->group(function 
 });
 
 
+Route::controller(FollowController::class)->middleware([JwtMiddleware::class])->group(function () {
+    Route::get('add-follow/{user_id}', 'addFollow');
+    Route::get('accept-follow/{follow_id}', 'acceptFollow');
+    Route::get('reject-follow/{follow_id}', 'rejectFollow');
 
+    Route::get('cancel-follow/{follow_id}', 'cancelFollow');
 
+    Route::get('show-follower', 'showFollower');
+    Route::get('count-follower', 'countFollower');
+
+    Route::get('show-following', 'showFollowing');
+    Route::get('count-following', 'countFollowing');
+});
