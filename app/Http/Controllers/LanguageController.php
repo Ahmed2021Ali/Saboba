@@ -6,17 +6,16 @@ use App\Http\Requests\StoreLanguagesRequest;
 use App\Http\Requests\UpdateLanguagesRequest;
 use App\Http\Resources\LanguageResource;
 use App\Models\Language;
+use App\Traits\ApiResponseTrait;
 use Illuminate\Support\Facades\Auth;
 
 class LanguageController extends Controller
 {
+    use ApiResponseTrait;
+
     public function index()
     {
-      // dd(Auth::User()->userLanguages) ;
-        return response()->json([
-            'message' => ' User Languages.',
-            'languages' => LanguageResource::collection(Auth::User()->userLanguages),
-        ], 201);
+        return $this->successResponse(LanguageResource::collection(Auth::User()->userLanguages), 'User Languages.', 200);
     }
 
     public function store(StoreLanguagesRequest $request)
@@ -24,21 +23,18 @@ class LanguageController extends Controller
         foreach ($request->languages_id as $language_id) {
             $language = Auth::User()->userLanguages()->where('language_id', $language_id)->first();
             if ($language) {
-                return response()->json([
-                    'message' => 'your Language already exists',
-                ], 201);
+                return $this->successResponse(null, 'your Language already exists', 200);
             } else {
                 Auth::User()->userLanguages()->attach($language_id);
-                return response()->json([
-                    'message' => 'your Language created successfully',
-                ], 201);
+                return $this->successResponse(null, 'your Language created successfully', 201);
+
             }
         }
     }
 
     public function destroy($id)
     {
-        Auth::User()->userLanguages()->detach($id);
+        return $this->successResponse(Auth::User()->userLanguages()->detach($id), null, 200);
     }
 
 }

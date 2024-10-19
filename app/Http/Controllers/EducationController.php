@@ -6,17 +6,19 @@ use App\Http\Requests\EducationRequest;
 use App\Http\Resources\EducationResource;
 use App\Models\BasicInformation;
 use App\Models\Education;
+use App\Traits\ApiResponseTrait;
 use Illuminate\Support\Facades\Auth;
 
 class EducationController extends Controller
 {
+    use ApiResponseTrait;
 
     public function index()
     {
         if (Auth::User()->educations()->isNotEmpty()) {
-            return response()->json(['message' => 'your Education ', 'education' => Auth::User()->educations()], 201);
+            return $this->successResponse(Auth::User()->educations(), 'your Education ', 200);
         }
-        return response()->json(['message' => 'No Educations for You'], 200);
+        return $this->errorResponse('No Educations for You.', null);
     }
 
     public function store(EducationRequest $request)
@@ -25,7 +27,7 @@ class EducationController extends Controller
             ...$request->validated(),
             'user_id' => auth()->user()->id,
         ]);
-        return response()->json(['message' => 'your Education created ', 'education' => $educate], 201);
+        return $this->successResponse($educate, 'your Education created ', 201);
     }
 
 
@@ -34,8 +36,8 @@ class EducationController extends Controller
         $education = Education::findOrFail($id);
         if (auth()->user()->id === $education->user_id) {
             $education->delete();
-            return response()->json(['message' => 'Delete Successfully'], 200);
+            return $this->successResponse(null, 'Delete Successfully', 200);
         }
-        return response()->json(['error' => 'invalid'], 500);
+        return $this->errorResponse('An error occurred', null);
     }
 }
