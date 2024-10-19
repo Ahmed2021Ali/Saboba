@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BasicInformationRequest;
-use App\Http\Resources\BasicInformationResource;
+use App\Http\Traits\ApiResponseTrait;
 use App\Models\BasicInformation;
-use App\Traits\ApiResponseTrait;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class BasicInformationController extends Controller
