@@ -26,9 +26,27 @@ Route::middleware([JwtMiddleware::class])->prefix('jobProfile')->group(function 
     Route::resource('experience', ExperienceController::class);
     Route::resource('language', LanguageController::class);
     Route::resource('skills', SkillsController::class);
+
 });
 
+Route::middleware([JwtMiddleware::class])->group(function () {
+    Route::resource('ads', AdsController::class);
+});
+
+
 Route::resource('ads', AdsController::class);
+
+
+Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->group(function () {
+    Route::get('add-follow/{user_id}', 'addFollow');
+    Route::get('accept-follow/{follow_id}', 'acceptFollow');
+    Route::get('reject-follow/{follow_id}', 'rejectFollow');
+    Route::get('cancel-follow/{follow_id}', 'cancelFollow');
+    Route::get('show-follower', 'showFollower');
+    Route::get('count-follower', 'countFollower');
+    Route::get('show-following', 'showFollowing');
+    Route::get('count-following', 'countFollowing');
+});
 
 Route::get('/accepted-languages', function (Request $request) {
     $acceptedLanguages = $request->getLanguages();
