@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('ad_translations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('ad_id')->unsigned(); // Define the foreign key without constraints
+            $table->foreign('ad_id')->references('id')->on('ads')->onDelete('cascade'); 
+            $table->string('locale')->index();
+            $table->string('name'); 
+            $table->string('description'); 
             $table->timestamps();
+
+            $table->unique(['ad_id', 'locale']);
+
         });
     }
 

@@ -11,12 +11,13 @@ return new class extends Migration
     {
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
-            $table->decimal('price', 8, 2);
+            $table->decimal('price');
             $table->string('reference_number')->unique();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('city_id')->constrained()->onDelete('cascade');
             $table->string('image')->nullable();
+            $table->timestamps();
         });
         
     }

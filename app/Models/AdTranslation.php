@@ -9,6 +9,11 @@ class AdTranslation extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-    protected $fillable = ['name', 'description', 'locale'];
+    public $timestamps = true;
+    protected $fillable = ['name', 'description', 'locale', 'ad_id']; // الخصائص القابلة للتعبئة
+
+    public function ad()
+    {
+        return $this->belongsTo(Ad::class); // علاقة مع نموذج Ad
+    }
 }

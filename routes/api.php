@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdsController;
 use App\Http\Controllers\Auth\JWTAuthController;
 use App\Http\Controllers\BasicInformationController;
 use App\Http\Controllers\EducationController;
@@ -32,5 +33,10 @@ Route::middleware([JwtMiddleware::class])->prefix('jobProfile')->group(function 
 });
 
 
+Route::resource('ads', AdsController::class);
 
 
+Route::get('/accepted-languages', function (Request $request) {
+    $acceptedLanguages = $request->getLanguages();
+    return response()->json($acceptedLanguages);
+});
