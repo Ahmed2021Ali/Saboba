@@ -7,6 +7,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JwtAuthRequest;
+use App\Traits\ApiResponseTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,9 @@ use Illuminate\Support\Facades\Hash;
 class JWTAuthController extends Controller
 {
 
+    use ApiResponseTrait;
 
+    
     public function register(JwtAuthRequest $request)
     {
         $validatedData = $request->validated();
