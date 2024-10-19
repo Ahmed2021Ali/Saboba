@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLanguagesRequest;
-use App\Http\Requests\UpdateLanguagesRequest;
+
 use App\Http\Resources\LanguageResource;
-use App\Models\Language;
-use App\Traits\ApiResponseTrait;
+use App\Http\Traits\ApiResponseTrait;
 use Illuminate\Support\Facades\Auth;
 
 class LanguageController extends Controller

@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLanguagesRequest;
 use App\Http\Requests\StoreSkillsRequest;
-use App\Http\Requests\UpdateSkillsRequest;
 use App\Http\Resources\SkillsResource;
-use App\Models\Skills;
-use App\Traits\ApiResponseTrait;
+use App\Http\Traits\ApiResponseTrait;
 use Illuminate\Support\Facades\Auth;
 
 class SkillsController extends Controller

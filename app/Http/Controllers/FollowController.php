@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\FolloweringResource;
 use App\Http\Resources\FollowerResource;
 use App\Http\Resources\FollowResource;
+use App\Http\Traits\ApiResponseTrait;
 use App\Models\Follow;
 use App\Models\User;
-use App\Traits\ApiResponseTrait;
 use Illuminate\Support\Facades\Auth;
 
 class FollowController extends Controller
