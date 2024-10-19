@@ -7,17 +7,15 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JwtAuthRequest;
-use App\Traits\ApiResponseTrait;
+use App\Http\Traits\ApiResponseTrait as TraitsApiResponseTrait;
 use Illuminate\Database\QueryException;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class JWTAuthController extends Controller
 {
 
-    use ApiResponseTrait;
+    use TraitsApiResponseTrait;
 
-    
     public function register(JwtAuthRequest $request)
     {
         $validatedData = $request->validated();
@@ -28,18 +26,14 @@ class JWTAuthController extends Controller
             $user = User::create($validatedData);
             $token = JWTAuth::fromUser($user);
 
-            return response()->json([
-                'success' => true,
-                'message' => 'User registered successfully.',
-                'data' => ['user' => $user, 'token' => $token]], 201);
+            return $this->successResponse($user.$token, 'User registered successfully', 201);
 
         } catch (QueryException $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Database error: ' . $e->getMessage(),
-            ], 500);
-
+            
+            return $this->errorResponse(null, 'Database error:' . $e->getMessage(), 500);
+          
         } catch (\Exception $e) {
+            
             return response()->json([
                 'success' => false,
                 'message' => 'User registration failed. Please try again.',
