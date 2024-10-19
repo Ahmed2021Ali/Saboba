@@ -10,7 +10,6 @@ class Country extends Model
 {
     use HasFactory, Translatable;
 
-    public $translatedAttributes = ['name']; // Ensure this property is correctly defined
-    protected $fillable = ['locale', 'name'];
-
+    public $translatedAttributes = ['name']; // العمود اللي هيتترجم
+    // protected $fillable = []; // هنا ممكن تضيف أي أعمدة تحتاجها
 }

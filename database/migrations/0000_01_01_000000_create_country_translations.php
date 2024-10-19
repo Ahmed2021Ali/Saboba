@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     public function up(): void
     {
         Schema::create('country_translations', function (Blueprint $table) {
@@ -19,6 +20,7 @@ return new class extends Migration
         });
     }
 
+  
     public function down(): void
     {
         Schema::dropIfExists('country_translations');

@@ -12,14 +12,15 @@ class LanguageController extends Controller
 {
     public function index()
     {
-       dd(Auth::User()->userLanguages()) ;
-     //   return response()->json(Auth::User()->userLanguages);
+      // dd(Auth::User()->userLanguages) ;
+        return response()->json([
+            'message' => ' User Languages.',
+            'languages' => LanguageResource::collection(Auth::User()->userLanguages),
+        ], 201);
     }
 
     public function store(StoreLanguagesRequest $request)
     {
-        dd(Auth::User()->userLanguages) ;
-
         foreach ($request->languages_id as $language_id) {
             $language = Auth::User()->userLanguages()->where('language_id', $language_id)->first();
             if ($language) {

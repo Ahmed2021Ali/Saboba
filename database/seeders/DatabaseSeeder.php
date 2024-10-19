@@ -18,10 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
              LanguageSeeder::class,
             SkillsSeeder::class,
-            // CountrySeeder::class,
-            CountryCitySeeder::class,
-            CategorySeeder::class,
-            
+            CountrySeeder::class,
         ]);
     }
 }

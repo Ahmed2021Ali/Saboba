@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class CountryTranslation extends Model
 {
     use HasFactory;
-    
     protected $fillable = ['locale', 'name']; 
+
 }
