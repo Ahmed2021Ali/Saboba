@@ -21,59 +21,52 @@ class JWTAuthController extends Controller
         $validatedData = $request->validated();
 
         try {
-
             $validatedData['password'] = Hash::make($validatedData['password']);
             $user = User::create($validatedData);
             $token = JWTAuth::fromUser($user);
 
-            return $this->successResponse($user.$token, 'User registered successfully', 201);
+            return $this->successResponse([
+                'user' => $user,
+                'token' => $token
+            ], 'User registered successfully', 201);
 
         } catch (QueryException $e) {
-            
-            return $this->errorResponse(null, 'Database error:' . $e->getMessage(), 500);
-          
+            return $this->errorResponse('Database error: ' . $e->getMessage(), 500);
+
         } catch (\Exception $e) {
-            
-            return response()->json([
-                'success' => false,
-                'message' => 'User registration failed. Please try again.',
-            ], 500);
+            return $this->errorResponse('User registration failed. Please try again.', 500);
         }
     }
-
-
-
-
 
     public function login(JwtAuthRequest $request)
     {
         $validatedData = $request->validated();
-
+    
         $credentials = [
             'phone' => $validatedData['phone'],
             'password' => $validatedData['password']
         ];
-
+    
         if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
+            return $this->errorResponse('Invalid credentials', 401);
         }
-
+    
         $userData = auth()->user();
-
-        return response()->json([
+    
+        return $this->successResponse([
             'user' => $userData,
-            'token' => $token,
-        ], 200);
+            'token' => $token
+        ], 'Login successful', 200);
     }
-
+    
 
     public function logout()
-    {
-        try {
-            JWTAuth::invalidate(JWTAuth::getToken());
-            return response()->json(['message' => 'Successfully logged out'], 200);
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'Could not log out'], 500);
-        }
+{
+    try {
+        JWTAuth::invalidate(JWTAuth::getToken());
+        return $this->successResponse([], 'Successfully logged out', 200);
+    } catch (JWTException $e) {
+        return $this->errorResponse('Could not log out', 500);
     }
+}
 }
