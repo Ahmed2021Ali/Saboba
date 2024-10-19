@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ExperienceRequest;
 use App\Http\Resources\ExperienceResource;
-use App\Models\Education;
+use App\Http\Traits\ApiResponseTrait;
 use App\Models\Experience;
-use App\Traits\ApiResponseTrait;
 use Illuminate\Support\Facades\Auth;
 
 class ExperienceController extends Controller

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EducationRequest;
-use App\Http\Resources\EducationResource;
-use App\Models\BasicInformation;
+
+use App\Http\Traits\ApiResponseTrait;
 use App\Models\Education;
-use App\Traits\ApiResponseTrait;
+
 use Illuminate\Support\Facades\Auth;
 
 class EducationController extends Controller

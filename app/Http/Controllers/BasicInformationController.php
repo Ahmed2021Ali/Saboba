@@ -18,7 +18,6 @@ class BasicInformationController extends Controller
 
     public function store(BasicInformationRequest $request)
     {
-        if (auth()->user()->type === '')
             $basicInformation = BasicInformation::updateOrCreate(['user_id' => auth()->user()->id], [
                 ...$request->validated(), 'user_id' => auth()->user()->id]);
 
