@@ -13,7 +13,7 @@ class Ad extends Model
     protected $table = 'ads';
     public $timestamps = true; // يجب تفعيل التوقيتات
 
-    protected $fillable = ['price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image'];
+    protected $fillable = ['price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status'];
 
     public $translatedAttributes = ['name', 'description']; // الخصائص المترجمة
 
