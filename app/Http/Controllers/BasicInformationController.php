@@ -5,16 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BasicInformationRequest;
 use App\Http\Resources\BasicInformationResource;
 use App\Models\BasicInformation;
+use App\Traits\ApiResponseTrait;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class BasicInformationController extends Controller
 {
+    use ApiResponseTrait;
 
     public function index()
     {
-        return response()->json(['message' => 'your Basic Information',
-            'basicInformation' => Auth::User()->basicInformation()], 201);
+        return $this->successResponse(Auth::User()->basicInformation(), 'your Basic Information', 200);
     }
 
     public function store(BasicInformationRequest $request)
@@ -23,9 +24,7 @@ class BasicInformationController extends Controller
             $basicInformation = BasicInformation::updateOrCreate(['user_id' => auth()->user()->id], [
                 ...$request->validated(), 'user_id' => auth()->user()->id]);
 
-        return response()->json([
-            'message' => 'your Basic Information Created.',
-            'basicInformation' => $basicInformation],
-            201);
+        return $this->successResponse($basicInformation, 'your Basic Information Created', 201);
+
     }
 }
