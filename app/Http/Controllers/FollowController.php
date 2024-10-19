@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FollowResource;
 use App\Models\Follow;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -20,10 +21,10 @@ class FollowController extends Controller
                 'message' => 'You cannot send a follow request to yourself.',
             ], 404);
         }
-        $follower = Follow::create(['follower' => Auth::id(), 'following' => $user->id, 'status' => 'pending']);
+        $follow = Follow::create(['follower' => Auth::id(), 'following' => $user->id, 'status' => 'pending']);
         return response()->json([
             'message' => 'Follow-up request has been sent successfully',
-            'follow' => $follower
+            'follow' => new FollowResource($follow)
         ], 201);
     }
 

@@ -71,4 +71,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(BasicInformation::class)->select('job_title','nationality','gender','age')->first();
     }
+
+    public function follower()
+    {
+        return $this->hasMany(Follow::class,'follower');
+    }
+    public function following()
+    {
+        return $this->hasMany(Follow::class,'following');
+    }
 }

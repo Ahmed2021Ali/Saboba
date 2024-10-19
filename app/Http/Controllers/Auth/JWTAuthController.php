@@ -7,44 +7,47 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JwtAuthRequest;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class JWTAuthController extends Controller
 {
-    public function register(Request $request)
+
+
+    public function register(JwtAuthRequest $request)
     {
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'overview' => 'required|string', // Adjust if you want to impose length limits
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'phone' => 'required|string|max:15', // Adjust length according to your needs
-            'type' => 'required|in:personal,company,admin',
-            'country_id' => 'nullable|exists:countries,id', // Ensure the country exists in countries table
-            'contact_number' => 'nullable|string|max:15', // Adjust length according to your needs
-            'whatsapp_number' => 'nullable|string|max:15', // Adjust length according to your needs
-        ]);
-    
-        // Hash the password
-        $validatedData['password'] = bcrypt($validatedData['password']);
-    
+        $validatedData = $request->validated();
+
         try {
-            // Create the user and generate a token
+            
+            $validatedData['password'] = Hash::make($validatedData['password']);
             $user = User::create($validatedData);
             $token = JWTAuth::fromUser($user);
-    
+
             return response()->json([
+                'success' => true,
                 'message' => 'User registered successfully.',
-                'user' => $user,
-                'token' => $token,
+                'data' => [
+                    'user' => $user,
+                    'token' => $token,
+                ]
             ], 201);
-    
+
+        } catch (QueryException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Database error: ' . $e->getMessage(),
+            ], 500);
+
         } catch (\Exception $e) {
-            // Return the actual error message for debugging
-            return response()->json(['error' => 'User registration failed. Error: ' . $e->getMessage()], 500);
+            return response()->json([
+                'success' => false,
+                'message' => 'User registration failed. Please try again.',
+            ], 500);
         }
     }
+
     
     
 
