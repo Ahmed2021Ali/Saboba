@@ -50,18 +50,19 @@ class User extends Authenticatable implements JWTSubject
 
     public function educations()
     {
-        return $this->hasMany(Education::class)->select('id','specialization','university','employment_type','end_date','start_date')->get();
+        return $this->hasMany(Education::class)->select('id', 'specialization', 'university', 'employment_type', 'end_date', 'start_date')->get();
     }
 
     public function experiences()
     {
-        return $this->hasMany(Experience::class)->select('id','job_title','company_name','description','employment_type','start_date','end_date','status')->get();
+        return $this->hasMany(Experience::class)->select('id', 'job_title', 'company_name', 'description', 'employment_type', 'start_date', 'end_date', 'status')->get();
     }
 
     public function userLanguages()
     {
         return $this->belongsToMany(Language::class, 'user_languages')->withPivot(['language_id', 'user_id']);
     }
+
     public function userSkills()
     {
         return $this->belongsToMany(Skills::class, 'user_skills')->withPivot(['skills_id', 'user_id']);
@@ -69,15 +70,16 @@ class User extends Authenticatable implements JWTSubject
 
     public function basicInformation()
     {
-        return $this->hasOne(BasicInformation::class)->select('job_title','nationality','gender','age')->first();
+        return $this->hasOne(BasicInformation::class)->select('job_title', 'nationality', 'gender', 'age')->first();
     }
 
-/*    public function follower()
+    public function followers()
     {
-        return $this->hasMany(Follow::class,'follower');
+        return $this->hasMany(Follow::class, 'follower_id')->select('following_id')->get();
     }
-    public function following()
+
+    public function followings()
     {
-        return $this->hasMany(Follow::class,'following');
-    }*/
+        return $this->hasMany(Follow::class, 'following_id')->select('follower_id')->get();
+    }
 }

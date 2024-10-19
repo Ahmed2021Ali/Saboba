@@ -20,7 +20,7 @@ class JWTAuthController extends Controller
         $validatedData = $request->validated();
 
         try {
-            
+
             $validatedData['password'] = Hash::make($validatedData['password']);
             $user = User::create($validatedData);
             $token = JWTAuth::fromUser($user);
@@ -28,11 +28,7 @@ class JWTAuthController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'User registered successfully.',
-                'data' => [
-                    'user' => $user,
-                    'token' => $token,
-                ]
-            ], 201);
+                'data' => ['user' => $user, 'token' => $token]], 201);
 
         } catch (QueryException $e) {
             return response()->json([
@@ -48,8 +44,8 @@ class JWTAuthController extends Controller
         }
     }
 
-    
-    
+
+
 
 
     public function login(JwtAuthRequest $request)

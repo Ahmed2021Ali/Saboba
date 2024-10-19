@@ -11,7 +11,7 @@ class FolloweringResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'followings' => $this->follower
+             $this->follower
         ];
     }
 }

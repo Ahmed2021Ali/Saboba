@@ -15,24 +15,27 @@ class FollowController extends Controller
     // follower_id  => انا من قومت بارسال طلب المتابعه
 
     // ارسال طلب متابعه
+
     public function addFollow($user_id)
     {
         $user = User::findOrFail($user_id);
         if ($user->id === Auth::id()) {
             return response()->json(['message' => 'You cannot send a follow request to yourself.'], 404);
         }
-        $follow = Follow::where('follower_id', Auth::id())->where('following_id', $user_id)->where('status', 'pending')->first();
-        if ($follow) {
+        $followError1 = Follow::where('follower_id', Auth::id())->where('following_id', $user_id)->where('status', 'pending')->first();
+        if ($followError1) {
             return response()->json(['message' => 'You cannot send a follow request more than once.'], 404);
         }
+        $followError2 = Follow::where('follower_id', $user_id)->where('following_id', Auth::id())->where('status', 'pending')->first();
+        if ($followError2) {
+            return response()->json(['message' => 'You cannot send a follow request to this person because he has already sent you a follow request. Please accept it or'], 404);
+        }
         $follow = Follow::create(['follower_id' => Auth::id(), 'following_id' => $user->id, 'status' => 'pending']);
-        return response()->json([
-            'message' => 'Follow-up request has been sent successfully',
-            'follow' => new FollowResource($follow)
-        ], 201);
+        return response()->json(['message' => 'Follow-up request has been sent successfully', 'follow' => new FollowResource($follow)], 201);
     }
 
     // الغاء طلب المتابعه
+
     public function cancelFollow($user_id)
     {
         $follow = Follow::where('follower_id', Auth::id())->Orwhere('following_id', $user_id)->first();
@@ -43,8 +46,8 @@ class FollowController extends Controller
         return response()->json(['message' => 'The follow request was successfully cancelled.'], 201);
     }
 
-
 // قبول طلب المتابعه  المرسل
+
     public function acceptFollow($user_id)
     {
         $follow = Follow::where('following_id', Auth::id())->where('follower_id', $user_id)->where('status', 'pending')->first();
@@ -59,8 +62,8 @@ class FollowController extends Controller
         return response()->json(['error' => ' An error occurred. '], 404);
     }
 
-
 // رفض طلب المتابعه  المرسل
+
     public function rejectFollow($user_id)
     {
         $follow = Follow::where('following_id', Auth::id())->where('follower_id', $user_id)->where('status', 'pending')->first();
@@ -73,28 +76,30 @@ class FollowController extends Controller
     }
 
 
+
     public function showFollower()
     {
-        $followers = Follow::select('id', 'following_id')->where('follower_id', Auth::id())->get();
-        return response()->json(FollowerResource::collection($followers), 201);
+        return response()->json(FollowerResource::collection(Auth()->user()->followers()), 201);
     }
+
+
 
     public function countFollower()
     {
-        $followers = Follow::where('follower_id', Auth::id())->count();
-        return response()->json(['followers' => $followers], 201);
-
+        return response()->json(['followers' => Auth()->user()->followers()->count()], 201);
     }
+
+
 
     public function showFollowing()
     {
-        $followings = Follow::select('id', 'follower_id')->where('following_id', Auth::id())->get();
-        return response()->json(['followings' => FolloweringResource::collection($followings)], 201);
+        return response()->json(FolloweringResource::collection(Auth()->user()->followings()));
     }
 
     public function countFollowing()
     {
-        $following = Follow::where('following', Auth::id())->count();
-        return response()->json(['follower' => $following], 201);
+        return response()->json(['followings' => Auth()->user()->followings()->count()], 201);
     }
+
+
 }
