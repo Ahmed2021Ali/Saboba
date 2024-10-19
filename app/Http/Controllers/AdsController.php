@@ -25,9 +25,6 @@ class AdsController extends Controller
 
     public function store(Request $request)
     {
-        $acceptedLanguages = $request->getLanguages();
-        return response()->json($acceptedLanguages);
-
         // Validate the incoming request
         $validator = Validator::make($request->all(), [
             'price' => 'required|numeric|min:0',
