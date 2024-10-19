@@ -25,7 +25,7 @@ class JwtAuthRequest extends FormRequest
             'email' => 'nullable|string|email|max:50|unique:users',
             'password' => 'required|string|min:6|confirmed|max:50',
             'type' => 'required|in:personal,company',
-            'phone' => 'required|string|min:8|max:20|unique:users',
+            'phone' => 'required|string|min:8|max:20',
             'country_id' => 'required|exists:countries,id',
             'whatsapp_number' => 'nullable|string|min:8|max:20',
             'contact_number' => 'nullable|string|min:8|max:20',
