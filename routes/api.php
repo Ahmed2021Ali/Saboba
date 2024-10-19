@@ -31,10 +31,11 @@ Route::middleware([JwtMiddleware::class])->prefix('jobProfile')->group(function 
 
 Route::middleware([JwtMiddleware::class])->group(function () {
     Route::resource('ads', AdsController::class);
+    Route::get('get-main-category-of-ad', [AdsController::class, 'getMainCategoryOfAd']);
+
 });
 
 
-Route::resource('ads', AdsController::class);
 
 
 Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->group(function () {
