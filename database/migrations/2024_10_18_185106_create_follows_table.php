@@ -11,8 +11,8 @@ return new class extends Migration {
         Schema::create('follows', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['pending', 'reject', 'accept']);
-            $table->foreignId('follower')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('following')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('follower_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('following_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
