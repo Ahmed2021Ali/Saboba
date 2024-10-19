@@ -20,7 +20,6 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::post('logout', [JWTAuthController::class, 'logout']);
 });
 
-
 Route::middleware([JwtMiddleware::class])->prefix('jobProfile')->group(function () {
     Route::resource('basicInformation', BasicInformationController::class);
     Route::resource('eduction', EducationController::class);
@@ -35,6 +34,8 @@ Route::middleware([JwtMiddleware::class])->group(function () {
 });
 
 
+Route::resource('ads', AdsController::class);
+
 
 Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->group(function () {
     Route::get('add-follow/{user_id}', 'addFollow');
@@ -47,7 +48,6 @@ Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->
     Route::get('count-following', 'countFollowing');
 });
 
-
 Route::get('/accepted-languages', function (Request $request) {
     $acceptedLanguages = $request->getLanguages();
     return response()->json($acceptedLanguages);
@@ -55,11 +55,14 @@ Route::get('/accepted-languages', function (Request $request) {
 
 Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->group(function () {
     Route::get('add-follow/{user_id}', 'addFollow');
-    Route::get('accept-follow/{follow_id}', 'acceptFollow');
-    Route::get('reject-follow/{follow_id}', 'rejectFollow');
-    Route::get('cancel-follow/{follow_id}', 'cancelFollow');
+    Route::get('cancel-follow/{user_id}', 'cancelFollow');
+
+    Route::get('accept-follow/{user_id}', 'acceptFollow');
+    Route::get('reject-follow/{user_id}', 'rejectFollow');
+
     Route::get('show-follower', 'showFollower');
     Route::get('count-follower', 'countFollower');
+
     Route::get('show-following', 'showFollowing');
     Route::get('count-following', 'countFollowing');
 });
