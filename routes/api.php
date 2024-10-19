@@ -33,7 +33,7 @@ Route::middleware([JwtMiddleware::class])->prefix('jobProfile')->group(function 
 Route::resource('ads', AdsController::class);
 
 
-<<<<<<< HEAD
+
 Route::get('/accepted-languages', function (Request $request) {
     $acceptedLanguages = $request->getLanguages();
     return response()->json($acceptedLanguages);
@@ -49,5 +49,4 @@ Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->
     Route::get('show-following', 'showFollowing');
     Route::get('count-following', 'countFollowing');
 });
-=======
->>>>>>> 5c8384ad6a0253ad9b600608db34c69de1ea4d68
+
