@@ -14,7 +14,7 @@ class LanguageController extends Controller
 
     public function index()
     {
-        return response()->json(['data' => LanguageResource::collection(Auth::User()->userLanguages),200]);
+        return $this->successResponse(LanguageResource::collection(Auth::User()->userLanguages), 'User Languages.', 200);
     }
 
     public function store(StoreLanguagesRequest $request)
