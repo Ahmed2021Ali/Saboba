@@ -23,10 +23,10 @@ class LanguageController extends Controller
         foreach ($request->languages_id as $language_id) {
             $language = Auth::User()->userLanguages()->where('language_id', $language_id)->first();
             if ($language) {
-                return $this->successResponse(null, 'your Language already exists', 200);
+                return $this->successResponse($language, 'your Language already exists', 200);
             } else {
                 Auth::User()->userLanguages()->attach($language_id);
-                return $this->successResponse(null, 'your Language created successfully', 201);
+                return $this->successResponse($language, 'your Language created successfully', 201);
 
             }
         }
@@ -35,12 +35,11 @@ class LanguageController extends Controller
     public function destroy($id)
     {
         $language = Language::findOrFail($id);
-        if (auth()->user()->id === $education->user_id) {
-            $education->delete();
+        if (auth()->user()->id === $language->user_id) {
+            $language->delete();
             return $this->successResponse(null, 'Delete Successfully', 200);
         }
         return $this->errorResponse('An error occurred', null);
-        return $this->successResponse(Auth::User()->userLanguages()->detach($id), null, 200);
     }
 
 }
