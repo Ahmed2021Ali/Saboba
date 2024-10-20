@@ -14,7 +14,7 @@ class SkillsController extends Controller
 
     public function index()
     {
-        return response()->json(Auth::User()->userSkills);
+        return response()->json(['skills'=>(Auth::User()->userSkills]);
     }
 
     public function store(StoreSkillsRequest $request)
