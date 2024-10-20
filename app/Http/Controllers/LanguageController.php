@@ -15,7 +15,7 @@ class LanguageController extends Controller
 
     public function index()
     {
-        return $this->successResponse(LanguageResource::collection(Auth::User()->userLanguages), 'User Languages.', 200);
+        return $this->successResponse(LanguageResource::collection(Auth::User()->userLanguages), 200);
     }
 
     public function store(StoreLanguagesRequest $request)
@@ -23,10 +23,10 @@ class LanguageController extends Controller
         foreach ($request->languages_id as $language_id) {
             $language = Auth::User()->userLanguages()->where('language_id', $language_id)->first();
             if ($language) {
-                return $this->successResponse($language, 'your Language already exists', 200);
+                return response()->json([$language,'success'=>'your Language already exists']);
             } else {
                 Auth::User()->userLanguages()->attach($language_id);
-                return $this->successResponse($language, 'your Language created successfully', 201);
+                return response()->json([$language,'success'=>'your Language created successfully']);
             }
         }
     }
@@ -37,10 +37,10 @@ class LanguageController extends Controller
         if ($language) {
             if (auth()->user()->id === $language->user_id) {
                 $language->delete();
-                return $this->successResponse(null, 'Delete Successfully', 200);
+                return response()->json(['success'=>'Delete Successfully']);
             }
         }
-        return $this->errorResponse('An error occurred', null);
+        return response()->json(['error'=>'An error occurred']);
     }
 
 }

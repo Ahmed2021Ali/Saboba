@@ -15,9 +15,9 @@ class ExperienceController extends Controller
     public function index()
     {
         if (Auth::User()->experiences()->isNotEmpty()) {
-            return $this->successResponse(Auth::User()->experiences(), null, 200);
+            return response()->json(Auth::User()->experiences());
         }
-        return $this->errorResponse('No experiences for You', null);
+        return response()->json(['success'=>'No experiences for You']);
     }
 
     public function store(ExperienceRequest $request)
@@ -26,7 +26,7 @@ class ExperienceController extends Controller
             ...$request->all(),
             'user_id' => auth()->user()->id,
         ]);
-        return $this->successResponse(new ExperienceResource($experience), null, 200);
+        return response()->json(new ExperienceResource($experience));
     }
 
 
@@ -36,9 +36,9 @@ class ExperienceController extends Controller
         if ($experience) {
             if (auth()->user()->id === $experience->user_id) {
                 $experience->delete();
-                return $this->successResponse(null, 'Delete Successfully', 200);
+                return response()->json(['success'=>'Experience deleted successfully']);
             }
         }
-        return $this->errorResponse('An error occurred', null);
+        return response()->json(['error'=>'An error occurred']);
     }
 }
