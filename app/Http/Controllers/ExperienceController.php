@@ -32,7 +32,7 @@ class ExperienceController extends Controller
 
     public function destroy($id)
     {
-        $experience = Experience::find($id);
+        $experience = Experience::where('id',$id)->first();
         if ($experience) {
             if (auth()->user()->id === $experience->user_id) {
                 $experience->delete();

@@ -33,7 +33,7 @@ class EducationController extends Controller
 
     public function destroy($id)
     {
-        $education = Education::find($id);
+        $education = Education::where('id',$id)->first();
         if (auth()->user()->id === $education->user_id) {
             $education->delete();
             return $this->successResponse(null, 'Delete Successfully', 200);

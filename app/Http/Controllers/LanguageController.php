@@ -34,7 +34,7 @@ class LanguageController extends Controller
 
     public function destroy($id)
     {
-        $language = Language::findOrFail($id);
+        $language = Language::where('id',$id)->first();
         if (auth()->user()->id === $language->user_id) {
             $language->delete();
             return $this->successResponse(null, 'Delete Successfully', 200);
