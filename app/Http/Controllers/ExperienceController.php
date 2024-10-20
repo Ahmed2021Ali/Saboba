@@ -32,10 +32,12 @@ class ExperienceController extends Controller
 
     public function destroy($id)
     {
-        $experience = Experience::findOrFail($id);
-        if (auth()->user()->id === $experience->user_id) {
-            $experience->delete();
-            return $this->successResponse(null, 'Delete Successfully', 200);
+        $experience = Experience::find($id);
+        if ($experience) {
+            if (auth()->user()->id === $experience->user_id) {
+                $experience->delete();
+                return $this->successResponse(null, 'Delete Successfully', 200);
+            }
         }
         return $this->errorResponse('An error occurred', null);
     }

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreLanguagesRequest;
 
 use App\Http\Resources\LanguageResource;
 use App\Http\Traits\ApiResponseTrait;
+use App\Models\Language;
 use Illuminate\Support\Facades\Auth;
 
 class LanguageController extends Controller
@@ -33,6 +34,12 @@ class LanguageController extends Controller
 
     public function destroy($id)
     {
+        $language = Language::findOrFail($id);
+        if (auth()->user()->id === $education->user_id) {
+            $education->delete();
+            return $this->successResponse(null, 'Delete Successfully', 200);
+        }
+        return $this->errorResponse('An error occurred', null);
         return $this->successResponse(Auth::User()->userLanguages()->detach($id), null, 200);
     }
 
