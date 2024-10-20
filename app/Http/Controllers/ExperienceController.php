@@ -34,7 +34,6 @@ class ExperienceController extends Controller
     {
         $experience = Experience::where('id',$id)->first();
         if ($experience) {
-            dd("Ddddddddd");
             if (auth()->user()->id === $experience->user_id) {
                 $experience->delete();
                 return response()->json(['success'=>'Experience deleted successfully']);
