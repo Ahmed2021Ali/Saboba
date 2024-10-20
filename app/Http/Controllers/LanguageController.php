@@ -27,17 +27,18 @@ class LanguageController extends Controller
             } else {
                 Auth::User()->userLanguages()->attach($language_id);
                 return $this->successResponse($language, 'your Language created successfully', 201);
-
             }
         }
     }
 
     public function destroy($id)
     {
-        $language = Language::where('id',$id)->first();
-        if (auth()->user()->id === $language->user_id) {
-            $language->delete();
-            return $this->successResponse(null, 'Delete Successfully', 200);
+        $language = Language::where('id', $id)->first();
+        if ($language) {
+            if (auth()->user()->id === $language->user_id) {
+                $language->delete();
+                return $this->successResponse(null, 'Delete Successfully', 200);
+            }
         }
         return $this->errorResponse('An error occurred', null);
     }
