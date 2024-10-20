@@ -34,10 +34,14 @@ class EducationController extends Controller
     public function destroy($id)
     {
         $education = Education::where('id',$id)->first();
-        if (auth()->user()->id === $education->user_id) {
-            $education->delete();
-            return response()->json(['success'=>'Delete Successfully']);
+        if($education)
+        {
+            if (auth()->user()->id === $education->user_id) {
+                $education->delete();
+                return response()->json(['success'=>'Delete Successfully']);
+            }
         }
+
         return response()->json(['error'=>'An error occurred']);
 
     }
