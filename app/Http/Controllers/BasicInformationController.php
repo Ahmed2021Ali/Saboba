@@ -18,8 +18,8 @@ class BasicInformationController extends Controller
 
     public function store(BasicInformationRequest $request)
     {
-            $basicInformation = BasicInformation::updateOrCreate(['user_id' => auth()->user()->id], [
-                ...$request->validated(), 'user_id' => auth()->user()->id]);
+        $basicInformation = BasicInformation::updateOrCreate(['user_id' => auth()->user()->id], [
+            ...$request->validated(), 'user_id' => auth()->user()->id]);
 
         return $this->successResponse($basicInformation, 'your Basic Information Created', 201);
 
