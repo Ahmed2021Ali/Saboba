@@ -16,9 +16,9 @@ class EducationController extends Controller
     public function index()
     {
         if (Auth::User()->educations()->isNotEmpty()) {
-            return $this->successResponse(Auth::User()->educations(), 'your Education ', 200);
+            return response()->json(Auth::User()->educations());
         }
-        return $this->errorResponse('No Educations for You.', null);
+        return response()->json(['success'=>'No Educations for You.']);
     }
 
     public function store(EducationRequest $request)
@@ -27,7 +27,7 @@ class EducationController extends Controller
             ...$request->validated(),
             'user_id' => auth()->user()->id,
         ]);
-        return $this->successResponse($educate, 'your Education created ', 201);
+        return response()->json([$educate,'success'=>'Education Created Successfully.']);
     }
 
 
@@ -36,8 +36,9 @@ class EducationController extends Controller
         $education = Education::where('id',$id)->first();
         if (auth()->user()->id === $education->user_id) {
             $education->delete();
-            return $this->successResponse(null, 'Delete Successfully', 200);
+            return response()->json(['success'=>'Delete Successfully']);
         }
-        return $this->errorResponse('An error occurred', null);
+        return response()->json(['error'=>'An error occurred']);
+
     }
 }
