@@ -29,77 +29,76 @@ class AdsController extends Controller
     }
     
     public function store(StoreAdsRequest $request)
-    {
-        return DB::transaction(function () use ($request) {
-            try {
-                // 1. Create the Ad
-                $ad = $this->createAd($request);
-    
-                // 2. Handle translations if available
-                if ($this->hasValidTranslations($request)) {
-                    $this->createTranslations($ad->id, $request->translations);
-                }
-    
-                // 3. Return success response
-                return $this->buildSuccessResponse($ad, $request->translations);
-            } catch (\Exception $e) {
-                return response()->json([
-                    'message' => 'An error occurred while creating the ad',
-                    'error' => $e->getMessage(),
-                ], 500);
+{
+    return DB::transaction(function () use ($request) {
+        try {
+            // 1. Create the Ad
+            $ad = $this->createAd($request);
+
+            // 2. Handle translations if available
+            if ($this->hasValidTranslations($request)) {
+                $this->createTranslations($ad->id, $request->translations);
             }
-        });
-    }
-    
-    // Create the Ad using the request data
-    protected function createAd($request)
-    {
-        return Ad::create([
-            'price' => $request->price,
-            'reference_number' => strtoupper(Str::random(10)),
-            'user_id' => 1, // Consider replacing with authenticated user ID
-            'category_id' => $request->category_id,
-            'city_id' => $request->city_id,
-            'image' => $request->file('image') ? $request->file('image')->store('ads') : null,
-            'status' => 0,
-        ]);
-    }
-    
-    // Check if the request has valid translations
-    protected function hasValidTranslations($request)
-    {
-        return $request->has('translations') && is_array($request->translations);
-    }
-    
-    // Create translations for the Ad
-    protected function createTranslations($adId, array $translations)
-    {
-        $translationsData = [];
-    
-        foreach ($translations as $translation) {
-            $translationsData[] = [
-                'ad_id' => $adId,
-                'locale' => $translation['locale'],
-                'name' => $translation['name'],
-                'description' => $translation['description'],
-            ];
+
+            // 3. Return success response
+            return $this->buildSuccessResponse($ad, $request->translations);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while creating the ad',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-    
-        AdTranslation::insert($translationsData);
+    });
+}
+
+// Create the Ad using the request data
+protected function createAd($request)
+{
+    return Ad::create([
+        'price' => $request->price,
+        'reference_number' => strtoupper(Str::random(10)),
+        'user_id' => 1, // Consider replacing with authenticated user ID
+        'category_id' => $request->category_id,
+        'city_id' => $request->city_id,
+        'image' => $request->file('image') ? $request->file('image')->store('ads') : null,
+        'status' => 0,
+    ]);
+}
+
+// Check if the request has valid translations
+protected function hasValidTranslations($request)
+{
+    return $request->has('translations') && is_array($request->translations);
+}
+
+// Create translations for the Ad
+protected function createTranslations($adId, array $translations)
+{
+    $translationsData = [];
+
+    foreach ($translations as $translation) {
+        $translationsData[] = [
+            'ad_id' => $adId,
+            'locale' => $translation['locale'],
+            'name' => $translation['name'],
+            'description' => $translation['description'],
+        ];
     }
-    
-    // Build the success response
-    protected function buildSuccessResponse($ad, $translations)
-    {
-        return response()->json([
-            'message' => 'Ad created successfully!',
-            'data' => [
-                'ad' => $ad->only('id', 'price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status'),
-                'translations' => $translations,
-            ],
-        ], 201);
-    }
-    
+
+    AdTranslation::insert($translationsData);
+}
+
+// Build the success response
+protected function buildSuccessResponse($ad, $translations)
+{
+    return response()->json([
+        'message' => 'Ad created successfully!',
+        'data' => [
+            'ad' => $ad->only('id', 'price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status'),
+            'translations' => $translations,
+        ],
+    ], 201);
+}
 
     
 
