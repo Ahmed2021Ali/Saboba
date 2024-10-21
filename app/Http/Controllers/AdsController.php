@@ -176,65 +176,46 @@ class AdsController extends Controller
     }
 
 
-    public function getAllCategoriesWithSub()
+    public function getAllCategoriesWithSub(Request $request)
     {
         try {
             // Fetch categories with their children and translations
+            $languages = $request->getLanguages(); // Get the accepted languages
+            $preferredLocale = !empty($languages) ? $languages[0] : 'en'; // Default to 'en' if no languages are provided
+    
             $categories = Category::with(['children.translations', 'translations'])
                 ->whereNull('parent_id') // Get only main categories
                 ->get()
-                ->map(function ($category) {
+                ->map(function ($category) use ($preferredLocale) {
                     // Remove 'parent_id' for main categories
                     $category->makeHidden('parent_id');
     
-                    // Get the current locale from the request
-                    $locale = request()->header('Accept-Language', 'en'); // Default to 'en' if not set
-                    
-                    // Set category name based on locale
-                    $category->name = $category->getTranslation('name', $locale);
-                    
-                    // Loop through translations and hide 'category_id'
-                    $category->translations->each(function ($translation) {
-                        // Check if translation is an object
-                        if (is_object($translation)) {
-                            $translation->makeHidden('category_id');
-                        }
-                    });
+                    // Get the translation for the preferred locale
+                    $translation = $category->translations->firstWhere('locale', $preferredLocale);
+                    $category->name = $translation ? $translation->name : null; // Set the category name
     
-                    // Remove the 'translations' key from the category
-                    $translations = $category->translations->toArray();
-                    unset($category->translations);
-                    
+                    // Remove the translations array
+                    $category->makeHidden('translations');
+    
                     // Convert the category to an array
                     $categoryArray = $category->toArray();
-                    
+    
                     // Store children separately
                     $children = $categoryArray['children'];
                     unset($categoryArray['children']);
-                    
-                    // Move translations after the category's main data
-                    $categoryArray['translations'] = $translations;
-                    $categoryArray['children'] = $children;
     
                     // Process child categories
-                    foreach ($categoryArray['children'] as &$child) {
-                        // Remove the 'name' field from child categories
-                        $child['name'] = $child['translations'][0]['name'] ?? ''; // Default to empty if no translations
+                    foreach ($children as &$child) {
+                        // Get the translation for the preferred locale
+                        $childTranslation = $child['translations']->firstWhere('locale', $preferredLocale);
+                        $child['name'] = $childTranslation ? $childTranslation['name'] : null; // Set the child name
     
-                        // Set child name based on locale
-                        $child['name'] = collect($child['translations'])->where('locale', $locale)->pluck('name')->first();
-                        
-                        // Loop through translations and hide 'category_id' for children
-                        if (isset($child['translations'])) {
-                            collect($child['translations'])->each(function ($translation) {
-                                // Check if translation is an object
-                                if (is_object($translation)) {
-                                    $translation->makeHidden('category_id');
-                                }
-                            });
-                        }
-                        unset($child['translations']); // Remove translations from child categories
+                        // Remove the translations from the child category
+                        unset($child['translations']);
                     }
+    
+                    // Rebuild the array: main data -> children
+                    $categoryArray['children'] = $children;
     
                     return $categoryArray;
                 });
