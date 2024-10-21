@@ -182,8 +182,10 @@ class AdsController extends Controller
             // Get the preferred locale from the request header, default to 'ar'
             $locale = request()->header('Accept-Language', 'ar'); // Default to 'ar'
     
-            // Fetch categories with their translations
-            $categories = Category::with('translations')->whereNull('parent_id')->get();
+            // Fetch all main categories (top-level) with translations
+            $categories = Category::with('translations')
+                ->whereNull('parent_id') // Get only main categories
+                ->get();
     
             // Transform categories to include all subcategories
             $categoriesArray = $categories->map(function ($category) use ($locale) {
@@ -239,6 +241,12 @@ class AdsController extends Controller
     
         // Include the 'parent_id' from the parent category
         $child->parent_id = $child->parent_id; // This will show the parent_id of the child category
+    
+        // Get subcategories recursively
+        $subChildren = Category::with('translations')->where('parent_id', $child->id)->get();
+        $child['children'] = $subChildren->map(function ($subChild) use ($locale) {
+            return $this->transformChildCategory($subChild, $locale);
+        });
     
         return $child->toArray(); // Convert the child category to an array
     }
