@@ -40,8 +40,8 @@ class AdsController extends Controller
                 $this->createTranslations($ad->id, $request->translations);
             }
 
-            // 3. Return success response
-            return $this->buildSuccessResponse($ad, $request->translations);
+            // 3. Return success response without translations
+            return $this->buildSuccessResponse($ad);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'An error occurred while creating the ad',
@@ -88,14 +88,13 @@ protected function createTranslations($adId, array $translations)
     AdTranslation::insert($translationsData);
 }
 
-// Build the success response
-protected function buildSuccessResponse($ad, $translations)
+// Build the success response without translations
+protected function buildSuccessResponse($ad)
 {
     return response()->json([
         'message' => 'Ad created successfully!',
         'data' => [
             'ad' => $ad->only('id', 'price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status'),
-            'translations' => $translations,
         ],
     ], 201);
 }
