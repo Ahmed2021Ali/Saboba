@@ -18,7 +18,7 @@ class HomepageController extends Controller
         return response()->json($languages);
     }
 
-    public function showAllSkills()
+    public function showAllSkills(Request $request)
     {
         $skills = Skills::select('id')->with(['translations' => function ($query) use ($request) {
             $query->where('locale', $request->getLanguages());
@@ -26,7 +26,7 @@ class HomepageController extends Controller
         return response()->json($skills);
     }
 
-    public function showAllCountries()
+    public function showAllCountries(Request $request)
     {
         $countries = Skills::select('id')->with(['translations' => function ($query) use ($request) {
             $query->where('locale', $request->getLanguages());
@@ -34,7 +34,7 @@ class HomepageController extends Controller
         return response()->json($countries);
     }
 
-    public function showAllCities()
+    public function showAllCities(Request $request)
     {
         $cities = Skills::select('id')->with(['translations' => function ($query) use ($request) {
             $query->where('locale', $request->getLanguages());
