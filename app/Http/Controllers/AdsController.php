@@ -148,55 +148,47 @@ class AdsController extends Controller
     }
     
 
-    public function getMainCategoryOfAd(Request $request)
-    {
-        $ad = Ad::findOrFail($request->id);
-        
-        $mainCategory = $ad->category;
-
-        while ($mainCategory->parent) {
-            $mainCategory = $mainCategory->parent; 
-        }
-
-        return response()->json([
-            'ad_id' => $ad->id,
-            'main_category' => $mainCategory
-        ]);
-    }
-
-    public function destroy(Ad $ad)
-    {
-        if ($ad) {
-            $ad->delete(); 
-            
-            return response()->json(['message' => 'Ad deleted successfully'], 200); 
-        }
-    
-        return response()->json(['message' => 'Ad not found'], 404);
-    }
-
-
-    public function getAllCategoriesWithSub()
+    public function getAllCategoriesWithSub(Request $request)
     {
         try {
+            // Get preferred languages from the request header
+            $languages = $request->getLanguages();
+            // Default to English if no languages are found
+            $preferredLanguage = !empty($languages) ? $languages[0] : 'en';
+    
             // Fetch categories with their children and translations
             $categories = Category::with(['children.translations', 'translations'])
                 ->whereNull('parent_id') // Get only main categories
                 ->get()
-                ->map(function ($category) {
+                ->map(function ($category) use ($preferredLanguage) {
                     // Remove 'parent_id' for main categories
                     $category->makeHidden('parent_id');
     
-                    // Loop through translations and hide 'category_id'
-                    $category->translations->each(function ($translation) {
+                    // Loop through translations to hide 'category_id' and extract 'name'
+                    $translations = $category->translations->map(function ($translation) {
                         // Check if translation is an object
                         if (is_object($translation)) {
                             $translation->makeHidden('category_id');
+                            return $translation; // Return the translation object
                         }
                     });
     
                     // Remove the 'name' field from the main category
                     unset($category->name);
+    
+                    // Get the appropriate name based on the preferred language
+                    $translation = $translations->firstWhere('locale', $preferredLanguage);
+                    if ($translation) {
+                        $category->name = $translation->name;
+                    } else {
+                        // Fallback to English if no translation found for preferred language
+                        $fallbackTranslation = $translations->firstWhere('locale', 'en');
+                        if ($fallbackTranslation) {
+                            $category->name = $fallbackTranslation->name;
+                        } else {
+                            $category->name = 'N/A'; // or some default value
+                        }
+                    }
     
                     // Convert the category to an array
                     $categoryArray = $category->toArray();
@@ -204,30 +196,42 @@ class AdsController extends Controller
                     // Store children separately
                     $children = $categoryArray['children'];
                     unset($categoryArray['children']);
-                    
+    
                     // Move translations after the category's main data
-                    $translations = $categoryArray['translations'];
-                    unset($categoryArray['translations']);
-                    
-                    // Rebuild the array: main data -> translations -> children
-                    $categoryArray['translations'] = $translations;
-                    $categoryArray['children'] = $children;
+                    $categoryArray['translations'] = $translations->values(); // Assign the filtered translations
     
                     // Process child categories
-                    foreach ($categoryArray['children'] as &$child) {
+                    foreach ($children as &$child) {
                         // Remove the 'name' field from child categories
                         unset($child['name']);
-                        
-                        // Loop through translations and hide 'category_id' for children
+    
+                        // Loop through translations for children and hide 'category_id'
                         if (isset($child['translations'])) {
-                            collect($child['translations'])->each(function ($translation) {
+                            $child['translations'] = collect($child['translations'])->map(function ($translation) {
                                 // Check if translation is an object
                                 if (is_object($translation)) {
                                     $translation->makeHidden('category_id');
+                                    return $translation; // Return the translation object
                                 }
                             });
+    
+                            // Get the appropriate name for child categories
+                            $childTranslation = collect($child['translations'])->firstWhere('locale', $preferredLanguage);
+                            if ($childTranslation) {
+                                $child['name'] = $childTranslation->name;
+                            } else {
+                                // Fallback to English if no translation found for preferred language
+                                $childFallbackTranslation = collect($child['translations'])->firstWhere('locale', 'en');
+                                if ($childFallbackTranslation) {
+                                    $child['name'] = $childFallbackTranslation->name;
+                                } else {
+                                    $child['name'] = 'N/A'; // or some default value
+                                }
+                            }
                         }
                     }
+    
+                    $categoryArray['children'] = $children; // Add processed children back to the category
     
                     return $categoryArray;
                 });
@@ -237,6 +241,8 @@ class AdsController extends Controller
             return $this->errorResponse($e->getMessage(), 500);
         }
     }
+    
+
     
     
 }
