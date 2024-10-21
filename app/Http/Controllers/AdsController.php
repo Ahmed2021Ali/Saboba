@@ -198,9 +198,7 @@ class AdsController extends Controller
         }
     }
     
-    /**
-     * Recursive function to transform categories with their subcategories.
-     */
+
     private function transformCategory($category, $locale)
     {
         // Remove 'parent_id' field for main categories
@@ -227,9 +225,7 @@ class AdsController extends Controller
         return $categoryArray;
     }
     
-    /**
-     * Function to transform child categories with their parent_id.
-     */
+
     private function transformChildCategory($child, $locale)
     {
         // Remove unnecessary fields for child category
