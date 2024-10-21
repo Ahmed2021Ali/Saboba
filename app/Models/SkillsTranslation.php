@@ -11,4 +11,7 @@ class SkillsTranslation extends Model
     protected $table = 'skills_translations';
     protected $fillable = ['name'];
     public $timestamps = false;
+
+    protected $hidden = ['created_at', 'updated_at'];
+
 }

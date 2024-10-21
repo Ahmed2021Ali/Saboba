@@ -13,6 +13,8 @@ class Category extends Model
     public $translatedAttributes = ['name'];
     protected $fillable = ['locale', 'name', 'parent_id'];
 
+    public $timestamps = false;
+
     // بترجع الفئة الأم المرتبطة بالفئة الحالية
     public function parent()
     {

@@ -9,5 +9,7 @@ class LanguageTranslation extends Model
 {
     use HasFactory;
     protected $fillable = ['locale','name'];
-   // public $timestamps = false;
+    public $timestamps = false;
+    protected $hidden = ['created_at', 'updated_at'];
+
 }

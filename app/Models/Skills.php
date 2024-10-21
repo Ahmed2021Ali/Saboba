@@ -10,6 +10,7 @@ class Skills extends Model
 {
     use HasFactory,Translatable;
     public $translatedAttributes = ['name'];
+    protected $hidden = ['name','created_at', 'updated_at'];
 
     public function skillUsers()
     {

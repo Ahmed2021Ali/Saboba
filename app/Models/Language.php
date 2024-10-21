@@ -11,6 +11,8 @@ class Language extends Model
     use HasFactory,Translatable;
 
     public $translatedAttributes = ['name'];
+    public $timestamps = false;
+    protected $hidden = ['name','created_at', 'updated_at'];
 
 
     public function languageUsers()

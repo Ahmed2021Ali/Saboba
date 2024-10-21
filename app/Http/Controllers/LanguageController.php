@@ -6,6 +6,7 @@ use App\Http\Requests\StoreLanguagesRequest;
 
 use App\Http\Resources\LanguageResource;
 use App\Http\Traits\ApiResponseTrait;
+use App\Models\Language;
 use Illuminate\Support\Facades\Auth;
 
 class LanguageController extends Controller
@@ -14,26 +15,38 @@ class LanguageController extends Controller
 
     public function index()
     {
-        return $this->successResponse(LanguageResource::collection(Auth::User()->userLanguages), 'User Languages.', 200);
+        return response()->json([
+            'success' => 'Your Languages ',
+            'data' => LanguageResource::collection(Auth::User()->userLanguages)
+        ], 200);
     }
 
     public function store(StoreLanguagesRequest $request)
     {
-        foreach ($request->languages_id as $language_id) {
-            $language = Auth::User()->userLanguages()->where('language_id', $language_id)->first();
+        $lang = Language::where('id', $request->language_id)->first();
+        if ($lang) {
+            $language = Auth::User()->userLanguages()->where('language_id', $lang->id)->first();
             if ($language) {
-                return $this->successResponse(null, 'your Language already exists', 200);
+                return response()->json(['success' => 'your Language already exists', 'date' => $language]);
             } else {
-                Auth::User()->userLanguages()->attach($language_id);
-                return $this->successResponse(null, 'your Language created successfully', 201);
-
+                Auth::User()->userLanguages()->attach($lang->id);
+                return response()->json(['success' => 'your Language created successfully', 'date' => $language],201);
             }
         }
+        return response()->json(['error' => 'your Language Not Found', 404]);
+
     }
 
     public function destroy($id)
     {
-        return $this->successResponse(Auth::User()->userLanguages()->detach($id), null, 200);
+        $language = Language::where('id', $id)->first();
+        if ($language) {
+            if (auth()->user()->id === $language->user_id) {
+                $language->delete();
+                return response()->json(['success' => 'Delete Successfully']);
+            }
+        }
+        return response()->json(['error' => 'An error occurred']);
     }
 
 }

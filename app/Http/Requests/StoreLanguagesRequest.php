@@ -16,7 +16,7 @@ class StoreLanguagesRequest extends FormRequest
     {
         // array
         return [
-          'languages_id' => ['array', 'required','exists:languages,id'],
+          'language_id' => [ 'required','exists:languages,id'],
         ];
     }
 }

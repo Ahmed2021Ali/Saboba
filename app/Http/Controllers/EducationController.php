@@ -16,28 +16,48 @@ class EducationController extends Controller
     public function index()
     {
         if (Auth::User()->educations()->isNotEmpty()) {
-            return $this->successResponse(Auth::User()->educations(), 'your Education ', 200);
+            return response()->json([
+                'success' => 'your Educations ',
+                'data' => Auth::User()->educations()
+            ], 201);
         }
-        return $this->errorResponse('No Educations for You.', null);
+        return response()->json(['success' => 'No Educations for You.']);
     }
 
     public function store(EducationRequest $request)
     {
-        $educate = Education::updateOrCreate(['user_id' => auth()->user()->id], [
+        $eduction = Education::create([
             ...$request->validated(),
             'user_id' => auth()->user()->id,
         ]);
-        return $this->successResponse($educate, 'your Education created ', 201);
+
+        return response()->json([
+            'success' => 'Education Created Successfully. ',
+            'data' => $eduction
+        ], 201);
+    }
+
+    public function update(EducationRequest $request, $id)
+    {
+        $eduction = Education::where('id', $id)->first();
+        $eduction->update($request->validated());
+        return response()->json([
+            'success' => 'Education Updated Successfully. ',
+            'data' => $eduction
+        ], 200);
     }
 
 
     public function destroy($id)
     {
-        $education = Education::findOrFail($id);
-        if (auth()->user()->id === $education->user_id) {
-            $education->delete();
-            return $this->successResponse(null, 'Delete Successfully', 200);
+        $education = Education::where('id', $id)->first();
+        if ($education) {
+            if (auth()->user()->id === $education->user_id) {
+                $education->delete();
+                return response()->json(['success' => 'Delete Successfully']);
+            }
         }
-        return $this->errorResponse('An error occurred', null);
+        return response()->json(['error' => 'An error occurred']);
+
     }
 }
