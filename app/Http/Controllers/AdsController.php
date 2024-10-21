@@ -149,98 +149,102 @@ class AdsController extends Controller
     
 
     public function getAllCategoriesWithSub(Request $request)
-    {
-        try {
-            // Get preferred languages from the request header
-            $languages = $request->getLanguages();
-            // Default to English if no languages are found
-            $preferredLanguage = !empty($languages) ? $languages[0] : 'en';
-    
-            // Fetch categories with their children and translations
-            $categories = Category::with(['children.translations', 'translations'])
-                ->whereNull('parent_id') // Get only main categories
-                ->get()
-                ->map(function ($category) use ($preferredLanguage) {
-                    // Remove 'parent_id' for main categories
-                    $category->makeHidden('parent_id');
-    
-                    // Loop through translations to hide 'category_id' and extract 'name'
-                    $translations = $category->translations->map(function ($translation) {
-                        // Check if translation is an object
-                        if (is_object($translation)) {
-                            $translation->makeHidden('category_id');
-                            return $translation; // Return the translation object
-                        }
-                    });
-    
-                    // Remove the 'name' field from the main category
-                    unset($category->name);
-    
-                    // Get the appropriate name based on the preferred language
-                    $translation = $translations->firstWhere('locale', $preferredLanguage);
-                    if ($translation) {
-                        $category->name = $translation->name;
-                    } else {
-                        // Fallback to English if no translation found for preferred language
-                        $fallbackTranslation = $translations->firstWhere('locale', 'en');
-                        if ($fallbackTranslation) {
-                            $category->name = $fallbackTranslation->name;
-                        } else {
-                            $category->name = 'N/A'; // or some default value
-                        }
+{
+    try {
+        // Get preferred languages from the request header
+        $languages = $request->getLanguages();
+        // Default to English if no languages are found
+        $preferredLanguage = !empty($languages) ? $languages[0] : 'en';
+
+        // Fetch categories with their children and translations
+        $categories = Category::with(['children.translations', 'translations'])
+            ->whereNull('parent_id') // Get only main categories
+            ->get()
+            ->map(function ($category) use ($preferredLanguage) {
+                // Remove 'parent_id' for main categories
+                $category->makeHidden('parent_id');
+
+                // Loop through translations to hide 'category_id' and extract 'name'
+                $translations = $category->translations->map(function ($translation) {
+                    // Check if translation is an object
+                    if (is_object($translation)) {
+                        $translation->makeHidden('category_id');
+                        return $translation; // Return the translation object
                     }
-    
-                    // Convert the category to an array
-                    $categoryArray = $category->toArray();
-    
-                    // Store children separately
-                    $children = $categoryArray['children'];
-                    unset($categoryArray['children']);
-    
-                    // Move translations after the category's main data
-                    $categoryArray['translations'] = $translations->values(); // Assign the filtered translations
-    
-                    // Process child categories
-                    foreach ($children as &$child) {
-                        // Remove the 'name' field from child categories
-                        unset($child['name']);
-    
-                        // Loop through translations for children and hide 'category_id'
-                        if (isset($child['translations'])) {
-                            $child['translations'] = collect($child['translations'])->map(function ($translation) {
-                                // Check if translation is an object
-                                if (is_object($translation)) {
-                                    $translation->makeHidden('category_id');
-                                    return $translation; // Return the translation object
-                                }
-                            });
-    
-                            // Get the appropriate name for child categories
-                            $childTranslation = collect($child['translations'])->firstWhere('locale', $preferredLanguage);
-                            if ($childTranslation) {
-                                $child['name'] = $childTranslation->name;
+                });
+
+                // Get the appropriate name based on the preferred language
+                $translation = $translations->firstWhere('locale', $preferredLanguage);
+                if ($translation) {
+                    $category->name = $translation->name;
+                } else {
+                    // Fallback to English if no translation found for preferred language
+                    $fallbackTranslation = $translations->firstWhere('locale', 'en');
+                    if ($fallbackTranslation) {
+                        $category->name = $fallbackTranslation->name;
+                    } else {
+                        $category->name = 'N/A'; // or some default value
+                    }
+                }
+
+                // Convert the category to an array
+                $categoryArray = $category->toArray();
+
+                // Store children separately
+                $children = $categoryArray['children'];
+                unset($categoryArray['children']);
+
+                // Move translations after the category's main data
+                $categoryArray['translations'] = $translations->values(); // Assign the filtered translations
+
+                // Process child categories
+                $categoryArray['children'] = collect($children)->map(function ($child) use ($preferredLanguage) {
+                    // Remove the 'name' field from child categories
+                    unset($child['name']);
+
+                    // Loop through translations for children and hide 'category_id'
+                    if (isset($child['translations'])) {
+                        $child['translations'] = collect($child['translations'])->map(function ($translation) {
+                            // Check if translation is an object
+                            if (is_object($translation)) {
+                                $translation->makeHidden('category_id');
+                                return $translation; // Return the translation object
+                            }
+                        });
+
+                        // Get the appropriate name for child categories
+                        $childTranslation = collect($child['translations'])->firstWhere('locale', $preferredLanguage);
+                        if ($childTranslation) {
+                            $child['name'] = $childTranslation->name;
+                        } else {
+                            // Fallback to English if no translation found for preferred language
+                            $childFallbackTranslation = collect($child['translations'])->firstWhere('locale', 'en');
+                            if ($childFallbackTranslation) {
+                                $child['name'] = $childFallbackTranslation->name;
                             } else {
-                                // Fallback to English if no translation found for preferred language
-                                $childFallbackTranslation = collect($child['translations'])->firstWhere('locale', 'en');
-                                if ($childFallbackTranslation) {
-                                    $child['name'] = $childFallbackTranslation->name;
-                                } else {
-                                    $child['name'] = 'N/A'; // or some default value
-                                }
+                                $child['name'] = 'N/A'; // or some default value
                             }
                         }
+
+                        // Add merged translations
+                        $child['translations'] = $child['translations']->values();
                     }
-    
-                    $categoryArray['children'] = $children; // Add processed children back to the category
-    
-                    return $categoryArray;
+
+                    return $child; // Return the processed child category
                 });
-    
-            return $this->successResponse($categories, 'Categories fetched successfully');
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        }
+
+                // Add processed children back to the category
+                $categoryArray['children'] = $categoryArray['children'];
+
+                return $categoryArray; // Return the modified category
+            });
+
+        return $this->successResponse($categories, 'Categories fetched successfully');
+    } catch (\Exception $e) {
+        return $this->errorResponse($e->getMessage(), 500);
     }
+}
+
     
 
     
