@@ -178,31 +178,26 @@ class AdsController extends Controller
 
     public function getAllCategoriesWithSub()
     {
-       
         try {
             // Fetch categories with their children and translations
-            $categories = Category::with(['children', 'translations'])
+            $categories = Category::with(['children.translations', 'translations'])
                 ->whereNull('parent_id') // Get only main categories
                 ->get()
                 ->map(function ($category) {
-                    // Remove 'parent_id' if it's null (main categories)
-                    if (is_null($category->parent_id)) {
-                        $category->makeHidden('parent_id');
+                    // Remove 'parent_id' for main categories
+                    $category->makeHidden('parent_id');
     
-                        // Loop through translations and hide 'category_id'
-                        $category->translations->map(function ($translation) {
-                            $translation->makeHidden('category_id');
-                            return $translation;
-                        });
-                    }
+                    // Loop through translations and hide 'category_id'
+                    $category->translations->map(function ($translation) {
+                        $translation->makeHidden('category_id');
+                        return $translation;
+                    });
+    
+                    // Remove the 'name' field from the main category
+                    unset($category->name);
     
                     // Convert the category to an array
                     $categoryArray = $category->toArray();
-    
-                    // Remove the 'name' field from the main category if translations exist
-                    if (!empty($categoryArray['translations'])) {
-                        unset($categoryArray['name']);
-                    }
     
                     // Store children separately
                     $children = $categoryArray['children'];
@@ -215,6 +210,20 @@ class AdsController extends Controller
                     // Rebuild the array: main data -> translations -> children
                     $categoryArray['translations'] = $translations;
                     $categoryArray['children'] = $children;
+    
+                    // Process child categories
+                    foreach ($categoryArray['children'] as &$child) {
+                        // Remove the 'name' field from child categories
+                        unset($child['name']);
+                        
+                        // Loop through translations and hide 'category_id' for children
+                        if (isset($child['translations'])) {
+                            $child['translations'] = collect($child['translations'])->map(function ($translation) {
+                                $translation->makeHidden('category_id');
+                                return $translation;
+                            });
+                        }
+                    }
     
                     return $categoryArray;
                 });
