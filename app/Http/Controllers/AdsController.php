@@ -180,52 +180,52 @@ class AdsController extends Controller
     {
        
         try {
-            // Fetch categories with their children and translations
-            $categories = Category::with(['children.translations', 'translations'])
-                ->whereNull('parent_id') // Get only main categories
-                ->get()
-                ->map(function ($category) {
-                    // Loop through translations and hide 'category_id'
-                    $category->translations->map(function ($translation) {
+        // Fetch categories with their children and translations
+        $categories = Category::with(['children.translations', 'translations'])
+            ->whereNull('parent_id') // Get only main categories
+            ->get()
+            ->map(function ($category) {
+                // Loop through translations and hide 'category_id'
+                $category->translations->map(function ($translation) {
+                    $translation->makeHidden('category_id');
+                    return $translation;
+                });
+
+                // Remove 'name' from main category if translations exist
+                if (!empty($category->translations)) {
+                    $category->makeHidden('name');
+                }
+
+                // For children, hide 'name' and 'category_id' from translations
+                $category->children->map(function ($child) {
+                    $child->translations->map(function ($translation) {
                         $translation->makeHidden('category_id');
                         return $translation;
                     });
-    
-                    // Remove 'name' from main category if translations exist
-                    if (!empty($category->translations)) {
-                        $category->makeHidden('name');
+                    // Remove 'name' from children if translations exist
+                    if (!empty($child->translations)) {
+                        $child->makeHidden('name');
                     }
-    
-                    // For children, hide 'name' and 'category_id' from translations
-                    $category->children->map(function ($child) {
-                        $child->translations->map(function ($translation) {
-                            $translation->makeHidden('category_id');
-                            return $translation;
-                        });
-                        // Remove 'name' from children if translations exist
-                        if (!empty($child->translations)) {
-                            $child->makeHidden('name');
-                        }
-                        return $child;
-                    });
-    
-                    // Convert the category to an array
-                    $categoryArray = $category->toArray();
-    
-                    // Move translations after the category's main data
-                    $translations = $categoryArray['translations'];
-                    unset($categoryArray['translations']);
-    
-                    // Rebuild the array: main data -> translations -> children
-                    $categoryArray['translations'] = $translations;
-    
-                    return $categoryArray;
+                    return $child;
                 });
-    
-            return $this->successResponse($categories, 'Categories fetched successfully');
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        }
+
+                // Convert the category to an array
+                $categoryArray = $category->toArray();
+
+                // Move translations after the category's main data
+                $translations = $categoryArray['translations'];
+                unset($categoryArray['translations']);
+
+                // Rebuild the array: main data -> translations -> children
+                $categoryArray['translations'] = $translations;
+
+                return $categoryArray;
+            });
+
+        return $this->successResponse($categories, 'Categories fetched successfully');
+    } catch (\Exception $e) {
+        return $this->errorResponse($e->getMessage(), 500);
+    }
     }
     
     
