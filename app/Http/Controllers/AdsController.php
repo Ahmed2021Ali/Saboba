@@ -177,57 +177,54 @@ class AdsController extends Controller
 
 
     public function getAllCategoriesWithSub()
-{
-    try {
-        // Get the preferred locale from the request header, default to 'ar'
-        $locale = request()->header('Accept-Language', 'ar'); // Default to 'ar'
-
-        // Fetch categories with their children and translations
-        $categories = Category::with(['children.translations', 'translations'])
-            ->whereNull('parent_id') // Get only main categories
-            ->get()
-            ->map(function ($category) use ($locale) {
-                // Remove 'parent_id' field for main categories
-                $category->makeHidden('parent_id');
-
-                // Get the category name based on the preferred locale
-                $translation = $category->translations->firstWhere('locale', $locale);
-                $category->name = $translation ? $translation->name : '';
-
-                // Remove translations
-                $category->makeHidden('translations');
-
-                // Convert the category to an array
-                $categoryArray = $category->toArray();
-
-                // Store children separately
-                $children = $categoryArray['children'];
-                unset($categoryArray['children']);
-
-                // Process child categories
-                foreach ($children as &$child) {
-                    // Get child name based on locale
-                    $childTranslation = $child['translations'] ? collect($child['translations'])->firstWhere('locale', $locale) : null;
-                    $child['name'] = $childTranslation ? $childTranslation['name'] : '';
-
-                    // Include the 'parent_id' from the main category
-                    $child['parent_id'] = $categoryArray['id']; // Assign the parent ID
-
-                    // Remove unnecessary fields
-                    unset($child['translations']);
-                }
-
-                // Rebuild the array: main data -> children
-                $categoryArray['children'] = $children;
-
-                return $categoryArray;
+    {
+        try {
+            // Get the preferred locale from the request header, default to 'ar'
+            $locale = request()->header('Accept-Language', 'ar'); // Default to 'ar'
+    
+            // Fetch categories with their translations
+            $categories = Category::with('translations')->whereNull('parent_id')->get();
+    
+            // Transform categories to include all subcategories
+            $categoriesArray = $categories->map(function ($category) use ($locale) {
+                return $this->transformCategory($category, $locale);
             });
-
-        return $this->successResponse($categories, 'Categories fetched successfully');
-    } catch (\Exception $e) {
-        return $this->errorResponse($e->getMessage(), 500);
+    
+            return $this->successResponse($categoriesArray, 'Categories fetched successfully');
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), 500);
+        }
     }
-}
+    
+    /**
+     * Recursive function to transform categories with their subcategories.
+     */
+    private function transformCategory($category, $locale)
+    {
+        // Remove 'parent_id' field for main categories
+        $category->makeHidden('parent_id');
+    
+        // Get the category name based on the preferred locale
+        $translation = $category->translations->firstWhere('locale', $locale);
+        $category->name = $translation ? $translation->name : '';
+    
+        // Remove translations
+        $category->makeHidden('translations');
+    
+        // Convert the category to an array
+        $categoryArray = $category->toArray();
+    
+        // Get child categories
+        $children = Category::with('translations')->where('parent_id', $category->id)->get();
+    
+        // Process child categories recursively
+        $categoryArray['children'] = $children->map(function ($child) use ($locale) {
+            return $this->transformCategory($child, $locale);
+        });
+    
+        return $categoryArray;
+    }
+    
 
     
     
