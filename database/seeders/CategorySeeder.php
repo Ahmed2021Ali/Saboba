@@ -41,14 +41,44 @@ class CategorySeeder extends Seeder
                                             ['locale' => 'en', 'name' => 'Casual T-Shirts'],
                                             ['locale' => 'ar', 'name' => 'تي شيرتات كاجوال'],
                                         ],
-                                        'children' => [],
+                                        'children' => [
+                                            [
+                                                'translations' => [
+                                                    ['locale' => 'en', 'name' => 'Graphic Casual T-Shirts'],
+                                                    ['locale' => 'ar', 'name' => 'تي شيرتات كاجوال برسومات'],
+                                                ],
+                                                'children' => [],
+                                            ],
+                                            [
+                                                'translations' => [
+                                                    ['locale' => 'en', 'name' => 'Plain Casual T-Shirts'],
+                                                    ['locale' => 'ar', 'name' => 'تي شيرتات كاجوال بسيطة'],
+                                                ],
+                                                'children' => [],
+                                            ],
+                                        ],
                                     ],
                                     [
                                         'translations' => [
                                             ['locale' => 'en', 'name' => 'Sports T-Shirts'],
                                             ['locale' => 'ar', 'name' => 'تي شيرتات رياضية'],
                                         ],
-                                        'children' => [],
+                                        'children' => [
+                                            [
+                                                'translations' => [
+                                                    ['locale' => 'en', 'name' => 'Compression Sports T-Shirts'],
+                                                    ['locale' => 'ar', 'name' => 'تي شيرتات رياضية ضاغطة'],
+                                                ],
+                                                'children' => [],
+                                            ],
+                                            [
+                                                'translations' => [
+                                                    ['locale' => 'en', 'name' => 'Loose Sports T-Shirts'],
+                                                    ['locale' => 'ar', 'name' => 'تي شيرتات رياضية فضفاضة'],
+                                                ],
+                                                'children' => [],
+                                            ],
+                                        ],
                                     ],
                                 ],
                             ],
