@@ -188,9 +188,11 @@ class AdsController extends Controller
                     $category->makeHidden('parent_id');
     
                     // Loop through translations and hide 'category_id'
-                    $category->translations->map(function ($translation) {
-                        $translation->makeHidden('category_id');
-                        return $translation;
+                    $category->translations->each(function ($translation) {
+                        // Check if translation is an object
+                        if (is_object($translation)) {
+                            $translation->makeHidden('category_id');
+                        }
                     });
     
                     // Remove the 'name' field from the main category
@@ -218,9 +220,11 @@ class AdsController extends Controller
                         
                         // Loop through translations and hide 'category_id' for children
                         if (isset($child['translations'])) {
-                            $child['translations'] = collect($child['translations'])->map(function ($translation) {
-                                $translation->makeHidden('category_id');
-                                return $translation;
+                            collect($child['translations'])->each(function ($translation) {
+                                // Check if translation is an object
+                                if (is_object($translation)) {
+                                    $translation->makeHidden('category_id');
+                                }
                             });
                         }
                     }
