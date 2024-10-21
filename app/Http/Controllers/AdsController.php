@@ -179,11 +179,20 @@ class AdsController extends Controller
     public function getAllCategoriesWithSub()
     {
         try {
-            $categories = Category::with('children')
+            // Fetch categories with their children and translations
+            $categories = Category::with(['children', 'translations'])
                 ->whereNull('parent_id')
-                ->get();
-
-            return $this->successResponse($categories, 'Categories fetched successfully', 200);
+                ->get()
+                ->map(function ($category) {
+                    // Remove 'parent_id' if it's null (main categories)
+                    if (is_null($category->parent_id)) {
+                        $category->makeHidden('parent_id');
+                    }
+    
+                    return $category;
+                });
+    
+            return $this->successResponse($categories, 'Categories fetched successfully');
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), 500);
         }
