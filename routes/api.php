@@ -44,25 +44,19 @@ Route::get('/accepted-languages', function (Request $request) {
 
 
 Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->group(function () {
-
     Route::get('add-follow/{user_id}', 'addFollow');
     Route::get('cancel-follow/{user_id}', 'cancelFollow');
-
     Route::get('show-follower', 'showFollower');
     Route::get('count-follower', 'countFollower');
-
     Route::get('show-following', 'showFollowing');
     Route::get('count-following', 'countFollowing');
-
 });
 
 
 Route::controller(HomepageController::class)->group(function () {
-
     Route::get('show-all-languages', 'showAllLanguages');
     Route::get('show-all-skills', 'showAllSkills');
     Route::get('show-all-countries', 'showAllCountries');
     Route::get('show-all-cities', 'showAllCities');
-
 });
 
