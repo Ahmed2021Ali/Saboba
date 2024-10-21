@@ -219,10 +219,28 @@ class AdsController extends Controller
     
         // Process child categories recursively
         $categoryArray['children'] = $children->map(function ($child) use ($locale) {
-            return $this->transformCategory($child, $locale);
+            return $this->transformChildCategory($child, $locale);
         });
     
         return $categoryArray;
+    }
+    
+    /**
+     * Function to transform child categories with their parent_id.
+     */
+    private function transformChildCategory($child, $locale)
+    {
+        // Remove unnecessary fields for child category
+        $child->makeHidden('translations');
+    
+        // Get child category name based on the preferred locale
+        $childTranslation = $child->translations->firstWhere('locale', $locale);
+        $child->name = $childTranslation ? $childTranslation->name : '';
+    
+        // Include the 'parent_id' from the parent category
+        $child->parent_id = $child->parent_id; // This will show the parent_id of the child category
+    
+        return $child->toArray(); // Convert the child category to an array
     }
     
 
