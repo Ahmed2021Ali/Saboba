@@ -176,17 +176,22 @@ class AdsController extends Controller
     }
 
 
-    public function getAllCategoriesWithSub()
+    public function getCategoriesWithSubcategories()
     {
         try {
-            // Fetch categories with their children and translations
             $categories = Category::with(['children', 'translations'])
-                ->whereNull('parent_id')
+                ->whereNull('parent_id') 
                 ->get()
                 ->map(function ($category) {
                     // Remove 'parent_id' if it's null (main categories)
                     if (is_null($category->parent_id)) {
                         $category->makeHidden('parent_id');
+    
+                        // Loop through translations and hide 'category_id'
+                        $category->translations->map(function ($translation) {
+                            $translation->makeHidden('category_id');
+                            return $translation;
+                        });
                     }
     
                     return $category;
@@ -197,5 +202,6 @@ class AdsController extends Controller
             return $this->errorResponse($e->getMessage(), 500);
         }
     }
+    
     
 }
