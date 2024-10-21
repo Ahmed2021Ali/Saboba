@@ -28,10 +28,10 @@ class AdsController extends Controller
         return response()->json([], 404);
     }
     
+
     public function store(StoreAdsRequest $request)
-{
-    return DB::transaction(function () use ($request) {
-        try {
+    {
+        return DB::transaction(function () use ($request) {
             // 1. Create the Ad
             $ad = $this->createAd($request);
 
@@ -40,64 +40,62 @@ class AdsController extends Controller
                 $this->createTranslations($ad->id, $request->translations);
             }
 
-            // 3. Return success response without translations
-            return $this->buildSuccessResponse($ad);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'An error occurred while creating the ad',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
-    });
-}
-
-// Create the Ad using the request data
-protected function createAd($request)
-{
-    return Ad::create([
-        'price' => $request->price,
-        'reference_number' => strtoupper(Str::random(10)),
-        'user_id' => 1, // Consider replacing with authenticated user ID
-        'category_id' => $request->category_id,
-        'city_id' => $request->city_id,
-        'image' => $request->file('image') ? $request->file('image')->store('ads') : null,
-        'status' => 0,
-    ]);
-}
-
-// Check if the request has valid translations
-protected function hasValidTranslations($request)
-{
-    return $request->has('translations') && is_array($request->translations);
-}
-
-// Create translations for the Ad
-protected function createTranslations($adId, array $translations)
-{
-    $translationsData = [];
-
-    foreach ($translations as $translation) {
-        $translationsData[] = [
-            'ad_id' => $adId,
-            'locale' => $translation['locale'],
-            'name' => $translation['name'],
-            'description' => $translation['description'],
-        ];
+            // 3. Return response
+            return $this->buildSuccessResponse($ad, $request->translations);
+        });
     }
 
-    AdTranslation::insert($translationsData);
-}
+    
+      //Create the Ad using the request data
+    
+    protected function createAd($request)
+    {
+        return Ad::create([
+            'price' => $request->price,
+            'reference_number' => strtoupper(Str::random(10)),
+            'user_id' => 1,
+            'category_id' => $request->category_id,
+            'city_id' => $request->city_id,
+            'image' => $request->file('image') ? $request->file('image')->store('ads') : null,
+            'status' => 0,
+        ]);
+    }
 
-// Build the success response without translations
-protected function buildSuccessResponse($ad)
-{
-    return response()->json([
-        'message' => 'Ad created successfully!',
-        'data' => [
-            'ad' => $ad->only('id', 'price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status'),
-        ],
-    ], 201);
-}
+    
+     // Check if the request has valid translations
+     
+    protected function hasValidTranslations($request)
+    {
+        return $request->has('translations') && is_array($request->translations);
+    }
+
+
+     //Create translations for the Ad
+
+    protected function createTranslations($adId, array $translations)
+    {
+        $translationsData = [];
+
+        foreach ($translations as $translation) {
+            $translationsData[] = [
+                'ad_id' => $adId,
+                'locale' => $translation['locale'],
+                'name' => $translation['name'],
+                'description' => $translation['description'],
+            ];
+        }
+
+        AdTranslation::insert($translationsData);
+    }
+
+    protected function buildSuccessResponse($ad, $translations)
+    {
+        return response()->json([
+            'message' => 'Ad created successfully!',
+            'data' => $ad->only('id', 'price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status'),
+            'translations' => $translations,
+        ], 201);
+    }
 
     
 
@@ -265,7 +263,7 @@ protected function buildSuccessResponse($ad)
             'parent_id' => $childArray['parent_id'],
             'created_at' => $childArray['created_at'],
             'updated_at' => $childArray['updated_at'],
-            'name' => $childArray['name'], // Keep child name here
+            'name' => $childArray['name'], 
             // Include 'children' only if it's not empty
             ...(isset($childArray['children']) ? ['children' => $childArray['children']] : [])
         ];
@@ -276,7 +274,7 @@ protected function buildSuccessResponse($ad)
     {
         try {
             $request->validate([
-                'category_id' => 'required|exists:categories,id', // Ensure category exists
+                'category_id' => 'required|exists:categories,id', 
             ]);
     
             $categoryId = $request->input('category_id');
