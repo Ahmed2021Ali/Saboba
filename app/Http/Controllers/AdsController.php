@@ -198,7 +198,6 @@ class AdsController extends Controller
         }
     }
     
-
     private function transformCategory($category, $locale)
     {
         // Remove 'parent_id' field for main categories
@@ -218,14 +217,18 @@ class AdsController extends Controller
         $children = Category::with('translations')->where('parent_id', $category->id)->get();
     
         // Process child categories recursively
-        $categoryArray['children'] = $children->map(function ($child) use ($locale) {
+        $transformedChildren = $children->map(function ($child) use ($locale) {
             return $this->transformChildCategory($child, $locale);
         });
+    
+        // Add children only if they exist
+        if ($transformedChildren->isNotEmpty()) {
+            $categoryArray['children'] = $transformedChildren;
+        }
     
         return $categoryArray;
     }
     
-
     private function transformChildCategory($child, $locale)
     {
         // Remove unnecessary fields for child category
@@ -244,11 +247,16 @@ class AdsController extends Controller
         // Transform the child category into an array
         $childArray = $child->toArray();
         
-        // Add the subcategories to the child array
-        $childArray['children'] = $subChildren->map(function ($subChild) use ($locale) {
+        // Transform subcategories
+        $transformedSubChildren = $subChildren->map(function ($subChild) use ($locale) {
             return $this->transformChildCategory($subChild, $locale);
         });
         
+        // Add subcategories only if they exist
+        if ($transformedSubChildren->isNotEmpty()) {
+            $childArray['children'] = $transformedSubChildren;
+        }
+    
         // Return the child array
         return [
             'id' => $childArray['id'],
@@ -256,9 +264,11 @@ class AdsController extends Controller
             'created_at' => $childArray['created_at'],
             'updated_at' => $childArray['updated_at'],
             'name' => $childArray['name'], // Keep child name here
-            'children' => $childArray['children'] // Keep the children below
+            // Include 'children' only if it's not empty
+            ...(isset($childArray['children']) ? ['children' => $childArray['children']] : [])
         ];
     }
+    
     
     
 
