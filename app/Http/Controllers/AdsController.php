@@ -177,33 +177,56 @@ class AdsController extends Controller
 
 
     public function getAllCategoriesWithSub()
-{
-    try {
-        // Fetch categories with their children and translations
-        $categories = Category::with(['children.translations', 'translations'])
-            ->whereNull('parent_id') // Get only main categories
-            ->get()
-            ->map(function ($category) {
-                // Call the formatCategory method from the model
-                return $category->formatCategory();
-            });
-
-        // Structure the response in the desired format
-        $response = [
-            "data" => $categories,
-            "message" => "Categories fetched successfully",
-            "status" => 200
-        ];
-
-        return response()->json($response, 200);
-    } catch (\Exception $e) {
-        return response()->json([
-            "message" => $e->getMessage(),
-            "status" => 500
-        ], 500);
+    {
+       
+        try {
+            // Fetch categories with their children and translations
+            $categories = Category::with(['children.translations', 'translations'])
+                ->whereNull('parent_id') // Get only main categories
+                ->get()
+                ->map(function ($category) {
+                    // Loop through translations and hide 'category_id'
+                    $category->translations->map(function ($translation) {
+                        $translation->makeHidden('category_id');
+                        return $translation;
+                    });
+    
+                    // Remove 'name' from main category if translations exist
+                    if (!empty($category->translations)) {
+                        $category->makeHidden('name');
+                    }
+    
+                    // For children, hide 'name' and 'category_id' from translations
+                    $category->children->map(function ($child) {
+                        $child->translations->map(function ($translation) {
+                            $translation->makeHidden('category_id');
+                            return $translation;
+                        });
+                        // Remove 'name' from children if translations exist
+                        if (!empty($child->translations)) {
+                            $child->makeHidden('name');
+                        }
+                        return $child;
+                    });
+    
+                    // Convert the category to an array
+                    $categoryArray = $category->toArray();
+    
+                    // Move translations after the category's main data
+                    $translations = $categoryArray['translations'];
+                    unset($categoryArray['translations']);
+    
+                    // Rebuild the array: main data -> translations -> children
+                    $categoryArray['translations'] = $translations;
+    
+                    return $categoryArray;
+                });
+    
+            return $this->successResponse($categories, 'Categories fetched successfully');
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), 500);
+        }
     }
-}
-
-
+    
     
 }
