@@ -10,7 +10,7 @@ class Language extends Model
 {
     use HasFactory,Translatable;
 
-    public $translatedAttributes = ['name'];
+   // public $translatedAttributes = ['name'];
 
 
     public function languageUsers()
