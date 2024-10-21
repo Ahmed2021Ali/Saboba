@@ -178,29 +178,44 @@ class AdsController extends Controller
 
     public function getAllCategoriesWithSub()
     {
-        try {
-            $categories = Category::with(['children', 'translations'])
-                ->whereNull('parent_id') 
-                ->get()
-                ->map(function ($category) {
-                    // Remove 'parent_id' if it's null (main categories)
-                    if (is_null($category->parent_id)) {
-                        $category->makeHidden('parent_id');
-    
-                        // Loop through translations and hide 'category_id'
-                        $category->translations->map(function ($translation) {
-                            $translation->makeHidden('category_id');
-                            return $translation;
-                        });
-                    }
-    
-                    return $category;
-                });
-    
-            return $this->successResponse($categories, 'Categories fetched successfully');
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        }
+       
+    try {
+        $categories = Category::with(['children', 'translations'])
+            ->whereNull('parent_id') 
+            ->get()
+            ->map(function ($category) {
+                // Remove 'parent_id' if it's null (main categories)
+                if (is_null($category->parent_id)) {
+                    $category->makeHidden('parent_id');
+
+                    $category->translations->map(function ($translation) {
+                        $translation->makeHidden('category_id');
+                        return $translation;
+                    });
+                }
+
+                // Convert the category to an array
+                $categoryArray = $category->toArray();
+                
+                // Remove the 'name' field from the main category if translations exist
+                if (!empty($categoryArray['translations'])) {
+                    unset($categoryArray['name']);
+                }
+
+                // Move translations after category's data, before children
+                $translations = $categoryArray['translations'];
+                unset($categoryArray['translations']);
+                
+                // Insert translations back after category's main data
+                $categoryArray['translations'] = $translations;
+
+                return $categoryArray;
+            });
+
+        return $this->successResponse($categories, 'Categories fetched successfully');
+    } catch (\Exception $e) {
+        return $this->errorResponse($e->getMessage(), 500);
+    }
     }
     
     
