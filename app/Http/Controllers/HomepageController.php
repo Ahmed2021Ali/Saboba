@@ -13,7 +13,7 @@ class HomepageController extends Controller
     public function showAllLanguages(Request $request)
     {
        // $languages = Language::select('id', 'name')->get();
-        $languages = Language::with([ function ($query) use ($request) {
+        $languages = Language::with(['translations' => function ($query) use ($request) {
             $query->where('locale', $request->getLanguages());
         }])->get();
         return response()->json($languages);
