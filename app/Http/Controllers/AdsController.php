@@ -176,55 +176,57 @@ class AdsController extends Controller
     }
 
 
-    public function getAllCategoriesWithSub(Request $request)
-    {
-        try {
-            // Fetch categories with their children and translations
-            $languages = $request->getLanguages(); // Get the accepted languages
-            $preferredLocale = !empty($languages) ? $languages[0] : 'en'; // Default to 'en' if no languages are provided
-    
-            $categories = Category::with(['children.translations', 'translations'])
-                ->whereNull('parent_id') // Get only main categories
-                ->get()
-                ->map(function ($category) use ($preferredLocale) {
-                    // Remove 'parent_id' for main categories
-                    $category->makeHidden('parent_id');
-    
-                    // Get the translation for the preferred locale
-                    $translation = $category->translations->first()->Where('locale', $preferredLocale);
-                    $category->name = $translation ? $translation->name : null; // Set the category name
-    
-                    // Remove the translations array
-                    $category->makeHidden('translations');
-    
-                    // Convert the category to an array
-                    $categoryArray = $category->toArray();
-    
-                    // Store children separately
-                    $children = $categoryArray['children'];
-                    unset($categoryArray['children']);
-    
-                    // Process child categories
-                    foreach ($children as &$child) {
-                        // Get the translation for the preferred locale
-                        $childTranslation = $child['translations']->firstWhere('locale', $preferredLocale);
-                        $child['name'] = $childTranslation ? $childTranslation['name'] : null; // Set the child name
-    
-                        // Remove the translations from the child category
-                        unset($child['translations']);
-                    }
-    
-                    // Rebuild the array: main data -> children
-                    $categoryArray['children'] = $children;
-    
-                    return $categoryArray;
-                });
-    
-            return $this->successResponse($categories, 'Categories fetched successfully');
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        }
+    public function getAllCategoriesWithSub()
+{
+    try {
+        // Get the preferred locale from the request header
+        $locale = request()->header('Accept-Language', 'en'); // Default to 'en'
+
+        // Fetch categories with their children and translations
+        $categories = Category::with(['children.translations', 'translations'])
+            ->whereNull('parent_id') // Get only main categories
+            ->get()
+            ->map(function ($category) use ($locale) {
+                // Remove 'parent_id' for main categories
+                $category->makeHidden('parent_id');
+
+                // Get the category name based on the preferred locale
+                $translation = $category->translations->firstWhere('locale', $locale);
+                $category->name = $translation ? $translation->name : '';
+
+                // Remove translations
+                $category->makeHidden('translations');
+
+                // Convert the category to an array
+                $categoryArray = $category->toArray();
+
+                // Store children separately
+                $children = $categoryArray['children'];
+                unset($categoryArray['children']);
+
+                // Process child categories
+                foreach ($children as &$child) {
+                    // Get child name based on locale
+                    $childTranslation = $child['translations'] ? collect($child['translations'])->firstWhere('locale', $locale) : null;
+                    $child['name'] = $childTranslation ? $childTranslation['name'] : '';
+
+                    // Remove unnecessary fields
+                    unset($child['translations']);
+                    unset($child['parent_id']); // Optional: only if you want to hide 'parent_id'
+                }
+
+                // Rebuild the array: main data -> children
+                $categoryArray['children'] = $children;
+
+                return $categoryArray;
+            });
+
+        return $this->successResponse($categories, 'Categories fetched successfully');
+    } catch (\Exception $e) {
+        return $this->errorResponse($e->getMessage(), 500);
     }
+}
+
     
     
     
