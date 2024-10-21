@@ -20,19 +20,25 @@ class HomepageController extends Controller
 
     public function showAllSkills()
     {
-        $skills = Skills::select('id', 'name')->get();
+        $skills = Skills::select('id')->with(['translations' => function ($query) use ($request) {
+            $query->where('locale', $request->getLanguages());
+        }])->get();
         return response()->json($skills);
     }
 
     public function showAllCountries()
     {
-        $countries = Country::select('id', 'name')->get();
+        $countries = Skills::select('id')->with(['translations' => function ($query) use ($request) {
+            $query->where('locale', $request->getLanguages());
+        }])->get();
         return response()->json($countries);
     }
 
     public function showAllCities()
     {
-        $cities = City::select('id', 'name')->get();
+        $cities = Skills::select('id')->with(['translations' => function ($query) use ($request) {
+            $query->where('locale', $request->getLanguages());
+        }])->get();
         return response()->json($cities);
     }
 
