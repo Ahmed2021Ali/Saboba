@@ -177,33 +177,33 @@ class AdsController extends Controller
 
 
     public function getAllCategoriesWithSub()
-    {
-       
-        try {
-            // Fetch categories with their children and translations
-            $categories = Category::with(['children.translations', 'translations'])
-                ->whereNull('parent_id') // Get only main categories
-                ->get()
-                ->map(function ($category) {
-                    // Call the formatCategory method from the model
-                    return $category->formatCategory();
-                });
-    
-            // Structure the response in the desired format
-            $response = [
-                "data" => $categories,
-                "message" => "Categories fetched successfully",
-                "status" => 200
-            ];
-    
-            return response()->json($response, 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                "message" => $e->getMessage(),
-                "status" => 500
-            ], 500);
-        }
+{
+    try {
+        // Fetch categories with their children and translations
+        $categories = Category::with(['children.translations', 'translations'])
+            ->whereNull('parent_id') // Get only main categories
+            ->get()
+            ->map(function ($category) {
+                // Call the formatCategory method from the model
+                return $category->formatCategory();
+            });
+
+        // Structure the response in the desired format
+        $response = [
+            "data" => $categories,
+            "message" => "Categories fetched successfully",
+            "status" => 200
+        ];
+
+        return response()->json($response, 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            "message" => $e->getMessage(),
+            "status" => 500
+        ], 500);
     }
-    
+}
+
+
     
 }
