@@ -12,6 +12,7 @@ class Language extends Model
 
     public $translatedAttributes = ['name'];
     public $timestamps = false;
+    protected $hidden = ['created_at', 'updated_at'];
 
 
     public function languageUsers()
