@@ -181,42 +181,12 @@ class AdsController extends Controller
        
         try {
             // Fetch categories with their children and translations
-            $categories = Category::with(['children', 'translations'])
+            $categories = Category::with(['children.translations', 'translations'])
                 ->whereNull('parent_id') // Get only main categories
                 ->get()
                 ->map(function ($category) {
-                    // Remove 'parent_id' if it's null (main categories)
-                    if (is_null($category->parent_id)) {
-                        $category->makeHidden('parent_id');
-    
-                        // Loop through translations and hide 'category_id'
-                        $category->translations->map(function ($translation) {
-                            $translation->makeHidden('category_id');
-                            return $translation;
-                        });
-                    }
-    
-                    // Convert the category to an array
-                    $categoryArray = $category->toArray();
-    
-                    // Remove the 'name' field from the main category if translations exist
-                    if (!empty($categoryArray['translations'])) {
-                        unset($categoryArray['name']);
-                    }
-    
-                    // Store children separately
-                    $children = $categoryArray['children'];
-                    unset($categoryArray['children']);
-                    
-                    // Move translations after the category's main data
-                    $translations = $categoryArray['translations'];
-                    unset($categoryArray['translations']);
-                    
-                    // Rebuild the array: main data -> translations -> children
-                    $categoryArray['translations'] = $translations;
-                    $categoryArray['children'] = $children;
-    
-                    return $categoryArray;
+                    // Call the formatCategory method from the model
+                    return $category->formatCategory();
                 });
     
             return $this->successResponse($categories, 'Categories fetched successfully');

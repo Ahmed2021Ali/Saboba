@@ -10,5 +10,5 @@ class CategoryTranslation extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = ['name', 'locale', 'parent_id'];
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at', 'category_id'];
 }

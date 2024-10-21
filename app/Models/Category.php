@@ -32,4 +32,45 @@ class Category extends Model
     {
         return $this->hasMany(Ad::class);
     }
+
+
+    
+    // Method to hide 'name' and move 'translations' after main data
+    public function formatCategory()
+    {
+        // Map over translations to hide 'category_id'
+        $this->translations->map(function ($translation) {
+            $translation->makeHidden('category_id');
+            return $translation;
+        });
+
+        // Hide 'name' field if translations exist
+        if (!empty($this->translations)) {
+            $this->makeHidden('name');
+        }
+
+        // Apply the same logic to children categories
+        $this->children->map(function ($child) {
+            $child->translations->map(function ($translation) {
+                $translation->makeHidden('category_id');
+                return $translation;
+            });
+
+            if (!empty($child->translations)) {
+                $child->makeHidden('name');
+            }
+            return $child;
+        });
+
+        // Convert the category to an array and restructure it
+        $categoryArray = $this->toArray();
+        $translations = $categoryArray['translations'];
+        unset($categoryArray['translations']);
+
+        // Move translations after category data
+        $categoryArray['translations'] = $translations;
+
+        return $categoryArray;
+    }
+
 }
