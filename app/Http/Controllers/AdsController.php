@@ -180,7 +180,7 @@ class AdsController extends Controller
 {
     try {
         // Get the preferred locale from the request header
-        $locale = request()->header('Accept-Language', 'en'); // Default to 'en'
+        $locale = request()->getLanguages(); // Default to 'en'
 
         // Fetch categories with their children and translations
         $categories = Category::with(['children.translations', 'translations'])
