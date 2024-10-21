@@ -8,142 +8,122 @@ use App\Models\CategoryTranslation;
 
 class CategorySeeder extends Seeder
 {
-
-        /*
-            الملابس (فئة رئيسية)
-            - ملابس رياضية (فئة فرعية من الفئة الأساسية "الملابس")
-            - أحذية رياضية (فئة فرعية من الفئة الفرعية "ملابس رياضية")
-            - تي شيرتات (فئة فرعية من الفئة الفرعية "ملابس رياضية")
-            - بنطلونات رياضية (فئة فرعية من الفئة الفرعية "ملابس رياضية")
-            
-            الإلكترونيات (فئة رئيسية)
-            - هواتف محمولة (فئة فرعية من الفئة الأساسية "الإلكترونيات")
-            - أجهزة الكمبيوتر المحمولة (فئة فرعية من الفئة الأساسية "الإلكترونيات")
-            - أجهزة التلفاز (فئة فرعية من الفئة الأساسية "الإلكترونيات")
-
-            المكتبات (فئة رئيسية)
-            - (لا توجد فئات فرعية للمكتبات)
-        */
-
-
     public function run()
     {
-        // هنا بنحدد الفئات الأساسية
         $categories = [
             [
-                // الفئة الأساسية: الملابس
                 'translations' => [
-                    ['locale' => 'en', 'name' => 'Clothing'], // الاسم بالإنجليزي
-                    ['locale' => 'ar', 'name' => 'الملابس'], // الاسم بالعربي
+                    ['locale' => 'en', 'name' => 'Clothing'],
+                    ['locale' => 'ar', 'name' => 'الملابس'],
                 ],
-                // الفئة الفرعية الخاصة بالملابس
                 'children' => [
                     [
-                        // الفئة الفرعية: ملابس رياضية
                         'translations' => [
-                            ['locale' => 'en', 'name' => 'Sportswear'], // الاسم بالإنجليزي
-                            ['locale' => 'ar', 'name' => 'ملابس رياضية'], // الاسم بالعربي
+                            ['locale' => 'en', 'name' => 'Sportswear'],
+                            ['locale' => 'ar', 'name' => 'ملابس رياضية'],
                         ],
-                        // الفئات الفرعية الخاصة بالملابس الرياضية
                         'children' => [
                             [
-                                // الفئة الفرعية: أحذية رياضية
                                 'translations' => [
-                                    ['locale' => 'en', 'name' => 'Sports Shoes'], // الاسم بالإنجليزي
-                                    ['locale' => 'ar', 'name' => 'أحذية رياضية'], // الاسم بالعربي
+                                    ['locale' => 'en', 'name' => 'Sports Shoes'],
+                                    ['locale' => 'ar', 'name' => 'أحذية رياضية'],
+                                ],
+                                'children' => [],
+                            ],
+                            [
+                                'translations' => [
+                                    ['locale' => 'en', 'name' => 'T-Shirts'],
+                                    ['locale' => 'ar', 'name' => 'تي شيرتات'],
+                                ],
+                                'children' => [
+                                    [
+                                        'translations' => [
+                                            ['locale' => 'en', 'name' => 'Casual T-Shirts'],
+                                            ['locale' => 'ar', 'name' => 'تي شيرتات كاجوال'],
+                                        ],
+                                        'children' => [],
+                                    ],
+                                    [
+                                        'translations' => [
+                                            ['locale' => 'en', 'name' => 'Sports T-Shirts'],
+                                            ['locale' => 'ar', 'name' => 'تي شيرتات رياضية'],
+                                        ],
+                                        'children' => [],
+                                    ],
                                 ],
                             ],
                             [
-                                // الفئة الفرعية: تي شيرتات
                                 'translations' => [
-                                    ['locale' => 'en', 'name' => 'T-Shirts'], // الاسم بالإنجليزي
-                                    ['locale' => 'ar', 'name' => 'تي شيرتات'], // الاسم بالعربي
+                                    ['locale' => 'en', 'name' => 'Sports Pants'],
+                                    ['locale' => 'ar', 'name' => 'بنطلونات رياضية'],
                                 ],
-                            ],
-                            [
-                                // الفئة الفرعية: بنطلونات رياضية
-                                'translations' => [
-                                    ['locale' => 'en', 'name' => 'Sports Pants'], // الاسم بالإنجليزي
-                                    ['locale' => 'ar', 'name' => 'بنطلونات رياضية'], // الاسم بالعربي
-                                ],
+                                'children' => [],
                             ],
                         ],
                     ],
                 ],
             ],
             [
-                // الفئة الأساسية: الإلكترونيات
                 'translations' => [
-                    ['locale' => 'en', 'name' => 'Electronics'], // الاسم بالإنجليزي
-                    ['locale' => 'ar', 'name' => 'الإلكترونيات'], // الاسم بالعربي
+                    ['locale' => 'en', 'name' => 'Electronics'],
+                    ['locale' => 'ar', 'name' => 'الإلكترونيات'],
                 ],
-                // الفئات الفرعية الخاصة بالإلكترونيات
                 'children' => [
                     [
-                        // الفئة الفرعية: هواتف محمولة
                         'translations' => [
-                            ['locale' => 'en', 'name' => 'Mobile Phones'], // الاسم بالإنجليزي
-                            ['locale' => 'ar', 'name' => 'هواتف محمولة'], // الاسم بالعربي
+                            ['locale' => 'en', 'name' => 'Mobile Phones'],
+                            ['locale' => 'ar', 'name' => 'هواتف محمولة'],
                         ],
-                        // مافيش فئات فرعية تحت هواتف محمولة
                         'children' => [],
                     ],
                     [
-                        // الفئة الفرعية: أجهزة الكمبيوتر المحمولة
                         'translations' => [
-                            ['locale' => 'en', 'name' => 'Laptops'], // الاسم بالإنجليزي
-                            ['locale' => 'ar', 'name' => 'أجهزة الكمبيوتر المحمولة'], // الاسم بالعربي
+                            ['locale' => 'en', 'name' => 'Laptops'],
+                            ['locale' => 'ar', 'name' => 'أجهزة الكمبيوتر المحمولة'],
                         ],
-                        // مافيش فئات فرعية تحت أجهزة الكمبيوتر المحمولة
                         'children' => [],
                     ],
                     [
-                        // الفئة الفرعية: أجهزة التلفاز
                         'translations' => [
-                            ['locale' => 'en', 'name' => 'Televisions'], // الاسم بالإنجليزي
-                            ['locale' => 'ar', 'name' => 'أجهزة التلفاز'], // الاسم بالعربي
+                            ['locale' => 'en', 'name' => 'Televisions'],
+                            ['locale' => 'ar', 'name' => 'أجهزة التلفاز'],
                         ],
-                        // مافيش فئات فرعية تحت أجهزة التلفاز
                         'children' => [],
                     ],
                 ],
             ],
             [
-                // الفئة الأساسية: المكتبات
                 'translations' => [
-                    ['locale' => 'en', 'name' => 'Libraries'], // الاسم بالإنجليزي
-                    ['locale' => 'ar', 'name' => 'المكتبات'], // الاسم بالعربي
+                    ['locale' => 'en', 'name' => 'Libraries'],
+                    ['locale' => 'ar', 'name' => 'المكتبات'],
                 ],
-                // مافيش فئات فرعية تحت المكتبات
                 'children' => [],
             ],
         ];
 
-        // دلوقتي هنبدأ نضيف الفئات للأصناف في قاعدة البيانات
         foreach ($categories as $categoryData) {
-            // بننشئ الفئة الأم في قاعدة البيانات
+            // Create the main category
             $category = Category::create();
-            // بنضيف الترجمة الخاصة بالفئة الأم
             foreach ($categoryData['translations'] as $translation) {
                 CategoryTranslation::create(array_merge($translation, ['category_id' => $category->id]));
             }
 
-            // هنا بننشئ الفئات الفرعية للفئة الأم
-            foreach ($categoryData['children'] as $childData) {
-                // بننشئ الفئة الفرعية في قاعدة البيانات
-                $childCategory = Category::create(['parent_id' => $category->id]);
-                // بنضيف الترجمة الخاصة بالفئة الفرعية
-                foreach ($childData['translations'] as $translation) {
-                    CategoryTranslation::create(array_merge($translation, ['category_id' => $childCategory->id]));
-                }
+            // Create child categories
+            $this->createChildCategories($category, $categoryData['children']);
+        }
+    }
 
-                // هنا بننشئ الفئات الفرعية للملابس الرياضية (لو فيه)
-                foreach ($childData['children'] ?? [] as $grandChildData) {
-                    $grandChildCategory = Category::create(['parent_id' => $childCategory->id]);
-                    foreach ($grandChildData['translations'] as $translation) {
-                        CategoryTranslation::create(array_merge($translation, ['category_id' => $grandChildCategory->id]));
-                    }
-                }
+    private function createChildCategories(Category $parentCategory, array $children)
+    {
+        foreach ($children as $childData) {
+            $childCategory = Category::create(['parent_id' => $parentCategory->id]);
+            foreach ($childData['translations'] as $translation) {
+                CategoryTranslation::create(array_merge($translation, ['category_id' => $childCategory->id]));
+            }
+
+            // Recursively create further children if any
+            if (isset($childData['children'])) {
+                $this->createChildCategories($childCategory, $childData['children']);
             }
         }
     }
