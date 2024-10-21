@@ -191,7 +191,7 @@ class AdsController extends Controller
                     $category->makeHidden('parent_id');
     
                     // Get the translation for the preferred locale
-                    $translation = $category->translations->firstWhere('locale', $preferredLocale);
+                    $translation = $category->translations->first()->Where('locale', $preferredLocale);
                     $category->name = $translation ? $translation->name : null; // Set the category name
     
                     // Remove the translations array
