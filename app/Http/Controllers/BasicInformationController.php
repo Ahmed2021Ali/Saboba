@@ -13,15 +13,20 @@ class BasicInformationController extends Controller
 
     public function index()
     {
-        return $this->successResponse(Auth::User()->basicInformation(), 'your Basic Information', 200);
+        return response()->json([
+            'success' => 'Your Basic Information ',
+            'data' => Auth::User()->basicInformation()
+        ], 200);
     }
 
     public function store(BasicInformationRequest $request)
     {
-        $basicInformation = BasicInformation::updateOrCreate(['user_id' => auth()->user()->id], [
+        BasicInformation::updateOrCreate(['user_id' => auth()->user()->id], [
             ...$request->validated(), 'user_id' => auth()->user()->id]);
 
-        return $this->successResponse($basicInformation, 'your Basic Information Created', 201);
-
+        return response()->json([
+            'success' => 'your Basic Information Updated ',
+            'data' => Auth::User()->basicInformation()
+        ], 201);
     }
 }

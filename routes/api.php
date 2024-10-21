@@ -62,9 +62,6 @@ Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->
     Route::get('add-follow/{user_id}', 'addFollow');
     Route::get('cancel-follow/{user_id}', 'cancelFollow');
 
-    Route::get('accept-follow/{user_id}', 'acceptFollow');
-    Route::get('reject-follow/{user_id}', 'rejectFollow');
-
     Route::get('show-follower', 'showFollower');
     Route::get('count-follower', 'countFollower');
 

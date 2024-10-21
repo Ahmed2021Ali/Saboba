@@ -16,33 +16,47 @@ class EducationController extends Controller
     public function index()
     {
         if (Auth::User()->educations()->isNotEmpty()) {
-            return response()->json(Auth::User()->educations());
+            return response()->json([
+                'success' => 'your Educations ',
+                'data' => Auth::User()->educations()
+            ], 201);
         }
-        return response()->json(['success'=>'No Educations for You.']);
+        return response()->json(['success' => 'No Educations for You.']);
     }
 
     public function store(EducationRequest $request)
     {
-        $educate = Education::updateOrCreate(['user_id' => auth()->user()->id], [
+        $eduction = Education::create([
             ...$request->validated(),
             'user_id' => auth()->user()->id,
         ]);
-        return response()->json([$educate,'success'=>'Education Created Successfully.']);
+
+        return response()->json([
+            'success' => 'Education Created Successfully. ',
+            'data' => $eduction
+        ], 201);
+    }
+
+    public function update(EducationRequest $request, $eduction)
+    {
+        $eduction->update($request->validated());
+        return response()->json([
+            'success' => 'Education Updated Successfully. ',
+            'data' => $eduction
+        ], 200);
     }
 
 
     public function destroy($id)
     {
-        $education = Education::where('id',$id)->first();
-        if($education)
-        {
+        $education = Education::where('id', $id)->first();
+        if ($education) {
             if (auth()->user()->id === $education->user_id) {
                 $education->delete();
-                return response()->json(['success'=>'Delete Successfully']);
+                return response()->json(['success' => 'Delete Successfully']);
             }
         }
-
-        return response()->json(['error'=>'An error occurred']);
+        return response()->json(['error' => 'An error occurred']);
 
     }
 }

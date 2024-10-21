@@ -15,20 +15,26 @@ class LanguageController extends Controller
 
     public function index()
     {
-        return $this->successResponse(LanguageResource::collection(Auth::User()->userLanguages), 200);
+        return response()->json([
+            'success' => 'Your Languages ',
+            'data' => LanguageResource::collection(Auth::User()->userLanguages)
+        ], 200);
     }
 
     public function store(StoreLanguagesRequest $request)
     {
-        foreach ($request->languages_id as $language_id) {
-            $language = Auth::User()->userLanguages()->where('language_id', $language_id)->first();
+        $lang = Language::where('id', $request->language_id)->first();
+        if ($lang) {
+            $language = Auth::User()->userLanguages()->where('language_id', $lang->id)->first();
             if ($language) {
-                return response()->json([$language,'success'=>'your Language already exists']);
+                return response()->json(['success' => 'your Language already exists', 'date' => $language]);
             } else {
-                Auth::User()->userLanguages()->attach($language_id);
-                return response()->json([$language,'success'=>'your Language created successfully']);
+                Auth::User()->userLanguages()->attach($lang->id);
+                return response()->json(['success' => 'your Language created successfully', 'date' => $language],201);
             }
         }
+        return response()->json(['error' => 'your Language Not Found', 404]);
+
     }
 
     public function destroy($id)
@@ -37,10 +43,10 @@ class LanguageController extends Controller
         if ($language) {
             if (auth()->user()->id === $language->user_id) {
                 $language->delete();
-                return response()->json(['success'=>'Delete Successfully']);
+                return response()->json(['success' => 'Delete Successfully']);
             }
         }
-        return response()->json(['error'=>'An error occurred']);
+        return response()->json(['error' => 'An error occurred']);
     }
 
 }

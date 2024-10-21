@@ -14,8 +14,7 @@ class StoreSkillsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //'skills_id' => ['array', 'required','exists:skills,id'],
-            'skills_id' => ['array', 'required','exists:skills,id'],
+            'skill_id' => ['required','exists:skills,id'],
         ];
     }
 }
