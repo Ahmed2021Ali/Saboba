@@ -181,43 +181,40 @@ class AdsController extends Controller
        
         try {
             // Fetch categories with their children and translations
-            $categories = Category::with(['children.translations', 'translations'])
+            $categories = Category::with(['children', 'translations'])
                 ->whereNull('parent_id') // Get only main categories
                 ->get()
                 ->map(function ($category) {
-                    // Loop through translations and hide 'category_id'
-                    $category->translations->map(function ($translation) {
-                        $translation->makeHidden('category_id');
-                        return $translation;
-                    });
+                    // Remove 'parent_id' if it's null (main categories)
+                    if (is_null($category->parent_id)) {
+                        $category->makeHidden('parent_id');
     
-                    // Remove 'name' from main category if translations exist
-                    if (!empty($category->translations)) {
-                        $category->makeHidden('name');
-                    }
-    
-                    // For children, hide 'name' and 'category_id' from translations
-                    $category->children->map(function ($child) {
-                        $child->translations->map(function ($translation) {
+                        // Loop through translations and hide 'category_id'
+                        $category->translations->map(function ($translation) {
                             $translation->makeHidden('category_id');
                             return $translation;
                         });
-                        // Remove 'name' from children if translations exist
-                        if (!empty($child->translations)) {
-                            $child->makeHidden('name');
-                        }
-                        return $child;
-                    });
+                    }
     
                     // Convert the category to an array
                     $categoryArray = $category->toArray();
     
+                    // Remove the 'name' field from the main category if translations exist
+                    if (!empty($categoryArray['translations'])) {
+                        unset($categoryArray['name']);
+                    }
+    
+                    // Store children separately
+                    $children = $categoryArray['children'];
+                    unset($categoryArray['children']);
+                    
                     // Move translations after the category's main data
                     $translations = $categoryArray['translations'];
                     unset($categoryArray['translations']);
-    
+                    
                     // Rebuild the array: main data -> translations -> children
                     $categoryArray['translations'] = $translations;
+                    $categoryArray['children'] = $children;
     
                     return $categoryArray;
                 });
