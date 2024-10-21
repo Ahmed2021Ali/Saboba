@@ -176,25 +176,25 @@ class AdsController extends Controller
     }
 
 
-    public function getAllCategoriesWithSub(Request $request)
+    public function getAllCategoriesWithSub()
 {
     try {
-        // Fetch categories with their children and translations
-        $languages = $request->getLanguages(); // Get the accepted languages
-        $preferredLocale = !empty($languages) ? $languages[0] : 'en'; // Default to 'en' if no languages are provided
+        // Get the preferred locale from the request header
+        $locale = request()->header('Accept-Language', 'en'); // Default to 'en'
 
+        // Fetch categories with their children and translations
         $categories = Category::with(['children.translations', 'translations'])
             ->whereNull('parent_id') // Get only main categories
             ->get()
-            ->map(function ($category) use ($preferredLocale) {
+            ->map(function ($category) use ($locale) {
                 // Remove 'parent_id' for main categories
                 $category->makeHidden('parent_id');
 
-                // Get the translation for the preferred locale
-                $translation = $category->translations->firstWhere('locale', $preferredLocale);
-                $category->name = $translation ? $translation->name : null; // Set the category name
+                // Get the category name based on the preferred locale
+                $translation = $category->translations->firstWhere('locale', $locale);
+                $category->name = $translation ? $translation->name : '';
 
-                // Remove the translations array
+                // Remove translations
                 $category->makeHidden('translations');
 
                 // Convert the category to an array
@@ -206,14 +206,14 @@ class AdsController extends Controller
 
                 // Process child categories
                 foreach ($children as &$child) {
-                    // Get the translation for the preferred locale
-                    $childTranslation = $child['translations']->firstWhere('locale', $preferredLocale);
-                    $child['name'] = $childTranslation ? $childTranslation['name'] : null; // Set the child name
+                    // Get child name based on locale
+                    $childTranslation = $child['translations'] ? collect($child['translations'])->firstWhere('locale', $locale) : null;
+                    $child['name'] = $childTranslation ? $childTranslation['name'] : '';
 
-                    // Include the 'parent_id' in the child category
-                    $child['parent_id'] = $categoryArray['id']; // Assign the parent ID from the main category
+                    // Include the 'parent_id' from the main category
+                    $child['parent_id'] = $categoryArray['id']; // Assign the parent ID
 
-                    // Remove the translations from the child category
+                    // Remove unnecessary fields
                     unset($child['translations']);
                 }
 
