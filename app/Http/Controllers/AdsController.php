@@ -179,8 +179,8 @@ class AdsController extends Controller
     public function getAllCategoriesWithSub()
 {
     try {
-        // Get the preferred locale from the request header
-        $locale = request()->header('Accept-Language', 'ar'); // Default to 'en'
+        // Get the preferred locale from the request header, default to 'ar'
+        $locale = request()->header('Accept-Language', 'ar'); // Default to 'ar'
 
         // Fetch categories with their children and translations
         $categories = Category::with(['children.translations', 'translations'])
