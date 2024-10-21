@@ -35,13 +35,17 @@ class ExperienceController extends Controller
         ], 201);
     }
 
-    public function update(ExperienceRequest $request, Experience $experience)
+    public function update(ExperienceRequest $request, $id)
     {
-        $experience->update($request->validated());
-        return response()->json([
-            'success' => 'Experience Created Successfully. ',
-            'data' => new ExperienceResource($experience)
-        ], 201);
+        $experience = Experience::where('id', $id)->first();
+        if ($experience) {
+            $experience->update($request->validated());
+            return response()->json([
+                'success' => 'Experience Created Successfully. ',
+                'data' => new ExperienceResource($experience)
+            ], 201);
+        }
+        return response()->json(['error' => 'An error occurred']);
     }
 
 
