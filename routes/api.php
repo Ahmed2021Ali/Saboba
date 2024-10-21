@@ -6,6 +6,7 @@ use App\Http\Controllers\BasicInformationController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Middleware\CheckPersonalMiddleware;
@@ -67,6 +68,16 @@ Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->
 
     Route::get('show-following', 'showFollowing');
     Route::get('count-following', 'countFollowing');
+
+});
+
+
+Route::controller(HomepageController::class)->group(function () {
+
+    Route::get('show-all-languages', 'showAllLanguages');
+    Route::get('show-all-skills', 'showAllSkills');
+    Route::get('show-all-countries', 'showAllCountries');
+    Route::get('show-all-cities', 'showAllCities');
 
 });
 

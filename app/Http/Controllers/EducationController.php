@@ -39,8 +39,7 @@ class EducationController extends Controller
 
     public function update(EducationRequest $request, $id)
     {
-        dd($id);
-        //$eduction=
+        $eduction = Education::where('id', $id)->first();
         $eduction->update($request->validated());
         return response()->json([
             'success' => 'Education Updated Successfully. ',
