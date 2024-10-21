@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAdsRequest;
+use App\Http\Traits\ApiResponseTrait;
 use App\Models\Ad;
 use App\Models\AdTranslation;
 use App\Models\AdUpdate;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 class AdsController extends Controller
 {
     
+    use ApiResponseTrait;
     public function index(Request $request)
     {
         $ads = Ad::with(['translations' => function ($query) use ($request) {
@@ -170,6 +173,20 @@ class AdsController extends Controller
         }
     
         return response()->json(['message' => 'Ad not found'], 404);
+    }
+
+
+    public function getAllCategoriesWithSub()
+    {
+        try {
+            $categories = Category::with('children')
+                ->whereNull('parent_id')
+                ->get();
+
+            return $this->successResponse($categories, 'Categories fetched successfully', 200);
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), 500);
+        }
     }
     
 }
