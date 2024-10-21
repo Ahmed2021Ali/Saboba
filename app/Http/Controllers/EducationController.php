@@ -37,9 +37,10 @@ class EducationController extends Controller
         ], 201);
     }
 
-    public function update(EducationRequest $request, $eduction)
+    public function update(EducationRequest $request, $id)
     {
-        dd($eduction);
+        dd($id);
+        //$eduction=
         $eduction->update($request->validated());
         return response()->json([
             'success' => 'Education Updated Successfully. ',
