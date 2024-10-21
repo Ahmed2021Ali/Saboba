@@ -234,22 +234,36 @@ class AdsController extends Controller
     {
         // Remove unnecessary fields for child category
         $child->makeHidden('translations');
-    
+        
         // Get child category name based on the preferred locale
         $childTranslation = $child->translations->firstWhere('locale', $locale);
         $child->name = $childTranslation ? $childTranslation->name : '';
-    
+        
         // Include the 'parent_id' from the parent category
         $child->parent_id = $child->parent_id; // This will show the parent_id of the child category
-    
+        
         // Get subcategories recursively
         $subChildren = Category::with('translations')->where('parent_id', $child->id)->get();
-        $child['children'] = $subChildren->map(function ($subChild) use ($locale) {
+        
+        // Transform the child category into an array
+        $childArray = $child->toArray();
+        
+        // Add the subcategories to the child array
+        $childArray['children'] = $subChildren->map(function ($subChild) use ($locale) {
             return $this->transformChildCategory($subChild, $locale);
         });
-    
-        return $child->toArray(); // Convert the child category to an array
+        
+        // Return the child array
+        return [
+            'id' => $childArray['id'],
+            'parent_id' => $childArray['parent_id'],
+            'created_at' => $childArray['created_at'],
+            'updated_at' => $childArray['updated_at'],
+            'name' => $childArray['name'], // Keep child name here
+            'children' => $childArray['children'] // Keep the children below
+        ];
     }
+    
     
 
     
