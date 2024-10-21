@@ -14,5 +14,6 @@ class City extends Model
 
     public $translatedAttributes = ['name'];
     protected $fillable = ['country_id', 'locale', 'name'];
+    public $timestamps = false;
 
 }
