@@ -13,5 +13,6 @@ class Country extends Model
     public $translatedAttributes = ['name']; // العمود اللي هيتترجم
     // protected $fillable = []; // هنا ممكن تضيف أي أعمدة تحتاجها
     public $timestamps = false;
+    protected $hidden = ['name','created_at', 'updated_at'];
 
 }
