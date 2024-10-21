@@ -270,8 +270,53 @@ class AdsController extends Controller
     }
     
     
+    public function getAllSubcategoriesOfMainCategory(Request $request)
+    {
+        try {
+            // Validate the request to ensure 'category_id' is provided
+            $request->validate([
+                'category_id' => 'required|exists:categories,id', // Ensure category exists
+            ]);
     
-
+            // Get the category ID from the request
+            $categoryId = $request->input('category_id');
+    
+            // Get the preferred locale from the request header, default to 'ar'
+            $locale = $request->header('Accept-Language', 'ar');
+    
+            // Fetch the main category with translations
+            $mainCategory = Category::with('translations')->find($categoryId);
+    
+            // Check if the category exists
+            if (!$mainCategory) {
+                return $this->errorResponse('Category not found', 404);
+            }
+    
+            // Transform the main category for response
+            $mainCategoryArray = $this->transformCategory($mainCategory, $locale);
+    
+            // Fetch subcategories
+            $subcategories = Category::with('translations')->where('parent_id', $mainCategory->id)->get();
+    
+            // Transform subcategories
+            $subcategoriesArray = $subcategories->map(function ($subcategory) use ($locale) {
+                return $this->transformChildCategory($subcategory, $locale);
+            });
+    
+            // Add subcategories only if they exist
+            if ($subcategoriesArray->isNotEmpty()) {
+                $mainCategoryArray['children'] = $subcategoriesArray;
+            } else {
+                // If there are no subcategories, remove 'children' key
+                unset($mainCategoryArray['children']);
+            }
+    
+            return $this->successResponse($mainCategoryArray, 'Subcategories fetched successfully');
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), 500);
+        }
+    }
+    
     
     
     
