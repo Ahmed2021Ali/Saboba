@@ -180,14 +180,14 @@ class AdsController extends Controller
 {
     try {
         // Get the preferred locale from the request header
-        $locale = request()->getLanguages(); // Default to 'en'
+        $locale = request()->header('Accept-Language', 'en'); // Default to 'en'
 
         // Fetch categories with their children and translations
         $categories = Category::with(['children.translations', 'translations'])
             ->whereNull('parent_id') // Get only main categories
             ->get()
             ->map(function ($category) use ($locale) {
-                // Remove 'parent_id' for main categories
+                // Remove 'parent_id' field for main categories
                 $category->makeHidden('parent_id');
 
                 // Get the category name based on the preferred locale
