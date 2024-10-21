@@ -34,22 +34,21 @@ class Category extends Model
     }
 
 
-    
-    // Method to hide 'name' and move 'translations' after main data
+
     public function formatCategory()
     {
-        // Map over translations to hide 'category_id'
+        // Format translations for the main category and hide the 'name'
         $this->translations->map(function ($translation) {
             $translation->makeHidden('category_id');
             return $translation;
         });
 
-        // Hide 'name' field if translations exist
+        // If translations exist, hide 'name'
         if (!empty($this->translations)) {
             $this->makeHidden('name');
         }
 
-        // Apply the same logic to children categories
+        // Apply the same logic to child categories
         $this->children->map(function ($child) {
             $child->translations->map(function ($translation) {
                 $translation->makeHidden('category_id');
@@ -59,18 +58,21 @@ class Category extends Model
             if (!empty($child->translations)) {
                 $child->makeHidden('name');
             }
+
             return $child;
         });
 
-        // Convert the category to an array and restructure it
+        // Convert the category to an array
         $categoryArray = $this->toArray();
+        
+        // Move translations after main data
         $translations = $categoryArray['translations'];
         unset($categoryArray['translations']);
-
-        // Move translations after category data
         $categoryArray['translations'] = $translations;
 
+        // Return the structured category array
         return $categoryArray;
     }
+
 
 }

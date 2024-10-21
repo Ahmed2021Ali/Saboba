@@ -189,9 +189,19 @@ class AdsController extends Controller
                     return $category->formatCategory();
                 });
     
-            return $this->successResponse($categories, 'Categories fetched successfully');
+            // Structure the response in the desired format
+            $response = [
+                "data" => $categories,
+                "message" => "Categories fetched successfully",
+                "status" => 200
+            ];
+    
+            return response()->json($response, 200);
         } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
+            return response()->json([
+                "message" => $e->getMessage(),
+                "status" => 500
+            ], 500);
         }
     }
     
