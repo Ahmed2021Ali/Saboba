@@ -176,7 +176,7 @@ class AdsController extends Controller
     }
 
 
-    public function getCategoriesWithSubcategories()
+    public function getAllCategoriesWithSub()
     {
         try {
             $categories = Category::with(['children', 'translations'])
