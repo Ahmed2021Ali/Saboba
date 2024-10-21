@@ -28,54 +28,54 @@ class AdsController extends Controller
         return response()->json([], 404);
     }
     
-
     public function store(StoreAdsRequest $request)
     {
         return DB::transaction(function () use ($request) {
-            // 1. Create the Ad
-            $ad = $this->createAd($request);
-
-            // 2. Handle translations if available
-            if ($this->hasValidTranslations($request)) {
-                $this->createTranslations($ad->id, $request->translations);
+            try {
+                // 1. Create the Ad
+                $ad = $this->createAd($request);
+    
+                // 2. Handle translations if available
+                if ($this->hasValidTranslations($request)) {
+                    $this->createTranslations($ad->id, $request->translations);
+                }
+    
+                // 3. Return success response
+                return $this->buildSuccessResponse($ad, $request->translations);
+            } catch (\Exception $e) {
+                return response()->json([
+                    'message' => 'An error occurred while creating the ad',
+                    'error' => $e->getMessage(),
+                ], 500);
             }
-
-            // 3. Return response
-            return $this->buildSuccessResponse($ad, $request->translations);
         });
     }
-
     
-      //Create the Ad using the request data
-    
+    // Create the Ad using the request data
     protected function createAd($request)
     {
         return Ad::create([
             'price' => $request->price,
             'reference_number' => strtoupper(Str::random(10)),
-            'user_id' => 1,
+            'user_id' => 1, // Consider replacing with authenticated user ID
             'category_id' => $request->category_id,
             'city_id' => $request->city_id,
             'image' => $request->file('image') ? $request->file('image')->store('ads') : null,
             'status' => 0,
         ]);
     }
-
     
-     // Check if the request has valid translations
-     
+    // Check if the request has valid translations
     protected function hasValidTranslations($request)
     {
         return $request->has('translations') && is_array($request->translations);
     }
-
-
-     //Create translations for the Ad
-
+    
+    // Create translations for the Ad
     protected function createTranslations($adId, array $translations)
     {
         $translationsData = [];
-
+    
         foreach ($translations as $translation) {
             $translationsData[] = [
                 'ad_id' => $adId,
@@ -84,18 +84,22 @@ class AdsController extends Controller
                 'description' => $translation['description'],
             ];
         }
-
+    
         AdTranslation::insert($translationsData);
     }
-
+    
+    // Build the success response
     protected function buildSuccessResponse($ad, $translations)
     {
         return response()->json([
             'message' => 'Ad created successfully!',
-            'data' => $ad->only('id', 'price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status'),
-            'translations' => $translations,
+            'data' => [
+                'ad' => $ad->only('id', 'price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status'),
+                'translations' => $translations,
+            ],
         ], 201);
     }
+    
 
     
 
@@ -273,21 +277,17 @@ class AdsController extends Controller
     public function getAllSubcategoriesOfMainCategory(Request $request)
     {
         try {
-            // Validate the request to ensure 'category_id' is provided
             $request->validate([
                 'category_id' => 'required|exists:categories,id', // Ensure category exists
             ]);
     
-            // Get the category ID from the request
             $categoryId = $request->input('category_id');
     
             // Get the preferred locale from the request header, default to 'ar'
             $locale = $request->header('Accept-Language', 'ar');
     
-            // Fetch the main category with translations
             $mainCategory = Category::with('translations')->find($categoryId);
     
-            // Check if the category exists
             if (!$mainCategory) {
                 return $this->errorResponse('Category not found', 404);
             }

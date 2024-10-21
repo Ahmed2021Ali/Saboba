@@ -29,7 +29,7 @@ class JwtAuthRequest extends FormRequest
             'country_id' => 'required|exists:countries,id',
             'whatsapp_number' => 'nullable|string|min:8|max:20',
             'contact_number' => 'nullable|string|min:8|max:20',
-            'overview' => 'required|string|max:500', 
+            'overview' => 'nullable|string|max:500', 
         ];
     }
     
