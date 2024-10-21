@@ -6,12 +6,16 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Language;
 use App\Models\Skills;
+use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
-    public function showAllLanguages()
+    public function showAllLanguages(Request $request)
     {
-        $languages = Language::select('id', 'name')->get();
+       // $languages = Language::select('id', 'name')->get();
+        $languages = Language::with(['translations' => function ($query) use ($request) {
+            $query->where('locale', $request->getLanguages());
+        }])->get();
         return response()->json($languages);
     }
 
