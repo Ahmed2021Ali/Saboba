@@ -51,18 +51,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Type Input -->
-                                <div class="col-md-12">
-                                    <div class="form-group mb-3">
-                                        <label for="userMerchantSelect"><strong>اختر نوع المستخدم:</strong></label>
-                                        <select name="type" id="userMerchantSelect" class="form-control">
-                                            <option value="" disabled selected>اختر...</option>
-                                            <option value="مستخدم">مستخدم</option>
-                                            <option value="تاجر">تاجر</option>
-                                            <option value="أدمن">أدمن</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <!-- Phone Number Input -->
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
@@ -80,17 +68,15 @@
                                 </div>
 
                                 <!-- Confirm Password Input -->
-                           <!-- Confirm Password Input -->
-                            <div class="col-md-12">
+                                <div class="col-md-12">
                                 <div class="form-group mb-3">
                                     <label for="password_confirmation"><strong>تأكيد كلمة المرور:</strong></label>
                                     <input type="password" name="password_confirmation" id="password_confirmation" placeholder="تأكيد كلمة المرور" class="form-control">
                                 </div>
                             </div>
 
-
-                            <!-- Role Selection -->
-                            <div class="col-md-12">
+                                  <!-- Role Selection -->
+                                <div class="col-md-12">
                                 <div class="form-group mb-3">
                                     <label for="roles"><strong>الدور:</strong></label>
                                     <select name="role" id="roles" class="form-control">
@@ -105,9 +91,6 @@
                                 </div>
                             </div>
 
-
-
-
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
                                             <label for="files">الصور</label>
@@ -115,7 +98,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Submit Button -->
+                                   <!-- Submit Button -->
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary btn-sm mb-3">
                                         <i class="fa-solid fa-floppy-disk"></i> تأكيد

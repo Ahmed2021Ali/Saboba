@@ -20,12 +20,10 @@ class AuthController extends Controller
             'phone' => 'required|string',
             'password' => 'required|string',
         ]);
-
         $credentials = [
             'phone' => $request->phone,
             'password' => $request->password,
         ];
-
         if (Auth::attempt($credentials)) {
             flash()->success('تم تسجيل الدخول بنجاح');
             return redirect()->route('home'); // Redirect to a home page or dashboard
