@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
+
 Route::post('/login', [JWTAuthController::class, 'login'])->name('login');
 Route::post('/register', [JWTAuthController::class, 'register']);
 
