@@ -10,9 +10,13 @@
                 <h2 class="mb-2 page-title">قائمة الفئات</h2>
                 <div class="pull-right mb-2">
                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#createCategoryModal">
-                        <i class="fa fa-plus"></i> إضافة فئة جديدة
+                        <i class="fa fa-plus"></i> إضافة فئة رائيسية  جديدة
                     </button>
-                    @include('dashboard.categories.create')
+                </div>
+                <div class="pull-right mb-2">
+                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#createCategoryModal">
+                        <i class="fa fa-plus"></i> إضافة فئة رائيسية  جديدة
+                    </button>
                 </div>
 
                 <!-- Success Messages -->
@@ -90,5 +94,5 @@
     </div> <!-- /.container-fluid -->
 </main>
 
-
+@include('dashboard.categories.create')
 @endsection
