@@ -27,6 +27,31 @@ Route::group([
 
         Route::get('roles', [\App\Http\Controllers\web\RoleController::class, 'index'])->name('roles.index')
             ->middleware('permission:عرض الأدوار');
+Route::get('roles', [\App\Http\Controllers\web\RoleController::class, 'index'])->name('roles.index')
+    ->middleware('permission:عرض الأدوار');
+
+Route::middleware('permission:إضافة دور')->group(function () {
+    Route::get('roles/create', [\App\Http\Controllers\web\RoleController::class, 'create'])->name('roles.create');
+    Route::post('roles', [\App\Http\Controllers\web\RoleController::class, 'store'])->name('roles.store');
+});
+
+Route::get('roles/{role}', [\App\Http\Controllers\web\RoleController::class, 'show'])->name('roles.show')
+    ->middleware('permission:عرض دور');
+
+Route::middleware('permission:تعديل دور')->group(function () {
+    Route::get('roles/{role}/edit', [\App\Http\Controllers\web\RoleController::class, 'edit'])->name('roles.edit');
+    Route::put('roles/{role}', [\App\Http\Controllers\web\RoleController::class, 'update'])->name('roles.update');
+});
+
+Route::middleware('permission:حذف دور')->group(function () {
+    Route::delete('roles/{role}', [\App\Http\Controllers\web\RoleController::class, 'destroy'])->name('roles.destroy');
+});
+
+// User Management Routes
+Route::resource('users', \App\Http\Controllers\web\UserController::class);
+
+// User Management Routes
+
 
         Route::middleware('permission:إضافة دور')->group(function () {
             Route::get('roles/create', [\App\Http\Controllers\web\RoleController::class, 'create'])->name('roles.create');
@@ -61,3 +86,15 @@ Route::group([
         });
     });
 });
+
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ 
+        Route::resource('categories', \App\Http\Controllers\web\CategoryController::class);
+        Route::resource('users', \App\Http\Controllers\web\UserController::class);
+
+
+    });
