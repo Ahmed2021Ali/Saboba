@@ -56,5 +56,7 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){ 
         Route::resource('categories', \App\Http\Controllers\web\CategoryController::class);
+        Route::resource('users', \App\Http\Controllers\web\UserController::class);
+
 
     });
