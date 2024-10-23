@@ -76,6 +76,7 @@ class AdsController extends Controller
 
     public function store(Request $request)
     {
+        dd($request['translations'][0]['name']);
         return DB::transaction(function () use ($request) {
             // 1. Create the Ad
             $ad = $this->createAd($request);
