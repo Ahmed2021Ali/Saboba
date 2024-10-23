@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
+
 Route::post('/login', [JWTAuthController::class, 'login'])->name('login');
 Route::post('/register', [JWTAuthController::class, 'register']);
 
@@ -28,29 +29,12 @@ Route::middleware([JwtMiddleware::class,CheckPersonalMiddleware::class])->prefix
     Route::resource('experience', ExperienceController::class);
     Route::resource('language', LanguageController::class);
     Route::resource('skills', SkillsController::class);
-
 });
 
 Route::middleware([JwtMiddleware::class])->group(function () {
     Route::resource('ads', AdsController::class);
     Route::get('get-main-category-of-ad', [AdsController::class, 'getMainCategoryOfAd']);
     Route::get('get-all-categories-with-sub', [AdsController::class, 'getAllCategoriesWithSub']);
-    Route::get('get-all-subcategories-of-main', [AdsController::class, 'getAllSubcategoriesOfMainCategory']);
-
-});
-
-
-
-
-Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->group(function () {
-    Route::get('add-follow/{user_id}', 'addFollow');
-    Route::get('accept-follow/{follow_id}', 'acceptFollow');
-    Route::get('reject-follow/{follow_id}', 'rejectFollow');
-    Route::get('cancel-follow/{follow_id}', 'cancelFollow');
-    Route::get('show-follower', 'showFollower');
-    Route::get('count-follower', 'countFollower');
-    Route::get('show-following', 'showFollowing');
-    Route::get('count-following', 'countFollowing');
 });
 
 
@@ -61,25 +45,19 @@ Route::get('/accepted-languages', function (Request $request) {
 
 
 Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->group(function () {
-
     Route::get('add-follow/{user_id}', 'addFollow');
     Route::get('cancel-follow/{user_id}', 'cancelFollow');
-
     Route::get('show-follower', 'showFollower');
     Route::get('count-follower', 'countFollower');
-
     Route::get('show-following', 'showFollowing');
     Route::get('count-following', 'countFollowing');
-
 });
 
 
 Route::controller(HomepageController::class)->group(function () {
-
     Route::get('show-all-languages', 'showAllLanguages');
     Route::get('show-all-skills', 'showAllSkills');
     Route::get('show-all-countries', 'showAllCountries');
     Route::get('show-all-cities', 'showAllCities');
-
 });
 

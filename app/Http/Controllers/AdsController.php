@@ -18,56 +18,57 @@ class AdsController extends Controller
     use ApiResponseTrait;
 
     
-    // public function index(Request $request)
-    // {
-    //     try {
-    //         // Get the preferred locale from the request header, default to 'ar'
-    //         $locale = $request->header('Accept-Language', 'ar'); // Default to 'ar'
+    public function index(Request $request)
+    {
+        try {
+            // Get the preferred locale from the request header, default to 'ar'
+            $locale = $request->header('Accept-Language', 'ar'); // Default to 'ar'
             
-    //         // Fetch ads with translations
-    //         $ads = Ad::with('translations')->get();
+            // Fetch ads with translations
+            $ads = Ad::with('translations')->get();
             
-    //         // Transform the ads to include the preferred locale
-    //         $adsArray = $ads->map(function ($ad) use ($locale) {
-    //             return $this->transformAd($ad, $locale);
-    //         });
+            // Transform the ads to include the preferred locale
+            $adsArray = $ads->map(function ($ad) use ($locale) {
+                return $this->transformAd($ad, $locale);
+            });
     
-    //         // Check if the ads are not empty
-    //         if ($adsArray->isNotEmpty()) {
-    //             return $this->successResponse($adsArray, 'Ads fetched successfully');
-    //         }
+            // Check if the ads are not empty
+            if ($adsArray->isNotEmpty()) {
+                return $this->successResponse($adsArray, 'Ads fetched successfully');
+            }
     
-    //         return $this->errorResponse('No ads found', 404);
-    //     } catch (\Exception $e) {
-    //         return $this->errorResponse($e->getMessage(), 500);
-    //     }
-    // }
+            return $this->errorResponse('No ads found', 404);
+        } catch (\Exception $e) {
+            return $this->errorResponse($e->getMessage(), 500);
+        }
+    }
     
-    // private function transformAd($ad, $locale)
-    // {
-    //     // Remove 'translations' field from the ad
-    //     $ad->makeHidden('translations');
+    private function transformAd($ad, $locale)
+    {
+        // Remove 'translations' field from the ad
+        $ad->makeHidden('translations');
         
-    //     // Get the ad title and description based on the preferred locale
-    //     $translation = $ad->translations->firstWhere('locale', $locale);
-    //     $ad->description = $translation ? $translation->description : '';
+        // Get the ad title and description based on the preferred locale
+        $translation = $ad->translations->firstWhere('locale', $locale);
+        $ad->title = $translation ? $translation->title : '';
+        $ad->description = $translation ? $translation->description : '';
     
-    //     // Convert the ad to an array
-    //     $adArray = $ad->toArray();
+        // Convert the ad to an array
+        $adArray = $ad->toArray();
         
-    //     return $adArray;
-    // }
+        return $adArray;
+    }
     
-    // // Assuming you have these methods in your controller for response handling
-    // private function successResponse($data, $message = '', $status = 200)
-    // {
-    //     return response()->json(['data' => $data, 'message' => $message], $status);
-    // }
+    // Assuming you have these methods in your controller for response handling
+    private function successResponse($data, $message = '', $status = 200)
+    {
+        return response()->json(['data' => $data, 'message' => $message], $status);
+    }
     
-    // private function errorResponse($message, $status)
-    // {
-    //     return response()->json(['error' => $message], $status);
-    // }
+    private function errorResponse($message, $status)
+    {
+        return response()->json(['error' => $message], $status);
+    }
     
     
 
@@ -219,143 +220,55 @@ class AdsController extends Controller
     }
 
 
-    public function getAllCategoriesWithSub()
+    public function getAllCategoriesWithSub(Request $request)
     {
         try {
-            // Get the preferred locale from the request header, default to 'ar'
-            $locale = request()->header('Accept-Language', 'ar'); // Default to 'ar'
+            // Fetch categories with their children and translations
+            $languages = $request->getLanguages(); // Get the accepted languages
+            $preferredLocale = !empty($languages) ? $languages[0] : 'en'; // Default to 'en' if no languages are provided
     
-            // Fetch all main categories (top-level) with translations
-            $categories = Category::with('translations')
+            $categories = Category::with(['children.translations', 'translations'])
                 ->whereNull('parent_id') // Get only main categories
-                ->get();
+                ->get()
+                ->map(function ($category) use ($preferredLocale) {
+                    // Remove 'parent_id' for main categories
+                    $category->makeHidden('parent_id');
     
-            // Transform categories to include all subcategories
-            $categoriesArray = $categories->map(function ($category) use ($locale) {
-                return $this->transformCategory($category, $locale);
-            });
+                    // Get the translation for the preferred locale
+                    $translation = $category->translations->first()->Where('locale', $preferredLocale);
+                    $category->name = $translation ? $translation->name : null; // Set the category name
     
-            return $this->successResponse($categoriesArray, 'Categories fetched successfully');
+                    // Remove the translations array
+                    $category->makeHidden('translations');
+    
+                    // Convert the category to an array
+                    $categoryArray = $category->toArray();
+    
+                    // Store children separately
+                    $children = $categoryArray['children'];
+                    unset($categoryArray['children']);
+    
+                    // Process child categories
+                    foreach ($children as &$child) {
+                        // Get the translation for the preferred locale
+                        $childTranslation = $child['translations']->firstWhere('locale', $preferredLocale);
+                        $child['name'] = $childTranslation ? $childTranslation['name'] : null; // Set the child name
+    
+                        // Remove the translations from the child category
+                        unset($child['translations']);
+                    }
+    
+                    // Rebuild the array: main data -> children
+                    $categoryArray['children'] = $children;
+    
+                    return $categoryArray;
+                });
+    
+            return $this->successResponse($categories, 'Categories fetched successfully');
         } catch (\Exception $e) {
             return $this->errorResponse($e->getMessage(), 500);
         }
     }
-    
-    private function transformCategory($category, $locale)
-    {
-        // Remove 'parent_id' field for main categories
-        $category->makeHidden('parent_id');
-    
-        // Get the category name based on the preferred locale
-        $translation = $category->translations->firstWhere('locale', $locale);
-        $category->name = $translation ? $translation->name : '';
-    
-        // Remove translations
-        $category->makeHidden('translations');
-    
-        // Convert the category to an array
-        $categoryArray = $category->toArray();
-    
-        // Get child categories
-        $children = Category::with('translations')->where('parent_id', $category->id)->get();
-    
-        // Process child categories recursively
-        $transformedChildren = $children->map(function ($child) use ($locale) {
-            return $this->transformChildCategory($child, $locale);
-        });
-    
-        // Add children only if they exist
-        if ($transformedChildren->isNotEmpty()) {
-            $categoryArray['children'] = $transformedChildren;
-        }
-    
-        return $categoryArray;
-    }
-    
-    private function transformChildCategory($child, $locale)
-    {
-        // Remove unnecessary fields for child category
-        $child->makeHidden('translations');
-        
-        // Get child category name based on the preferred locale
-        $childTranslation = $child->translations->firstWhere('locale', $locale);
-        $child->name = $childTranslation ? $childTranslation->name : '';
-        
-        // Include the 'parent_id' from the parent category
-        $child->parent_id = $child->parent_id; // This will show the parent_id of the child category
-        
-        // Get subcategories recursively
-        $subChildren = Category::with('translations')->where('parent_id', $child->id)->get();
-        
-        // Transform the child category into an array
-        $childArray = $child->toArray();
-        
-        // Transform subcategories
-        $transformedSubChildren = $subChildren->map(function ($subChild) use ($locale) {
-            return $this->transformChildCategory($subChild, $locale);
-        });
-        
-        // Add subcategories only if they exist
-        if ($transformedSubChildren->isNotEmpty()) {
-            $childArray['children'] = $transformedSubChildren;
-        }
-    
-        // Return the child array
-        return [
-            'id' => $childArray['id'],
-            'parent_id' => $childArray['parent_id'],
-            'created_at' => $childArray['created_at'],
-            'updated_at' => $childArray['updated_at'],
-            'name' => $childArray['name'], 
-            // Include 'children' only if it's not empty
-            ...(isset($childArray['children']) ? ['children' => $childArray['children']] : [])
-        ];
-    }
-    
-    
-    public function getAllSubcategoriesOfMainCategory(Request $request)
-    {
-        try {
-            $request->validate([
-                'category_id' => 'required|exists:categories,id', 
-            ]);
-    
-            $categoryId = $request->input('category_id');
-    
-            // Get the preferred locale from the request header, default to 'ar'
-            $locale = $request->header('Accept-Language', 'ar');
-    
-            $mainCategory = Category::with('translations')->find($categoryId);
-    
-            if (!$mainCategory) {
-                return $this->errorResponse('Category not found', 404);
-            }
-    
-            // Transform the main category for response
-            $mainCategoryArray = $this->transformCategory($mainCategory, $locale);
-    
-            // Fetch subcategories
-            $subcategories = Category::with('translations')->where('parent_id', $mainCategory->id)->get();
-    
-            // Transform subcategories
-            $subcategoriesArray = $subcategories->map(function ($subcategory) use ($locale) {
-                return $this->transformChildCategory($subcategory, $locale);
-            });
-    
-            // Add subcategories only if they exist
-            if ($subcategoriesArray->isNotEmpty()) {
-                $mainCategoryArray['children'] = $subcategoriesArray;
-            } else {
-                // If there are no subcategories, remove 'children' key
-                unset($mainCategoryArray['children']);
-            }
-    
-            return $this->successResponse($mainCategoryArray, 'Subcategories fetched successfully');
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        }
-    }
-    
     
     
     
