@@ -41,11 +41,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th>اسم الفئة</th>
-                                            <th>المتجر</th>
-                                            <th>عنوان المتجر</th>
-                                            <th>تكلفة التوصيل</th>
-                                            <th>رسالة وقت التوصيل</th>
-                                            <th>ظهور لدي</th>
                                             <th>الإجراءات</th>
                                         </tr>
                                     </thead>
@@ -54,15 +49,8 @@
                                             <tr>
                                                 <td>{{ $category->id }}</td>
                                                 <td>{{ $category->name }}</td>
-                                                <td>{{ $category->store->name ?? 'لا يوجد' }}</td>
-                                                <td>{{ $category->store->address->name ?? 'لا يوجد' }}</td>
-                                                <td>{{ $category->delivery_cost }}</td>
-                                                <td>{{ $category->delivery_time_msg }}</td>
                                                 <td>
-                                                    <span class="badge badge-success">{{ $category->visibility }}</span>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{$category->id}}">
+{{--                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{$category->id}}">
                                                         <i class="fa fa-edit"></i> عرض صور
                                                     </button>
                                                     @include('dashboard.images.index', ['model' => $category, 'folder' => 'categoryImages'])
@@ -75,7 +63,7 @@
                                                     <!-- Delete Button Modal Trigger -->
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCategoryModal{{ $category->id }}">
                                                         <i class="fa fa-trash"></i> حذف
-                                                    </button>
+                                                    </button>--}}
                                                 </td>
                                             </tr>
 

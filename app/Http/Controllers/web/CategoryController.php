@@ -10,9 +10,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::with(['children.translations', 'translations'])
-            ->whereNull('parent_id') // Get only main categories
-            ->get();
-        dd($categories);
+            ->whereNull('parent_id')->paginate(8);
         return view('dashboard.categories', compact('categories'));
     }
 
