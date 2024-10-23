@@ -77,7 +77,7 @@ class AdsController extends Controller
     public function store(Request $request)
     {
        // dd($request);
-        return response()->json($request);
+        return $request;
      //   return DB::transaction(function () use ($request) {
             // 1. Create the Ad
       //      $ad = $this->createAd($request);
