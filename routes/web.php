@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 // Redirect guest users to login page
 Route::redirect('/', '/login')->middleware('guest');
@@ -45,7 +45,16 @@ Route::middleware('permission:حذف دور')->group(function () {
 Route::resource('users', \App\Http\Controllers\web\UserController::class);
 
 // User Management Routes
-Route::resource('categories', \App\Http\Controllers\web\CategoryController::class);
 
 
 });
+
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){ 
+        Route::resource('categories', \App\Http\Controllers\web\CategoryController::class);
+
+    });
