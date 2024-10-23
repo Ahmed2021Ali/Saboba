@@ -66,9 +66,9 @@
                                                     </button>--}}
                                                 </td>
                                             </tr>
-
+{{--
                                             @include('dashboard.categories.edit')
-                                            @include('dashboard.categories.delete')
+                                            @include('dashboard.categories.delete')--}}
 
                                         @empty
                                             <tr>
