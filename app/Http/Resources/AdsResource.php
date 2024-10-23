@@ -15,8 +15,12 @@ class AdsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            // 'price' => $this->price,
+            // 'translations' => $this->translations()->where('locale', $request->getLanguages())->get(),
+            // 'name' => $this->name,
             'price' => $this->price,
-            'translations' => $this->translations()->where('locale', $request->getLanguages())->get(),
+            'description' => $this->translations['description'],
+            'name' => $this->translations['name'],
         ];
     }
 }

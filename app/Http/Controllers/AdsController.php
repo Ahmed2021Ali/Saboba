@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAdsRequest;
+use App\Http\Resources\AdsResource;
 use App\Http\Traits\ApiResponseTrait;
 use App\Models\Ad;
 use App\Models\AdTranslation;
@@ -11,6 +12,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Resource_;
 
 class AdsController extends Controller
 {
@@ -86,7 +88,7 @@ class AdsController extends Controller
         //     // 3. Return response
         //     return $this->buildSuccessResponse($ad, $request->translations);
         // });
-        return response()->json($request);
+        return AdsResource::collection($request);
     }
 
     
