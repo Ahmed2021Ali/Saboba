@@ -53,8 +53,8 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <label for="phoneNumber"><strong>رقم الهاتف:</strong></label>
-                                        <input type="text" name="phone_number" id="phoneNumber" placeholder="رقم الهاتف" class="form-control" value="{{ $user->phone_number }}">
+                                        <label for="phone"><strong>رقم الهاتف:</strong></label>
+                                        <input type="text" name="phone" id="phone" placeholder="رقم الهاتف" class="form-control" value="{{ $user->phone }}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -71,15 +71,30 @@
                                 </div>
                                 </div>
 
+                                <!-- Address Selection (Optional) -->
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label for="address_id"><strong>الدولة التي ينتمي اليها  </strong></label>
+                                        <select name="address_id" id="address_id" class="form-control">
+                                            <option value="">اختر عنوان</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}" {{ old('country_id', $user->country_id) == $country->id ? 'selected' : '' }}>
+                                                    {{ $country->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <!-- Type Input -->
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
                                         <label for="userMerchantSelect"><strong>اختر نوع المستخدم:</strong></label>
                                         <select name="type" id="userMerchantSelect" class="form-control">
                                             <option value="" disabled {{ old('type', $user->type) === null ? 'selected' : '' }}>اختر نوع المستخدم...</option>
-                                            <option value="أدمن" {{ old('type', $user->type) === 'أدمن' ? 'selected' : '' }}>أدمن</option>
-                                            <option value="تاجر" {{ old('type', $user->type) === 'تاجر' ? 'selected' : '' }}>تاجر</option>
-                                            <option value="مستخدم" {{ old('type', $user->type) === 'مستخدم' ? 'selected' : '' }}>مستخدم</option>
+                                            <option value="أدمن" {{ old('type', $user->type) === 'admin' ? 'selected' : '' }}>admin</option>
+                                            <option value="تاجر" {{ old('type', $user->type) === 'company' ? 'selected' : '' }}>company</option>
+                                            <option value="مستخدم" {{ old('type', $user->type) === 'personal' ? 'selected' : '' }}>personal</option>
                                         </select>
                                     </div>
                                 </div>
@@ -92,23 +107,6 @@
                                             @foreach($roles as $role)
                                                 <option value="{{ $role }}" {{ (string)old('role', $userRole) === (string)$role ? 'selected' : '' }}>
                                                     {{ $role }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-
-
-                                <!-- Address Selection (Optional) -->
-                                <div class="col-md-12">
-                                    <div class="form-group mb-3">
-                                        <label for="address_id"><strong>العنوان </strong></label>
-                                        <select name="address_id" id="address_id" class="form-control">
-                                            <option value="">اختر عنوان</option>
-                                            @foreach ($addresses as $address)
-                                                <option value="{{ $address->id }}" {{ old('address_id', $user->address_id) == $address->id ? 'selected' : '' }}>
-                                                    {{ $address->name }}
                                                 </option>
                                             @endforeach
                                         </select>
