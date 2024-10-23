@@ -17,17 +17,15 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|string|max:50|min:2',
             'email' => 'required|email|max:50|min:5|unique:users,email,' . $id,
-            'phone_number' => 'required|digits_between:10,15|unique:users,phone_number,' . $id,
+            'phone' => 'required|digits_between:10,15|unique:users,phone,' . $id,
             // Make password optional if not provided during update
             'password' => 'nullable|string|min:6|max:20|confirmed',
-            'type' => 'required|in:مستخدم,تاجر,أدمن',
-            'address_id' => 'nullable|integer',
-            'is_blocked' => 'boolean|nullable',
+            'type' => 'required|in:company,admin,personal',
+            'country_id' => 'nullable|integer|exists:countries,id',
             'role' => 'required|string|exists:roles,name',
             'images.*' => ['nullable', 'max:10000'],
         ];
     }
-
 
 
     public function messages()

@@ -9,21 +9,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements JWTSubject , HasMedia
 {
-    use HasFactory, Notifiable,HasRoles;
+    use HasFactory, Notifiable,HasRoles,InteractsWithMedia;
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'phone',
-        'type',
-        'country_id',
-        'whatsapp_number',
-        'contact_number',
-        'overview',
+        'name', 'email', 'password', 'phone', 'type', 'country_id',
+        'whatsapp_number', 'contact_number', 'overview',
     ];
 
     protected $hidden = [
@@ -36,7 +32,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(Country::class);
     }
 
-
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaCollection('userImages');
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();

@@ -42,8 +42,10 @@ Route::middleware('permission:حذف دور')->group(function () {
 });
 
 // User Management Routes
-Route::group(['middleware' => ['auth']], function () {
 Route::resource('users', \App\Http\Controllers\web\UserController::class);
-});
+
+// User Management Routes
+Route::resource('categories', \App\Http\Controllers\web\CategoryController::class);
+
 
 });

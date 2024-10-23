@@ -3,7 +3,6 @@
 @section('title', 'عرض المستخدم') <!-- Title in Arabic for "Show User" -->
 
 @section('css')
-  <!-- You can add specific CSS files for this page here -->
 @endsection
 
 @section('content')
@@ -39,7 +38,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>رقم الهاتف:</strong>
-                                    <p>{{ $user->phone_number }}</p>
+                                    <p>{{ $user->phone }}</p>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -48,14 +47,14 @@
                                     <p>{{ $user->type }}</p>
                                 </div>
                             </div>
-                            
+
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <strong>العنوان:</strong>
-                                    <p>{{ $user->address->name }}</p> <!-- Assuming $user->address is an object with a 'name' property -->
+                                    <strong> الدولة :</strong>
+                                    <p>{{ $user->country }}</p> <!-- Assuming $user->address is an object with a 'name' property -->
                                 </div>
                             </div>
-                            
+
                             {{-- <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>كلمة المرور:</strong>
@@ -88,7 +87,7 @@
                                     @endif
                                 </div>
                             </div>
-                            
+
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>الصلاحيات:</strong>
@@ -102,7 +101,7 @@
                                     @endif
                                 </div>
                             </div>
-                            
+
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>صورة الملف الشخصي:</strong>
