@@ -19,8 +19,30 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $DataValidated = $request->validate(['name' => 'required|string']);
-        Category::create($DataValidated);
+        $DataValidated = $request->validate(['name' => 'required|string', 'images.*' => 'nullable|max:10000']);
+        $category = Category::create($DataValidated);
+        $this->downloadImages($request->images, $category, 'categoryImages');
+        flash()->success(' Create successfully ');
+        return to_route('categories.index');
+    }
+    public function show(Category $category)
+    {
+      //  return view('dashboard.categories.sub_categories', ['categories'=>$category->children]);
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $DataValidated = $request->validate(['name' => 'nullable|string', 'images.*' => 'nullable|max:10000']);
+        $category->update($DataValidated);
+        $this->updateImages($request->images, $category , 'categoryImages');
+        flash()->success(' Update successfully ');
+        return to_route('categories.index');
+    }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        flash()->success(' deleted successfully ');
         return to_route('categories.index');
     }
 

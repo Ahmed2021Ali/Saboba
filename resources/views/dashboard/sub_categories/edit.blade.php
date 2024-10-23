@@ -1,5 +1,5 @@
 <!-- Edit Category Modal -->
-<div class="modal fade" id="editCategoryModal{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="editCategoryModal{{ $subCategory->id }}" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,13 +8,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('sub_categories.update', $subCategory) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
                     <div class="form-group">
                         <label>اسم الفئة</label>
-                        <input type="text" name="name" class="form-control" value="{{ $category->name }}" required>
+                        <input type="text" name="name" class="form-control" value="{{ $subCategory->name }}" required>
                     </div>
                     <div class="form-group">
                         <label for="files">الصور</label>

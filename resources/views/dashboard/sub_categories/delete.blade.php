@@ -1,5 +1,5 @@
 <!-- Delete Category Modal -->
-<div class="modal fade" id="deleteCategoryModal{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteCategoryModal{{ $subCategory->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,10 +9,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                هل أنت متأكد من حذف هذه الفئة؟ <span style="color: red">{{ $category->name }}</span>
+                هل أنت متأكد من حذف هذه الفئة؟ <span style="color: red">{{ $subCategory->name }}</span>
             </div>
             <div class="modal-footer">
-                <form action="{{ route('categories.destroy', $category) }}" method="POST">
+                <form action="{{ route('categories.destroy', $subCategory) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>

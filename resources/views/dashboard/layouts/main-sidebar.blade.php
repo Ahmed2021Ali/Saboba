@@ -79,6 +79,12 @@
             @endcan
           </ul>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('categories.index')}}">
+                <i class="fe fe-folder fe-16"></i>
+                <span class="ml-1 item-text">الفئات</span>
+            </a>
+        </li>
 
       <!-- Existing Addresses Section -->
       <li class="nav-item dropdown">
@@ -125,12 +131,7 @@
       </li>
 
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('categories.index')}}">
-          <i class="fe fe-folder fe-16"></i>
-          <span class="ml-1 item-text">الفئات</span>
-        </a>
-      </li>
+
 
 
     <li class="nav-item">
