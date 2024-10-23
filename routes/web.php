@@ -55,6 +55,6 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){ 
-        // Route::resource('categories', \App\Http\Controllers\web\CategoryController::class);
+        Route::resource('categories', \App\Http\Controllers\web\CategoryController::class);
 
     });
