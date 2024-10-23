@@ -86,7 +86,7 @@ class AdsController extends Controller
         //     // 3. Return response
         //     return $this->buildSuccessResponse($ad, $request->translations);
         // });
-        dd($request);
+        dd($request->translations);
     }
 
     
