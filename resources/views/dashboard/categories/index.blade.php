@@ -89,6 +89,6 @@
     </div> <!-- /.container-fluid -->
 </main>
 
-@include('dashboard.categories.create')
+{{--@include('dashboard.categories.create')--}}
 
 @endsection
