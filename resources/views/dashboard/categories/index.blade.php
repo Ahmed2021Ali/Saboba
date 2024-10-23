@@ -9,15 +9,15 @@
             <div class="col-12">
                 <h2 class="mb-2 page-title">قائمة الفئات</h2>
                 <div class="pull-right mb-2">
-                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#createCategoryModal">
-                        <i class="fa fa-plus"></i> إضافة فئة رائيسية  جديدة
+                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#createCategoryModal">
+                        <i class="fa fa-plus"></i> إضافة فئة رائيسية
+                    </button>
+
+                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#createCategoryModal2">
+                        <i class="fa fa-plus"></i> إضافة فئة فرعية
                     </button>
                 </div>
-                <div class="pull-right mb-2">
-                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#createCategoryModal">
-                        <i class="fa fa-plus"></i> إضافة فئة رائيسية  جديدة
-                    </button>
-                </div>
+
 
                 <!-- Success Messages -->
                 @if (session('success'))
@@ -54,6 +54,7 @@
                                             <tr>
                                                 <td>{{ $category->id }}</td>
                                                 <td>{{ $category->name }}</td>
+
                                                 <td>
 {{--                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{$category->id}}">
                                                         <i class="fa fa-edit"></i> عرض صور
@@ -95,4 +96,6 @@
 </main>
 
 @include('dashboard.categories.create')
+@include('dashboard.categories.create2',['categories'=>$categories])
+
 @endsection
