@@ -11,7 +11,7 @@ class CategoryController extends Controller
     {
         $categories = Category::with(['children.translations', 'translations'])
             ->whereNull('parent_id')->paginate(8);
-        return view('dashboard.categories', compact('categories'));
+        return view('dashboard.categories.index', compact('categories'));
     }
 
 }
