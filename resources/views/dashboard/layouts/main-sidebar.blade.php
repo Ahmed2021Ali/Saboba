@@ -126,7 +126,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{route('categories.index')}}">
           <i class="fe fe-folder fe-16"></i>
           <span class="ml-1 item-text">الفئات</span>
         </a>

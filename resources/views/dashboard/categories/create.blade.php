@@ -16,31 +16,6 @@
                         <input type="text" name="name" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>المتجر</label>
-                        <select name="store_id" class="form-control" required>
-                            <option value="">اختر المتجر</option>
-                            @foreach($stores as $store)
-                                <option value="{{ $store->id }}">{{ $store->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>تكلفة التوصيل</label>
-                        <input type="number" name="delivery_cost" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>رسالة وقت التوصيل</label>
-                        <input type="text" name="delivery_time_msg" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>الظهور لدي</label>
-                        <select name="visibility" class="form-control" required>
-                            <option value="المستخدمين">المستخدمين</option>
-                            <option value="التجار">التجار</option>
-                            <option value="الجميع">الجميع</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label for="files">الصور</label>
                         <input type="file" name="images[]" id="files" class="form-control" multiple accept="image/*" required>
                     </div>
