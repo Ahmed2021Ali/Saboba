@@ -12,6 +12,7 @@
                     <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#createCategoryModal">
                         <i class="fa fa-plus"></i> إضافة فئة جديدة
                     </button>
+                    @include('dashboard.categories.create')
                 </div>
 
                 <!-- Success Messages -->
@@ -58,16 +59,16 @@
                                                     <!-- Edit Button Modal Trigger -->
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editCategoryModal{{ $category->id }}">
                                                         <i class="fa fa-edit"></i> تعديل
-                                                    </button>
+                                                    </button>--}}
 
                                                     <!-- Delete Button Modal Trigger -->
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCategoryModal{{ $category->id }}">
                                                         <i class="fa fa-trash"></i> حذف
-                                                    </button>--}}
+                                                    </button>
                                                 </td>
                                             </tr>
-{{--
-                                            @include('dashboard.categories.edit')
+
+{{--                                            @include('dashboard.categories.edit')
                                             @include('dashboard.categories.delete')--}}
 
                                         @empty
@@ -89,6 +90,5 @@
     </div> <!-- /.container-fluid -->
 </main>
 
-{{--@include('dashboard.categories.create')--}}
 
 @endsection
