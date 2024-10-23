@@ -18,74 +18,74 @@ class AdsController extends Controller
     use ApiResponseTrait;
 
     
-    public function index(Request $request)
-    {
-        try {
-            // Get the preferred locale from the request header, default to 'ar'
-            $locale = $request->header('Accept-Language', 'ar'); // Default to 'ar'
+    // public function index(Request $request)
+    // {
+    //     try {
+    //         // Get the preferred locale from the request header, default to 'ar'
+    //         $locale = $request->header('Accept-Language', 'ar'); // Default to 'ar'
             
-            // Fetch ads with translations
-            $ads = Ad::with('translations')->get();
+    //         // Fetch ads with translations
+    //         $ads = Ad::with('translations')->get();
             
-            // Transform the ads to include the preferred locale
-            $adsArray = $ads->map(function ($ad) use ($locale) {
-                return $this->transformAd($ad, $locale);
-            });
+    //         // Transform the ads to include the preferred locale
+    //         $adsArray = $ads->map(function ($ad) use ($locale) {
+    //             return $this->transformAd($ad, $locale);
+    //         });
     
-            // Check if the ads are not empty
-            if ($adsArray->isNotEmpty()) {
-                return $this->successResponse($adsArray, 'Ads fetched successfully');
-            }
+    //         // Check if the ads are not empty
+    //         if ($adsArray->isNotEmpty()) {
+    //             return $this->successResponse($adsArray, 'Ads fetched successfully');
+    //         }
     
-            return $this->errorResponse('No ads found', 404);
-        } catch (\Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        }
-    }
+    //         return $this->errorResponse('No ads found', 404);
+    //     } catch (\Exception $e) {
+    //         return $this->errorResponse($e->getMessage(), 500);
+    //     }
+    // }
     
-    private function transformAd($ad, $locale)
-    {
-        // Remove 'translations' field from the ad
-        $ad->makeHidden('translations');
+    // private function transformAd($ad, $locale)
+    // {
+    //     // Remove 'translations' field from the ad
+    //     $ad->makeHidden('translations');
         
-        // Get the ad title and description based on the preferred locale
-        $translation = $ad->translations->firstWhere('locale', $locale);
-        $ad->title = $translation ? $translation->title : '';
-        $ad->description = $translation ? $translation->description : '';
+    //     // Get the ad title and description based on the preferred locale
+    //     $translation = $ad->translations->firstWhere('locale', $locale);
+    //     $ad->description = $translation ? $translation->description : '';
     
-        // Convert the ad to an array
-        $adArray = $ad->toArray();
+    //     // Convert the ad to an array
+    //     $adArray = $ad->toArray();
         
-        return $adArray;
-    }
+    //     return $adArray;
+    // }
     
-    // Assuming you have these methods in your controller for response handling
-    private function successResponse($data, $message = '', $status = 200)
-    {
-        return response()->json(['data' => $data, 'message' => $message], $status);
-    }
+    // // Assuming you have these methods in your controller for response handling
+    // private function successResponse($data, $message = '', $status = 200)
+    // {
+    //     return response()->json(['data' => $data, 'message' => $message], $status);
+    // }
     
-    private function errorResponse($message, $status)
-    {
-        return response()->json(['error' => $message], $status);
-    }
+    // private function errorResponse($message, $status)
+    // {
+    //     return response()->json(['error' => $message], $status);
+    // }
     
     
 
-    public function store(StoreAdsRequest $request)
+    public function store(Request $request)
     {
-        return DB::transaction(function () use ($request) {
-            // 1. Create the Ad
-            $ad = $this->createAd($request);
+        // return DB::transaction(function () use ($request) {
+        //     // 1. Create the Ad
+        //     $ad = $this->createAd($request);
 
-            // 2. Handle translations if available
-            if ($this->hasValidTranslations($request)) {
-                $this->createTranslations($ad->id, $request->translations);
-            }
+        //     // 2. Handle translations if available
+        //     if ($this->hasValidTranslations($request)) {
+        //         $this->createTranslations($ad->id, $request->translations);
+        //     }
 
-            // 3. Return response
-            return $this->buildSuccessResponse($ad, $request->translations);
-        });
+        //     // 3. Return response
+        //     return $this->buildSuccessResponse($ad, $request->translations);
+        // });
+        return $request;
     }
 
     

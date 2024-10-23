@@ -25,6 +25,8 @@ class StoreAdsRequest extends FormRequest
             'translations.*.locale' => 'required|string',
             'translations.*.name' => 'required|string|max:255',
             'translations.*.description' => 'required|string|max:1000',
+            'additional_fields' => 'nullable|json',
+
         ];
     }
 

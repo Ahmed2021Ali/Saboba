@@ -11,15 +11,15 @@ class Ad extends Model
     use HasFactory, Translatable;
 
     protected $table = 'ads';
-    public $timestamps = true; // يجب تفعيل التوقيتات
+    public $timestamps = true; 
 
-    protected $fillable = ['price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status'];
+    protected $fillable = ['price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status', 'additional_fields'];
 
     public $translatedAttributes = ['name', 'description']; // الخصائص المترجمة
 
     public function translations()
     {
-        return $this->hasMany(AdTranslation::class); // علاقة مع الترجمات
+        return $this->hasMany(AdTranslation::class);
     }
 
     public function category()
