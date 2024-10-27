@@ -55,7 +55,7 @@ class ChatController extends Controller
 
     }
 
-    public function Val($request)
+    public function Val($validationData)
     {
         if (!isset($validationData['body']) && !isset($validationData['files'])) {
             return response()->json(['error' => 'Your Cant Message Empty , must Send Message Or File ']);
