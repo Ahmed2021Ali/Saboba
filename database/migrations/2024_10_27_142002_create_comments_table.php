@@ -9,14 +9,17 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
+            $table->string('content');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('ad_id')->constrained('ads')->onDelete('cascade');
             $table->timestamps();
         });
     }
+
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('comments');
     }
 };
