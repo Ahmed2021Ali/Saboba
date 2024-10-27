@@ -70,83 +70,27 @@ class AdsController extends Controller
 
 
     public function getAdById(Request $request)
-{
-    if (!$request->has('id')) {
-        return $this->errorResponse('id field is required', 400);
-    }
-
-    $ad = Ad::find($request->id);
-    if (!$ad) {
-        return $this->errorResponse('Ad not found', 404);
-    }
-
-    // استرجاع الفئة الرئيسية
-    $category = Category::with('parent')->find($ad->category_id);
-
-    // إضافة حقل type إذا كانت الفئة الرئيسية "وظائف" أو "خدمات"
-    $type = null;
-    if ($category && $category->parent && in_array($category->parent->name, ['وظائف', 'خدمات'])) {
-        $type = $category->name;
-    }
-
-    $translations = [
-        'translations_en' => [],
-        'translations_ar' => []
-    ];
-    
-    // بقية الكود كما هو لاسترجاع بيانات الإعلان
-    $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
-    $adFields = AdField::where('ad_id', $ad->id)->get();
-
-    foreach ($adTranslations as $translation) {
-        $locale = $translation->locale === 'en' ? 'translations_en' : 'translations_ar';
-        $data = [
-            'name' => $translation->name,
-            'description' => $translation->description,
-        ];
-
-        foreach ($adFields as $field) {
-            if ($field->locale === $translation->locale) {
-                if (!isset($data[$field->field_name])) {
-                    $data[$field->field_name] = $field->field_value;
-                } else {
-                    $data[$field->field_name] = is_array($data[$field->field_name])
-                        ? array_merge((array)$data[$field->field_name], [$field->field_value])
-                        : [$data[$field->field_name], $field->field_value];
-                }
-            }
+    {
+        if (!$request->has('id')) {
+            return $this->errorResponse('id field is required', 400);
         }
-        $translations[$locale][] = $data;
-    }
 
-    $response = [
-        'ad_id' => $ad->id,
-        'sub_category_id' => $ad->category_id,
-        'city_id' => $ad->city_id,
-        'price' => $ad->price,
-        'type' => $type, // إضافة حقل type
-    ] + $translations;
+        $ad = Ad::find($request->id);
+        if (!$ad) {
+            return $this->errorResponse('Ad not found', 404);
+        }
 
-    return $this->successResponse($response);
-}
+        // استرجاع الفئة الرئيسية والفئة الفرعية
+        $category = Category::with('parent')->find($ad->category_id);
 
-public function getAllAds()
-{
-    $ads = Ad::all();
-
-    if ($ads->isEmpty()) {
-        return $this->successResponse(null, 'No ads founded', 200);
-    }
-
-    $response = [];
-
-    foreach ($ads as $ad) {
-        $adData = [
-            'ad_id' => $ad->id,
-            'sub_category_id' => $ad->category_id,
-            'city_id' => $ad->city_id,
-            'price' => $ad->price,
-        ];
+        // التحقق من الفئة الرئيسية
+        $type = null;
+        if ($category && $category->parent && in_array($category->parent->name, ['وظائف', 'خدمات', 'Jobs', 'Services'])) {
+            $type = [
+                'ar' => $category->name, // اسم الفئة الفرعية بالعربية
+                'en' => $category->translations->where('locale', 'en')->first()->name ?? $category->name, // اسم الفئة الفرعية بالإنجليزية
+            ];
+        }
 
         $translations = [
             'translations_en' => [],
@@ -177,11 +121,81 @@ public function getAllAds()
             $translations[$locale][] = $data;
         }
 
-        $response[] = $adData + $translations;
+        $response = [
+            'ad_id' => $ad->id,
+            'sub_category_id' => $ad->category_id,
+            'city_id' => $ad->city_id,
+            'price' => $ad->price,
+        ];
+
+        if ($type) {
+            $response['type'] = $type;
+        }
+
+        return $this->successResponse($response + $translations);
     }
 
-    return $this->successResponse($response);
-}
+    public function getAllAds()
+    {
+        $ads = Ad::all();
+
+        if ($ads->isEmpty()) {
+            return $this->successResponse(null, 'No ads found', 200);
+        }
+
+        $response = [];
+
+        foreach ($ads as $ad) {
+            $adData = [
+                'ad_id' => $ad->id,
+                'sub_category_id' => $ad->category_id,
+                'city_id' => $ad->city_id,
+                'price' => $ad->price,
+            ];
+
+            $translations = [
+                'translations_en' => [],
+                'translations_ar' => []
+            ];
+
+            $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
+            $adFields = AdField::where('ad_id', $ad->id)->get();
+
+            foreach ($adTranslations as $translation) {
+                $locale = $translation->locale === 'en' ? 'translations_en' : 'translations_ar';
+                $data = [
+                    'name' => $translation->name,
+                    'description' => $translation->description,
+                ];
+
+                foreach ($adFields as $field) {
+                    if ($field->locale === $translation->locale) {
+                        if (!isset($data[$field->field_name])) {
+                            $data[$field->field_name] = $field->field_value;
+                        } else {
+                            $data[$field->field_name] = is_array($data[$field->field_name])
+                                ? array_merge((array)$data[$field->field_name], [$field->field_value])
+                                : [$data[$field->field_name], $field->field_value];
+                        }
+                    }
+                }
+                $translations[$locale][] = $data;
+            }
+
+            // استرجاع الفئة الرئيسية والتحقق منها
+            $category = Category::with('parent')->find($ad->category_id);
+            if ($category && $category->parent && in_array($category->parent->name, ['وظائف', 'خدمات', 'Jobs', 'Services'])) {
+                $adData['type'] = [
+                    'ar' => $category->name, // اسم الفئة الفرعية بالعربية
+                    'en' => $category->translations->where('locale', 'en')->first()->name ?? $category->name, // اسم الفئة الفرعية بالإنجليزية
+                ];
+            }
+
+            $response[] = $adData + $translations;
+        }
+
+        return $this->successResponse($response);
+    }
 
 
 }
