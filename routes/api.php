@@ -72,5 +72,5 @@ Route::resource('comment', \App\Http\Controllers\api\CommentController::class);
 Route::middleware([JwtMiddleware::class])->controller(\App\Http\Controllers\api\ChatController::class)->group(function () {
     Route::get('show-chats', 'showChats');
     Route::get('show-messages/{id}', 'showMessages');
-    Route::post('end-message', 'send_message');
+    Route::post('send-message', 'send_message');
 });
