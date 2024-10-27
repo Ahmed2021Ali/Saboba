@@ -13,7 +13,7 @@ class Category extends Model
     use Translatable;
 
     public $translatedAttributes = ['name'];
-    protected $fillable = ['locale', 'name', 'parent_id'];
+    protected $fillable = ['locale', 'name', 'parent_id', 'created_at', 'updated_at'];
 
     public $timestamps = true;
 
