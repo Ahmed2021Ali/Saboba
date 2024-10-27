@@ -11,7 +11,7 @@ class Ad extends Model
     use HasFactory, Translatable;
 
     protected $table = 'ads';
-    public $timestamps = true; 
+    public $timestamps = true;
 
     protected $fillable = ['price', 'reference_number', 'user_id', 'category_id', 'city_id', 'image', 'status', 'additional_fields'];
 
@@ -20,6 +20,11 @@ class Ad extends Model
     public function translations()
     {
         return $this->hasMany(AdTranslation::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function category()
