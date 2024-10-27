@@ -110,10 +110,10 @@ class AdsController extends Controller
             // جلب نوع الفئة الفرعية حسب اللغة
             $category = Category::with('parent')->find($ad->category_id);
             if ($category && $category->parent) {
-                // الحصول على الفئة الفرعية الأولى بعد الفئة الرئيسية
-                $firstChildCategory = $category->children()->first();
-                if ($firstChildCategory) {
-                    $data['type'] = $firstChildCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstChildCategory->name;
+                // الحصول على أول فئة فرعية بعد الفئة الرئيسية
+                $firstSubCategory = Category::where('parent_id', $category->parent_id)->first();
+                if ($firstSubCategory) {
+                    $data['type'] = $firstSubCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstSubCategory->name;
                 }
             }
     
@@ -178,10 +178,10 @@ class AdsController extends Controller
                 // جلب نوع الفئة الفرعية حسب اللغة
                 $category = Category::with('parent')->find($ad->category_id);
                 if ($category && $category->parent) {
-                    // الحصول على الفئة الفرعية الأولى بعد الفئة الرئيسية
-                    $firstChildCategory = $category->children()->first();
-                    if ($firstChildCategory) {
-                        $data['type'] = $firstChildCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstChildCategory->name;
+                    // الحصول على أول فئة فرعية بعد الفئة الرئيسية
+                    $firstSubCategory = Category::where('parent_id', $category->parent_id)->first();
+                    if ($firstSubCategory) {
+                        $data['type'] = $firstSubCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstSubCategory->name;
                     }
                 }
     
@@ -193,6 +193,7 @@ class AdsController extends Controller
     
         return $this->successResponse($response);
     }
+    
     
 
 
