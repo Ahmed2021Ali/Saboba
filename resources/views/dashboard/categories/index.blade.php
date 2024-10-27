@@ -13,9 +13,6 @@
                         <i class="fa fa-plus"></i> إضافة فئة رائيسية
                     </button>
 
-                    <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#createCategoryModal2">
-                        <i class="fa fa-plus"></i> إضافة فئة فرعية
-                    </button>
                 </div>
 
 
@@ -56,25 +53,33 @@
                                                 <td>{{ $category->name }}</td>
 
                                                 <td>
-{{--                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{$category->id}}">
+
+
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{$category->id}}">
                                                         <i class="fa fa-edit"></i> عرض صور
                                                     </button>
                                                     @include('dashboard.images.index', ['model' => $category, 'folder' => 'categoryImages'])
 
+
                                                     <!-- Edit Button Modal Trigger -->
-                                                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editCategoryModal{{ $category->id }}">
+                                                   <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editCategoryModal{{ $category->id }}">
                                                         <i class="fa fa-edit"></i> تعديل
-                                                    </button>--}}
+                                                    </button>
 
                                                     <!-- Delete Button Modal Trigger -->
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCategoryModal{{ $category->id }}">
                                                         <i class="fa fa-trash"></i> حذف
                                                     </button>
+
+                                                    <a class="btn btn-sm btn-info" href="{{ route('sub_categories.index', $category) }}">
+                                                        <i class="fa-solid fa-list"></i>  عرض الاقسام الفرعية
+                                                    </a>
                                                 </td>
                                             </tr>
+                                            @include('dashboard.categories.delete')
 
-{{--                                            @include('dashboard.categories.edit')
-                                            @include('dashboard.categories.delete')--}}
+                                         @include('dashboard.categories.edit')
+
 
                                         @empty
                                             <tr>
@@ -96,6 +101,5 @@
 </main>
 
 @include('dashboard.categories.create')
-@include('dashboard.categories.create2',['categories'=>$categories])
 
 @endsection

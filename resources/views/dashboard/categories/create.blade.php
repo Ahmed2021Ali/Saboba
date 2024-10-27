@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label for="files">الصور</label>
-                        <input type="file" name="images[]" id="files" class="form-control" multiple accept="image/*" required>
+                        <input type="file" name="images[]" id="files" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">
