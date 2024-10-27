@@ -70,6 +70,7 @@ Route::controller(HomepageController::class)->group(function () {
 Route::resource('comment', \App\Http\Controllers\api\CommentController::class);
 
 Route::middleware([JwtMiddleware::class])->controller(\App\Http\Controllers\api\ChatController::class)->group(function () {
-    Route::get('chats/show', 'show');
-    Route::post('chat/send-message', 'send_message');
+    Route::get('show-chats', 'showChats');
+    Route::get('show-messages/{id}', 'showMessages');
+    Route::post('end-message', 'send_message');
 });

@@ -16,12 +16,23 @@ class ChatController extends Controller
 {
     use media;
 
-    public function show()
+    public function showChats()
     {
         $chats = Chat::where('receiver_id', Auth::id())
             ->Orwhere('sender_id', Auth::id())->get();
-        return response()->json(['Data'=> ChatResource::collection($chats), 'success' => 'Your Chats'],200);
+        return response()->json(['Data' => ChatResource::collection($chats), 'success' => 'Your Chats'], 200);
 
+    }
+
+    public function showMessages($id)
+    {
+        $chat = Chat::where('id', $id)->where('receiver_id', Auth::id())
+        ->Orwhere('sender_id', Auth::id())->first();
+        if ($chat) {
+            $message = message::where('chat_id', $chat->id)->get();
+            return response()->json(['Data' => MessageResource::collection($message), 'success' => 'Your Message'], 200);
+        }
+        return response()->json(['success' => 'No Chat With You'], 200);
     }
 
 
@@ -48,7 +59,7 @@ class ChatController extends Controller
         DB::beginTransaction();
         try {
             if ($chat) {
-                $message = $this->Chat_available($sender_id, $receiver_id, $body,$chat, $files);
+                $message = $this->Chat_available($sender_id, $receiver_id, $body, $chat, $files);
             } else {
                 $message = $this->New_Chat($sender_id, $receiver_id, $body, $files, $ad_id);
             }
@@ -57,7 +68,7 @@ class ChatController extends Controller
             DB::rollback();
             return response()->json(['message' => $e->getMessage()]);
         }
-        return response()->json(['Data'=>new MessageResource($message), 'success' => 'Send Message Successfully'],201);
+        return response()->json(['Data' => new MessageResource($message), 'success' => 'Send Message Successfully'], 201);
     }
 
     public function Val($validationData)
@@ -71,7 +82,7 @@ class ChatController extends Controller
         return null;
     }
 
-    public function Chat_available($sender_id, $receiver_id,$body, $chat, $files)
+    public function Chat_available($sender_id, $receiver_id, $body, $chat, $files)
     {
         // Create Message
         $message = message::create([
