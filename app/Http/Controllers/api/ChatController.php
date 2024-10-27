@@ -94,6 +94,7 @@ class ChatController extends Controller
 
     public function New_Chat($sender_id, $receiver_id, $body, $files, $ad_id)
     {
+        dd($sender_id, $receiver_id);
         // create Chat
         $chat = Chat::create([
             'sender_id' => $sender_id, 'receiver_id' => $receiver_id, 'ad_id' => $ad_id,

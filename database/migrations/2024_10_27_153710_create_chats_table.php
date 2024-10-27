@@ -13,8 +13,8 @@ return new class extends Migration {
             $table->foreignId('receiver_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('ad_id')->nullable()->constrained('ads')->onDelete('cascade');
 
-            $table->timestamp('last_message');
-            $table->timestamp('last_time_message');
+            $table->timestamp('last_message')->nullable();
+            $table->timestamp('last_time_message')->nullable();
 
             $table->timestamps();
         });
