@@ -58,7 +58,7 @@ class ChatController extends Controller
             DB::rollback();
             return response()->json(['message' => $e->getMessage()]);
         }
-        return response()->json(['Data'=>new MessageResource($message) , 'success' => 'Send Message Successfully'],201);
+        return response()->json(['Data'=>$message , 'success' => 'Send Message Successfully'],201);
     }
 
     public function Val($validationData)
