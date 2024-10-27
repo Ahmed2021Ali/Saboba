@@ -10,6 +10,7 @@ use App\Models\message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ChatController extends Controller
 {
@@ -74,6 +75,8 @@ class ChatController extends Controller
 
     public function Chat_available($sender_id, $receiver_id, $chat, $files)
     {
+        $currentDateTime = Carbon::now();
+
         // Create Message
         $message = message::create([
             'sender_id' => $sender_id, 'receiver_id' => $receiver_id,
@@ -85,13 +88,15 @@ class ChatController extends Controller
         // Update Last Message
         $chat->update([
             'ad_id' => $ad_id ?? $chat->ad_id, 'last_message' => $message->body,
-            'last_time_message' => now()->format('Y-m-d H:i:s')
+            'last_time_message' => $currentDateTime->format('Y-m-d H:i:s')
         ]);
         return $message;
     }
 
     public function New_Chat($sender_id, $receiver_id, $body, $files, $ad_id)
     {
+        $currentDateTime = Carbon::now();
+
         // create Chat
         $chat = Chat::create([
             'sender_id' => $sender_id, 'receiver_id' => $receiver_id, 'ad_id' => $ad_id,
@@ -105,7 +110,7 @@ class ChatController extends Controller
         // Update Last Message OR last_time_message
         $chat->update([
             'ad_id' => $ad_id ?? $chat->ad_id, 'last_message' => $message->body,
-            'last_time_message' => now()->format('Y-m-d H:i:s')
+            'last_time_message' => $currentDateTime->format('Y-m-d H:i:s')
         ]);
         // check file
         $this->downloadImages($files, $message, 'messageFiles');
