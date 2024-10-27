@@ -6,11 +6,7 @@ use App\Http\Traits\ApiResponseTrait;
 use App\Models\Ad;
 use App\Models\AdField;
 use App\Models\AdTranslation;
-use App\Models\AdUpdate;
-use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreAdsRequest;
 
 class AdsController extends Controller
@@ -20,17 +16,17 @@ class AdsController extends Controller
     
     public function createNewAd(StoreAdsRequest $request)
     {
-        // **الخطوة 1: إضافة البيانات الرئيسية في جدول ads**
+        // Step 1: Add main data to the ads table
         $ad = Ad::create([
             'price' => $request->price,
             'reference_number' => strtoupper(Str::random(10)),
-            'user_id' => auth()->user()->id, // استخدام user_id الحالي للمستخدم المسجل
+            'user_id' => auth()->user()->id,
             'category_id' => $request->sub_category_id,
             'city_id' => $request->city_id,
-            'status' => 0 // اعتبرناها نشطة افتراضياً
+            'status' => 0
         ]);
 
-        // **الخطوة 2: إضافة بيانات الترجمة في ad_translations**
+        // Step 2: Add translation data to ad_translations
         foreach (['translations_en', 'translations_ar'] as $localeKey) {
             if (!empty($request->$localeKey)) {
                 $locale = $localeKey === 'translations_en' ? 'en' : 'ar';
@@ -42,11 +38,10 @@ class AdsController extends Controller
                         'description' => $translationData['description']
                     ]);
 
-                    // **الخطوة 3: إضافة أي فيلد إضافي لجدول ad_fields**
+                    // Step 3: Add additional fields to ad_fields
                     foreach ($translationData as $fieldName => $fieldValue) {
                         if (!in_array($fieldName, ['name', 'description'])) {
                             if (is_array($fieldValue)) {
-                                // لو القيمة عبارة عن مصفوفة
                                 foreach ($fieldValue as $value) {
                                     AdField::create([
                                         'ad_id' => $ad->id,
@@ -56,7 +51,6 @@ class AdsController extends Controller
                                     ]);
                                 }
                             } else {
-                                // لو القيمة نص عادي
                                 AdField::create([
                                     'ad_id' => $ad->id,
                                     'field_name' => $fieldName,
@@ -70,19 +64,25 @@ class AdsController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Ad added successfully', 'ad_id' => $ad->id]);
+        return $this->successResponse(['ad_id' => $ad->id], 'Ad added successfully');
     }
-
-    
 
     public function getAdById($id)
     {
-        $ad = Ad::findOrFail($id);
+        if (!$id) {
+            return $this->errorResponse('ID field is required', 400);
+        }
+
+        $ad = Ad::find($id);
+        if (!$ad) {
+            return $this->errorResponse('Ad not found', 404);
+        }
 
         $translations = [
             'translations_en' => [],
             'translations_ar' => []
         ];
+
         $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
         $adFields = AdField::where('ad_id', $ad->id)->get();
 
@@ -113,60 +113,53 @@ class AdsController extends Controller
             'price' => $ad->price,
         ] + $translations;
 
-        return response()->json($response);
+        return $this->successResponse($response);
     }
-
 
     public function getAllAds()
-{
-    // **الخطوة 1: جلب جميع الإعلانات**
-    $ads = Ad::all();
-    $response = [];
+    {
+        $ads = Ad::all();
+        $response = [];
 
-    foreach ($ads as $ad) {
-        // **الخطوة 2: إعداد بيانات الإعلان الأساسية**
-        $adData = [
-            'sub_category_id' => $ad->category_id,
-            'city_id' => $ad->city_id,
-            'price' => $ad->price,
-        ];
-
-        // **الخطوة 3: جلب الترجمات لكل إعلان**
-        $translations = [
-            'translations_en' => [],
-            'translations_ar' => []
-        ];
-        
-        $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
-        $adFields = AdField::where('ad_id', $ad->id)->get();
-
-        foreach ($adTranslations as $translation) {
-            $locale = $translation->locale === 'en' ? 'translations_en' : 'translations_ar';
-            $data = [
-                'name' => $translation->name,
-                'description' => $translation->description,
+        foreach ($ads as $ad) {
+            $adData = [
+                'sub_category_id' => $ad->category_id,
+                'city_id' => $ad->city_id,
+                'price' => $ad->price,
             ];
 
-            // **الخطوة 4: إضافة الحقول الإضافية**
-            foreach ($adFields as $field) {
-                if ($field->locale === $translation->locale) {
-                    if (!isset($data[$field->field_name])) {
-                        $data[$field->field_name] = $field->field_value;
-                    } else {
-                        // إذا كانت القيمة مصفوفة، أضف القيم إليها
-                        $data[$field->field_name] = is_array($data[$field->field_name])
-                            ? array_merge((array)$data[$field->field_name], [$field->field_value])
-                            : [$data[$field->field_name], $field->field_value];
+            $translations = [
+                'translations_en' => [],
+                'translations_ar' => []
+            ];
+
+            $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
+            $adFields = AdField::where('ad_id', $ad->id)->get();
+
+            foreach ($adTranslations as $translation) {
+                $locale = $translation->locale === 'en' ? 'translations_en' : 'translations_ar';
+                $data = [
+                    'name' => $translation->name,
+                    'description' => $translation->description,
+                ];
+
+                foreach ($adFields as $field) {
+                    if ($field->locale === $translation->locale) {
+                        if (!isset($data[$field->field_name])) {
+                            $data[$field->field_name] = $field->field_value;
+                        } else {
+                            $data[$field->field_name] = is_array($data[$field->field_name])
+                                ? array_merge((array)$data[$field->field_name], [$field->field_value])
+                                : [$data[$field->field_name], $field->field_value];
+                        }
                     }
                 }
+                $translations[$locale][] = $data;
             }
-            $translations[$locale][] = $data;
+
+            $response[] = $adData + $translations;
         }
 
-        // **الخطوة 5: تجميع بيانات الإعلان النهائي**
-        $response[] = $adData + $translations;
+        return $this->successResponse($response, 'All ads retrieved successfully');
     }
-
-    return response()->json($response);
-}
 }
