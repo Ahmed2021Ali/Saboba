@@ -17,7 +17,7 @@ class StoreAdsRequest extends FormRequest
     {
         return [
             'price' => 'required|numeric|min:0',
-            'sub_category_id' => 'required|exists:categories,id', // تعديل الحقل ليكون sub_category_id
+            'sub_category_id' => 'required|exists:categories,id', 
             'city_id' => 'required|exists:cities,id',
             'image' => 'nullable|image',
             'translations_en' => 'nullable|array',
