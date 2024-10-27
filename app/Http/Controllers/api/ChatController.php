@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MessageResource;
+use App\Http\Resources\ChatResource;
 use App\Http\Traits\media;
 use App\Models\Chat;
 use App\Models\message;
@@ -19,7 +20,7 @@ class ChatController extends Controller
     {
         $chats = Chat::where('receiver_id', Auth::id())
             ->Orwhere('sender_id', Auth::id())->get();
-        return response()->json($chats);
+        return response()->json(['Data'=>new ChatResource($chats), 'success' => 'Your Chats'],200);
 
     }
 
