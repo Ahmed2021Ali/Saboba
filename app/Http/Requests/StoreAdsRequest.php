@@ -10,23 +10,23 @@ class StoreAdsRequest extends FormRequest
 {
     public function authorize()
     {
-        return true; 
+        return true;
     }
 
     public function rules(): array
     {
         return [
             'price' => 'required|numeric|min:0',
-            'user_id' => 'required|exists:users,id',
-            'category_id' => 'required|exists:categories,id',
+            'sub_category_id' => 'required|exists:categories,id', // تعديل الحقل ليكون sub_category_id
             'city_id' => 'required|exists:cities,id',
             'image' => 'nullable|image',
-            'translations' => 'nullable|array',
-            'translations.*.locale' => 'required|string',
-            'translations.*.name' => 'required|string|max:255',
-            'translations.*.description' => 'required|string|max:1000',
+            'translations_en' => 'nullable|array',
+            'translations_ar' => 'nullable|array',
+            'translations_en.*.name' => 'required|string|max:255',
+            'translations_en.*.description' => 'required|string|max:1000',
+            'translations_ar.*.name' => 'required|string|max:255',
+            'translations_ar.*.description' => 'required|string|max:1000',
             'additional_fields' => 'nullable|json',
-
         ];
     }
 
@@ -36,22 +36,25 @@ class StoreAdsRequest extends FormRequest
             'price.required' => 'Please enter the advertisement price.',
             'price.numeric' => 'The price must be a number.',
             'price.min' => 'The price must be zero or greater.',
-            'user_id.required' => 'Please enter the user ID.',
-            'user_id.exists' => 'The user ID does not exist.',
-            'category_id.required' => 'Please enter the category ID.',
-            'category_id.exists' => 'The category ID does not exist.',
+            'sub_category_id.required' => 'Please enter the sub-category ID.',
+            'sub_category_id.exists' => 'The sub-category ID does not exist.',
             'city_id.required' => 'Please enter the city ID.',
             'city_id.exists' => 'The city ID does not exist.',
             'image.image' => 'The image must be a valid image file.',
-            'translations.array' => 'The translations must be an array.',
-            'translations.*.locale.required' => 'Please enter the locale.',
-            'translations.*.locale.string' => 'The locale must be a string.',
-            'translations.*.name.required' => 'Please enter the advertisement name.',
-            'translations.*.name.string' => 'The name must be a string.',
-            'translations.*.name.max' => 'The name may not be greater than 255 characters.',
-            'translations.*.description.required' => 'Please enter the advertisement description.',
-            'translations.*.description.string' => 'The description must be a string.',
-            'translations.*.description.max' => 'The description may not be greater than 1000 characters.',
+            'translations_en.array' => 'The English translations must be an array.',
+            'translations_ar.array' => 'The Arabic translations must be an array.',
+            'translations_en.*.name.required' => 'Please enter the English advertisement name.',
+            'translations_en.*.name.string' => 'The English name must be a string.',
+            'translations_en.*.name.max' => 'The English name may not be greater than 255 characters.',
+            'translations_en.*.description.required' => 'Please enter the English advertisement description.',
+            'translations_en.*.description.string' => 'The English description must be a string.',
+            'translations_en.*.description.max' => 'The English description may not be greater than 1000 characters.',
+            'translations_ar.*.name.required' => 'Please enter the Arabic advertisement name.',
+            'translations_ar.*.name.string' => 'The Arabic name must be a string.',
+            'translations_ar.*.name.max' => 'The Arabic name may not be greater than 255 characters.',
+            'translations_ar.*.description.required' => 'Please enter the Arabic advertisement description.',
+            'translations_ar.*.description.string' => 'The Arabic description must be a string.',
+            'translations_ar.*.description.max' => 'The Arabic description may not be greater than 1000 characters.',
         ];
     }
 
