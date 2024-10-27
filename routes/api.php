@@ -30,6 +30,7 @@ Route::middleware([JwtMiddleware::class, CheckPersonalMiddleware::class])->prefi
     Route::resource('skills', SkillsController::class);
 });
 
+
 Route::middleware([JwtMiddleware::class])->group(function () {
     Route::resource('ads', AdsController::class);
     Route::get('get-main-category-of-ad', [AdsController::class, 'getMainCategoryOfAd']);

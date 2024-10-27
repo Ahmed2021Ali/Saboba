@@ -8,6 +8,7 @@ use App\Models\AdField;
 use App\Models\AdTranslation;
 use Illuminate\Support\Str;
 use App\Http\Requests\StoreAdsRequest;
+use Illuminate\Http\Request;
 
 class AdsController extends Controller
 {
@@ -67,55 +68,59 @@ class AdsController extends Controller
         return $this->successResponse(['ad_id' => $ad->id], 'Ad added successfully');
     }
 
-    public function getAdById($id)
-{
-    if (!$id) {
-        return $this->errorResponse('id field is required', 400);
-    }
 
-    $ad = Ad::find($id);
-    if (!$ad) {
-        return $this->errorResponse('Ad not found', 404);
-    }
 
-    $translations = [
-        'translations_en' => [],
-        'translations_ar' => []
-    ];
-    
-    $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
-    $adFields = AdField::where('ad_id', $ad->id)->get();
 
-    foreach ($adTranslations as $translation) {
-        $locale = $translation->locale === 'en' ? 'translations_en' : 'translations_ar';
-        $data = [
-            'name' => $translation->name,
-            'description' => $translation->description,
+    public function getAdById(Request $request)
+    {
+        if (!$request->has('id')) {
+            return $this->errorResponse('id field is required', 400);
+        }
+
+        $ad = Ad::find($request->id);
+        if (!$ad) {
+            return $this->errorResponse('Ad not found', 404);
+        }
+
+        $translations = [
+            'translations_en' => [],
+            'translations_ar' => []
         ];
+        
+        $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
+        $adFields = AdField::where('ad_id', $ad->id)->get();
 
-        foreach ($adFields as $field) {
-            if ($field->locale === $translation->locale) {
-                if (!isset($data[$field->field_name])) {
-                    $data[$field->field_name] = $field->field_value;
-                } else {
-                    $data[$field->field_name] = is_array($data[$field->field_name])
-                        ? array_merge((array)$data[$field->field_name], [$field->field_value])
-                        : [$data[$field->field_name], $field->field_value];
+        foreach ($adTranslations as $translation) {
+            $locale = $translation->locale === 'en' ? 'translations_en' : 'translations_ar';
+            $data = [
+                'name' => $translation->name,
+                'description' => $translation->description,
+            ];
+
+            foreach ($adFields as $field) {
+                if ($field->locale === $translation->locale) {
+                    if (!isset($data[$field->field_name])) {
+                        $data[$field->field_name] = $field->field_value;
+                    } else {
+                        $data[$field->field_name] = is_array($data[$field->field_name])
+                            ? array_merge((array)$data[$field->field_name], [$field->field_value])
+                            : [$data[$field->field_name], $field->field_value];
+                    }
                 }
             }
+            $translations[$locale][] = $data;
         }
-        $translations[$locale][] = $data;
+
+        $response = [
+            'ad_id' => $ad->id,
+            'sub_category_id' => $ad->category_id,
+            'city_id' => $ad->city_id,
+            'price' => $ad->price,
+        ] + $translations;
+
+        return $this->successResponse($response);
     }
 
-    $response = [
-        'ad_id' => $ad->id,
-        'sub_category_id' => $ad->category_id,
-        'city_id' => $ad->city_id,
-        'price' => $ad->price,
-    ] + $translations;
-
-    return $this->successResponse($response);
-}
 
 
 
