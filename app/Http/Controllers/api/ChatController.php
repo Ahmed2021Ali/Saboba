@@ -78,7 +78,7 @@ class ChatController extends Controller
             'sender_id' => $sender_id, 'receiver_id' => $receiver_id,
             'chat_id' => $chat->id, 'body' => $body ?? null
         ]);
-
+dd($files);
         // check file
         $this->downloadImages($files, $message, 'messageFiles');
 
