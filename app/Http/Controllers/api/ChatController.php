@@ -27,7 +27,7 @@ class ChatController extends Controller
     public function showMessages($id)
     {
         $chat = Chat::where('id', $id)->where('receiver_id', Auth::id())
-        ->Orwhere('sender_id', Auth::id())->first();
+            ->Orwhere('sender_id', Auth::id())->first();
         if ($chat) {
             $message = message::where('chat_id', $chat->id)->get();
             return response()->json(['Data' => MessageResource::collection($message), 'success' => 'Your Message'], 200);
