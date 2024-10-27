@@ -37,7 +37,7 @@ class ChatController extends Controller
         $receiver_id = $validationData['receiver_id'];
         $ad_id = $validationData['ad_id'] ?? null;
         $body = $validationData['body'];
-        $files = $validationData['files'];
+      //  $files = $validationData['files'];
 
         // can nullable // cant nullable -> can  receiver_id
         $sender_id = Auth::id();
