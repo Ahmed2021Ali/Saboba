@@ -36,7 +36,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('get-main-category-of-ad', [AdsController::class, 'getMainCategoryOfAd']);
     Route::get('get-all-categories-with-sub', [AdsController::class, 'getAllCategoriesWithSub']);
     Route::post('create-new-ad', [AdsController::class, 'createNewAd']);
-    Route::get('get-ad-by-id/{id}', [AdsController::class, 'getAdById']);
+    Route::get('get-ad-by-id', [AdsController::class, 'getAdById']);
     Route::get('get-all-ads', [AdsController::class, 'getAllAds']);
 
 
