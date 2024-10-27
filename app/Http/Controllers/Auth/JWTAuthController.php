@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Hash;
 class JWTAuthController extends Controller
 {
 
-    use TraitsApiResponseTrait,media;
+    use TraitsApiResponseTrait, media;
 
     public function register(JwtAuthRequest $request)
     {
@@ -29,7 +29,8 @@ class JWTAuthController extends Controller
 
             $this->downloadImages($request->images, $user, 'userImages');
 
-            return $this->successResponse([new UserResource($user),
+            return $this->successResponse([
+                'user' => new UserResource($user),
                 'token' => $token
             ], 'User registered successfully', 201);
 
@@ -64,12 +65,12 @@ class JWTAuthController extends Controller
 
 
     public function logout()
-{
-    try {
-        JWTAuth::invalidate(JWTAuth::getToken());
-        return $this->successResponse([], 'Successfully logged out', 200);
-    } catch (JWTException $e) {
-        return $this->errorResponse('Could not log out', 500);
+    {
+        try {
+            JWTAuth::invalidate(JWTAuth::getToken());
+            return $this->successResponse([], 'Successfully logged out', 200);
+        } catch (JWTException $e) {
+            return $this->errorResponse('Could not log out', 500);
+        }
     }
-}
 }
