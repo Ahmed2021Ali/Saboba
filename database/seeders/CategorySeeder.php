@@ -40,13 +40,14 @@ class CategorySeeder extends Seeder
             ];
     
             foreach ($categories as $category) {
-                Category::create([
-                    'translations' => [
-                        'en' => ['name' => $category['en']],
-                        'ar' => ['name' => $category['ar']],
-                    ],
-                    'parent_id' => null,
-                ]);
+                $newCategory = new Category();
+                $newCategory->parent_id = null; // الفئة الرئيسية من غير أب
+                $newCategory->save();
+            
+                $newCategory->translateOrNew('en')->name = $category['en'];
+                $newCategory->translateOrNew('ar')->name = $category['ar'];
+                $newCategory->save();
             }
+            
         }
 }
