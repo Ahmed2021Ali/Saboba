@@ -276,19 +276,19 @@ class AdsController extends Controller
 {
     // **الخطوة 1: إضافة البيانات الرئيسية في جدول ads**
     $ad = Ad::create([
-        'price' => $request->input('price'),
+        'price' => $request->price,
         'reference_number' => strtoupper(Str::random(10)),
         'user_id' => auth()->user()->id, // استخدام user_id الحالي للمستخدم المسجل
-        'category_id' => $request->input('sub_category_id'),
-        'city_id' => $request->input('city_id'),
+        'category_id' => $request->sub_category_id,
+        'city_id' => $request->city_id,
         'status' => 0 // اعتبرناها نشطة افتراضياً
     ]);
 
     // **الخطوة 2: إضافة بيانات الترجمة في ad_translations**
     foreach (['translations_en', 'translations_ar'] as $localeKey) {
-        if (!empty($request->input($localeKey))) {
+        if (!empty($request->$localeKey)) {
             $locale = $localeKey === 'translations_en' ? 'en' : 'ar';
-            foreach ($request->input($localeKey) as $translationData) {
+            foreach ($request->$localeKey as $translationData) {
                 AdTranslation::create([
                     'ad_id' => $ad->id,
                     'locale' => $locale,
