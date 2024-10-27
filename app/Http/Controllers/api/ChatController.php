@@ -8,6 +8,7 @@ use App\Models\Chat;
 use App\Models\message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ChatController extends Controller
 {
@@ -44,14 +45,21 @@ class ChatController extends Controller
         // search chat sender and receiver
         $chat = Chat::whereIn('receiver_id', [$receiver_id, $sender_id])
             ->whereIn('sender_id', [$receiver_id, $sender_id])->first();
+        DB::beginTransaction();
+        try {
+            if ($chat) {
+                $message = $this->Chat_available($sender_id, $receiver_id, $chat, $files);
+                return response()->json($message);
 
-        // Check chat is set Or Not
-        if ($chat) {
-            $message = $this->Chat_available($sender_id, $receiver_id, $chat, $files);
-        } else {
-            $message = $this->New_Chat($sender_id, $receiver_id, $body, $files, $ad_id);
+            } else {
+                $message = $this->New_Chat($sender_id, $receiver_id, $body, $files, $ad_id);
+                return response()->json($message);
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['message' => $e->getMessage()]);
         }
-        return response()->json($message);
+        // Check chat is set Or Not
 
     }
 
@@ -75,7 +83,7 @@ class ChatController extends Controller
         ]);
 
         // check file
-        $this->downloadImages($files, $message, 'messageFiles');
+        //    $this->downloadImages($files, $message, 'messageFiles');
 
         // Update Last Message
         $chat->update([
@@ -99,7 +107,7 @@ class ChatController extends Controller
         ]);
 
         // check file
-        $this->downloadImages($files, $message, 'messageFiles');
+        //$this->downloadImages($files, $message, 'messageFiles');
 
         // Update Last Message OR last_time_message
         $chat->update([
