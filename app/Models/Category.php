@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-class Category extends Model implements HasMedia
+class Category extends Model 
 {
-    use Translatable,InteractsWithMedia;
+    use Translatable;
 
     public $translatedAttributes = ['name'];
     protected $fillable = ['locale', 'name', 'parent_id'];
@@ -35,10 +35,10 @@ class Category extends Model implements HasMedia
         return $this->hasMany(Ad::class);
     }
 
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaCollection('categoryImages');
-    }
+    // public function registerMediaConversions(Media $media = null): void
+    // {
+    //     $this->addMediaCollection('categoryImages');
+    // }
 
 
 

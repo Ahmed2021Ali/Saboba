@@ -35,6 +35,8 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::resource('ads', AdsController::class);
     Route::get('get-main-category-of-ad', [AdsController::class, 'getMainCategoryOfAd']);
     Route::get('get-all-categories-with-sub', [AdsController::class, 'getAllCategoriesWithSub']);
+    Route::post('/ads', [AdsController::class, 'addAd']);
+
 });
 
 
@@ -51,6 +53,7 @@ Route::middleware([JwtMiddleware::class])->controller(FollowController::class)->
     Route::get('count-follower', 'countFollower');
     Route::get('show-following', 'showFollowing');
     Route::get('count-following', 'countFollowing');
+    
 });
 
 
