@@ -30,9 +30,8 @@ class ChatController extends Controller
             'receiver_id' => 'required|exists:users,id', 'ad_id' => 'nullable|exists:ads,id',
         ]);
         if ($this->Val($validationData)) {
-            return $this->$this->Val($validationData);
+            return $this->Val($validationData);
         }
-        dd($validationData);
 
         $receiver_id = $validationData['receiver_id'];
         $ad_id = $validationData['ad_id'] ?? null;
