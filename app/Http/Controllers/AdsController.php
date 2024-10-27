@@ -331,10 +331,8 @@ class AdsController extends Controller
 
     public function getAdById($id)
     {
-        // **الخطوة 1: جلب بيانات الإعلان الأساسية من جدول ads**
         $ad = Ad::findOrFail($id);
 
-        // **الخطوة 2: جلب الترجمات (Translations) للإعلان**
         $translations = [
             'translations_en' => [],
             'translations_ar' => []
@@ -349,13 +347,11 @@ class AdsController extends Controller
                 'description' => $translation->description,
             ];
 
-            // **الخطوة 3: إضافة البيانات الإضافية من ad_fields**
             foreach ($adFields as $field) {
                 if ($field->locale === $translation->locale) {
                     if (!isset($data[$field->field_name])) {
                         $data[$field->field_name] = $field->field_value;
                     } else {
-                        // إذا كانت القيمة مصفوفة، أضف القيم إليها
                         $data[$field->field_name] = is_array($data[$field->field_name])
                             ? array_merge((array)$data[$field->field_name], [$field->field_value])
                             : [$data[$field->field_name], $field->field_value];
@@ -365,7 +361,6 @@ class AdsController extends Controller
             $translations[$locale][] = $data;
         }
 
-        // **الخطوة 4: إعداد الرد النهائي مع بيانات الإعلان**
         $response = [
             'sub_category_id' => $ad->category_id,
             'city_id' => $ad->city_id,
@@ -374,4 +369,7 @@ class AdsController extends Controller
 
         return response()->json($response);
     }
+
+
+    
 }
