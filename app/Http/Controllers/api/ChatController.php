@@ -18,6 +18,7 @@ class ChatController extends Controller
 
     public function show()
     {
+        dd(Auth::id());
         $chats = Chat::where('receiver_id', Auth::id())
             ->Orwhere('sender_id', Auth::id())->get();
         return response()->json(['Data'=>new ChatResource($chats), 'success' => 'Your Chats'],200);
