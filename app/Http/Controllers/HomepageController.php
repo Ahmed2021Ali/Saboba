@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
-use App\Models\Country;
 use App\Models\Language;
 use App\Models\Skills;
 use Illuminate\Http\Request;

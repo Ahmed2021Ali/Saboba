@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Resources\UserResource;
+use App\Http\Traits\media;
 use App\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -14,7 +16,7 @@ use Illuminate\Support\Facades\Hash;
 class JWTAuthController extends Controller
 {
 
-    use TraitsApiResponseTrait;
+    use TraitsApiResponseTrait,media;
 
     public function register(JwtAuthRequest $request)
     {
@@ -25,8 +27,9 @@ class JWTAuthController extends Controller
             $user = User::create($validatedData);
             $token = JWTAuth::fromUser($user);
 
-            return $this->successResponse([
-                'user' => $user,
+            $this->downloadImages($request->images, $user, 'userImages');
+
+            return $this->successResponse([new UserResource($user),
                 'token' => $token
             ], 'User registered successfully', 201);
 
@@ -41,24 +44,24 @@ class JWTAuthController extends Controller
     public function login(JwtAuthRequest $request)
     {
         $validatedData = $request->validated();
-    
+
         $credentials = [
             'phone' => $validatedData['phone'],
             'password' => $validatedData['password']
         ];
-    
+
         if (!$token = JWTAuth::attempt($credentials)) {
             return $this->errorResponse('Invalid credentials', 401);
         }
-    
+
         $userData = auth()->user();
-    
+
         return $this->successResponse([
             'user' => $userData,
             'token' => $token
         ], 'Login successful', 200);
     }
-    
+
 
     public function logout()
 {

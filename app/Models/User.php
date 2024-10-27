@@ -13,9 +13,9 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements JWTSubject, HasMedia
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, InteractsWithMedia;
 
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'type', 'country_id',
@@ -32,10 +32,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(Country::class);
     }
 
-    // public function registerMediaConversions(Media $media = null): void
-    // {
-    //     $this->addMediaCollection('userImages');
-    // }
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaCollection('userImages');
+    }
 
     public function getJWTIdentifier()
     {
