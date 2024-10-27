@@ -16,9 +16,8 @@ class ChatController extends Controller
 {
     use media;
 
-    public function index()
+    public function show()
     {
-        dd("ssssssssss");
         $chats = Chat::where('receiver_id', Auth::id())
             ->Orwhere('sender_id', Auth::id())->get();
         return response()->json(['Data'=>new ChatResource($chats), 'success' => 'Your Chats'],200);
