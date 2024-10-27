@@ -85,7 +85,7 @@ class ChatController extends Controller
         // Update Last Message
         $chat->update([
             'ad_id' => $ad_id ?? $chat->ad_id, 'last_message' => $message->body,
-            'last_time_message' => now()
+            'last_time_message' => now()->format('Y-m-d H:i:s')
         ]);
         return $message;
     }
@@ -105,7 +105,7 @@ class ChatController extends Controller
         // Update Last Message OR last_time_message
         $chat->update([
             'ad_id' => $ad_id ?? $chat->ad_id, 'last_message' => $message->body,
-            'last_time_message' => now()
+            'last_time_message' => now()->format('Y-m-d H:i:s')
         ]);
         // check file
         $this->downloadImages($files, $message, 'messageFiles');
