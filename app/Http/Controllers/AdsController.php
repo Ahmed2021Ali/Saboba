@@ -6,6 +6,7 @@ use App\Http\Traits\ApiResponseTrait;
 use App\Models\Ad;
 use App\Models\AdField;
 use App\Models\AdTranslation;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Http\Requests\StoreAdsRequest;
 use Illuminate\Http\Request;
