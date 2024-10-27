@@ -39,17 +39,15 @@ class ChatController extends Controller
         $ad_id = $validationData['ad_id'] ?? null;
         $body = $validationData['body'] ?? null;
         $files = $validationData['files'] ?? null;
-dd($body);
         // can nullable // cant nullable -> can  receiver_id
         $sender_id = Auth::id();
-
         // search chat sender and receiver
         $chat = Chat::whereIn('receiver_id', [$receiver_id, $sender_id])
             ->whereIn('sender_id', [$receiver_id, $sender_id])->first();
         DB::beginTransaction();
         try {
             if ($chat) {
-                $message = $this->Chat_available($sender_id, $receiver_id, $chat, $files);
+                $message = $this->Chat_available($sender_id, $receiver_id, $body,$chat, $files);
             } else {
                 $message = $this->New_Chat($sender_id, $receiver_id, $body, $files, $ad_id);
             }
@@ -72,7 +70,7 @@ dd($body);
         return null;
     }
 
-    public function Chat_available($sender_id, $receiver_id, $chat, $files)
+    public function Chat_available($sender_id, $receiver_id,$body, $chat, $files)
     {
         // Create Message
         $message = message::create([
