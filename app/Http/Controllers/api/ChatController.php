@@ -25,8 +25,13 @@ class ChatController extends Controller
     public function send_message(Request $request)
     {
         // validation  ad_id  OR   receiver_id  OR  body OR Files OR Images
-        $validationData = $this->Val($request);
-
+        $validationData = $request->validate([
+            'body' => 'nullable|string', 'files.*' => 'nullable|max:10000',
+            'receiver_id' => 'required|exists:users,id', 'ad_id' => 'nullable|exists:ads,id',
+        ]);
+        if ($this->Val($validationData)) {
+            return $this->$this->Val($validationData);
+        }
         $receiver_id = $validationData['receiver_id'];
         $ad_id = $validationData['ad_id'] ?? null;
         $body = $validationData['body'];
@@ -51,15 +56,13 @@ class ChatController extends Controller
 
     public function Val($request)
     {
-        $validationData = $request->validate([
-            'body' => 'nullable|string', 'files.*' => 'nullable|max:10000',
-            'receiver_id' => 'required|exists:users,id', 'ad_id' => 'nullable|exists:ads,id',
-        ]);
-
         if (!isset($validationData['body']) && !isset($validationData['files'])) {
             return response()->json(['error' => 'Your Cant Message Empty , must Send Message Or File ']);
         }
-        return $validationData;
+        if ($validationData['receiver_id'] === Auth::id()) {
+            return response()->json(['error' => 'Cannot send message to yourself']);
+        }
+        return null;
     }
 
     public function Chat_available($sender_id, $receiver_id, $chat, $files)
