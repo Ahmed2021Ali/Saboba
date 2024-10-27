@@ -272,7 +272,7 @@ class AdsController extends Controller
 
 
     
-    public function createAd(StoreAdsRequest $request)
+    public function createNewAd(StoreAdsRequest $request)
 {
     // **الخطوة 1: إضافة البيانات الرئيسية في جدول ads**
     $ad = Ad::create([
@@ -329,7 +329,7 @@ class AdsController extends Controller
 
     
 
-    public function getAdById($id)
+    public function getAd($id)
     {
         // **الخطوة 1: جلب بيانات الإعلان الأساسية من جدول ads**
         $ad = Ad::findOrFail($id);
