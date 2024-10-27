@@ -29,6 +29,7 @@ class ChatController extends Controller
             'body' => 'nullable|string', 'files.*' => 'nullable|max:10000',
             'receiver_id' => 'required|exists:users,id', 'ad_id' => 'nullable|exists:ads,id',
         ]);
+        dd($validationData);
         if ($this->Val($validationData)) {
             return $this->$this->Val($validationData);
         }
