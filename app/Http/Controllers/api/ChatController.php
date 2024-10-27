@@ -82,7 +82,7 @@ class ChatController extends Controller
         ]);
 
         // check file
-        //    $this->downloadImages($files, $message, 'messageFiles');
+           $this->downloadImages($files, $message, 'messageFiles');
 
         // Update Last Message
         $chat->update([
@@ -106,7 +106,7 @@ class ChatController extends Controller
         ]);
 
         // check file
-        //$this->downloadImages($files, $message, 'messageFiles');
+        $this->downloadImages($files, $message, 'messageFiles');
 
         // Update Last Message OR last_time_message
         $chat->update([
