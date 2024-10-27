@@ -135,7 +135,7 @@ public function getAllAds()
     $ads = Ad::all();
 
     if ($ads->isEmpty()) {
-        return $this->successResponse(['message' => 'No ads found.']);
+        return $this->errorResponse('No ads founded', 404);
     }
 
     $response = [];
