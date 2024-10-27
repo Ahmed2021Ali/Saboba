@@ -49,18 +49,14 @@ class ChatController extends Controller
         try {
             if ($chat) {
                 $message = $this->Chat_available($sender_id, $receiver_id, $chat, $files);
-                return response()->json($message);
-
             } else {
                 $message = $this->New_Chat($sender_id, $receiver_id, $body, $files, $ad_id);
-                return response()->json($message);
             }
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json(['message' => $e->getMessage()]);
         }
-        // Check chat is set Or Not
-
+        return response()->json($message);
     }
 
     public function Val($validationData)
@@ -83,7 +79,7 @@ class ChatController extends Controller
         ]);
 
         // check file
-           $this->downloadImages($files, $message, 'messageFiles');
+        $this->downloadImages($files, $message, 'messageFiles');
 
         // Update Last Message
         $chat->update([
