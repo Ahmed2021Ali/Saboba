@@ -64,3 +64,8 @@ Route::controller(HomepageController::class)->group(function () {
 
 
 Route::resource('comment', \App\Http\Controllers\api\CommentController::class);
+
+Route::controller(\App\Http\Controllers\api\ChatController::class)->group(function () {
+    Route::get('chat/index', 'index');
+    Route::post('chat/send-message', 'send_message');
+});
