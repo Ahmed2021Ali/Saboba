@@ -133,29 +133,26 @@ class AdsController extends Controller
 public function getAllAds()
 {
     $ads = Ad::all();
+
+    if ($ads->isEmpty()) {
+        return $this->successResponse(['message' => 'No ads found.']);
+    }
+
     $response = [];
 
     foreach ($ads as $ad) {
-        $category = Category::with('parent')->find($ad->category_id);
-        $type = null;
-        if ($category && $category->parent && in_array($category->parent->name, ['وظائف', 'خدمات'])) {
-            $type = $category->name;
-        }
-
         $adData = [
             'ad_id' => $ad->id,
             'sub_category_id' => $ad->category_id,
             'city_id' => $ad->city_id,
             'price' => $ad->price,
-            'type' => $type, // إضافة حقل type
         ];
 
         $translations = [
             'translations_en' => [],
             'translations_ar' => []
         ];
-        
-        // بقية الكود كما هو لاسترجاع بيانات الإعلان
+
         $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
         $adFields = AdField::where('ad_id', $ad->id)->get();
 
@@ -185,5 +182,6 @@ public function getAllAds()
 
     return $this->successResponse($response);
 }
+
 
 }
