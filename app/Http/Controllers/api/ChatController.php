@@ -102,15 +102,14 @@ class ChatController extends Controller
             'sender_id' => $sender_id, 'receiver_id' => $receiver_id,
             'chat_id' => $chat->id, 'body' => $body
         ]);
-
-        // check file
-        $this->downloadImages($files, $message, 'messageFiles');
-
         // Update Last Message OR last_time_message
         $chat->update([
             'ad_id' => $ad_id ?? $chat->ad_id, 'last_message' => $message->last_message,
             'last_time_message' => $message->last_time_message
         ]);
+        // check file
+        $this->downloadImages($files, $message, 'messageFiles');
+        
         return $message;
     }
 }
