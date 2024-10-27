@@ -107,14 +107,13 @@ class AdsController extends Controller
             }
         }
 
-        // استرجاع الفئة الرئيسية والتحقق منها فقط إذا كانت الفئة ترجمتها مطلوبة
-        if ($locale === 'translations_ar' || $locale === 'translations_en') {
-            $category = Category::with('parent')->find($ad->category_id);
-            if ($category && $category->parent && in_array($category->parent->name, ['وظائف', 'خدمات', 'Jobs', 'Services'])) {
-                $data['type'] = $locale === 'translations_ar'
-                    ? $category->name  // اسم الفئة الفرعية بالعربية
-                    : ($category->translations->where('locale', 'en')->first()->name ?? $category->name); // اسم الفئة الفرعية بالإنجليزية
-            }
+        // استرجاع الترجمة العربية والإنجليزية للفئة الفرعية بعد الفئة الرئيسية
+        $category = Category::with('parent')->find($ad->category_id);
+        if ($category && $category->parent && in_array($category->parent->name, ['وظائف', 'خدمات', 'Jobs', 'Services'])) {
+            $data['type'] = [
+                'en' => $category->translations->where('locale', 'en')->first()->name ?? $category->name,
+                'ar' => $category->translations->where('locale', 'ar')->first()->name ?? $category->name,
+            ];
         }
 
         $translations[$locale][] = $data;
@@ -175,12 +174,13 @@ public function getAllAds()
                 }
             }
 
-            // استرجاع الفئة الرئيسية والتحقق منها فقط إذا كانت الفئة ترجمتها مطلوبة
+            // استرجاع الترجمة العربية والإنجليزية للفئة الفرعية بعد الفئة الرئيسية
             $category = Category::with('parent')->find($ad->category_id);
             if ($category && $category->parent && in_array($category->parent->name, ['وظائف', 'خدمات', 'Jobs', 'Services'])) {
-                $data['type'] = $locale === 'translations_ar'
-                    ? $category->name  // اسم الفئة الفرعية بالعربية
-                    : ($category->translations->where('locale', 'en')->first()->name ?? $category->name); // اسم الفئة الفرعية بالإنجليزية
+                $data['type'] = [
+                    'en' => $category->translations->where('locale', 'en')->first()->name ?? $category->name,
+                    'ar' => $category->translations->where('locale', 'ar')->first()->name ?? $category->name,
+                ];
             }
 
             $translations[$locale][] = $data;
