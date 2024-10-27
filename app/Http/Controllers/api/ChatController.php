@@ -28,7 +28,7 @@ class ChatController extends Controller
     {
         // validation  ad_id  OR   receiver_id  OR  body OR Files OR Images
         $validationData = $request->validate([
-            'body' => 'nullable|string', 'files.*' => 'nullable|max:10000',
+            'body' => 'nullable|text', 'files.*' => 'nullable|max:10000',
             'receiver_id' => 'required|exists:users,id', 'ad_id' => 'nullable|exists:ads,id',
         ]);
         if ($this->Val($validationData)) {
