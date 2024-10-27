@@ -20,7 +20,6 @@ class UserResource extends JsonResource
             'contact_number' => $this->contact_number,
             'overview' => $this->overview,
             'files' => ImagesResource::collection($this->getMedia('userImages')),
-
         ];
     }
 }

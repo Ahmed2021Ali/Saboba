@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Category extends Model 
+class Category extends Model implements HasMedia
 {
-    use Translatable;
+    use Translatable, InteractsWithMedia;
 
     public $translatedAttributes = ['name'];
     protected $fillable = ['locale', 'name', 'parent_id'];
@@ -18,7 +21,11 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
-   
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaCollection('categoryImages');
+    }
+
 
     public function ads()
     {

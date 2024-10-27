@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\ApiResponseTrait;
+use App\Http\Traits\media;
 use App\Models\Ad;
 use App\Models\AdField;
 use App\Models\AdTranslation;
@@ -13,9 +14,20 @@ use Illuminate\Http\Request;
 
 class AdsController extends Controller
 {
-    
-    use ApiResponseTrait;
-    
+
+    use ApiResponseTrait, media;
+
+    public function storeImageAndReals($request, $ad)
+    {
+        if ($request->main_image) {
+            $ad->addMedia($request->main_image)->toMediaCollection('ad_main_image');
+        }
+        $this->downloadImages($request->images, $ad, 'ad_images');
+        if ($request->reals) {
+            $ad->addMedia($request->reals)->toMediaCollection('reals');
+        }
+    }
+
     public function createNewAd(StoreAdsRequest $request)
     {
         $ad = Ad::create([
@@ -26,6 +38,7 @@ class AdsController extends Controller
             'city_id' => $request->city_id,
             'status' => 0
         ]);
+        $this->storeImageAndReals($request, $ad);
 
         foreach (['translations_en', 'translations_ar'] as $localeKey) {
             if (!empty($request->$localeKey)) {
@@ -65,8 +78,6 @@ class AdsController extends Controller
 
         return $this->successResponse(['ad_id' => $ad->id], 'Ad added successfully');
     }
-
-
 
 
     public function getAdById(Request $request)
