@@ -114,7 +114,8 @@ class AdsController extends Controller
                 $firstSubCategory = Category::where('parent_id', $category->parent_id)->first();
     
                 // تحقق مما إذا كانت الفئة الفرعية هي الفئة التالية
-                if ($firstSubCategory && $ad->category_id === $firstSubCategory->id) {
+                $validTypes = ['وظائف', 'خدمات', 'Jobs', 'Services'];
+                if ($firstSubCategory && $ad->category_id === $firstSubCategory->id && in_array($category->parent->name, $validTypes)) {
                     $data['type'] = $firstSubCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstSubCategory->name;
                 }
             }
@@ -132,6 +133,8 @@ class AdsController extends Controller
         return $this->successResponse($response + $translations);
     }
     
+    
+
     public function getAllAds()
     {
         $ads = Ad::all();
@@ -184,7 +187,8 @@ class AdsController extends Controller
                     $firstSubCategory = Category::where('parent_id', $category->parent_id)->first();
     
                     // تحقق مما إذا كانت الفئة الفرعية هي الفئة التالية
-                    if ($firstSubCategory && $ad->category_id === $firstSubCategory->id) {
+                    $validTypes = ['وظائف', 'خدمات', 'Jobs', 'Services'];
+                    if ($firstSubCategory && $ad->category_id === $firstSubCategory->id && in_array($category->parent->name, $validTypes)) {
                         $data['type'] = $firstSubCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstSubCategory->name;
                     }
                 }
@@ -198,8 +202,5 @@ class AdsController extends Controller
         return $this->successResponse($response);
     }
     
-    
-
-
 
 }
