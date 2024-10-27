@@ -272,7 +272,7 @@ class AdsController extends Controller
 
 
     
-    public function addAd(StoreAdsRequest $request)
+    public function createAd(StoreAdsRequest $request)
 {
     // **الخطوة 1: إضافة البيانات الرئيسية في جدول ads**
     $ad = Ad::create([
@@ -328,4 +328,50 @@ class AdsController extends Controller
 }
 
     
+
+    public function getAdById($id)
+    {
+        // **الخطوة 1: جلب بيانات الإعلان الأساسية من جدول ads**
+        $ad = Ad::findOrFail($id);
+
+        // **الخطوة 2: جلب الترجمات (Translations) للإعلان**
+        $translations = [
+            'translations_en' => [],
+            'translations_ar' => []
+        ];
+        $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
+        $adFields = AdField::where('ad_id', $ad->id)->get();
+
+        foreach ($adTranslations as $translation) {
+            $locale = $translation->locale === 'en' ? 'translations_en' : 'translations_ar';
+            $data = [
+                'name' => $translation->name,
+                'description' => $translation->description,
+            ];
+
+            // **الخطوة 3: إضافة البيانات الإضافية من ad_fields**
+            foreach ($adFields as $field) {
+                if ($field->locale === $translation->locale) {
+                    if (!isset($data[$field->field_name])) {
+                        $data[$field->field_name] = $field->field_value;
+                    } else {
+                        // إذا كانت القيمة مصفوفة، أضف القيم إليها
+                        $data[$field->field_name] = is_array($data[$field->field_name])
+                            ? array_merge((array)$data[$field->field_name], [$field->field_value])
+                            : [$data[$field->field_name], $field->field_value];
+                    }
+                }
+            }
+            $translations[$locale][] = $data;
+        }
+
+        // **الخطوة 4: إعداد الرد النهائي مع بيانات الإعلان**
+        $response = [
+            'sub_category_id' => $ad->category_id,
+            'city_id' => $ad->city_id,
+            'price' => $ad->price,
+        ] + $translations;
+
+        return response()->json($response);
+    }
 }
