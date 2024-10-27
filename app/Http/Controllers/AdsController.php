@@ -329,7 +329,7 @@ class AdsController extends Controller
 
     
 
-    public function getAd($id)
+    public function getAdById($id)
     {
         // **الخطوة 1: جلب بيانات الإعلان الأساسية من جدول ads**
         $ad = Ad::findOrFail($id);
