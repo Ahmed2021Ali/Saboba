@@ -74,27 +74,66 @@ class AdsController extends Controller
         if (!$request->has('id')) {
             return $this->errorResponse('id field is required', 400);
         }
-    
+
         $ad = Ad::find($request->id);
         if (!$ad) {
             return $this->errorResponse('Ad not found', 404);
         }
-    
+
+        $translations = $this->prepareAdTranslations($ad);
+
+        $response = [
+            'ad_id' => $ad->id,
+            'sub_category_id' => $ad->category_id,
+            'city_id' => $ad->city_id,
+            'price' => $ad->price,
+        ];
+
+        return $this->successResponse($response + $translations);
+    }
+
+    public function getAllAds()
+    {
+        $ads = Ad::all();
+
+        if ($ads->isEmpty()) {
+            return $this->successResponse(null, 'No ads found', 200);
+        }
+
+        $response = [];
+
+        foreach ($ads as $ad) {
+            $adData = [
+                'ad_id' => $ad->id,
+                'sub_category_id' => $ad->category_id,
+                'city_id' => $ad->city_id,
+                'price' => $ad->price,
+            ];
+
+            $translations = $this->prepareAdTranslations($ad);
+            $response[] = $adData + $translations;
+        }
+
+        return $this->successResponse($response);
+    }
+
+    private function prepareAdTranslations($ad)
+    {
         $translations = [
             'translations_en' => [],
             'translations_ar' => []
         ];
-    
+
         $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
         $adFields = AdField::where('ad_id', $ad->id)->get();
-    
+
         foreach ($adTranslations as $translation) {
             $locale = $translation->locale === 'en' ? 'translations_en' : 'translations_ar';
             $data = [
                 'name' => $translation->name,
                 'description' => $translation->description,
             ];
-    
+
             foreach ($adFields as $field) {
                 if ($field->locale === $translation->locale) {
                     if (!isset($data[$field->field_name])) {
@@ -106,101 +145,25 @@ class AdsController extends Controller
                     }
                 }
             }
-    
+
             // جلب نوع الفئة الفرعية حسب اللغة
             $category = Category::with('parent')->find($ad->category_id);
             if ($category && $category->parent) {
                 // الحصول على أول فئة فرعية بعد الفئة الرئيسية
                 $firstSubCategory = Category::where('parent_id', $category->parent_id)->first();
-    
+
                 // تحقق مما إذا كانت الفئة الفرعية هي الفئة التالية
                 $validTypes = ['وظائف', 'خدمات', 'Jobs', 'Services'];
                 if ($firstSubCategory && $ad->category_id === $firstSubCategory->id && in_array($category->parent->name, $validTypes)) {
                     $data['type'] = $firstSubCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstSubCategory->name;
                 }
             }
-    
+
             $translations[$locale][] = $data;
         }
-    
-        $response = [
-            'ad_id' => $ad->id,
-            'sub_category_id' => $ad->category_id,
-            'city_id' => $ad->city_id,
-            'price' => $ad->price,
-        ];
-    
-        return $this->successResponse($response + $translations);
-    }
-    
-    
 
-    public function getAllAds()
-    {
-        $ads = Ad::all();
-    
-        if ($ads->isEmpty()) {
-            return $this->successResponse(null, 'No ads found', 200);
-        }
-    
-        $response = [];
-    
-        foreach ($ads as $ad) {
-            $adData = [
-                'ad_id' => $ad->id,
-                'sub_category_id' => $ad->category_id,
-                'city_id' => $ad->city_id,
-                'price' => $ad->price,
-            ];
-    
-            $translations = [
-                'translations_en' => [],
-                'translations_ar' => []
-            ];
-    
-            $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
-            $adFields = AdField::where('ad_id', $ad->id)->get();
-    
-            foreach ($adTranslations as $translation) {
-                $locale = $translation->locale === 'en' ? 'translations_en' : 'translations_ar';
-                $data = [
-                    'name' => $translation->name,
-                    'description' => $translation->description,
-                ];
-    
-                foreach ($adFields as $field) {
-                    if ($field->locale === $translation->locale) {
-                        if (!isset($data[$field->field_name])) {
-                            $data[$field->field_name] = $field->field_value;
-                        } else {
-                            $data[$field->field_name] = is_array($data[$field->field_name])
-                                ? array_merge((array)$data[$field->field_name], [$field->field_value])
-                                : [$data[$field->field_name], $field->field_value];
-                        }
-                    }
-                }
-    
-                // جلب نوع الفئة الفرعية حسب اللغة
-                $category = Category::with('parent')->find($ad->category_id);
-                if ($category && $category->parent) {
-                    // الحصول على أول فئة فرعية بعد الفئة الرئيسية
-                    $firstSubCategory = Category::where('parent_id', $category->parent_id)->first();
-    
-                    // تحقق مما إذا كانت الفئة الفرعية هي الفئة التالية
-                    $validTypes = ['وظائف', 'خدمات', 'Jobs', 'Services'];
-                    if ($firstSubCategory && $ad->category_id === $firstSubCategory->id && in_array($category->parent->name, $validTypes)) {
-                        $data['type'] = $firstSubCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstSubCategory->name;
-                    }
-                }
-    
-                $translations[$locale][] = $data;
-            }
-    
-            $response[] = $adData + $translations;
-        }
-    
-        return $this->successResponse($response);
+        return $translations;
     }
-    
+
 
 }
