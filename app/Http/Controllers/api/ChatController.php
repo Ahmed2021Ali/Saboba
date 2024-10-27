@@ -53,6 +53,7 @@ class ChatController extends Controller
             } else {
                 $message = $this->New_Chat($sender_id, $receiver_id, $body, $files, $ad_id);
             }
+            DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json(['message' => $e->getMessage()]);
@@ -78,7 +79,6 @@ class ChatController extends Controller
             'sender_id' => $sender_id, 'receiver_id' => $receiver_id,
             'chat_id' => $chat->id, 'body' => $body ?? null
         ]);
-dd($files);
         // check file
         $this->downloadImages($files, $message, 'messageFiles');
 
