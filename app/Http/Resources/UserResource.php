@@ -18,7 +18,9 @@ class UserResource extends JsonResource
             'country_id' => $this->country_id,
             'whatsapp_number' => $this->whatsapp_number,
             'contact_number' => $this->contact_number,
-            'overview' => $this->overview
+            'overview' => $this->overview,
+            'files' => ImagesResource::collection($this->getMedia('userImages')),
+
         ];
     }
 }
