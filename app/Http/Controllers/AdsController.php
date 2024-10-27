@@ -112,7 +112,9 @@ class AdsController extends Controller
             if ($category && $category->parent) {
                 // الحصول على أول فئة فرعية بعد الفئة الرئيسية
                 $firstSubCategory = Category::where('parent_id', $category->parent_id)->first();
-                if ($firstSubCategory) {
+    
+                // تحقق مما إذا كانت الفئة الفرعية هي الفئة التالية
+                if ($firstSubCategory && $ad->category_id === $firstSubCategory->id) {
                     $data['type'] = $firstSubCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstSubCategory->name;
                 }
             }
@@ -180,7 +182,9 @@ class AdsController extends Controller
                 if ($category && $category->parent) {
                     // الحصول على أول فئة فرعية بعد الفئة الرئيسية
                     $firstSubCategory = Category::where('parent_id', $category->parent_id)->first();
-                    if ($firstSubCategory) {
+    
+                    // تحقق مما إذا كانت الفئة الفرعية هي الفئة التالية
+                    if ($firstSubCategory && $ad->category_id === $firstSubCategory->id) {
                         $data['type'] = $firstSubCategory->translations->where('locale', $translation->locale)->first()->name ?? $firstSubCategory->name;
                     }
                 }
