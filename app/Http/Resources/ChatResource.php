@@ -15,7 +15,7 @@ class ChatResource extends JsonResource
             'chat_with_name' => $this->sender_id === auth()->user()->id ? $this->receiver->name : $this->sender->name,
             'ad_id' => $this->ad_id,
             'last_message' => $this->last_message,
-            'last_time_message' => $this->last_time_message->format('Y-m-d H:i:s')
+            'last_time_message' => $this->last_time_message/*->format('Y-m-d H:i:s')*/
 
         ];
     }
