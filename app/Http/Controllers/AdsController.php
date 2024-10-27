@@ -17,7 +17,6 @@ class AdsController extends Controller
     
     public function createNewAd(StoreAdsRequest $request)
     {
-        // Step 1: Add main data to the ads table
         $ad = Ad::create([
             'price' => $request->price,
             'reference_number' => strtoupper(Str::random(10)),
@@ -27,7 +26,6 @@ class AdsController extends Controller
             'status' => 0
         ]);
 
-        // Step 2: Add translation data to ad_translations
         foreach (['translations_en', 'translations_ar'] as $localeKey) {
             if (!empty($request->$localeKey)) {
                 $locale = $localeKey === 'translations_en' ? 'en' : 'ar';
@@ -39,7 +37,6 @@ class AdsController extends Controller
                         'description' => $translationData['description']
                     ]);
 
-                    // Step 3: Add additional fields to ad_fields
                     foreach ($translationData as $fieldName => $fieldValue) {
                         if (!in_array($fieldName, ['name', 'description'])) {
                             if (is_array($fieldValue)) {
