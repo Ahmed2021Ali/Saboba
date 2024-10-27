@@ -15,7 +15,7 @@ class MessageResource extends JsonResource
             'receiver_name' => $this->receiver->name,
             'body' => $this->body,
             'files'=>ImagesResource::collection($this->getMedia('messageFiles')),
-            'create_at'=>$this->create_at
+            'create_at'=>$this->created_at
 
         ];
     }
