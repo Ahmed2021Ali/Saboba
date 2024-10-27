@@ -12,7 +12,6 @@ return new class extends Migration {
             $table->foreignId('sender_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('receiver_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('ad_id')->nullable()->constrained('ads')->onDelete('cascade');
-
             $table->text('last_message')->nullable();
             $table->timestamp('last_time_message')->nullable();
 
