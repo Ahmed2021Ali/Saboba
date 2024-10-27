@@ -7,13 +7,16 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class MessageResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
+
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'sender_name' => $this->sender->name,
+            'receiver_name' => $this->receiver->name,
+            'body' => $this->body,
+            'files'=>ImagesResource::collection($this->getMedia('messageFiles')),
+            'create_at'=>$this->create_at
+
+        ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\MessageResource;
 use App\Http\Traits\media;
 use App\Models\Chat;
 use App\Models\message;
@@ -56,7 +57,7 @@ class ChatController extends Controller
             DB::rollback();
             return response()->json(['message' => $e->getMessage()]);
         }
-        return response()->json($message);
+        return response()->json(['Data'=>new MessageResource($message) , 'success' => 'Send Message Successfully'],201);
     }
 
     public function Val($validationData)
