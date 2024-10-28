@@ -9,6 +9,11 @@
             </div>
             <form method="POST" action="{{ route('city.destroy', $city) }}" style="display:inline">
 
+                <h3 class="text-center"> الدولة  {{$country->name}}   </h3>
+                <div class="form-group">
+                    <input type="hidden" name="country_id" value="{{ $country->id }}">
+                </div>
+                
                 @csrf
                 @method('DELETE')
                 <h4 style="text-align: center"> هل تريد حذف هذا الدولة {{$city->name}}</h4>
