@@ -48,7 +48,7 @@
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#imageModal_{{$country->id}}">
-                                                            <i class="fa fa-edit"></i> عرض المرفقات
+                                                            <i class="fa fa-edit"></i> عرض صورة الدولة
                                                         </button>
                                                         @include('dashboard.images.index', ['model' => $country, 'folder' => 'countryImages'])
 
@@ -60,14 +60,14 @@
                                                            data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>
                                                             تعديل</a>
                                                         @include('dashboard.latest_news.edit',['latest_news'=>$latestNew,'category'=>$category])
-
+--}}
 
                                                         <button type="button" class="btn btn-sm btn-danger"
                                                                 data-toggle="modal"
-                                                                data-target="#delete_latest_news_{{$latestNew->id}}"><i
+                                                                data-target="#delete_latest_news_{{$country->id}}"><i
                                                                 class="fa-solid fa-trash"></i> حذف
                                                         </button>
-                                                        @include('dashboard.latest_news.delete',['latest_news'=>$latestNew,])--}}
+                                                        @include('dashboard.country.delete',['country'=>$country,])
 
 
                                                     </td>
