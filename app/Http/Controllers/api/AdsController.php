@@ -236,11 +236,15 @@ class AdsController extends Controller
 
         $categoryData = [
             'main_category_id' => $mainCategory->id,
-            'main_category_name' => $mainCategory->name,
+            'main_category_name' => [
+                'en' => $mainCategory->name, 
+                'ar' => $mainCategory->name_ar, 
+            ],
         ];
 
         return $this->successResponse($categoryData, 'Main category retrieved successfully');
     }
+
 
 
 
