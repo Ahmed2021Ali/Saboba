@@ -185,25 +185,22 @@ class AdsController extends Controller
 
 
 
-    public function getAdsByMainCategory(Request $request)
+    public function getAdsByCategory($categoryId)
     {
-        $request->validate([
-            'category_id' => 'required|integer|exists:categories,id',
-        ], [
-            'category_id.required' => 'The category ID is required.',
-            'category_id.integer' => 'The category ID must be an integer.',
-            'category_id.exists' => 'The category ID does not exist.',
-        ]);
-
-        $categoryId = $request->input('category_id');
+        $category = Category::find($categoryId);
+        if (!$category) {
+            return $this->errorResponse('Category not found', 404);
+        }
 
         $categoryIds = Category::where('parent_id', $categoryId)->orWhere('id', $categoryId)->pluck('id');
         $ads = Ad::whereIn('category_id', $categoryIds)->get();
 
+        // Check if ads exist
         if ($ads->isEmpty()) {
             return $this->successResponse([], 'No ads found for the requested category', 200);
         }
 
+        // Prepare the response for the ads as required
         $response = [];
         foreach ($ads as $ad) {
             $adData = [
