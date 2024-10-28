@@ -52,6 +52,10 @@
                                                         </button>
                                                         @include('dashboard.images.index', ['model' => $country, 'folder' => 'countryImages'])
 
+                                                        <a class="btn btn-sm btn-info" href="{{ route('country.show', $country) }}">
+                                                            <i class="fa-solid fa-list"></i>  عرض المدن
+                                                        </a>
+
                                                        <a class="btn btn-sm btn-warning" data-toggle="modal"
                                                            data-target="#edit_latest_news_{{$country->id}}"
                                                            data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>
