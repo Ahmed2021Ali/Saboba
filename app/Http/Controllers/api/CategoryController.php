@@ -42,4 +42,43 @@ class CategoryController extends Controller
 
         return $this->successResponse($response, 'Main categories with subcategories retrieved successfully');
     }
+
+
+    public function getSubCategories($categoryId)
+    {
+        $category = Category::find($categoryId);
+
+        if (!$category) {
+            return $this->errorResponse('Category not found', 404);
+        }
+
+        $mainCategories = Category::with(['translations'])->whereNull('parent_id')->get();
+
+        $data = $mainCategories->map(function ($mainCategory) {
+            return [
+                'main_category_id' => $mainCategory->id,
+                'main_category_translation_en' => $mainCategory->translations->where('locale', 'en')->pluck('name')->toArray(),
+                'main_category_translation_ar' => $mainCategory->translations->where('locale', 'ar')->pluck('name')->toArray(),
+                'subcategories' => $this->fetchAllSubCategories($mainCategory),
+            ];
+        })->toArray();
+
+        return $this->successResponse($data, 'Main categories with subcategories retrieved successfully');
+    }
+
+    private function fetchAllSubCategories($category)
+    {
+        $subCategoriesData = [];
+
+        foreach ($category->children as $subCategory) {
+            $subCategoriesData[] = [
+                'sub_category_id' => $subCategory->id,
+                'sub_category_translation_en' => $subCategory->translations->where('locale', 'en')->pluck('name')->toArray(),
+                'sub_category_translation_ar' => $subCategory->translations->where('locale', 'ar')->pluck('name')->toArray(),
+                'subcategories' => $this->fetchAllSubCategories($subCategory), 
+            ];
+        }
+
+        return $subCategoriesData;
+    }
 }
