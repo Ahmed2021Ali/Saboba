@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\web\CountryController;
 use App\Http\Controllers\web\CityController;
+use \App\Http\Controllers\IdentityVerificationController;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -52,8 +53,12 @@ Route::group([
 
         // Country Routes
         Route::resource('country', CountryController::class);
+
         // City Routes
         Route::resource('city', CityController::class);
+
+        // identity-verification Routes  // Not Completed
+        Route::resource('identity-verification', IdentityVerificationController::class);
 
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
