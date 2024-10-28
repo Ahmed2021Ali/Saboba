@@ -21,19 +21,19 @@ class UserResource extends JsonResource
             'overview' => $this->overview,
             'type' => $this->type,
             'files' => ImagesResource::collection($this->getMedia('userImages')),
-/*            'identify_verification' =>
-                $this->type === 'company' ?
+            'identify_verification' =>
+                $this->type === "company" ?
 
-                    $this->identifyVerification ?
+                    $this->identifyVerification() ?
 
-                        $this->identifyVerification->status === 1 ?
+                        $this->identifyVerification()->status === 1 ?
                             "true" //  your account is already verified
 
                             : "false" //The documentation files have been sent -> Not replay Verify -> Witting Replay Verify
 
                         : "null" //  Company Not Send files for Verifications
 
-                    : 'Not Identify Verification For User',*/
+                    : 'Not Identify Verification For User',
         ];
     }
 }
