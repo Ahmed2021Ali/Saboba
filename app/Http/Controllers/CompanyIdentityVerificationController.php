@@ -48,13 +48,13 @@ class CompanyIdentityVerificationController extends Controller
         $identifyVerification = CompanyIdentityVerification::where('user_id', Auth()->id())->first();
         if (!$identifyVerification) {
             //  Company Not Send files for Verifications
-            return response()->json(['status' => null, 'message' => 'No files have been sent for company identity verification.']);
+            return response()->json(['status' => "null", 'message' => 'No files have been sent for company identity verification.']);
         } elseif ($identifyVerification->status === 1) {
             //  your account is already verified
-            return response()->json(['status' => 1, 'message' => 'Identity cannot be verified more than once - your account is already verified']);
+            return response()->json(['status' => "true", 'message' => 'Identity cannot be verified more than once - your account is already verified']);
         } else {
             // The documentation files have been sent -> Not replay Verify -> Witting Replay Verify
-            return response()->json(['status' => 0, 'message' => 'The documentation files have been sent and a response will be received within 3 to 5 business days.']);
+            return response()->json(['status' => "false", 'message' => 'The documentation files have been sent and a response will be received within 3 to 5 business days.']);
         }
     }
 }
