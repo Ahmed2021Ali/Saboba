@@ -15,10 +15,13 @@ class LanguageController extends Controller
 
     public function index()
     {
-        return response()->json([
-            'message' => 'Your Languages ',
-            'Data' => LanguageResource::collection(Auth::User()->userLanguages)
-        ], 200);
+        if (Auth::User()->userLanguages()->isNotEmpty()) {
+            return response()->json([
+                'message' => 'Your Languages ',
+                'Data' => LanguageResource::collection(Auth::User()->userLanguages)], 200);
+        }
+        return response()->json(['message' => 'No Languages  for You']);
+
     }
 
     public function store(StoreLanguagesRequest $request)
@@ -27,10 +30,10 @@ class LanguageController extends Controller
         if ($lang) {
             $language = Auth::User()->userLanguages()->where('language_id', $lang->id)->first();
             if ($language) {
-                return response()->json(['message' => 'your Language already exists', 'Date' => $language],500);
+                return response()->json(['message' => 'your Language already exists', 'Date' => $language], 500);
             } else {
                 Auth::User()->userLanguages()->attach($lang->id);
-                return response()->json(['message' => 'your Language created successfully', 'Date' => $language],201);
+                return response()->json(['message' => 'your Language created successfully', 'Date' => $language], 201);
             }
         }
         return response()->json(['message' => 'your Language Not Found', 404]);
@@ -43,10 +46,10 @@ class LanguageController extends Controller
         if ($language) {
             if (auth()->user()->id === $language->user_id) {
                 $language->delete();
-                return response()->json(['message' => 'Delete Successfully'],200);
+                return response()->json(['message' => 'Delete Successfully'], 200);
             }
         }
-        return response()->json(['message' => 'An error occurred'],404);
+        return response()->json(['message' => 'An error occurred'], 404);
     }
 
 }
