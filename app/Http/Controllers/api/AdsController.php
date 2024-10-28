@@ -125,6 +125,9 @@ class AdsController extends Controller
                 'sub_category_id' => $ad->category_id,
                 'city_id' => $ad->city_id,
                 'price' => $ad->price,
+                'main_image' => $ad->getFirstMediaUrl('ad_main_image'),
+                'reals' => $ad->getFirstMediaUrl('reals'),
+
             ];
 
             $translations = $this->prepareAdTranslations($ad);
@@ -195,12 +198,10 @@ class AdsController extends Controller
         $categoryIds = Category::where('parent_id', $categoryId)->orWhere('id', $categoryId)->pluck('id');
         $ads = Ad::whereIn('category_id', $categoryIds)->get();
 
-        // Check if ads exist
         if ($ads->isEmpty()) {
             return $this->successResponse([], 'No ads found for the requested category', 200);
         }
 
-        // Prepare the response for the ads as required
         $response = [];
         foreach ($ads as $ad) {
             $adData = [
@@ -208,6 +209,8 @@ class AdsController extends Controller
                 'sub_category_id' => $ad->category_id,
                 'city_id' => $ad->city_id,
                 'price' => $ad->price,
+                'main_image' => $ad->getFirstMediaUrl('ad_main_image'),
+                'reals' => $ad->getFirstMediaUrl('reals'),
             ];
 
             $translations = $this->prepareAdTranslations($ad);
@@ -215,6 +218,37 @@ class AdsController extends Controller
         }
 
         return $this->successResponse($response, 'Ads for the requested category');
+    }
+
+
+
+    public function getMainCategoryByAdId($ad_id)
+    {
+        $validator = validator(['ad_id' => $ad_id], [
+            'ad_id' => 'required|integer|exists:ads,id',
+        ], [
+            'ad_id.required' => 'The ad ID is required.',
+            'ad_id.integer' => 'The ad ID must be an integer.',
+            'ad_id.exists' => 'The ad ID does not exist.',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->errorResponse($validator->errors()->first(), 400);
+        }
+
+        $ad = Ad::find($ad_id);
+
+        $mainCategory = $ad->category;
+        while ($mainCategory->parent) {
+            $mainCategory = $mainCategory->parent;
+        }
+
+        $categoryData = [
+            'main_category_id' => $mainCategory->id,
+            'main_category_name' => $mainCategory->name,
+        ];
+
+        return $this->successResponse($categoryData, 'Main category retrieved successfully');
     }
 
 }
