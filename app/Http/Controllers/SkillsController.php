@@ -13,10 +13,13 @@ class SkillsController extends Controller
 
     public function index()
     {
-        return response()->json([
-            'message' => 'Your skills ',
-            'Data' => Auth::User()->userSkills
-        ], 200);
+        if (Auth::User()->userSkills->isNotEmpty()) {
+            return response()->json([
+                'message' => 'Your skills ',
+                'Data' => Auth::User()->userSkills
+            ], 200);
+        }
+        return response()->json(['message' => 'No Skills  for You'], 404);
     }
 
     public function store(StoreSkillsRequest $request)
