@@ -228,22 +228,24 @@ class AdsController extends Controller
         if (!$ad) {
             return $this->errorResponse('Ad not found', 404);
         }
-
+    
         $mainCategory = $ad->category;
         while ($mainCategory->parent) {
             $mainCategory = $mainCategory->parent;
         }
-
+    
+        $translationEn = $mainCategory->translations->where('locale', 'en')->first()->name ?? '';
+        $translationAr = $mainCategory->translations->where('locale', 'ar')->first()->name ?? '';
+    
         $categoryData = [
             'main_category_id' => $mainCategory->id,
-            'main_category_name' => [
-                'en' => $mainCategory->name, 
-                'ar' => $mainCategory->name_ar, 
-            ],
+            'translation_en' => $translationEn,
+            'translation_ar' => $translationAr, 
         ];
-
+    
         return $this->successResponse($categoryData, 'Main category retrieved successfully');
     }
+    
 
 
 
