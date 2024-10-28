@@ -13,13 +13,13 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label"> اسم دولة  </label>
-                        <textarea class="form-control" name="name" id="message-text"></textarea>
+                        <label for="message-text" class="col-form-label" > اسم دولة  </label>
+                        <textarea class="form-control" name="name" id="message-text" required></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="files">الصور</label>
-                        <input type="file" name="image" id="file" class="form-control" multiple accept="image/*">
+                        <input type="file" name="image" id="file" class="form-control" multiple accept="image/*" required>
                     </div>
 
 
