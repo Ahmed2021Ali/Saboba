@@ -17,7 +17,7 @@ Route::group([
 // Redirect guest users to login page
     Route::group(['middleware' => ['guest']], function () {
         // Admin Auth
-        Route::redirect('/', '/login');
+        Route::redirect('/', '/view-login');
 
         Route::controller(AuthController::class)->group(function () {
             Route::get('view-login', 'loginForm')->name('login.form');
