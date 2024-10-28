@@ -85,6 +85,6 @@ class User extends Authenticatable implements JWTSubject, HasMedia
 
     public function identifyVerification()
     {
-        return $this->hasOne(CompanyIdentityVerification::class)->select('id', 'status')->where('type', 'company')->first();
+        return $this->hasOne(CompanyIdentityVerification::class);
     }
 }
