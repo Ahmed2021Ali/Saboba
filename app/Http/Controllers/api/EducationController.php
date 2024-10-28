@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\EducationRequest;
-
 use App\Http\Traits\ApiResponseTrait;
 use App\Models\Education;
-
 use Illuminate\Support\Facades\Auth;
 
 class EducationController extends Controller

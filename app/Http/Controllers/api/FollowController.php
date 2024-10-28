@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\FolloweringResource;
 use App\Http\Resources\FollowerResource;
 use App\Http\Resources\FollowResource;

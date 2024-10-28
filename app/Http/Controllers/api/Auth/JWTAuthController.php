@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\api\Auth;
 
-use App\Http\Requests\UpdateUserProfileRequest;
-use App\Http\Resources\UserResource;
-use App\Http\Traits\media;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Tymon\JWTAuth\Facades\JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JwtAuthRequest;
+use App\Http\Requests\UpdateUserProfileRequest;
+use App\Http\Resources\UserResource;
 use App\Http\Traits\ApiResponseTrait as TraitsApiResponseTrait;
+use App\Http\Traits\media;
+use App\Models\User;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class JWTAuthController extends Controller
 {

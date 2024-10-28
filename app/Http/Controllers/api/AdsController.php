@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAdsRequest;
 use App\Http\Traits\ApiResponseTrait;
 use App\Http\Traits\media;
 use App\Models\Ad;
 use App\Models\AdField;
 use App\Models\AdTranslation;
 use App\Models\Category;
-use Illuminate\Support\Str;
-use App\Http\Requests\StoreAdsRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdsController extends Controller
 {

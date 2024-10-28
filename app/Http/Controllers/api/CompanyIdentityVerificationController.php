@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
-use App\Http\Resources\UserResource;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CompanyProfileResource;
 use App\Models\CompanyIdentityVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Http\Resources\CompanyProfileResource;
 
 class CompanyIdentityVerificationController extends Controller
 {

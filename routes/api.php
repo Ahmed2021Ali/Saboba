@@ -1,21 +1,21 @@
 <?php
 
-use App\Http\Controllers\AdsController;
-use App\Http\Controllers\Auth\JWTAuthController;
-use App\Http\Controllers\BasicInformationController;
-use App\Http\Controllers\CompanyIdentityVerificationController;
-use App\Http\Controllers\EducationController;
-use App\Http\Controllers\ExperienceController;
-use App\Http\Controllers\FollowController;
-use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\SkillsController;
-use App\Http\Middleware\CheckPersonalMiddleware;
+use App\Http\Controllers\api\AdsController;
+use App\Http\Controllers\api\Auth\JWTAuthController;
+use App\Http\Controllers\api\BasicInformationController;
+use App\Http\Controllers\api\ChatController;
+use App\Http\Controllers\api\CommentController;
+use App\Http\Controllers\api\CompanyIdentityVerificationController;
+use App\Http\Controllers\api\EducationController;
+use App\Http\Controllers\api\ExperienceController;
+use App\Http\Controllers\api\FollowController;
+use App\Http\Controllers\api\HomepageController;
+use App\Http\Controllers\api\LanguageController;
+use App\Http\Controllers\api\SkillsController;
 use App\Http\Middleware\CheckCompanyMiddleware;
+use App\Http\Middleware\CheckPersonalMiddleware;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\api\ChatController;
-use \App\Http\Controllers\api\CommentController;
 
 
 Route::controller(JWTAuthController::class)->middleware('guest')->group(function () {

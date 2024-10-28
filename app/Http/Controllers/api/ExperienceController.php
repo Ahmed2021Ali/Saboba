@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ExperienceRequest;
 use App\Http\Resources\ExperienceResource;
 use App\Http\Traits\ApiResponseTrait;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLanguagesRequest;
-
 use App\Http\Resources\LanguageResource;
 use App\Http\Traits\ApiResponseTrait;
 use App\Models\Language;
