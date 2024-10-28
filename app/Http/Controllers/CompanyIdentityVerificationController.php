@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\CompanyIdentityVerification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +19,12 @@ class CompanyIdentityVerificationController extends Controller
             if (!$identifyVerification) {
                 return $this->storeVerification($request);
             } elseif ($identifyVerification->status === 1) {
-                return response()->json(['error' => 'Identity cannot be verified more than once - your account is already verified']);
+                return response()->json(['message' => 'Identity cannot be verified more than once - your account is already verified'], 500);
             } else {
-                return response()->json(['success' => 'The documentation files have been sent and a response will be received within 3 to 5 business days.']);
+                return response()->json(['message' => 'The documentation files have been sent and a response will be received within 3 to 5 business days. The documentation files cannot be sent again until a response is received.'], 500);
             }
         } else {
-            return response()->json(['error' => 'Only the company or institution can document its identity.'], 404);
+            return response()->json(['message' => 'Only the company or institution can document its identity'], 500);
         }
     }
 
@@ -39,7 +40,10 @@ class CompanyIdentityVerificationController extends Controller
             DB::rollback();
             return response()->json(['message' => $e->getMessage()]);
         }
-        return response()->json(['Data' => new CompanyProfileResource($companyProfile), 'success' => 'Documentation status under review'], 201);
+        return response()->json([
+            'Data' => new CompanyProfileResource($companyProfile),
+            'message' => 'Documentation status under review'
+        ], 201);
     }
 
 

@@ -16,11 +16,11 @@ class ExperienceController extends Controller
     {
         if (Auth::User()->experiences()->isNotEmpty()) {
             return response()->json([
-                'success' => 'Your Experience. ',
-                'data' => Auth::User()->experiences()
+                'message' => 'Your Experience. ',
+                'Data' => Auth::User()->experiences()
             ], 200);
         }
-        return response()->json(['success' => 'No experiences for You']);
+        return response()->json(['message' => 'No experiences for You'], 200);
     }
 
     public function store(ExperienceRequest $request)
@@ -30,8 +30,8 @@ class ExperienceController extends Controller
             'user_id' => auth()->user()->id,
         ]);
         return response()->json([
-            'success' => 'Experience Created Successfully. ',
-            'data' => new ExperienceResource($experience)
+            'message' => 'Experience Created Successfully. ',
+            'Data' => new ExperienceResource($experience)
         ], 201);
     }
 
@@ -41,11 +41,11 @@ class ExperienceController extends Controller
         if ($experience) {
             $experience->update($request->validated());
             return response()->json([
-                'success' => 'Experience Created Successfully. ',
-                'data' => new ExperienceResource($experience)
+                'message' => 'Experience Created Successfully. ',
+                'Data' => new ExperienceResource($experience)
             ], 201);
         }
-        return response()->json(['error' => 'An error occurred']);
+        return response()->json(['error' => 'An error occurred'], 404);
     }
 
 
@@ -55,9 +55,9 @@ class ExperienceController extends Controller
         if ($experience) {
             if (auth()->user()->id === $experience->user_id) {
                 $experience->delete();
-                return response()->json(['success' => 'Experience deleted successfully']);
+                return response()->json(['message' => 'Experience deleted successfully'], 200);
             }
         }
-        return response()->json(['error' => 'An error occurred']);
+        return response()->json(['error' => 'An error occurred'], 404);
     }
 }

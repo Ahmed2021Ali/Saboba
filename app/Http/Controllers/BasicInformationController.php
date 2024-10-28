@@ -14,19 +14,19 @@ class BasicInformationController extends Controller
     public function index()
     {
         return response()->json([
-            'success' => 'Your Basic Information ',
-            'data' => Auth::User()->basicInformation()
+            'message' => 'Your Basic Information ',
+            'Data' => Auth::User()->basicInformation()
         ], 200);
     }
 
     public function store(BasicInformationRequest $request)
     {
-        BasicInformation::updateOrCreate(['user_id' => auth()->user()->id], [
+        $basicInformation = BasicInformation::updateOrCreate(['user_id' => auth()->user()->id], [
             ...$request->validated(), 'user_id' => auth()->user()->id]);
 
         return response()->json([
-            'success' => 'your Basic Information Updated ',
-            'data' => Auth::User()->basicInformation()
+            'message' => 'your Basic Information Updated ',
+            'Data' => Auth::User()->basicInformation()
         ], 201);
     }
 }

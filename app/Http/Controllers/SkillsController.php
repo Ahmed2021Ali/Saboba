@@ -14,8 +14,8 @@ class SkillsController extends Controller
     public function index()
     {
         return response()->json([
-            'success' => 'Your skills ',
-            'data' => Auth::User()->userSkills
+            'message' => 'Your skills ',
+            'Data' => Auth::User()->userSkills
         ], 200);
     }
 
@@ -25,13 +25,13 @@ class SkillsController extends Controller
         if ($skill) {
             $userSkill = Auth::User()->userSkills()->where('skills_id', $skill->id)->first();
             if ($userSkill) {
-                return response()->json(['success' => 'your Language already exists', 'data' => $userSkill]);
+                return response()->json(['message' => 'your Language already exists', 'Data' => $userSkill], 500);
             } else {
                 Auth::User()->userSkills()->attach($skill->id);
-                return response()->json(['success' => 'your Language created successfully', 'data' => $userSkill]);
+                return response()->json(['message' => 'your Language created successfully', 'Data' => $userSkill], 201);
             }
         }
-        return response()->json(['error' => 'your Language Not Found']);
+        return response()->json(['message' => 'your Language Not Found'], 404);
     }
 
     public function destroy($id)
@@ -39,10 +39,9 @@ class SkillsController extends Controller
         $skill = Skills::where('id', $id)->first();
         if ($skill) {
             Auth::User()->userskills()->detach($skill->id);
-            return response()->json(['success' => 'your Language deleted successfully']);
+            return response()->json(['message' => 'your Language deleted successfully'], 200);
         }
-        return response()->json(['error' => 'An error occurred']);
-
+        return response()->json(['message' => 'An error occurred'], 404);
     }
 
 }

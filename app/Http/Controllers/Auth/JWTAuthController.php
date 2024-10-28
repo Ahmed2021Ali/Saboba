@@ -28,19 +28,18 @@ class JWTAuthController extends Controller
             $validatedData['password'] = Hash::make($validatedData['password']);
             $user = User::create($validatedData);
             $token = JWTAuth::fromUser($user);
-
             $this->downloadImages($request->images, $user, 'userImages');
-
-            return $this->successResponse([
-                 new UserResource($user),
-                'token' => $token
-            ], 'User registered successfully', 201);
+            return response()->json([
+                'Data' => new UserResource($user),
+                'token' => $token,
+                'message' => 'User registered successfully'
+            ], 201);
 
         } catch (QueryException $e) {
-            return $this->errorResponse('Database error: ' . $e->getMessage(), 500);
+            return response()->json(['message' => 'Database error' . $e->getMessage()], 500);
 
         } catch (\Exception $e) {
-            return $this->errorResponse('User registration failed. Please try again.', 500);
+            return response()->json(['message' => 'User registration failed. Please try again.'], 500);
         }
     }
 
@@ -59,10 +58,11 @@ class JWTAuthController extends Controller
 
         $userData = auth()->user();
 
-        return $this->successResponse([
-            'user' => new UserResource($userData),
-            'token' => $token
-        ], 'Login successful', 200);
+        return response()->json([
+            'Data' => new UserResource($userData),
+            'token' => $token,
+            'message' => 'Login successful'
+        ], 200);
     }
 
 
@@ -75,25 +75,29 @@ class JWTAuthController extends Controller
         }
         $this->updateImages($validatedData['images'], $user, 'userImages');
         $user->update($request->validated());
-        return $this->successResponse(['user' => new UserResource($user)],
-            'User Updated successfully', 200);
-    }
 
+        return response()->json([
+            'Data' => new UserResource($user),
+            'message' => 'User Updated successfully'
+        ], 200);
+    }
 
 
     public function getAuthUser()
     {
-        return $this->successResponse(['user' => new UserResource(Auth::user())],
-            'The user who is currently logged in', 200);
+        return response()->json([
+            'Data' => new UserResource(Auth::user()),
+            'message' => 'The user who is currently logged in'
+        ], 200);
     }
 
     public function logout()
     {
         try {
             JWTAuth::invalidate(JWTAuth::getToken());
-            return $this->successResponse([], 'Successfully logged out', 200);
+            return response()->json(['message' => 'Successfully logged out'], 200);
         } catch (JWTException $e) {
-            return $this->errorResponse('Could not log out', 500);
+            return response()->json(['message' => 'Could not log out'], 500);
         }
     }
 

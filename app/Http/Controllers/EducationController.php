@@ -17,11 +17,11 @@ class EducationController extends Controller
     {
         if (Auth::User()->educations()->isNotEmpty()) {
             return response()->json([
-                'success' => 'your Educations ',
-                'data' => Auth::User()->educations()
-            ], 201);
+                'message' => 'your Educations ',
+                'Data' => Auth::User()->educations()
+            ], 200);
         }
-        return response()->json(['success' => 'No Educations for You.']);
+        return response()->json(['message' => 'No Educations for You.', 404]);
     }
 
     public function store(EducationRequest $request)
@@ -32,8 +32,8 @@ class EducationController extends Controller
         ]);
 
         return response()->json([
-            'success' => 'Education Created Successfully. ',
-            'data' => $eduction
+            'message' => 'Education Created Successfully. ',
+            'Data' => $eduction
         ], 201);
     }
 
@@ -42,8 +42,8 @@ class EducationController extends Controller
         $eduction = Education::where('id', $id)->first();
         $eduction->update($request->validated());
         return response()->json([
-            'success' => 'Education Updated Successfully. ',
-            'data' => $eduction
+            'message' => 'Education Updated Successfully. ',
+            'Data' => $eduction
         ], 200);
     }
 
@@ -54,10 +54,10 @@ class EducationController extends Controller
         if ($education) {
             if (auth()->user()->id === $education->user_id) {
                 $education->delete();
-                return response()->json(['success' => 'Delete Successfully']);
+                return response()->json(['message' => 'Delete Successfully'], 200);
             }
         }
-        return response()->json(['error' => 'An error occurred']);
+        return response()->json(['message' => 'An error occurred'], 404);
 
     }
 }

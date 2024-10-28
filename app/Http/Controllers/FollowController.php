@@ -21,20 +21,28 @@ class FollowController extends Controller
 
     public function addFollow($user_id)
     {
-        $user = User::findOrFail($user_id);
+        $user = User::where('id', $user_id)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'The user you want to send a follow request to does not exist.'], 404);
+        }
+
         if ($user->id === Auth::id()) {
-            return response()->json(['message' => 'You cannot send a follow request to yourself']);
+            return response()->json(['message' => 'You cannot send a follow request to yourself'], 500);
         }
-        $followError1 = Follow::where('follower_id', Auth::id())->where('following_id', $user_id)->where('status', 'pending')->first();
+
+        $followError1 = Follow::where('follower_id', Auth::id())->where('following_id', $user_id)->first();
         if ($followError1) {
-            return response()->json(['message' => 'You cannot send a follow request more than once']);
+            return response()->json(['message' => 'You cannot send a follow request more than once'], 500);
         }
-        $followError2 = Follow::where('follower_id', $user_id)->where('following_id', Auth::id())->where('status', 'pending')->first();
+
+        $followError2 = Follow::where('follower_id', $user_id)->where('following_id', Auth::id())->first();
         if ($followError2) {
-            return response()->json(['message' => 'You cannot send a follow request to this person because he has already sent you a follow request. Please accept it o']);
+            return response()->json(['message' => 'You cannot send a follow request to this person because he has already sent you a follow request. Please accept it o'], 500);
         }
-        $follow = Follow::create(['follower_id' => Auth::id(), 'following_id' => $user->id, 'status' => 'pending']);
-        return response()->json([new FollowResource($follow),'message' => 'You cannot send a follow request to this person because he has already sent you a follow request. Please accept it o']);
+
+        $follow = Follow::create(['follower_id' => Auth::id(), 'following_id' => $user->id]);
+        return response()->json(['Data' => new FollowResource($follow), 'message' => 'You Send Follow Request successfully'], 201);
     }
 
     // الغاء طلب المتابعه
@@ -43,59 +51,33 @@ class FollowController extends Controller
     {
         $follow = Follow::where('follower_id', Auth::id())->Orwhere('following_id', $user_id)->first();
         if (!$follow) {
-            return response()->json(['message' => ' Your follow request has already been cancelled']);
+            return response()->json(['message' => ' Your follow request has already been cancelled'], 404);
         }
         $follow->delete();
-        return response()->json(['message' => ' The follow request was successfully cancelled']);
-    }
-
-// قبول طلب المتابعه  المرسل
-
-    public function acceptFollow($user_id)
-    {
-        $follow = Follow::where('following_id', Auth::id())->where('follower_id', $user_id)->where('status', 'pending')->first();
-        if ($follow) {
-            $follow->status = 'accept';
-            $follow->save();
-            return response()->json($follow,['message' => ' Follow-up request has been successfully accepted']);
-        }
-        return response()->json($follow,['message' => 'An error occurred']);
-    }
-
-// رفض طلب المتابعه  المرسل
-
-    public function rejectFollow($user_id)
-    {
-        $follow = Follow::where('following_id', Auth::id())->where('follower_id', $user_id)->where('status', 'pending')->first();
-        if ($follow) {
-            $follow->status = 'reject';
-            $follow->save();
-            return $this->successResponse($follow, 'Your follow request has been successfully declined.', 200);
-        }
-        return $this->errorResponse('An error occurred.', null);
+        return response()->json(['message' => ' The follow request was successfully cancelled'], 200);
     }
 
 
     public function showFollower()
     {
-        return response()->json(['followers' => FollowerResource::collection(Auth()->user()->followers())]);
+        return response()->json(['message' => 'Your Follower', 'Data' => FollowerResource::collection(Auth()->user()->followers())], 200);
     }
 
 
     public function countFollower()
     {
-        return response()->json(['count followers' => Auth()->user()->followers()->count()]);
+        return response()->json(['message' => 'Count Your Follower', 'Data' => Auth()->user()->followers()->count()], 200);
     }
 
 
     public function showFollowing()
     {
-        return response()->json(['followings' => FolloweringResource::collection(Auth()->user()->followings())]);
+        return response()->json(['message' => ' Your Following', 'Data' => FolloweringResource::collection(Auth()->user()->followings())], 200);
     }
 
     public function countFollowing()
     {
-        return response()->json(['count followings' => Auth()->user()->followings()->count()]);
+        return response()->json(['message' => 'Count Your Following', 'Data' => Auth()->user()->followings()->count()], 200);
     }
 
 
