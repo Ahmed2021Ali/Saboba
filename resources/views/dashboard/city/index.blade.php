@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title"> اضافة مدينة جديد</h2>
+                    <h2 class="mb-2 page-title">  {{$country->name}}  اضافة مدينة جديد داخل دولة </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
