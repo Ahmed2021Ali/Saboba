@@ -88,7 +88,8 @@
 
       <!-- Existing Addresses Section -->
       <li class="nav-item dropdown">
-        <a href="{{route('country.index')}}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+        <a href="{{route('country.index')}}" class="nav-link">
+          <i class="fe fe-map-pin fe-16"></i>
           <span class="ml-3 item-text">الدول و المدن</span>
         </a>
       </li>
