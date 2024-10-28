@@ -12,19 +12,19 @@
 
         @if($countries->IsNotempty())
             <h1 class="text-center"> جميع الدول </h1>
-            <br>
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
                     {{ session('success') }}
                 </div>
             @endif
-            <div class="pull-right mb-2">
+            <div class="col-md-6 col-xl-3 mb-4">
                 <br>
                 <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
                         data-target="#varyModal" data-whatever="@mdo">  اضافة دوله جدبدة
                 </button>
                 @include('dashboard.country.create')
             </div>
+            <br>
 
             <div class="row">
                 @foreach($countries as $country)
