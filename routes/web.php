@@ -12,22 +12,26 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
-    
-    Route::redirect('/', '/login');
+
 
 // Redirect guest users to login page
     Route::group(['middleware' => ['guest']], function () {
-        Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+        // Admin Auth
+        Route::redirect('/', '/login');
+
+        Route::controller(AuthController::class)->group(function () {
+            Route::get('view-login', 'loginForm')->name('login.form');
+            Route::post('submit-login', 'login')->name('login.confirm');
+        });
+        
     });
 
 // Roles Management Routes
     Route::group(['middleware' => ['auth']], function () {
 
-        // Admin Auth
         Route::controller(AuthController::class)->group(function () {
-            Route::get('view-login', 'loginForm')->name('login.form');
-            Route::post('submit-login', 'login')->name('login.confirm');
-            Route::get('home', 'home')->name('home')->middleware(['auth']);
+            Route::get('home', 'home')->name('home');
+            Route::post('logout', 'logout')->name('logout');
         });
 
         // categories  Routes
@@ -43,9 +47,6 @@ Route::group([
 
         // User Management Routes
         Route::resource('users', UserController::class);
-
-
-
 
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
