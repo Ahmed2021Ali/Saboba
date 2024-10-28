@@ -32,7 +32,7 @@ class JWTAuthController extends Controller
             $this->downloadImages($request->images, $user, 'userImages');
 
             return $this->successResponse([
-                'user' => new UserResource($user),
+                 new UserResource($user),
                 'token' => $token
             ], 'User registered successfully', 201);
 

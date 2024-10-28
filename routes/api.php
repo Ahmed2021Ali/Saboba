@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AdsController;
 use App\Http\Controllers\Auth\JWTAuthController;
-
 use App\Http\Controllers\BasicInformationController;
 use App\Http\Controllers\CompanyIdentityVerificationController;
 use App\Http\Controllers\EducationController;
@@ -19,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [JWTAuthController::class, 'login'])->name('login');
 Route::post('/register', [JWTAuthController::class, 'register']);
+
 
 
 Route::middleware([JwtMiddleware::class])->group(function () {
