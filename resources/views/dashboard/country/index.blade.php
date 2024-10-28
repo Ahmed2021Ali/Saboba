@@ -19,7 +19,7 @@
             @endif
             <div class="col-md-6 col-xl-3 mb-4">
                 <br>
-                <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
+                <button type="button" class="btn mb-4 btn-outline-secondary" data-toggle="modal"
                         data-target="#varyModal" data-whatever="@mdo">  اضافة دوله جدبدة
                 </button>
                 @include('dashboard.country.create')
