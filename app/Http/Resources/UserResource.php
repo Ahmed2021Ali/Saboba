@@ -23,9 +23,9 @@ class UserResource extends JsonResource
             'identify_verification' =>
                 $this->type === 'company' ?
 
-                        $this->identifyVerification() ?
+                        isset($this->identifyVerification)?
 
-                              $this->identifyVerification()->status === 1 ? "true" : "false"
+                              $this->identifyVerification->status === 1 ? "true" : "false"
 
                         : "false"
 
