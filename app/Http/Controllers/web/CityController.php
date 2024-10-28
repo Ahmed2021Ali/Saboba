@@ -15,15 +15,16 @@ class CityController extends Controller
 
     public function store(Request $request)
     {
-        $validationData = $request->validate(['name' => 'nullable|string', 'country_id' => 'required|exists:countries,id']);
+        $validationData = $request->validate(['name' => 'required|string', 'country_id' => 'required|exists:countries,id']);
+        dd($validationData);
         City::create($validationData);
 
     }
 
     public function update(Request $request, City $city)
     {
-        $validationData = $request->validate(['name' => 'nullable|string', 'country_id' => 'required|exists:countries,id']);
-        City::create($validationData);
+        $validationData = $request->validate(['name' => 'nullable|string', 'country_id' => 'nullable|exists:countries,id']);
+        $city->update($validationData);
 
     }
 
