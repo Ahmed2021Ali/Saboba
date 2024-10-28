@@ -25,10 +25,11 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('get-auth-user', [JWTAuthController::class, 'getAuthUser']);
     Route::PUT('update-user-profile', [JWTAuthController::class, 'updateUserProfile']);
     Route::post('logout', [JWTAuthController::class, 'logout']);
+    Route::get('status-company-identify-verification', [CompanyIdentityVerificationController::class, 'statusCompanyIdentifyVerification']);
+    Route::Post('send-company-identify-verification', [CompanyIdentityVerificationController::class, 'sendCompanyIdentifyVerification']);
+
 });
 
-Route::get('status-company-identify-verification', [CompanyIdentityVerificationController::class, 'statusCompanyIdentifyVerification']);
-Route::Post('send-company-identify-verification', [CompanyIdentityVerificationController::class, 'sendCompanyIdentifyVerification']);
 
 
 Route::middleware([JwtMiddleware::class, CheckPersonalMiddleware::class])->prefix('jobProfile')->group(function () {
