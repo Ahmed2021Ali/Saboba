@@ -185,7 +185,7 @@ class AdsController extends Controller
 
 
 
-    public function getAdsByCategory(Request $request)
+    public function getAdsByMainCategory(Request $request)
     {
         $request->validate([
             'category_id' => 'required|integer|exists:categories,id',
