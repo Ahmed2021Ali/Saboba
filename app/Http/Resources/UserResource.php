@@ -19,8 +19,9 @@ class UserResource extends JsonResource
             'whatsapp_number' => $this->whatsapp_number,
             'contact_number' => $this->contact_number,
             'overview' => $this->overview,
+            'type' => $this->type,
             'files' => ImagesResource::collection($this->getMedia('userImages')),
-            'identify_verification' =>
+/*            'identify_verification' =>
                 $this->type === 'company' ?
 
                     $this->identifyVerification ?
@@ -32,7 +33,7 @@ class UserResource extends JsonResource
 
                         : "null" //  Company Not Send files for Verifications
 
-                    : 'Not Identify Verification For User',
+                    : 'Not Identify Verification For User',*/
         ];
     }
 }
