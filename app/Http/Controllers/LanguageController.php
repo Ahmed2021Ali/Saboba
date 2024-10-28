@@ -15,7 +15,7 @@ class LanguageController extends Controller
 
     public function index()
     {
-        if (Auth::User()->userLanguages()->isNotEmpty()) {
+        if (Auth::User()->userLanguages->isNotEmpty()) {
             return response()->json([
                 'message' => 'Your Languages ',
                 'Data' => LanguageResource::collection(Auth::User()->userLanguages)], 200);
