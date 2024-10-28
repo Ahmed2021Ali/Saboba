@@ -19,7 +19,7 @@ class StoreAdsRequest extends FormRequest
             'price' => 'required|numeric|min:0',
             'sub_category_id' => 'required|exists:categories,id',
             'city_id' => 'required|exists:cities,id',
-            // 'main_image' => 'required|image|max:5000',
+            'main_image' => 'required|image|max:5000',
             'images.*' => 'nullable|image|max:5000',
             'reals' => 'nullable|mimes:mp4,mov,ogg,qt|max:20000',
             'translations_en' => 'nullable|array',

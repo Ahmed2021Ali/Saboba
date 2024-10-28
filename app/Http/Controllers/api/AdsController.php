@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdsRequest;
+use App\Http\Resources\ImagesResource;
 use App\Http\Traits\ApiResponseTrait;
 use App\Http\Traits\media;
 use App\Models\Ad;
@@ -101,6 +102,9 @@ class AdsController extends Controller
             'sub_category_id' => $ad->category_id,
             'city_id' => $ad->city_id,
             'price' => $ad->price,
+            'main_image' => $ad->getFirstMediaUrl('ad_main_image'),
+            'images' => ImagesResource::collection($this->getMedia('ad_images')),
+            'reals' => $ad->getFirstMediaUrl('reals'),
         ];
 
         return $this->successResponse($response + $translations);
