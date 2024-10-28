@@ -21,7 +21,7 @@ class EducationController extends Controller
                 'Data' => Auth::User()->educations()
             ], 200);
         }
-        return response()->json(['message' => 'No Educations for You.', 404]);
+        return response()->json(['message' => 'No Educations for You.'],404);
     }
 
     public function store(EducationRequest $request)
