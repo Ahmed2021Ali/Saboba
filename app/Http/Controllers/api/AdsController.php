@@ -101,6 +101,9 @@ class AdsController extends Controller
             'sub_category_id' => $ad->category_id,
             'city_id' => $ad->city_id,
             'price' => $ad->price,
+            'main_image' => $ad->getFirstMediaUrl('ad_main_image'),
+            // 'images' => ImagesResource::collection($this->getMedia('ad_images')),
+            'reals' => $ad->getFirstMediaUrl('reals'),
         ];
 
         return $this->successResponse($response + $translations);
@@ -122,6 +125,9 @@ class AdsController extends Controller
                 'sub_category_id' => $ad->category_id,
                 'city_id' => $ad->city_id,
                 'price' => $ad->price,
+                'main_image' => $ad->getFirstMediaUrl('ad_main_image'),
+                'reals' => $ad->getFirstMediaUrl('reals'),
+
             ];
 
             $translations = $this->prepareAdTranslations($ad);
@@ -130,6 +136,7 @@ class AdsController extends Controller
 
         return $this->successResponse($response);
     }
+
 
     private function prepareAdTranslations($ad)
     {
@@ -180,4 +187,89 @@ class AdsController extends Controller
     }
 
 
+
+    public function getAdsByMainCategory($categoryId)
+    {
+        $category = Category::find($categoryId);
+        if (!$category) {
+            return $this->errorResponse('Category not found', 404);
+        }
+
+        $categoryIds = Category::where('parent_id', $categoryId)->orWhere('id', $categoryId)->pluck('id');
+        $ads = Ad::whereIn('category_id', $categoryIds)->get();
+
+        if ($ads->isEmpty()) {
+            return $this->successResponse([], 'No ads found for the requested category', 200);
+        }
+
+        $response = [];
+        foreach ($ads as $ad) {
+            $adData = [
+                'ad_id' => $ad->id,
+                'sub_category_id' => $ad->category_id,
+                'city_id' => $ad->city_id,
+                'price' => $ad->price,
+                'main_image' => $ad->getFirstMediaUrl('ad_main_image'),
+                'reals' => $ad->getFirstMediaUrl('reals'),
+            ];
+
+            $translations = $this->prepareAdTranslations($ad);
+            $response[] = $adData + $translations;
+        }
+
+        return $this->successResponse($response, 'Ads for the requested category');
+    }
+
+
+
+    public function getMainCategoryByAdId($ad_id)
+    {
+        $ad = Ad::find($ad_id);
+        if (!$ad) {
+            return $this->errorResponse('Ad not found', 404);
+        }
+    
+        $mainCategory = $ad->category;
+        while ($mainCategory->parent) {
+            $mainCategory = $mainCategory->parent;
+        }
+    
+        $translationEn = $mainCategory->translations->where('locale', 'en')->first();
+        $translationAr = $mainCategory->translations->where('locale', 'ar')->first();
+    
+        $categoryData = [
+            'main_category_id' => $mainCategory->id,
+            'translation_en' => [
+                'name' => $translationEn ? $translationEn->name : ''
+            ],
+            'translation_ar' => [
+                'name' => $translationAr ? $translationAr->name : ''
+            ]
+        ];
+    
+        return $this->successResponse($categoryData, 'Main category retrieved successfully');
+    }
+    
+    
+
+
+
+
+    public function deleteAdById($ad_id)
+    {
+        $ad = Ad::find($ad_id);
+        
+        if (!$ad) {
+            return $this->errorResponse('Ad not found', 404);
+        }
+
+        $ad->delete();
+
+        return $this->successResponse('Ad deleted successfully', 204);
+    }
+
+
+
+
+    
 }
