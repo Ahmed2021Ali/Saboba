@@ -242,4 +242,23 @@ class AdsController extends Controller
         return $this->successResponse($categoryData, 'Main category retrieved successfully');
     }
 
+
+
+    public function deleteAdById(Request $request, $ad_id)
+    {
+        $validatedData = $request->validate([
+            'ad_id' => 'required|integer|exists:ads,id'
+        ]);
+
+        $ad = Ad::find($validatedData['ad_id']);
+        
+        if (!$ad) {
+            return $this->errorResponse('Ad not found', 404);
+        }
+
+        $ad->delete();
+
+        return $this->successResponse('Ad deleted successfully', 204);
+    }
+
 }

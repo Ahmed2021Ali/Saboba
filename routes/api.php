@@ -50,6 +50,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('get-all-ads', [AdsController::class, 'getAllAds']);
     Route::get('ads/main-category/{categoryId}', [AdsController::class, 'getAdsByMainCategory']);
     Route::get('ads/{ad_id}/main-category', [AdsController::class, 'getMainCategoryByAdId']);
+    Route::delete('/ads/{ad_id}', [AdsController::class, 'deleteAdById']);
 
     Route::controller(FollowController::class)->group(function () {
         Route::get('add-follow/{user_id}', 'addFollow');
