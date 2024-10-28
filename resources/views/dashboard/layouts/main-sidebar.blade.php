@@ -90,19 +90,19 @@
       <li class="nav-item dropdown">
         <a href="#addresses" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
           <i class="fe fe-map-pin fe-16"></i>
-          <span class="ml-3 item-text">العناوين</span>
+          <span class="ml-3 item-text">الدول و المدن</span>
         </a>
         <ul class="collapse list-unstyled pl-4 w-100" id="addresses">
           <li class="nav-item">
             <a class="nav-link pl-3" href="">
               <i class="fe fe-layers fe-16"></i>
-              <span class="ml-1 item-text">عناوين رئيسية</span>
+              <span class="ml-1 item-text"> الدول </span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link pl-3" href="">
               <i class="fe fe-layers fe-16"></i>
-              <span class="ml-1 item-text">عناوين فرعية</span>
+              <span class="ml-1 item-text"> المدن </span>
             </a>
           </li>
         </ul>

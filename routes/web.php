@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\web\AuthController;
+use App\Http\Controllers\web\CategoryController;
+use App\Http\Controllers\web\RoleController;
+use App\Http\Controllers\web\SubCategoryController;
+use App\Http\Controllers\web\UserController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use \App\Http\Controllers\web\AuthController;
-use \App\Http\Controllers\web\SubCategoryController;
-use \App\Http\Controllers\web\RoleController;
-use \App\Http\Controllers\web\UserController;
-use \App\Http\Controllers\web\CategoryController;
+use App\Http\Controllers\web\CountryController;
+use App\Http\Controllers\web\CityController;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -48,6 +50,10 @@ Route::group([
         // User Management Routes
         Route::resource('users', UserController::class);
 
+        // Country Routes
+        Route::resource('country', CountryController::class);
+        // City Routes
+        Route::resource('city', CityController::class);
 
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
