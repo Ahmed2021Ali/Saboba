@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="varyModalLabel">تحديث البوست </h5>
+                <h5 class="modal-title" id="varyModalLabel">تحديث الدولة </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn mb-2 btn-primary"> تحديث الصورة </button>
+                        <button type="submit" class="btn mb-2 btn-primary"> تحديث الدولة </button>
                     </div>
                 </form>
             </div>

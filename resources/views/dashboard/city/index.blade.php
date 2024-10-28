@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 
-@section('title', '  الدول ')
+@section('title', '  مدينة ')
 
 @section('css')
 
@@ -12,19 +12,19 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title"> اضافة دولة جديد</h2>
+                    <h2 class="mb-2 page-title"> اضافة مدينة جديد</h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
                         </div>
                     @endif
-                                       <div class="pull-right mb-2">
-                                            <br>
-                                            <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
-                                                    data-target="#varyModal" data-whatever="@mdo">اضافة مدينة جديد
-                                            </button>
-                                            @include('dashboard.city.create')
-                                        </div>
+                    <div class="pull-right mb-2">
+                        <br>
+                        <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
+                                data-target="#varyModal" data-whatever="@mdo">اضافة مدينة جديد
+                        </button>
+                        @include('dashboard.city.create')
+                    </div>
 
                     @if($cities->IsNotempty())
 
@@ -47,22 +47,22 @@
                                                     <td> {{ $city->name }}</td>
                                                     <td>
 
-                                                        {{--
-                                                                                                               <a class="btn btn-sm btn-warning" data-toggle="modal"
-                                                                                                                   data-target="#edit_latest_news_{{$country->id}}"
-                                                                                                                   data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>
-                                                                                                                    تعديل</a>
-                                                                                                                @include('dashboard.country.edit',['country'=>$country])
+
+                                                        <a class="btn btn-sm btn-warning" data-toggle="modal"
+                                                           data-target="#edit_latest_news_{{$city->id}}"
+                                                           data-whatever="@mdo"><i
+                                                                class="fa-solid fa-pen-to-square"></i>
+                                                            تعديل</a>
+                                                        @include('dashboard.city.edit',['city'=>$city])
 
 
-                                                                                                                <button type="button" class="btn btn-sm btn-danger"
-                                                                                                                        data-toggle="modal"
-                                                                                                                        data-target="#delete_latest_news_{{$country->id}}"><i
-                                                                                                                        class="fa-solid fa-trash"></i> حذف
-                                                                                                                </button>
-                                                                                                                @include('dashboard.country.delete',['country'=>$country,])
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                                data-toggle="modal"
+                                                                data-target="#delete_latest_news_{{$city->id}}"><i
+                                                                class="fa-solid fa-trash"></i> حذف
+                                                        </button>
+                                                        @include('dashboard.city.delete',['city'=>$city,])
 
-                                                        --}}
 
                                                     </td>
                                                 </tr>
