@@ -12,6 +12,7 @@ use App\Http\Controllers\api\FollowController;
 use App\Http\Controllers\api\HomepageController;
 use App\Http\Controllers\api\LanguageController;
 use App\Http\Controllers\api\SkillsController;
+use App\Http\Controllers\api\CategoryController;
 use App\Http\Middleware\CheckCompanyMiddleware;
 use App\Http\Middleware\CheckPersonalMiddleware;
 use App\Http\Middleware\JwtMiddleware;
@@ -52,7 +53,7 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('ads/{ad_id}/main-category', [AdsController::class, 'getMainCategoryByAdId']);
     Route::delete('delete-ad/{ad_id}', [AdsController::class, 'deleteAdById']);
 
-    Route::delete('delete-ad/{ad_id}', [AdsController::class, 'deleteAdById']);
+    Route::get('main-categories-with-subcategories', [CategoryController::class, 'getAllMainCategoriesWithSubcategories']);
 
     Route::controller(FollowController::class)->group(function () {
         Route::get('add-follow/{user_id}', 'addFollow');

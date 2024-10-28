@@ -268,4 +268,8 @@ class AdsController extends Controller
         return $this->successResponse('Ad deleted successfully', 204);
     }
 
+
+
+
+    
 }
