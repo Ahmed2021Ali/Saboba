@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\UpdateUserProfileRequest;
-use App\Http\Resources\CompanyProfileResource;
 use App\Http\Resources\UserResource;
 use App\Http\Traits\media;
-use App\Models\CompanyIdentityVerification;
-use App\Models\CompanyProfile;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -83,19 +79,8 @@ class JWTAuthController extends Controller
             'User Updated successfully', 200);
     }
 
-    public function companyIdentifyVerification(Request $request)
-    {
-        if (Auth()->type === "company") {
-            $validationData = $request->validate(['file' => 'required|max:10000']);
-            $companyProfile = CompanyIdentityVerification::create(['user_id' => Auth::id()]);
-            $companyProfile->addMedia($validationData['file'])->toMediaCollection('documentationFiles');
-            return response()->json([
-                'Data' => new CompanyProfileResource($companyProfile), 'success' => 'Documentation status under review'
-            ], 201);
-        } else {
-            return response()->json(['error' => 'Only the company or institution can document its identity.'], 403);
-        }
-    }
+
+
     public function getAuthUser()
     {
         return $this->successResponse(['user' => new UserResource(Auth::user())],

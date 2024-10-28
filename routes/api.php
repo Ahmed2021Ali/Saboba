@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdsController;
 use App\Http\Controllers\Auth\JWTAuthController;
+
 use App\Http\Controllers\BasicInformationController;
+use App\Http\Controllers\CompanyIdentityVerificationController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\FollowController;
@@ -22,9 +24,11 @@ Route::post('/register', [JWTAuthController::class, 'register']);
 Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('get-auth-user', [JWTAuthController::class, 'getAuthUser']);
     Route::PUT('update-user-profile', [JWTAuthController::class, 'updateUserProfile']);
-    Route::Post('company-identify-verification', [JWTAuthController::class, 'companyIdentifyVerification']);
     Route::post('logout', [JWTAuthController::class, 'logout']);
 });
+
+Route::get('status-company-identify-verification', [CompanyIdentityVerificationController::class, 'statusCompanyIdentifyVerification']);
+Route::Post('send-company-identify-verification', [CompanyIdentityVerificationController::class, 'sendCompanyIdentifyVerification']);
 
 
 Route::middleware([JwtMiddleware::class, CheckPersonalMiddleware::class])->prefix('jobProfile')->group(function () {

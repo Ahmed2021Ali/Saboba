@@ -11,7 +11,7 @@ class CompanyProfileResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'status' => $this->documentation_status === 0 ? 'Documentation status under review' : 'The organization identity has been successfully verified.',
+            'status' => $this->status === 0 ? 'Documentation status under review' : 'The organization identity has been successfully verified.',
             'file' => $this->getFirstMediaUrl('documentationFiles'),
         ];
     }

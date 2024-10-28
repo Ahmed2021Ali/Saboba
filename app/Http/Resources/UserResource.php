@@ -23,13 +23,16 @@ class UserResource extends JsonResource
             'identify_verification' =>
                 $this->type === 'company' ?
 
-                        isset($this->identifyVerification)?
+                    $this->identifyVerification ?
 
-                              $this->identifyVerification->status === 1 ? "true" : "false"
+                        $this->identifyVerification->status === 1 ?
+                            "true" //  your account is already verified
 
-                        : "false"
+                            : "false" //The documentation files have been sent -> Not replay Verify -> Witting Replay Verify
 
-                : 'Not Identify Verification For User',
+                        : "null" //  Company Not Send files for Verifications
+
+                    : 'Not Identify Verification For User',
         ];
     }
 }

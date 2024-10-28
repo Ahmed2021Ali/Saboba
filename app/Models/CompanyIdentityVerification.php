@@ -11,7 +11,7 @@ class CompanyIdentityVerification extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
-    protected $fillable = ['documentation_status', 'user_id'];
+    protected $fillable = ['status', 'user_id'];
 
     public function registerMediaConversions(Media $media = null): void
     {

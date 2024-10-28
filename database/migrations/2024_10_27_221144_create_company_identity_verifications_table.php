@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('company_identity_verifications', function (Blueprint $table) {
             $table->id();
-            $table->boolean('documentation_status')->default(0);
+            $table->boolean('status')->default(0);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
 
             $table->timestamps();
