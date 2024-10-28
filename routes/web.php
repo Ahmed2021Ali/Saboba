@@ -12,10 +12,11 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function () {
+    
+    Route::redirect('/', '/login');
 
 // Redirect guest users to login page
     Route::group(['middleware' => ['guest']], function () {
-        Route::redirect('/', '/login');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     });
 
