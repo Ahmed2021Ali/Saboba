@@ -26,7 +26,7 @@ class UserResource extends JsonResource
 
                    isset($this->identifyVerification)  ?
 
-                        $this->identifyVerification()->status === 1 ?
+                        $this->identifyVerification->status === 1 ?
                             "true" //  your account is already verified
 
                             : "false" //The documentation files have been sent -> Not replay Verify -> Witting Replay Verify
