@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'contact_number' => $this->contact_number,
             'overview' => $this->overview,
             'type' => $this->type,
-            'files' => ImagesResource::collection($this->getMedia('userImages')),
+            'images' => ImagesResource::collection($this->getMedia('userImages')),
             'identify_verification' =>
                 $this->type === "company" ?
 
