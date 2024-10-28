@@ -19,7 +19,7 @@ class CityController extends Controller
         $validationData = $request->validate(['name' => 'required|string', 'country_id' => 'required|exists:countries,id']);
         City::create($validationData);
         $country = Country::find($validationData['country_id']);
-        return view('dashboard.country.show', ['cities' => $country->cities, 'country' => $country]);
+        return to_route('country.show', ['cities' => $country->cities, 'country' => $country]);
     }
 
     public function update(Request $request, City $city)
@@ -27,7 +27,7 @@ class CityController extends Controller
         $validationData = $request->validate(['name' => 'nullable|string', 'country_id' => 'nullable|exists:countries,id']);
         $city->update(['name' => $validationData['name'] ?? $city->name]);
         $country = Country::find($validationData['country_id']);
-        return view('dashboard.country.show', ['cities' => $country->cities, 'country' => $country]);
+        return to_route('country.show', ['cities' => $country->cities, 'country' => $country]);
     }
 
     public function destroy(Request $request, City $city)
@@ -35,7 +35,7 @@ class CityController extends Controller
         $validationData = $request->validate(['country_id' => 'nullable|exists:countries,id']);
         $city->delete();
         $country = Country::find($validationData['country_id']);
-        return view('dashboard.country.show', ['cities' => $country->cities, 'country' => $country]);
+        return to_route('country.show', ['cities' => $country->cities, 'country' => $country]);
     }
 
 }
