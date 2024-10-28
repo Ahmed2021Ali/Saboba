@@ -49,6 +49,7 @@ Route::group([
         Route::resource('users', UserController::class);
 
 
+
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
             ->middleware('permission:عرض الأدوار');
 
