@@ -27,7 +27,6 @@ class CountryController extends Controller
 
     public function show(Country $country)
     {
-        dd($country);
         return view('dashboard.city.index', ['country' => $country->cities]);
     }
 
