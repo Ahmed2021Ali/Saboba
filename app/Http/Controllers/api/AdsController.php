@@ -4,7 +4,6 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdsRequest;
-use App\Http\Resources\ImagesResource;
 use App\Http\Traits\ApiResponseTrait;
 use App\Http\Traits\media;
 use App\Models\Ad;
@@ -135,6 +134,7 @@ class AdsController extends Controller
         return $this->successResponse($response);
     }
 
+
     private function prepareAdTranslations($ad)
     {
         $translations = [
@@ -183,5 +183,33 @@ class AdsController extends Controller
         return $translations;
     }
 
+
+
+    public function getAdsByMainCategory($categoryId)
+    {
+        // أول حاجة بنجيب الفئة الرئيسية مع كل الفئات الفرعية بتاعتها
+        $category = Category::with('ads')->where('id', $categoryId)->orWhere('parent_id', $categoryId)->get();
+
+        if ($category->isEmpty()) {
+            return $this->successResponse(null, 'No ads found for this category', 200);
+        }
+
+        $ads = [];
+        foreach ($category as $cat) {
+            foreach ($cat->ads as $ad) {
+                $adData = [
+                    'ad_id' => $ad->id,
+                    'sub_category_id' => $ad->category_id,
+                    'city_id' => $ad->city_id,
+                    'price' => $ad->price,
+                ];
+
+                $translations = $this->prepareAdTranslations($ad);
+                $ads[] = $adData + $translations;
+            }
+        }
+
+        return $this->successResponse($ads);
+    }
 
 }
