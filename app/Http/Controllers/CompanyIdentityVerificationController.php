@@ -12,6 +12,7 @@ class CompanyIdentityVerificationController extends Controller
 {
     public function sendCompanyIdentifyVerification(Request $request)
     {
+        dd(auth()->user()->type);
         if (Auth()->type === "company") {
 
             $identifyVerification = CompanyIdentityVerification::where('user_id', Auth()->id())->first();
