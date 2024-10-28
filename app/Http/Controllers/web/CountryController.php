@@ -22,7 +22,7 @@ class CountryController extends Controller
             $country->addMedia($validationData['image'])->toMediaCollection('countryImages');
         }
         flash()->success('تم اضافة الدولة  بنجاح');
-        return redirect()->route('dashboard.country.index');
+        return redirect()->route('country.index');
     }
 
     public function update(Request $request, Country $country)
@@ -33,7 +33,7 @@ class CountryController extends Controller
             $country->addMedia($validationData['image'])->toMediaCollection('countryImages');
         }
         flash()->success('تم تحديث الدولة  بنجاح');
-        return redirect()->route('dashboard.country.index');
+        return redirect()->route('country.index');
     }
 
     public function destroy(Country $country)
