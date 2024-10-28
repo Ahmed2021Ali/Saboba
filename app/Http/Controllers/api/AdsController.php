@@ -224,19 +224,10 @@ class AdsController extends Controller
 
     public function getMainCategoryByAdId($ad_id)
     {
-        $validator = validator(['ad_id' => $ad_id], [
-            'ad_id' => 'required|integer|exists:ads,id',
-        ], [
-            'ad_id.required' => 'The ad ID is required.',
-            'ad_id.integer' => 'The ad ID must be an integer.',
-            'ad_id.exists' => 'The ad ID does not exist.',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->errorResponse($validator->errors()->first(), 400);
-        }
-
         $ad = Ad::find($ad_id);
+        if (!$ad) {
+            return $this->errorResponse('Ad not found', 404);
+        }
 
         $mainCategory = $ad->category;
         while ($mainCategory->parent) {
