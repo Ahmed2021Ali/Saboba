@@ -20,7 +20,7 @@ class ExperienceController extends Controller
                 'Data' => Auth::User()->experiences()
             ], 200);
         }
-        return response()->json(['message' => 'No experiences for You'], 200);
+        return response()->json(['message' => 'No experiences for You'], 404);
     }
 
     public function store(ExperienceRequest $request)
@@ -43,7 +43,7 @@ class ExperienceController extends Controller
             return response()->json([
                 'message' => 'Experience Created Successfully. ',
                 'Data' => new ExperienceResource($experience)
-            ], 201);
+            ], 200);
         }
         return response()->json(['error' => 'An error occurred'], 404);
     }
