@@ -103,7 +103,7 @@ class AdsController extends Controller
             'city_id' => $ad->city_id,
             'price' => $ad->price,
             'main_image' => $ad->getFirstMediaUrl('ad_main_image'),
-            'images' => ImagesResource::collection($this->getMedia('ad_images')),
+            // 'images' => ImagesResource::collection($this->getMedia('ad_images')),
             'reals' => $ad->getFirstMediaUrl('reals'),
         ];
 
