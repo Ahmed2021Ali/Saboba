@@ -13,7 +13,7 @@ class BasicInformationController extends Controller
 
     public function index()
     {
-        if (Auth::User()->basicInformation->isEmpty()) {
+        if (!Auth::User()->basicInformation()) {
             return response()->json([
                 'message' => 'No  Basic Information For You  ',
             ], 404);
