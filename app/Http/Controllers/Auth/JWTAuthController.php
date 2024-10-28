@@ -64,7 +64,7 @@ class JWTAuthController extends Controller
         $userData = auth()->user();
 
         return $this->successResponse([
-            'user' => $userData,
+            'user' => new UserResource($userData),
             'token' => $token
         ], 'Login successful', 200);
     }
