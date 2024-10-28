@@ -52,15 +52,12 @@
                                                         </button>
                                                         @include('dashboard.images.index', ['model' => $country, 'folder' => 'countryImages'])
 
-                                                    </td>
-                                                    <td>
-
-{{--                                                        <a class="btn btn-sm btn-warning" data-toggle="modal"
-                                                           data-target="#edit_latest_news_{{$latestNew->id}}"
+                                                       <a class="btn btn-sm btn-warning" data-toggle="modal"
+                                                           data-target="#edit_latest_news_{{$country->id}}"
                                                            data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>
                                                             تعديل</a>
-                                                        @include('dashboard.latest_news.edit',['latest_news'=>$latestNew,'category'=>$category])
---}}
+                                                        @include('dashboard.country.edit',['country'=>$country])
+
 
                                                         <button type="button" class="btn btn-sm btn-danger"
                                                                 data-toggle="modal"
