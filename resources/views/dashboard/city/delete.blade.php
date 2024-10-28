@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <input type="hidden" name="country_id" value="{{ $country->id }}">
                 </div>
-                
+
                 @csrf
                 @method('DELETE')
                 <h4 style="text-align: center"> هل تريد حذف هذا الدولة {{$city->name}}</h4>

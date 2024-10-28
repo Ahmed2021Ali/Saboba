@@ -13,7 +13,9 @@
                     @method('put')
                     @csrf
                     <h3 class="text-center"> الدولة  {{$country->name}}   </h3>
-
+                    <div class="form-group">
+                        <input type="hidden" name="country_id" value="{{ $country->id }}">
+                    </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label"> اسم المدينة </label>
                         <textarea class="form-control" name="name" id="message-text">{{$city->name}}</textarea>
