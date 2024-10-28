@@ -11,8 +11,21 @@
     <main role="main" class="main-content">
 
         @if($countries->IsNotempty())
-            <h1 class="text-center"> جميع الفئات </h1>
+            <h1 class="text-center"> جميع الدول </h1>
             <br>
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <div class="pull-right mb-2">
+                <br>
+                <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
+                        data-target="#varyModal" data-whatever="@mdo">  اضافة دوله جدبدة
+                </button>
+                @include('dashboard.country.create')
+            </div>
+
             <div class="row">
                 @foreach($countries as $country)
                     <div class="col-md-6 col-xl-3 mb-4">
@@ -21,31 +34,31 @@
                                 <div class="row align-items-center">
                                     <div class="col-3 text-center">
 
-{{--
-                                        <a href="{{route('getNews',$country->id)}}">
---}}
+                                        {{--
+                                                                                <a href="{{route('getNews',$country->id)}}">
+                                        --}}
 
-                                      <span class="circle circle-sm bg-primary-light">
+                                        <span class="circle circle-sm bg-primary-light">
                                         <i class="fe fe-16 fe-shopping-bag text-white mb-0"></i>
                                       </span>
 
-{{--
-                                        </a>
---}}
+                                        {{--
+                                                                                </a>
+                                        --}}
 
                                     </div>
 
-{{--
-                                    <a href="{{route('getNews',$category->id)}}">
---}}
+                                    {{--
+                                                                        <a href="{{route('getNews',$category->id)}}">
+                                    --}}
 
-                                        <div class="col pr-0">
-                                            <h4 class="text-light mb-0">{{$country->name}}</h4>
-                                        </div>
+                                    <div class="col pr-0">
+                                        <h4 class="text-light mb-0">{{$country->name}}</h4>
+                                    </div>
 
-{{--
-                                    </a>
---}}
+                                    {{--
+                                                                        </a>
+                                    --}}
 
                                 </div>
                             </div>
@@ -55,7 +68,7 @@
 
             </div>
         @else
-            <h1 style="text-align: center"> لا يوجد فئات </h1>
+            <h1 style="text-align: center"> لا يوجد دول </h1>
         @endif
 
     </main>
