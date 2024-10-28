@@ -20,7 +20,7 @@ class LanguageController extends Controller
                 'message' => 'Your Languages ',
                 'Data' => LanguageResource::collection(Auth::User()->userLanguages)], 200);
         }
-        return response()->json(['message' => 'No Languages  for You']);
+        return response()->json(['message' => 'No Languages  for You'],404);
 
     }
 
