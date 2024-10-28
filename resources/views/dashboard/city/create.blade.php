@@ -9,22 +9,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('country.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('city.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label" > اسم دولة  </label>
+                        <label for="message-text" class="col-form-label" > اسم المدينة  </label>
                         <textarea class="form-control" name="name" id="message-text" required></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="files">الصور</label>
-                        <input type="file" name="image" id="file" class="form-control" multiple accept="image/*" required>
-                    </div>
 
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn mb-2 btn-primary">  اضافة دولة جديدة </button>
+                        <button type="submit" class="btn mb-2 btn-primary">  اضافة مدينة جديدة </button>
                     </div>
                 </form>
             </div>

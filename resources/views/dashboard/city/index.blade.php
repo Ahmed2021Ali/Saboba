@@ -18,13 +18,13 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    {{--                    <div class="pull-right mb-2">
+                                       <div class="pull-right mb-2">
                                             <br>
                                             <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
-                                                    data-target="#varyModal" data-whatever="@mdo">اضافة دولة جديد
+                                                    data-target="#varyModal" data-whatever="@mdo">اضافة مدينة جديد
                                             </button>
-                                            @include('dashboard.country.create')
-                                        </div>--}}
+                                            @include('dashboard.city.create')
+                                        </div>
 
                     @if($cities->IsNotempty())
 
