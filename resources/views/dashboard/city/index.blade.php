@@ -23,7 +23,7 @@
                         <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
                                 data-target="#varyModal" data-whatever="@mdo">اضافة مدينة جديد
                         </button>
-                        @include('dashboard.city.create')
+                        @include('dashboard.city.create',['country'=>$country])
                     </div>
 
                     @if($cities->IsNotempty())

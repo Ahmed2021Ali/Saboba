@@ -13,14 +13,17 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label" > اسم المدينة  </label>
+                        <input type="hidden" name="country_id" value="{{ $country->id }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label"> اسم المدينة </label>
                         <textarea class="form-control" name="name" id="message-text" required></textarea>
                     </div>
 
 
-
                     <div class="modal-footer">
-                        <button type="submit" class="btn mb-2 btn-primary">  اضافة مدينة جديدة </button>
+                        <button type="submit" class="btn mb-2 btn-primary"> اضافة مدينة جديدة</button>
                     </div>
                 </form>
             </div>
