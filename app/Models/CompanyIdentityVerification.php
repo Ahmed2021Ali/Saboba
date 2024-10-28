@@ -7,14 +7,21 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class CompanyProfile extends Model implements HasMedia
+class CompanyIdentityVerification extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
-    protected $fillable = ['documentation_status'];
+    protected $fillable = ['documentation_status', 'user_id'];
 
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaCollection('documentationFiles');
     }
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
+    }
+
+
 }

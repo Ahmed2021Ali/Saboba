@@ -28,6 +28,8 @@ class AdsController extends Controller
         }
     }
 
+
+
     public function createNewAd(StoreAdsRequest $request)
     {
         $ad = Ad::create([

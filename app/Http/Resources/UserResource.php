@@ -20,6 +20,16 @@ class UserResource extends JsonResource
             'contact_number' => $this->contact_number,
             'overview' => $this->overview,
             'files' => ImagesResource::collection($this->getMedia('userImages')),
+            'identify_verification' =>
+                $this->type === 'company' ?
+
+                        $this->identifyVerification() ?
+
+                              $this->identifyVerification()->status === 1 ? "true" : "false"
+
+                        : "false"
+
+                : 'Not Identify Verification For User',
         ];
     }
 }

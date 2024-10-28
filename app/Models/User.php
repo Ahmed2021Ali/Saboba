@@ -82,4 +82,9 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     {
         return $this->hasMany(Follow::class, 'following_id')->select('follower_id')->get();
     }
+
+    public function identifyVerification()
+    {
+        return $this->hasOne(CompanyIdentityVerification::class)->select('id', 'status')->where('type', 'company')->get();
+    }
 }
