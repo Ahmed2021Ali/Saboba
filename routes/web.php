@@ -43,6 +43,8 @@ Route::group([
         // User Management Routes
         Route::resource('users', UserController::class);
 
+
+
         
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
