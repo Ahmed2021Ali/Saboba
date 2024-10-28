@@ -187,29 +187,32 @@ class AdsController extends Controller
 
     public function getAdsByMainCategory($categoryId)
     {
-        // أول حاجة بنجيب الفئة الرئيسية مع كل الفئات الفرعية بتاعتها
-        $category = Category::with('ads')->where('id', $categoryId)->orWhere('parent_id', $categoryId)->get();
-
-        if ($category->isEmpty()) {
-            return $this->successResponse(null, 'No ads found for this category', 200);
+        $category = Category::find($categoryId);
+        if (!$category) {
+            return $this->errorResponse('Category not found', 404);
         }
 
-        $ads = [];
-        foreach ($category as $cat) {
-            foreach ($cat->ads as $ad) {
-                $adData = [
-                    'ad_id' => $ad->id,
-                    'sub_category_id' => $ad->category_id,
-                    'city_id' => $ad->city_id,
-                    'price' => $ad->price,
-                ];
+        $categoryIds = Category::where('parent_id', $categoryId)->orWhere('id', $categoryId)->pluck('id');
+        $ads = Ad::whereIn('category_id', $categoryIds)->get();
 
-                $translations = $this->prepareAdTranslations($ad);
-                $ads[] = $adData + $translations;
-            }
+        if ($ads->isEmpty()) {
+            return $this->successResponse([], 'No ads found for the requested category', 200);
         }
 
-        return $this->successResponse($ads);
+        $response = [];
+        foreach ($ads as $ad) {
+            $adData = [
+                'ad_id' => $ad->id,
+                'sub_category_id' => $ad->category_id,
+                'city_id' => $ad->city_id,
+                'price' => $ad->price,
+            ];
+
+            $translations = $this->prepareAdTranslations($ad);
+            $response[] = $adData + $translations;
+        }
+
+        return $this->successResponse($response, 'Ads for the requested category');
     }
 
 }
