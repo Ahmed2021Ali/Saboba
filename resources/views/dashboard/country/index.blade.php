@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title"> اضافة دولة جديد</h2>
+                    <h2 class="mb-2 page-title text-center" style="text-align: center"> اضافة دولة جديد</h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
