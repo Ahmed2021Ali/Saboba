@@ -14,7 +14,7 @@
 
                     <div class="form-group">
                         <label for="message-text" class="col-form-label"> اسم دولة  </label>
-                        <textarea class="form-control" name="content" id="message-text"></textarea>
+                        <textarea class="form-control" name="name" id="message-text"></textarea>
                     </div>
 
                     <div class="form-group">
