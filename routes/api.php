@@ -11,27 +11,30 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SkillsController;
 use App\Http\Middleware\CheckPersonalMiddleware;
+use App\Http\Middleware\CheckCompanyMiddleware;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ChatController;
 use \App\Http\Controllers\api\CommentController;
 
 
-Route::middleware('guest')->group(function () {
-
-    Route::post('/login', [JWTAuthController::class, 'login'])->name('login');
-    Route::post('/register', [JWTAuthController::class, 'register']);
-
+Route::controller(JWTAuthController::class)->middleware('guest')->group(function () {
+    Route::post('/login', 'login')->name('login');
+    Route::post('/register', 'register');
 });
 
 Route::middleware([JwtMiddleware::class])->group(function () {
 
-    Route::get('get-auth-user', [JWTAuthController::class, 'getAuthUser']);
-    Route::PUT('update-user-profile', [JWTAuthController::class, 'updateUserProfile']);
-    Route::post('logout', [JWTAuthController::class, 'logout']);
-    
-    Route::get('status-company-identify-verification', [CompanyIdentityVerificationController::class, 'statusCompanyIdentifyVerification']);
-    Route::Post('send-company-identify-verification', [CompanyIdentityVerificationController::class, 'sendCompanyIdentifyVerification']);
+    Route::controller(JWTAuthController::class)->group(function () {
+        Route::get('get-auth-user', 'getAuthUser');
+        Route::PUT('update-user-profile', 'updateUserProfile');
+        Route::post('logout', 'logout');
+    });
+
+    Route::middleware([CheckCompanyMiddleware::class])->controller(CompanyIdentityVerificationController::class)->group(function () {
+        Route::get('status-company-identify-verification', 'statusCompanyIdentifyVerification');
+        Route::Post('send-company-identify-verification', 'sendCompanyIdentifyVerification');
+    });
 
     Route::middleware([CheckPersonalMiddleware::class])->prefix('jobProfile')->group(function () {
         Route::resource('basicInformation', BasicInformationController::class);

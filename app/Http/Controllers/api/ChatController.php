@@ -20,7 +20,10 @@ class ChatController extends Controller
     {
         $chats = Chat::where('receiver_id', Auth::id())
             ->Orwhere('sender_id', Auth::id())->get();
-        return response()->json(['Data' => ChatResource::collection($chats), 'success' => 'Your Chats'], 200);
+        if ($chats->isEmpty()) {
+            return response()->json(['message' => 'There are no conversations with you yet, go and chat '], 404);
+        }
+        return response()->json(['Data' => ChatResource::collection($chats), 'message' => 'Your Chats'], 200);
 
     }
 
@@ -30,9 +33,9 @@ class ChatController extends Controller
             ->Orwhere('sender_id', Auth::id())->first();
         if ($chat) {
             $message = message::where('chat_id', $chat->id)->get();
-            return response()->json(['Data' => MessageResource::collection($message), 'success' => 'Your Message'], 200);
+            return response()->json(['Data' => MessageResource::collection($message), 'message' => 'Your Messages'], 200);
         }
-        return response()->json(['success' => 'No Chat With You'], 200);
+        return response()->json(['message' => 'There are no messages in this conversation.'], 404);
     }
 
 
@@ -66,18 +69,18 @@ class ChatController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            return response()->json(['message' => $e->getMessage()]);
+            return response()->json(['message' => $e->getMessage()],500);
         }
-        return response()->json(['Data' => new MessageResource($message), 'success' => 'Send Message Successfully'], 201);
+        return response()->json(['Data' => new MessageResource($message), 'message' => 'Send Message Successfully'], 201);
     }
 
     public function Val($validationData)
     {
         if (!isset($validationData['body']) && !isset($validationData['files'])) {
-            return response()->json(['error' => 'Your Cant Message Empty , must Send Message Or File ']);
+            return response()->json(['message' => 'Your Cant Message Empty , must Send Message Or File '],404);
         }
         if ($validationData['receiver_id'] === Auth::id()) {
-            return response()->json(['error' => 'Cannot send message to yourself']);
+            return response()->json(['message' => 'Cannot send message to yourself'],500);
         }
         return null;
     }

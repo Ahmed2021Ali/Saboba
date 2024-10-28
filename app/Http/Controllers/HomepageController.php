@@ -13,7 +13,10 @@ class HomepageController extends Controller
         $languages = Language::select('id')->with(['translations' => function ($query) use ($request) {
             $query->where('locale', $request->getLanguages());
         }])->get();
-        return response()->json($languages);
+        if ($languages->isEmpty()) {
+            return response()->json(['message' => 'No languages found.'], 404);
+        }
+        return response()->json(['message' => 'Languages are Available', 'Data' => $languages], 200);
     }
 
     public function showAllSkills(Request $request)
@@ -21,7 +24,10 @@ class HomepageController extends Controller
         $skills = Skills::select('id')->with(['translations' => function ($query) use ($request) {
             $query->where('locale', $request->getLanguages());
         }])->get();
-        return response()->json($skills);
+        if ($skills->isEmpty()) {
+            return response()->json(['message' => 'No Skills found.'], 404);
+        }
+        return response()->json(['message' => 'Skills are Available', 'Data' => $skills], 200);
     }
 
     public function showAllCountries(Request $request)
@@ -29,7 +35,10 @@ class HomepageController extends Controller
         $countries = Skills::select('id')->with(['translations' => function ($query) use ($request) {
             $query->where('locale', $request->getLanguages());
         }])->get();
-        return response()->json($countries);
+        if ($countries->isEmpty()) {
+            return response()->json(['message' => 'No Countries found.'], 404);
+        }
+        return response()->json(['message' => 'Countries are Available', 'Data' => $countries], 200);
     }
 
     public function showAllCities(Request $request)
@@ -37,7 +46,10 @@ class HomepageController extends Controller
         $cities = Skills::select('id')->with(['translations' => function ($query) use ($request) {
             $query->where('locale', $request->getLanguages());
         }])->get();
-        return response()->json($cities);
+        if ($cities->isEmpty()) {
+            return response()->json(['message' => 'No Cities found.'], 404);
+        }
+        return response()->json(['message' => 'Cities are Available', 'Data' => $cities], 200);
     }
 
 
