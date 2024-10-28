@@ -18,15 +18,15 @@
                             {{ session('success') }}
                         </div>
                     @endif
-{{--                    <div class="pull-right mb-2">
-                        <br>
-                        <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
-                                data-target="#varyModal" data-whatever="@mdo">اضافة دولة جديد
-                        </button>
-                        @include('dashboard.country.create')
-                    </div>--}}
+                    {{--                    <div class="pull-right mb-2">
+                                            <br>
+                                            <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
+                                                    data-target="#varyModal" data-whatever="@mdo">اضافة دولة جديد
+                                            </button>
+                                            @include('dashboard.country.create')
+                                        </div>--}}
 
-                    @if($countries->IsNotempty())
+                    @if($cities->IsNotempty())
 
                         <div class="row my-4">
                             <div class="col-md-12">
@@ -36,33 +36,33 @@
                                             <thead>
                                             <tr>
                                                 <th></th>
-                                                <th>  اسم الدولة </th>
+                                                <th> اسم المدينة</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach ($countries as $key => $country)
+                                            @foreach ($cities as $key => $city)
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
 
-                                                    <td> {{ $country->name }}</td>
+                                                    <td> {{ $city->name }}</td>
                                                     <td>
 
-{{--
-                                                       <a class="btn btn-sm btn-warning" data-toggle="modal"
-                                                           data-target="#edit_latest_news_{{$country->id}}"
-                                                           data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>
-                                                            تعديل</a>
-                                                        @include('dashboard.country.edit',['country'=>$country])
+                                                        {{--
+                                                                                                               <a class="btn btn-sm btn-warning" data-toggle="modal"
+                                                                                                                   data-target="#edit_latest_news_{{$country->id}}"
+                                                                                                                   data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>
+                                                                                                                    تعديل</a>
+                                                                                                                @include('dashboard.country.edit',['country'=>$country])
 
 
-                                                        <button type="button" class="btn btn-sm btn-danger"
-                                                                data-toggle="modal"
-                                                                data-target="#delete_latest_news_{{$country->id}}"><i
-                                                                class="fa-solid fa-trash"></i> حذف
-                                                        </button>
-                                                        @include('dashboard.country.delete',['country'=>$country,])
+                                                                                                                <button type="button" class="btn btn-sm btn-danger"
+                                                                                                                        data-toggle="modal"
+                                                                                                                        data-target="#delete_latest_news_{{$country->id}}"><i
+                                                                                                                        class="fa-solid fa-trash"></i> حذف
+                                                                                                                </button>
+                                                                                                                @include('dashboard.country.delete',['country'=>$country,])
 
---}}
+                                                        --}}
 
                                                     </td>
                                                 </tr>
@@ -78,7 +78,7 @@
                         </div>
 
                     @else
-                        <h1 style="text-align: center"> لا يوجد دول مضافة  </h1>
+                        <h1 style="text-align: center"> لا يوجد دول مضافة </h1>
                     @endif
                     <p class="text-center text-primary"><small>دليل من ItSolutionStuff.com</small></p>
                 </div>

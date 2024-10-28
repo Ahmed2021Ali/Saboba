@@ -27,7 +27,7 @@ class CountryController extends Controller
 
     public function show(Country $country)
     {
-        return view('dashboard.city.index', ['country' => $country->cities]);
+        return view('dashboard.city.index', ['cities' => $country->cities]);
     }
 
     public function update(Request $request, Country $country)
