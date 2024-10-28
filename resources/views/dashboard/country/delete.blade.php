@@ -7,11 +7,11 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form method="POST" action="{{ route('city.destroy', $city) }}" style="display:inline">
+            <form method="POST" action="{{ route('country.destroy', $country) }}" style="display:inline">
 
                 @csrf
                 @method('DELETE')
-                <h4 style="text-align: center"> هل تريد حذف هذا المدينة {{$city->name}}</h4>
+                <h4 style="text-align: center"> هل تريد حذف هذا الدولة {{$country->name}}</h4>
                 <div class="modal-footer">
                     <button type="submit" class="btn mb-2 btn-primary " >تاكيد الحذف </button>
                 </div>
