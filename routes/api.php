@@ -20,7 +20,7 @@ Route::post('/register', [JWTAuthController::class, 'register']);
 
 
 Route::middleware([JwtMiddleware::class])->group(function () {
-    Route::PUT('get-auth-user', [JWTAuthController::class, 'getAuthUser']);
+    Route::get('get-auth-user', [JWTAuthController::class, 'getAuthUser']);
     Route::PUT('update-user-profile', [JWTAuthController::class, 'updateUserProfile']);
     Route::Post('company-identify-verification', [JWTAuthController::class, 'companyIdentifyVerification']);
     Route::post('logout', [JWTAuthController::class, 'logout']);
