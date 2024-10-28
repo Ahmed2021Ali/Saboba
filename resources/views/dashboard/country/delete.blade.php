@@ -11,7 +11,7 @@
 
                 @csrf
                 @method('DELETE')
-                <h4 style="text-align: center"> هل تريد حذف هذا البوست {{$country->content}}</h4>
+                <h4 style="text-align: center"> هل تريد حذف هذا الدولة {{$country->content}}</h4>
                 <div class="modal-footer">
                     <button type="submit" class="btn mb-2 btn-primary " >تاكيد الحذف </button>
                 </div>

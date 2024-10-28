@@ -40,6 +40,6 @@ class CountryController extends Controller
     {
         $country->delete();
         flash()->success('تم حذف الدولة  بنجاح');
-        return redirect()->route('dashboard.country.index');
+        return redirect()->route('country.index');
     }
 }
