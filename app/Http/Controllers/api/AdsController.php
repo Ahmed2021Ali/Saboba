@@ -234,17 +234,22 @@ class AdsController extends Controller
             $mainCategory = $mainCategory->parent;
         }
     
-        $translationEn = $mainCategory->translations->where('locale', 'en')->first()->name ?? '';
-        $translationAr = $mainCategory->translations->where('locale', 'ar')->first()->name ?? '';
+        $translationEn = $mainCategory->translations->where('locale', 'en')->first();
+        $translationAr = $mainCategory->translations->where('locale', 'ar')->first();
     
         $categoryData = [
             'main_category_id' => $mainCategory->id,
-            'translation_en' => $translationEn,
-            'translation_ar' => $translationAr, 
+            'translation_en' => [
+                'name' => $translationEn ? $translationEn->name : ''
+            ],
+            'translation_ar' => [
+                'name' => $translationAr ? $translationAr->name : ''
+            ]
         ];
     
         return $this->successResponse($categoryData, 'Main category retrieved successfully');
     }
+    
     
 
 
