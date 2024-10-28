@@ -53,7 +53,7 @@
                                                            data-whatever="@mdo"><i
                                                                 class="fa-solid fa-pen-to-square"></i>
                                                             تعديل</a>
-                                                        @include('dashboard.city.edit',['city'=>$city])
+                                                        @include('dashboard.city.edit',['city'=>$city ,'country'=>$country])
 
 
                                                         <button type="button" class="btn btn-sm btn-danger"

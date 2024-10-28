@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <form action="{{route('city.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <h3 class="text-center">{{$country->name}}</h3>
+                    <h3 class="text-center">{{$country->name}} الدولة </h3>
                     <div class="form-group">
                         <input type="hidden" name="country_id" value="{{ $country->id }}">
                     </div>

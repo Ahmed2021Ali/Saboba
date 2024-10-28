@@ -12,6 +12,7 @@
                 <form action="{{route('city.update',$city)}}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
+                    <h3 class="text-center">{{$country->name}} الدولة </h3>
 
                     <div class="form-group">
                         <label for="message-text" class="col-form-label"> اسم المدينة </label>
