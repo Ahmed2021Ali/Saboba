@@ -244,13 +244,9 @@ class AdsController extends Controller
 
 
 
-    public function deleteAdById(Request $request, $ad_id)
+    public function deleteAdById($ad_id)
     {
-        $validatedData = $request->validate([
-            'ad_id' => 'required|integer|exists:ads,id'
-        ]);
-
-        $ad = Ad::find($validatedData['ad_id']);
+        $ad = Ad::find($ad_id);
         
         if (!$ad) {
             return $this->errorResponse('Ad not found', 404);
