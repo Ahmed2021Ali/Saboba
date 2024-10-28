@@ -15,6 +15,12 @@ class City extends Model
     public $translatedAttributes = ['name'];
     protected $fillable = ['country_id', 'locale', 'name'];
     public $timestamps = false;
-    protected $hidden = ['name','created_at', 'updated_at'];
+    protected $hidden = ['name', 'created_at', 'updated_at'];
+
+
+    public function Country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 
 }

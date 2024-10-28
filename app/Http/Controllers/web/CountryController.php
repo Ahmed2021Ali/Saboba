@@ -25,6 +25,12 @@ class CountryController extends Controller
         return redirect()->route('country.index');
     }
 
+    public function show(Country $country)
+    {
+        dd($country);
+        return view('dashboard.city.index', ['country' => $country->cities]);
+    }
+
     public function update(Request $request, Country $country)
     {
         $validationData = $request->validate(['name' => 'nullable|string', 'image' => 'nullable|image|max:10000']);

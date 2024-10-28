@@ -9,17 +9,22 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Country extends Model implements  HasMedia
+class Country extends Model implements HasMedia
 {
-    use HasFactory, Translatable,InteractsWithMedia;
+    use HasFactory, Translatable, InteractsWithMedia;
 
     public $translatedAttributes = ['name']; // العمود اللي هيتترجم
     // protected $fillable = []; // هنا ممكن تضيف أي أعمدة تحتاجها
     public $timestamps = false;
-    protected $hidden = ['name','created_at', 'updated_at'];
+    protected $hidden = ['name', 'created_at', 'updated_at'];
 
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaCollection('countryImages');
+    }
+
+    public function cities()
+    {
+        return $this->hasMany(City::class);
     }
 }
