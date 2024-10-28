@@ -17,7 +17,6 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         $validationData = $request->validate(['name' => 'required|string', 'image' => 'required|image|max:10000']);
-        dd($validationData);
         $country = Country::create($validationData);
         if (isset($validationData['image'])) {
             $country->addMedia($validationData['image'])->toMediaCollection('countryImages');
