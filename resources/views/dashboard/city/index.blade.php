@@ -18,13 +18,13 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <div class="pull-right mb-2">
+{{--                    <div class="pull-right mb-2">
                         <br>
                         <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
                                 data-target="#varyModal" data-whatever="@mdo">اضافة دولة جديد
                         </button>
                         @include('dashboard.country.create')
-                    </div>
+                    </div>--}}
 
                     @if($countries->IsNotempty())
 
@@ -46,16 +46,8 @@
 
                                                     <td> {{ $country->name }}</td>
                                                     <td>
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                data-target="#imageModal_{{$country->id}}">
-                                                            <i class="fa fa-edit"></i> عرض صورة الدولة
-                                                        </button>
-                                                        @include('dashboard.images.index', ['model' => $country, 'folder' => 'countryImages'])
 
-                                                        <a class="btn btn-sm btn-info" href="{{ route('country.show', $country) }}">
-                                                            <i class="fa-solid fa-list"></i>  عرض المدن لهذه الدولة
-                                                        </a>
-
+{{--
                                                        <a class="btn btn-sm btn-warning" data-toggle="modal"
                                                            data-target="#edit_latest_news_{{$country->id}}"
                                                            data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>
@@ -70,6 +62,7 @@
                                                         </button>
                                                         @include('dashboard.country.delete',['country'=>$country,])
 
+--}}
 
                                                     </td>
                                                 </tr>
