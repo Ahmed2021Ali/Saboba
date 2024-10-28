@@ -23,7 +23,7 @@ Route::group([
             Route::get('view-login', 'loginForm')->name('login.form');
             Route::post('submit-login', 'login')->name('login.confirm');
         });
-        
+
     });
 
 // Roles Management Routes
