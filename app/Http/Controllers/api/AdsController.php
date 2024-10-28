@@ -185,7 +185,7 @@ class AdsController extends Controller
 
 
 
-    public function getAdsByCategory($categoryId)
+    public function getAdsByMainCategory($categoryId)
     {
         $category = Category::find($categoryId);
         if (!$category) {
