@@ -94,7 +94,7 @@
             </a>
         </li>
         <li class="nav-item dropdown">
-            <a href="{{route('identity-verification.index')}}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+            <a href="{{route('identity-verification.index')}}">
                 <i class="fe fe-file-text fe-16"></i>
                 <span class="ml-3 item-text">النماذج</span>
             </a>
