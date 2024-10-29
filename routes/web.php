@@ -61,7 +61,7 @@ Route::group([
         // identity-verification Routes
         Route::resource('verifications', IdentityVerificationController::class);
 
-        // identity-verification Routes
+        // ads Routes
         Route::resource('ads', AdController::class);
 
 
