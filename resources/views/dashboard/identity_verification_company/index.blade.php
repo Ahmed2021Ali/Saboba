@@ -60,7 +60,7 @@
 
 
 
-                                                        <a class="btn btn-sm btn-success" data-toggle="modal"
+                                                        <a class="btn btn-sm btn-secondary" data-toggle="modal"
                                                            data-target="#accept_verification_{{$verification->id}}"
                                                            data-whatever="@mdo" style="color: #000000"><i class="fa-solid fa-pen-to-square"></i>
                                                             قبول اثبات الهوية </a>
