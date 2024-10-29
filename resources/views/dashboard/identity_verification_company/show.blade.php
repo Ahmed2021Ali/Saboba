@@ -36,7 +36,6 @@
                                             <th> العمليات</th>
                                         </tr>
                                         </thead>
-
                                         <tbody>
                                         @if($verifications->IsNotempty())
                                             @foreach ($verifications as $key => $verification)
@@ -72,7 +71,6 @@
                                             <h1 style="text-align: center"> لا يوجد شركات مثبته الهوية </h1>
                                         @endif
                                         </tbody>
-
                                     </table>
                                     {{--
                                                                         {!! $subAddresses->links/*('pagination::bootstrap-5')*/ !!}
