@@ -87,7 +87,7 @@
                         </div>
 
                     @else
-                        <h1 style="text-align: center"> لا يوجد دول مضافة </h1>
+                        <h1 style="text-align: center"> لا يوجد شركات قيد المراجعة </h1>
                     @endif
                     <p class="text-center text-primary"><small>دليل من ItSolutionStuff.com</small></p>
                 </div>
