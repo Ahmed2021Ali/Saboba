@@ -5,7 +5,7 @@
     <nav class="vertnav navbar navbar-light">
         <!-- شريط التنقل -->
         <div class="w-100 mb-4 d-flex">
-            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="">
                 <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg"
                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120"
                      xml:space="preserve">
@@ -81,7 +81,7 @@
                     @endcan
                 </ul>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="{{route('categories.index')}}">
                     <i class="fe fe-folder fe-16"></i>
@@ -129,123 +129,20 @@
 
 
 
-            <!-- Existing Stores Section -->
-            <li class="nav-item dropdown">
-                <a href="#stores" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-box fe-16"></i>
-                    <span class="ml-3 item-text">المخازن</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="stores">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="">
-                            <i class="fe fe-eye fe-16"></i>
-                            <span class="ml-1 item-text">عرض المخازن</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="">
-                            <i class="fe fe-plus-circle fe-16"></i>
-                            <span class="ml-1 item-text">إضافة مخزن</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
 
-
-
-
-            <li class="nav-item w-100">
-                <a class="nav-link" href="">
-                    <i class="fe fe-star fe-16"></i>
-                    <span class="ml-3 item-text">إنشاء بوست جديد</span>
-                </a>
-            </li>
             <li class="nav-item w-100">
                 <a class="nav-link" href="">
                     <i class="fe fe-star fe-16"></i>
                     <span class="ml-3 item-text">حظر المستخدمين</span>
                 </a>
             </li>
-            <li class="nav-item w-100">
-                <a class="nav-link" href="widgets.html">
-                    <i class="fe fe-star fe-16"></i>
-                    <span class="ml-3 item-text">الأدوات</span>
-                    <span class="badge badge-pill badge-primary">جديد</span>
-                </a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-file-text fe-16"></i>
-                    <span class="ml-3 item-text">النماذج</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="forms">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_elements.html">
-                            <i class="fe fe-check-square fe-16"></i>
-                            <span class="ml-1 item-text">العناصر الأساسية</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_advanced.html">
-                            <i class="fe fe-sliders fe-16"></i>
-                            <span class="ml-1 item-text">العناصر المتقدمة</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-file fe-16"></i>
-                    <span class="ml-3 item-text">الصفحات</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="pages">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="./profile.html">
-                            <i class="fe fe-user fe-16"></i>
-                            <span class="ml-1 item-text">الملف الشخصي</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="./inbox.html">
-                            <i class="fe fe-inbox fe-16"></i>
-                            <span class="ml-1 item-text">البريد الوارد</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a href="#charts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-pie-chart fe-16"></i>
-                    <span class="ml-3 item-text">المخططات</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="charts">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="./chartjs.html">
-                            <i class="fe fe-bar-chart fe-16"></i>
-                            <span class="ml-1 item-text">ChartJS</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
 
 
-            <li class="nav-item dropdown">
-                <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-table fe-16"></i>
-                    <span class="ml-3 item-text">الجداول</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="./tables.html">
-                            <i class="fe fe-grid fe-16"></i>
-                            <span class="ml-1 item-text">جدول بسيط</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+
+
+
+
+
 
         </ul>
     </nav>
