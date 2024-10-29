@@ -19,7 +19,7 @@
                     </video>
                 @elseif(Str::endsWith($image->getFullUrl(), ['pdf']))
 
-                    <iframe src="{{$image->getFullUrl()}}" width="100%" height="400%" loading="lazy" title="PDF-file"></iframe>
+                    <iframe src="{{$image->getFullUrl()}}" width="100%" height="450px" loading="lazy" title="PDF-file"></iframe>
                 @else
                     <p> File format not supported for display.</p>
                 @endif
