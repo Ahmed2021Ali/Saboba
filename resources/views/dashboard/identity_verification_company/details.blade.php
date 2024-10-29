@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <div class="scrollable">
-                        <img class="mySlides" src="{{$verification->user->getFirstMediaUrl('documentationFiles')}}" alt="company Image" width="500" height="350">
+                        <img class="mySlides" src="{{$verification->user->getFirstMediaUrl('userImages')}}" alt="company Image" width="500" height="350">
                         <h4> اسم  : {{$verification->user->name}} </h4>
                         <h4> الاميل  : {{$verification->user->email}} </h4>
                         <h4> نبذة  : {{$verification->user->overview}} </h4>
