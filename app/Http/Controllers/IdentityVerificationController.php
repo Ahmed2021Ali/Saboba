@@ -11,7 +11,7 @@ class IdentityVerificationController extends Controller
     public function index()
     {
         $verifications = CompanyIdentityVerification::where('status', 0)->get();
-        $users_id = CompanyIdentityVerification::where('status', 1)->pluck('user_id');
+        $users_id = CompanyIdentityVerification::where('status', 1)->pluck('id');
         return view('dashboard.identity_verification_company.index', [
             'verifications' => $verifications,
             'companies' => User::where('type', 'company')->whereIn('id', '!=', $users_id)->get()]);
@@ -48,7 +48,7 @@ class IdentityVerificationController extends Controller
         $verifications = CompanyIdentityVerification::where('status', 1)->get();
         return view('dashboard.identity_verification_company.show', [
             'verifications' => $verifications,
-            'companies' => User::where('type', 'company')->get()
+            'companies' => User::where('type', 'company')->whereIn('id', '!=', $verifications->pluck('id'))->get()
         ]);
     }
 
