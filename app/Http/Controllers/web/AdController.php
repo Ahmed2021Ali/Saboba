@@ -20,6 +20,6 @@ class AdController extends Controller
 
     public function show(Ad $ad)
     {
-        return view('dashboard.ads.show', ['ad' => $ad]);
+        return view('dashboard.ads.details_ads', ['ad' => $ad]);
     }
 }
