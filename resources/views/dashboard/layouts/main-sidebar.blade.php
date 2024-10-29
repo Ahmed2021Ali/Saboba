@@ -30,7 +30,7 @@
             <span>المكونات</span>
         </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
-            
+
             {{-- Category--}}
             <li class="nav-item">
                 <a class="nav-link" href="{{route('categories.index')}}">
@@ -97,15 +97,6 @@
                     @endcan
                 </ul>
             </li>
-
-            <!-- Existing Country and City Section -->
-            <li class="nav-item dropdown">
-                <a href="{{route('country.index')}}" class="nav-link">
-                    <i class="fe fe-map-pin fe-16"></i>
-                    <span class="ml-3 item-text">الدول و المدن</span>
-                </a>
-            </li>
-
             <!-- Existing Verification Company Section -->
             <li class="nav-item dropdown">
                 <a href="#verification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
@@ -128,6 +119,14 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+
+            <!-- Existing Country and City Section -->
+            <li class="nav-item dropdown">
+                <a href="{{route('country.index')}}" class="nav-link">
+                    <i class="fe fe-map-pin fe-16"></i>
+                    <span class="ml-3 item-text">الدول و المدن</span>
+                </a>
             </li>
 
             <!-- Existing Block User Section -->
