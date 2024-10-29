@@ -13,23 +13,20 @@ class IdentityVerificationController extends Controller
         return view('dashboard.identity_verification_company.index', compact('verifications'));
     }
 
-    public function update(Request $request ,CompanyIdentityVerification $verification)
+    public function update(Request $request, CompanyIdentityVerification $verification)
     {
-        dd($verification);
-
+        $verification->status = 1;
+        $verification->save();
+        flash()->success('  تم اثبات ملكية الموسسة بنجاح ');
+        return redirect()->route('verifications.index');
     }
 
-    public function completed_identity_verification_companies()
+    public function destroy(Request $request, CompanyIdentityVerification $verification)
     {
-        $companies = CompanyIdentityVerification::where('status', 1)->get();
-
+        dd($request->reason);
+        $verification->delete();
+        flash()->success('  تم حذف اثبات ملكية الموسسة بنجاح ');
+        return redirect()->route('verifications.index');
     }
-
-    public function change_identity_verification_company()
-    {
-
-
-    }
-
 
 }
