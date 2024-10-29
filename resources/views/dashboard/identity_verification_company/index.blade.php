@@ -52,11 +52,13 @@
                                                     <td> {{ $verification->status ===1 ? " تم اثبات ملكية الحساب " : " لم يتم الاثبات الملكية حتي الان " }}</td>
 
                                                     <td>
+
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#imageModal_{{$verification->id}}">
                                                             <i class="fa fa-edit"></i> عرض ملفات الاثبات
                                                         </button>
                                                         @include('dashboard.images.index', ['model' => $verification, 'folder' => 'documentationFiles'])
+
 
                                                         <button type="button" class="btn btn-sm btn-danger"
                                                                 data-toggle="modal"
@@ -72,10 +74,6 @@
                                                                 data-whatever="@mdo" style="color: #000000"><i class="fa-solid fa-pen-to-square"></i>
                                                             قبول اثبات الهوية </button>
                                                         @include('dashboard.identity_verification_company.accept',['verification'=>$verification])                                                    </td>
-
-
-
-
 
 
                                                 </tr>

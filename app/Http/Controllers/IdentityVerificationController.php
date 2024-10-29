@@ -34,7 +34,10 @@ class IdentityVerificationController extends Controller
     public function show($id)
     {
         $verifications = CompanyIdentityVerification::where('status', 1)->get();
-        return view('dashboard.identity_verification_company.show', compact('verifications'));
+        return view('dashboard.identity_verification_company.show', [
+            'verifications' => $verifications,
+            'companies' => User::where('type', 'company')->get()
+        ]);
     }
 
     public function destroy(Request $request, CompanyIdentityVerification $verification)
