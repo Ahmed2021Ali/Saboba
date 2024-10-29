@@ -11,8 +11,9 @@ class AdController extends Controller
 {
     public function index()
     {
-        $ads = Ad::get();
-        dd($ads);
+        $ads = Ad::with(['translations'])->get();
+        return view('dashboard.ads.index', compact('ads'));
+        //dd($ads);
        // $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
       //  $adFields = AdField::where('ad_id', $ad->id)->get();
     }
