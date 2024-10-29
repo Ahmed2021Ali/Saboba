@@ -37,9 +37,11 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @if($verifications->IsNotempty())
-                                            @foreach ($verifications as $key => $verification)
                                                 <tr>
+                                                    @if($verifications->IsNotempty())
+
+                                                    @foreach ($verifications as $key => $verification)
+
                                                     <td>{{ ++$key }}</td>
                                                     <td> {{ $verification->user->name}}</td>
                                                     <td>
@@ -64,12 +66,12 @@
                                                             <i class="fa-solid fa-trash"></i> رفض اثبات الهوية
                                                         </button>
                                                     @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
-
+                                                    @endforeach
+                                                        @else
+                                                            <h1 style="text-align: center"> لا يوجد شركات مثبته الهوية </h1>
+                                                        @endif
                                                 </tr>
-                                            @endforeach
-                                        @else
-                                            <h1 style="text-align: center"> لا يوجد شركات مثبته الهوية </h1>
-                                        @endif
+
                                         </tbody>
                                     </table>
                                     {{--
