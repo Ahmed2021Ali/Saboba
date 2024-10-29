@@ -9,7 +9,17 @@
                 </button>
             </div>
             @foreach($model->getMedia($folder) as $image)
-                <img class="mySlides" src="{{$image->getFullUrl()}}" width="500" height="350">
+                @if(Str::endsWith($image->getFullUrl(), ['jpg', 'jpeg', 'png', 'gif']))
+                    <!-- Display image -->
+                    <img class="mySlides" src="{{$image->getFullUrl()}}" width="500" height="350">
+                @elseif(Str::endsWith($image->getFullUrl(), ['mp4', 'mov', 'ogg']))
+                    <!-- Display video -->
+                    <video width="500" height="350" controls>
+                        <source src="{{$image->getFullUrl()}}" type="video/mp4">
+                    </video>
+                @else
+                    <p> File format not supported for display.</p>
+                @endif
             @endforeach
 <br>
             <div class="text-center">
