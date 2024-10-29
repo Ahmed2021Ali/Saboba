@@ -45,6 +45,8 @@
                                             <th> قسم الاعلان </th>
                                             <th> المدينة </th>
                                             <th> الحالة </th>
+                                            <th> تفاصيل الاعلان </th>
+
                                             <th>الإجراءات</th>
                                         </tr>
                                         </thead>
@@ -55,6 +57,11 @@
                                                 <td>{{ $ad->category->name ?? "no" }}</td>
                                                 <td>{{ $ad->city->name ?? "no" }}</td>
                                                 <td>{{ $ad->status ===0 ? " لم يتم الموافقه علية " :" تم الموافقة " }}</td>
+                                                <td>
+                                                    <a class="btn btn-sm btn-info" href="#">
+                                                        <i class="fa-solid fa-list"></i>  عرض تفاصيل الاعلان 
+                                                    </a>
+                                                </td>
 
                                                 <td>
                                                     {{--
