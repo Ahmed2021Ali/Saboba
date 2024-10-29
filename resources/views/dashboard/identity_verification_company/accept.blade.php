@@ -13,7 +13,7 @@
                     @method('put')
                     @csrf
                     <br>
-                    <h4 style="text-align: center"> اذكر سبب رفض الاثبات الموسسة  {{$verification->user->name}}</h4>
+                    <h4 style="text-align: center"> هل تريد قبول مستندات هذه الموسسة   {{$verification->user->name}}</h4>
                     <br>
 
                     <div class="modal-footer">
