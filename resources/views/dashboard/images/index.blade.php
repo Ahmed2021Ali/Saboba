@@ -21,8 +21,8 @@
 
                     <iframe
                         src="{{$image->getFullUrl()}}"
-                        width="75%"
-                        height="600px"
+                        width="100%"
+                        height="400px"
                         loading="lazy"
                         title="PDF-file"
                     ></iframe>
