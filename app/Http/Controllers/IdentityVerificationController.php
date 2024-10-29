@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class IdentityVerificationController extends Controller
 {
-    public function show_identity_verification_under_review()
+    public function index()
     {
         $verifications = CompanyIdentityVerification::where('status', 0)->get();
         return view('dashboard.identity_verification_company.index', compact('verifications'));
