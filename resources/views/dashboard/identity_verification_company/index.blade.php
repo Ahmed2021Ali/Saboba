@@ -58,18 +58,20 @@
                                                         </button>
                                                         @include('dashboard.images.index', ['model' => $verification, 'folder' => 'documentationFiles'])
 
-                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#accept_verification_{{$verification->id}}"
+                                                                data-whatever="@mdo" style="color: #000000"><i class="fa-solid fa-pen-to-square"></i>
+                                                            قبول اثبات الهوية </button>
+                                                        @include('dashboard.identity_verification_company.accept',['verification'=>$verification])                                                    </td>
+
+
+                                                    <button type="button" class="btn btn-sm btn-danger"
                                                                 data-toggle="modal"
                                                                 data-target="#delete_latest_news_{{$verification->id}}">
                                                             <i class="fa-solid fa-trash"></i> رفض اثبات الهوية
                                                         </button>
                                                         @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
 
-                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                           data-target="#accept_verification_{{$verification->id}}"
-                                                           data-whatever="@mdo" style="color: #000000"><i class="fa-solid fa-pen-to-square"></i>
-                                                            قبول اثبات الهوية </button>
-                                                        @include('dashboard.identity_verification_company.accept',['verification'=>$verification])                                                    </td>
 
 
 
