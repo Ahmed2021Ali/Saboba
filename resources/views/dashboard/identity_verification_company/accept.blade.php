@@ -12,7 +12,9 @@
                 <form action="{{route('verifications.update',$verification)}}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
-
+                    <br>
+                    <h4 style="text-align: center"> اذكر سبب رفض الاثبات الموسسة  {{$verification->user->name}}</h4>
+                    <br>
 
                     <div class="modal-footer">
                         <button type="submit" class="btn mb-2 btn-primary">  قبول اثبات الهوية  </button>
