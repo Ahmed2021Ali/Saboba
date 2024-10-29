@@ -48,7 +48,7 @@ class IdentityVerificationController extends Controller
         $verifications = CompanyIdentityVerification::where('status', 1)->get();
         return view('dashboard.identity_verification_company.show', [
             'verifications' => $verifications,
-            'companies' => User::where('type', 'company')->whereIn('id',$verifications->pluck('user_id')->toArray() )->get()
+            'companies' => User::where('type', 'company')->whereIn('id',$verifications->pluck('user_id')->toArray())->get()
         ]);
     }
 
