@@ -9,8 +9,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('country.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('verifications.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
+
+                    <div class="form-group mb-3">
+                        <label for="storeStatus"><strong> اختار الموسسة </strong></label>
+                        <select name="company_id" id="storeStatus" class="form-control">
+                            @foreach($companies as $company)
+                                <option value="{{$company->id}}">{{$company->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <label for="message-text" class="col-form-label" > اسم دولة  </label>

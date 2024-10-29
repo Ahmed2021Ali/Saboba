@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyIdentityVerification;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class IdentityVerificationController extends Controller
@@ -10,7 +11,16 @@ class IdentityVerificationController extends Controller
     public function index()
     {
         $verifications = CompanyIdentityVerification::where('status', 0)->get();
-        return view('dashboard.identity_verification_company.index', compact('verifications'));
+        return view('dashboard.identity_verification_company.index', [
+            'verifications' => $verifications,
+            'companies' => User::where('type', 'company')->get()
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+
+
     }
 
     public function update(Request $request, CompanyIdentityVerification $verification)

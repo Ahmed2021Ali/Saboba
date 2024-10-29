@@ -20,7 +20,13 @@
                         </div>
                     @endif
 
-
+                    <div class="pull-right mb-2">
+                        <br>
+                        <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
+                                data-target="#varyModal" data-whatever="@mdo">اثبات ملكية موسسة
+                        </button>
+                        @include('dashboard.identity_verification_company.create',['companies'=>$companies])
+                    </div>
                     <div class="row my-4">
                         <div class="col-md-12">
                             <div class="card shadow">
