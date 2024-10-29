@@ -53,7 +53,7 @@
 
                                                         <a class="btn btn-sm btn-danger" data-toggle="modal"
                                                            data-target="#reject_verification_{{$verification->id}}"
-                                                           data-whatever="@mdo">
+                                                           data-whatever="@mdo" style="color: white">
                                                             <i class="fa-solid fa-trash"></i>
                                                             رفض اثبات الهوية </a>
                                                         @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
