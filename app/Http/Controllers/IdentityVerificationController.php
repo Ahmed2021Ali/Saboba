@@ -13,9 +13,9 @@ class IdentityVerificationController extends Controller
         return view('dashboard.identity_verification_company.index', compact('verifications'));
     }
 
-    public function update(Request $request ,CompanyIdentityVerification $verification)
+    public function update(Request $request ,CompanyIdentityVerification $verifications)
     {
-        dd($verification);
+        dd($verifications);
 
     }
 
