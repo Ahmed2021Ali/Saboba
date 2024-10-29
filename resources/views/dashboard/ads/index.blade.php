@@ -42,7 +42,9 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>اسم الفئة</th>
+                                            <th> قسم الاعلان </th>
+                                            <th> المدينة </th>
+                                            <th> السعر </th>
                                             <th>الإجراءات</th>
                                         </tr>
                                         </thead>
@@ -50,8 +52,8 @@
                                         @forelse($ads as $key => $ad)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ $ad->category->name }}</td>
-                                                <td>{{ $ad->city->name }}</td>
+                                                <td>{{ $ad->category->name ?? "no" }}</td>
+                                                <td>{{ $ad->city->name ?? "no" }}</td>
                                                 <td>{{ $ad->price }}</td>
 
                                                 <td>
