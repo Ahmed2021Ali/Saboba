@@ -44,7 +44,7 @@
                                             <th>#</th>
                                             <th> قسم الاعلان </th>
                                             <th> المدينة </th>
-                                            <th> السعر </th>
+                                            <th> الحالة </th>
                                             <th>الإجراءات</th>
                                         </tr>
                                         </thead>
@@ -54,7 +54,7 @@
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $ad->category->name ?? "no" }}</td>
                                                 <td>{{ $ad->city->name ?? "no" }}</td>
-                                                <td>{{ $ad->price }}</td>
+                                                <td>{{ $ad->status }}</td>
 
                                                 <td>
                                                     {{--
