@@ -12,31 +12,32 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title text-center" style="text-align: center"> موسسات تمت اثبات هويتها بنجاح </h2>
+                    <h2 class="mb-2 page-title text-center" style="text-align: center"> موسسات تمت اثبات هويتها
+                        بنجاح </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
                         </div>
                     @endif
 
-                    @if($verifications->IsNotempty())
 
-                        <div class="row my-4">
-                            <div class="col-md-12">
-                                <div class="card shadow">
-                                    <div class="card-body">
-                                        <table class="table datatables" id="dataTable-1">
-                                            <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th> اسم الموسسة</th>
-                                                <th> تفاصيل الموسسة</th>
+                    <div class="row my-4">
+                        <div class="col-md-12">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <table class="table datatables" id="dataTable-1">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th> اسم الموسسة</th>
+                                            <th> تفاصيل الموسسة</th>
 
-                                                <th> حالة الموسسة</th>
-                                                <th> العمليات</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
+                                            <th> حالة الموسسة</th>
+                                            <th> العمليات</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @if($verifications->IsNotempty())
                                             @foreach ($verifications as $key => $verification)
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
@@ -62,23 +63,24 @@
                                                                 data-target="#delete_latest_news_{{$verification->id}}">
                                                             <i class="fa-solid fa-trash"></i> رفض اثبات الهوية
                                                         </button>
-                                                        @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
+                                                    @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
 
                                                 </tr>
                                             @endforeach
-                                            </tbody>
-                                        </table>
-                                        {{--
-                                                                            {!! $subAddresses->links/*('pagination::bootstrap-5')*/ !!}
-                                        --}}
-                                    </div>
+                                        </tbody>
+                                        @else
+                                            <h1 style="text-align: center"> لا يوجد شركات مثبته الهوية </h1>
+                                        @endif
+                                    </table>
+                                    {{--
+                                                                        {!! $subAddresses->links/*('pagination::bootstrap-5')*/ !!}
+                                    --}}
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                    @else
-                        <h1 style="text-align: center"> لا يوجد شركات  مثبته الهوية  </h1>
-                    @endif
+
                     <p class="text-center text-primary"><small>دليل من ItSolutionStuff.com</small></p>
                 </div>
             </div>
