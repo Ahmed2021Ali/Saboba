@@ -13,6 +13,13 @@
                         <p>
                             {{$verification->user->name}}
                         </p>
+                        <h1> اسم الموسسة : {{$verification->user->name}} </h1>
+                        <h1> الاميل الموسسة : {{$verification->user->email}} </h1>
+                        <h1> نبذة الموسسة : {{$verification->user->overview}} </h1>
+                        <h1> دولة الموسسة : {{$verification->user->country->name}} </h1>
+                        <h1> رقم الهاتف الموسسة : {{$verification->user->contact_number}} </h1>
+                        <h1> رقم الواتس الموسسة : {{$verification->user->whatsapp_number}} </h1>
+
                     </div>
                 </div>
             </div>
