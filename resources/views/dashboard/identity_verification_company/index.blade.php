@@ -50,7 +50,7 @@
                                                         </button>
                                                         @include('dashboard.images.index', ['model' => $verification, 'folder' => 'documentationFiles'])
 
-                                                        <a class="btn btn-sm btn-warning" data-toggle="modal"
+                                                        <a class="btn btn-sm btn-danger" data-toggle="modal"
                                                            data-target="#edit_latest_news_{{$verification->id}}"
                                                            data-whatever="@mdo"><i
                                                                 class="fa-solid fa-pen-to-square"></i>
