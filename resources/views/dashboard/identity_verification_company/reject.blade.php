@@ -13,13 +13,14 @@
                 @csrf
                 @method('DELETE')
                 <br>
-                <h4 style="text-align: center"> اذكر سبب رفض الاثبات الموسسسة  {{$verification->user->name}}</h4>
+                <h4 style="text-align: center"> اذكر سبب رفض الاثبات الموسسة  {{$verification->user->name}}</h4>
+                <br>
                 <div class="form-group">
                     <textarea class="form-control" name="reason" id="message-text"></textarea>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn mb-2 btn-primary ">تاكيد الحذف</button>
+                    <button type="submit" class="btn mb-2 btn-primary ">تاكيد الرفض</button>
                 </div>
             </form>
         </div>
