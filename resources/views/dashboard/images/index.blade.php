@@ -17,13 +17,12 @@
                         <source src="{{$image->getFullUrl()}}" type="video/mp4">
                     </video>
                 @elseif(Str::endsWith($image->getFullUrl(), ['pdf']))
-
                     <iframe src="{{$image->getFullUrl()}}" width="100%" height="450px" loading="lazy" title="PDF-file"></iframe>
                 @else
                     <p> File format not supported for display.</p>
                 @endif
             @endforeach
-<br>
+                <br>
             <div class="text-center">
                 <button class="btn btn-info" onclick="plusDivs(-1)">&#10094;</button>
                 <button class="btn btn-info" onclick="plusDivs(+1)">&#10095;</button>

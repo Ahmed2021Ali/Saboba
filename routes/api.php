@@ -17,7 +17,7 @@ use App\Http\Middleware\CheckCompanyMiddleware;
 use App\Http\Middleware\CheckPersonalMiddleware;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\api\ReportController;
 
 Route::controller(JWTAuthController::class)->middleware('guest')->group(function () {
     Route::post('/login', 'login')->name('login');
@@ -73,6 +73,9 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     });
 
     Route::resource('comment', CommentController::class);
+
+    Route::post('send-report-Ad', [ReportController::class, 'sendReportAd']);
+    Route::post('send-report-user', [ReportController::class, 'sendReportUser']);
 
 });
 
