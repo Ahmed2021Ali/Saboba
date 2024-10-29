@@ -40,6 +40,7 @@
                                                     <td>{{ ++$key }}</td>
                                                     <td> {{ $company->user->name}}</td>
                                                     <td> {{ $company->status ===1 ? " تم اثبات ملكية الحساب " : " لم يتم الاثبات الملكية حتي الان " }}</td>
+
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#imageModal_{{$company->id}}">
