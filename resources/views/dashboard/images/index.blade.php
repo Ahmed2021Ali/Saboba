@@ -17,9 +17,10 @@
                     <video width="500" height="350" controls>
                         <source src="{{$image->getFullUrl()}}" type="video/mp4">
                     </video>
-                @else
+                @elseif(Str::endsWith($image->getFullUrl(), ['pdf']))
 
-                    <iframe src="{{$image->getFullUrl()}}" width="100%" height="400px" loading="lazy" title="PDF-file"></iframe>
+                    <iframe src="{{$image->getFullUrl()}}" width="100%" height="100%" loading="lazy" title="PDF-file"></iframe>
+                @else
                     <p> File format not supported for display.</p>
                 @endif
             @endforeach
