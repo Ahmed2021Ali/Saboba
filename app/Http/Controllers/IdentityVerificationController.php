@@ -23,7 +23,8 @@ class IdentityVerificationController extends Controller
 
     public function destroy(Request $request, CompanyIdentityVerification $verification)
     {
-        dd($request->reason);
+        //dd($request->reason);
+        // $request->reason
         $verification->delete();
         flash()->success('  تم حذف اثبات ملكية الموسسة بنجاح ');
         return redirect()->route('verifications.index');
