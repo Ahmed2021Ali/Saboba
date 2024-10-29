@@ -39,7 +39,7 @@
                                             @foreach ($verifications as $key => $verification)
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
-                                                    <td> <a href="https://google.com">{{ $verification->user->name}}</a></td>
+                                                    <td> <a  href="https://google.com" class="btn btn-sm btn-success>{{ $verification->user->name}}</a></td>
                                                     <td> {{ $verification->status ===1 ? " تم اثبات ملكية الحساب " : " لم يتم الاثبات الملكية حتي الان " }}</td>
 
                                                     <td>
