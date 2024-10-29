@@ -8,12 +8,12 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <h2 class="mb-2 page-title">قائمة الاعلانات</h2>
-{{--                    <div class="pull-right mb-2">
-                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#createCategoryModal">
-                            <i class="fa fa-plus"></i> إضافة فئة رائيسية
-                        </button>
+                    {{--                    <div class="pull-right mb-2">
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#createCategoryModal">
+                                                <i class="fa fa-plus"></i> إضافة فئة رائيسية
+                                            </button>
 
-                    </div>--}}
+                                        </div>--}}
 
 
                     <!-- Success Messages -->
@@ -42,10 +42,10 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th> قسم الاعلان </th>
-                                            <th> المدينة </th>
-                                            <th> الحالة </th>
-                                            <th> تفاصيل الاعلان </th>
+                                            <th> قسم الاعلان</th>
+                                            <th> المدينة</th>
+                                            <th> الحالة</th>
+                                            <th> تفاصيل الاعلان</th>
 
                                             <th>الإجراءات</th>
                                         </tr>
@@ -58,8 +58,8 @@
                                                 <td>{{ $ad->city->name ?? "no" }}</td>
                                                 <td>{{ $ad->status ===0 ? " لم يتم الموافقه علية " :" تم الموافقة " }}</td>
                                                 <td>
-                                                    <a class="btn btn-sm btn-info" href="#">
-                                                        <i class="fa-solid fa-list"></i>  عرض تفاصيل الاعلان 
+                                                    <a class="btn btn-sm btn-info" href="{{route('ads.show',$ad)}}">
+                                                        <i class="fa-solid fa-list"></i> عرض تفاصيل الاعلان
                                                     </a>
                                                 </td>
 
@@ -90,7 +90,6 @@
                                             {{--                                            @include('dashboard.categories.delete')
 
                                                                                      @include('dashboard.categories.edit')--}}
-
 
                                         @empty
                                             <tr>
