@@ -44,8 +44,8 @@
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
 
-                                                    <td> <a href="">{{ $country->name }}</a></td>
-                                                    
+                                                    <td> <a href="https://google.com">{{ $country->name }}</a></td>
+
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#imageModal_{{$country->id}}">
