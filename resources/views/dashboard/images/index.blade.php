@@ -8,6 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            {{$model->getMedia($folder)}}
             @foreach($model->getMedia($folder) as $image)
                 @if(Str::endsWith($image->getFullUrl(), ['jpg', 'jpeg', 'png', 'gif']))
                     <!-- Display image -->
