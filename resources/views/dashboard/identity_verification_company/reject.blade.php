@@ -11,9 +11,10 @@
 
                 @csrf
                 @method('DELETE')
+                <br>
                 <h4 style="text-align: center"> هل تريد رفض هذا الاثبات  {{$verification->user->name}}</h4>
                 <div class="form-group">
-                <label for="message-text" class="col-form-label">  سبب رفض  </label>
+                <label for="message-text" style="text-align: center">  سبب رفض  </label>
                     <textarea class="form-control" name="reason" id="message-text"></textarea>
                 </div>
 
