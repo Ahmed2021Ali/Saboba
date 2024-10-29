@@ -38,7 +38,7 @@
                                             @foreach ($companies as $key => $company)
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
-                                                    <td> {{ $company->user?? "ss" }}</td>
+                                                    <td> {{ $company->user->name}}</td>
                                                     <td> {{ $company->status ===1 ? " تم اثبات ملكية الحساب " : " لم يتم الاثبات الملكية حتي الان " }}</td>
                                                     <td>
 

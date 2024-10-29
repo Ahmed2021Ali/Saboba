@@ -20,7 +20,7 @@ class CompanyIdentityVerification extends Model implements HasMedia
 
     public function user()
     {
-        $this->belongsTo(User::class);
+      return  $this->belongsTo(User::class);
     }
 
 
