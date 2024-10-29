@@ -16,7 +16,7 @@
                 <h4 style="text-align: center"> اذكر سبب رفض الاثبات الموسسة  {{$verification->user->name}}</h4>
                 <br>
                 <div class="form-group">
-                    <textarea class="form-control" name="reason" id="message-text"></textarea>
+                    <textarea class="form-control" name="reason" minlength="35px" id="message-text"></textarea>
                 </div>
 
                 <div class="modal-footer">
