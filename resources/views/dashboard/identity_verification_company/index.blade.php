@@ -51,19 +51,20 @@
                                                         @include('dashboard.images.index', ['model' => $verification, 'folder' => 'documentationFiles'])
 
 
-                                                        <a class="btn btn-sm btn-danger" data-toggle="modal"
-                                                           data-target="#reject_verification_{{$verification->id}}"
-                                                           data-whatever="@mdo" style="color: white">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                            رفض اثبات الهوية </a>
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                                data-toggle="modal"
+                                                                data-target="#delete_latest_news_{{$verification->id}}">
+                                                            <i class="fa-solid fa-trash"></i> حذف
+                                                        </button>
                                                         @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
 
 
 
-                                                        <a class="btn btn-sm btn-outline-success" data-toggle="modal"
+                                                        <a class="btn btn-sm btn-success" data-toggle="modal"
                                                            data-target="#accept_verification_{{$verification->id}}"
                                                            data-whatever="@mdo" style="color: #000000"><i class="fa-solid fa-pen-to-square"></i>
                                                             قبول اثبات الهوية </a>
+
                                                         @include('dashboard.identity_verification_company.accept',['verification'=>$verification])                                                    </td>
 
                                                     <td>
