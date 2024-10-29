@@ -54,7 +54,7 @@
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $ad->category->name ?? "no" }}</td>
                                                 <td>{{ $ad->city->name ?? "no" }}</td>
-                                                <td>{{ $ad->status }}</td>
+                                                <td>{{ $ad->status ===0 ? " لم يتم الموافقه علية " :" تم الموافقة " }}</td>
 
                                                 <td>
                                                     {{--
