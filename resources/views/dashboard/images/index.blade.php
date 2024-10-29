@@ -1,5 +1,5 @@
 
-<div class="modal fade" style="height: 75%; width: 75%" id="imageModal_{{$model->id}}" tabindex="-1" role="dialog" aria-labelledby="imageModal" aria-hidden="true">
+<div class="modal fade" id="imageModal_{{$model->id}}" tabindex="-1" role="dialog" aria-labelledby="imageModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,7 +19,7 @@
                     </video>
                 @else
 
-                    <iframe src="{{$image->getFullUrl()}}" width="100%" height="400px" title="PDF-file"></iframe>
+                    <iframe src="{{$image->getFullUrl()}}" width="100%" height="400px" loading="lazy" title="PDF-file"></iframe>
                     <p> File format not supported for display.</p>
                 @endif
             @endforeach
