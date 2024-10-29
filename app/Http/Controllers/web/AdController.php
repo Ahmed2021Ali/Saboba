@@ -11,10 +11,15 @@ class AdController extends Controller
 {
     public function index()
     {
-        $ads = Ad::with(['translations'])->get();
+        $ads = Ad::all();
         return view('dashboard.ads.index', compact('ads'));
         //dd($ads);
-       // $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
-      //  $adFields = AdField::where('ad_id', $ad->id)->get();
+        // $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
+        //  $adFields = AdField::where('ad_id', $ad->id)->get();
+    }
+
+    public function show(Ad $ad)
+    {
+        return view('dashboard.ads.show', compact('ad'));
     }
 }
