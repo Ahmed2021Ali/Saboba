@@ -62,8 +62,7 @@
 
                                                         <a class="btn btn-sm btn-success" data-toggle="modal"
                                                            data-target="#accept_verification_{{$verification->id}}"
-                                                           data-whatever="@mdo"><i
-                                                                class="fa-solid fa-pen-to-square"></i>
+                                                           data-whatever="@mdo" style="color: white"><i class="fa-solid fa-pen-to-square"></i>
                                                             قبول اثبات الهوية </a>
                                                         @include('dashboard.identity_verification_company.accept',['verification'=>$verification])                                                    </td>
 
