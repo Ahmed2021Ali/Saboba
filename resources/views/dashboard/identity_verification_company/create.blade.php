@@ -12,7 +12,7 @@
                 <form action="{{route('verifications.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
-                    <div class="form-group mb-3">
+                    <div class="form-group">
                         <label for="storeStatus"><strong> اختار الموسسة </strong></label>
                         <select name="company_id" id="storeStatus" class="form-control">
                             @foreach($companies as $company)
