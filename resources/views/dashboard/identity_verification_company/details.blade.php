@@ -13,12 +13,12 @@
                         <p>
                             {{$verification->user->name}}
                         </p>
-                        <h6> اسم الموسسة : {{$verification->user->name}} </h6>
-                        <h6> الاميل الموسسة : {{$verification->user->email}} </h6>
-                        <h6> نبذة الموسسة : {{$verification->user->overview}} </h6>
-                        <h6> دولة الموسسة : {{$verification->user->country->name}} </h6>
-                        <h6> رقم الهاتف الموسسة : {{$verification->user->contact_number}} </h6>
-                        <h6> رقم الواتس الموسسة : {{$verification->user->whatsapp_number}} </h6>
+                        <h4> اسم الموسسة : {{$verification->user->name}} </h4>
+                        <h4> الاميل الموسسة : {{$verification->user->email}} </h4>
+                        <h4> نبذة الموسسة : {{$verification->user->overview}} </h4>
+                        <h4> دولة الموسسة : {{$verification->user->country->name}} </h4>
+                        <h4> رقم الهاتف الموسسة : {{$verification->user->contact_number}} </h4>
+                        <h4> رقم الواتس الموسسة : {{$verification->user->whatsapp_number}} </h4>
 
                     </div>
                 </div>
