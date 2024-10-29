@@ -41,6 +41,14 @@
                                                     <td> {{ $company->user->name}}</td>
                                                     <td> {{ $company->status ===1 ? " تم اثبات ملكية الحساب " : " لم يتم الاثبات الملكية حتي الان " }}</td>
                                                     <td>
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#imageModal_{{$country->id}}">
+                                                            <i class="fa fa-edit"></i> عرض  ملفات الاثبات
+                                                        </button>
+                                                        @include('dashboard.images.index', ['model' => $company, 'folder' => 'documentationFiles'])
+                                                    </td>
+
+                                                    <td>
 
                                                         {{--
                                                                                                                 <a class="btn btn-sm btn-info" href="{{ route('country.show', $country) }}">
