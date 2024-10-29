@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class IdentityVerificationController extends Controller
 {
-    public function watting_identity_verification_companies()
+    public function index()
     {
         $companies = CompanyIdentityVerification::where('status', 0)->get();
         return view('dashboard.identity_verification.index', compact('companies'));
