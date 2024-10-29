@@ -8,12 +8,12 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <h2 class="mb-2 page-title">قائمة الاعلانات</h2>
-                    <div class="pull-right mb-2">
+{{--                    <div class="pull-right mb-2">
                         <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#createCategoryModal">
                             <i class="fa fa-plus"></i> إضافة فئة رائيسية
                         </button>
 
-                    </div>
+                    </div>--}}
 
 
                     <!-- Success Messages -->
