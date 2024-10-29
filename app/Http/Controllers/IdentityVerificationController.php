@@ -49,7 +49,7 @@ class IdentityVerificationController extends Controller
        // dd($verifications->pluck('id')->toArray());
         return view('dashboard.identity_verification_company.show', [
             'verifications' => $verifications,
-            'companies' => User::where('type', 'company')->whereIn('id', '!=', [1,2])->get()
+            'companies' => User::where('type', 'company')->whereIn('id', [1,2])->get()
         ]);
     }
 
