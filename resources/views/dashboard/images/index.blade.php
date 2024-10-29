@@ -8,7 +8,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {{$model->getMedia($folder)}}
             @foreach($model->getMedia($folder) as $image)
                 @if(Str::endsWith($image->getFullUrl(), ['jpg', 'jpeg', 'png', 'gif']))
                     <!-- Display image -->
@@ -20,6 +19,8 @@
                     </video>
                 @else
                     {{$image->getFullUrl()}}
+                    <iframe src="{{$image->getFullUrl()}}"
+                            width="800" height="600">
                     <p> File format not supported for display.</p>
                 @endif
             @endforeach
