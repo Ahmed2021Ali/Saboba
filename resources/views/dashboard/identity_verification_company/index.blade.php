@@ -50,14 +50,22 @@
                                                         </button>
                                                         @include('dashboard.images.index', ['model' => $verification, 'folder' => 'documentationFiles'])
 
+
                                                         <a class="btn btn-sm btn-danger" data-toggle="modal"
-                                                           data-target="#edit_latest_news_{{$verification->id}}"
+                                                           data-target="#reject_verification_{{$verification->id}}"
                                                            data-whatever="@mdo"><i
                                                                 class="fa-solid fa-pen-to-square"></i>
                                                             رفض اثبات الهوية </a>
-                                                        @include('dashboard.identity_verification_company.edit',['company'=>$verification])
+                                                        @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
 
-                                                    </td>
+
+
+                                                        <a class="btn btn-sm btn-success" data-toggle="modal"
+                                                           data-target="#accept_verification_{{$verification->id}}"
+                                                           data-whatever="@mdo"><i
+                                                                class="fa-solid fa-pen-to-square"></i>
+                                                            قبول اثبات الهوية </a>
+                                                        @include('dashboard.identity_verification_company.accept',['verification'=>$verification])                                                    </td>
 
                                                     <td>
 
