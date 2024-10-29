@@ -1,13 +1,13 @@
 @extends('dashboard.layouts.master')
 
-@section('title', 'قائمة الفئات')
+@section('title', ' الاعلانات ')
 
 @section('content')
     <main role="main" class="main-content">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title">قائمة الفئات</h2>
+                    <h2 class="mb-2 page-title">قائمة الاعلانات</h2>
                     <div class="pull-right mb-2">
                         <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#createCategoryModal">
                             <i class="fa fa-plus"></i> إضافة فئة رائيسية
@@ -49,7 +49,7 @@
                                         <tbody>
                                         @forelse($ads as $key => $ad)
                                             <tr>
-                                                <td>{{ $ad->id }}</td>
+                                                <td>{{ ++$key }}</td>
                                                 <td>{{ $ad->name }}</td>
 
                                                 <td>
