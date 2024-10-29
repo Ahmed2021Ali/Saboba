@@ -88,7 +88,9 @@
                                         @endforelse
                                         </tbody>
                                     </table>
+{{--
                                     {!! $categories->links('pagination::bootstrap-5') !!}
+--}}
                                 </div>
                             </div>
                         </div>
