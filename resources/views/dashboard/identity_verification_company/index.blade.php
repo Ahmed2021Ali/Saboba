@@ -13,7 +13,7 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <h2 class="mb-2 page-title text-center" style="text-align: center"> اثبات هوية الموسسات قيد
-                        المراجهة </h2>
+                        المراجعة </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -53,9 +53,7 @@
 
                                                         <a class="btn btn-sm btn-danger" data-toggle="modal"
                                                            data-target="#reject_verification_{{$verification->id}}"
-                                                           data-whatever="@mdo"><i
-                                                                class="fa-solid fa-pen-to-square"></i>
-                                                            رفض اثبات الهوية </a>
+                                                           data-whatever="@mdo"><i class="fa-solid fa-trash"></i
                                                         @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
 
 
