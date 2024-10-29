@@ -11,7 +11,7 @@ class AdController extends Controller
 {
     public function index()
     {
-        $ads = Ad::with('translatedAttributes')->get();
+        $ads = Ad::with('translations')->get();
         dd($ads);
        // $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
       //  $adFields = AdField::where('ad_id', $ad->id)->get();
