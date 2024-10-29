@@ -19,8 +19,10 @@ class IdentityVerificationController extends Controller
 
     public function store(Request $request)
     {
-
-
+        $validationData = $request->validate(['company_id' => 'nullable|exists:users,id']);
+        CompanyIdentityVerification::create(['user_id' => $validationData['company_id'], 'status' => 1]);
+        flash()->success('  تم اثبات ملكية الموسسة بنجاح ');
+        return redirect()->back();
     }
 
     public function update(Request $request, CompanyIdentityVerification $verification)
@@ -28,7 +30,7 @@ class IdentityVerificationController extends Controller
         $verification->status = 1;
         $verification->save();
         flash()->success('  تم اثبات ملكية الموسسة بنجاح ');
-        return redirect()->route('verifications.index');
+        return redirect()->back();
     }
 
     public function show($id)
@@ -46,7 +48,7 @@ class IdentityVerificationController extends Controller
         // $request->reason
         $verification->delete();
         flash()->success('  تم حذف اثبات ملكية الموسسة بنجاح ');
-        return redirect()->route('verifications.index');
+        return redirect()->back();
     }
 
 }
