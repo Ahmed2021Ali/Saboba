@@ -36,11 +36,12 @@
                                             <th> العمليات</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                                <tr>
-                                                    @if($verifications->IsNotempty())
 
-                                                    @foreach ($verifications as $key => $verification)
+                                        <tbody>
+                                        @if($verifications->IsNotempty())
+
+                                            <tr>
+                                                @foreach ($verifications as $key => $verification)
 
                                                     <td>{{ ++$key }}</td>
                                                     <td> {{ $verification->user->name}}</td>
@@ -66,12 +67,11 @@
                                                             <i class="fa-solid fa-trash"></i> رفض اثبات الهوية
                                                         </button>
                                                     @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
-                                                    @endforeach
-                                                        @else
-                                                            <h1 style="text-align: center"> لا يوجد شركات مثبته الهوية </h1>
-                                                        @endif
-                                                </tr>
-
+                                                @endforeach
+                                            </tr>
+                                        @else
+                                            <h1 style="text-align: center"> لا يوجد شركات مثبته</h1>
+                                        @endif
                                         </tbody>
                                     </table>
                                     {{--
