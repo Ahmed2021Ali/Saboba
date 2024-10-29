@@ -20,6 +20,7 @@ class AdController extends Controller
 
     public function show(Ad $ad)
     {
+        dd($ad);
         return view('dashboard.ads.show', compact('ad'));
     }
 }
