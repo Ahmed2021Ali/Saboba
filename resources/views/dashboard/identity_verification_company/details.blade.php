@@ -10,9 +10,6 @@
             <div class="modal-body">
                 <div class="form-group">
                     <div class="scrollable">
-                        <p>
-                            {{$verification->user->name}}
-                        </p>
                         <h4> اسم الموسسة : {{$verification->user->name}} </h4>
                         <h4> الاميل الموسسة : {{$verification->user->email}} </h4>
                         <h4> نبذة الموسسة : {{$verification->user->overview}} </h4>
@@ -29,7 +26,7 @@
 <style>
     .scrollable {
         width: 468px;
-        height: 400px;
+        height: 350px;
         padding: 10px;
         border: 2px solid #ccc;
         overflow-y: auto; /* Makes the paragraph scrollable vertically */
