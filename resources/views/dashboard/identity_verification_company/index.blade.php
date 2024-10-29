@@ -66,7 +66,7 @@
                                                         <i class="fa-solid fa-trash"></i> رفض اثبات الهوية
                                                     </button>
                                                     @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
-                                                    
+
                                                 </tr>
                                             @endforeach
                                             </tbody>
