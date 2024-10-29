@@ -65,8 +65,8 @@
 
                                                         <button type="button" class="btn btn-sm btn-danger"
                                                                 data-toggle="modal"
-                                                                data-target="#delete_latest_news_{{$country->id}}"><i
-                                                                class="fa-solid fa-trash"></i> حذف
+                                                                data-target="#delete_latest_news_{{$country->id}}">
+                                                            <i class="fa-solid fa-trash"></i> حذف
                                                         </button>
                                                         @include('dashboard.country.delete',['country'=>$country,])
 
