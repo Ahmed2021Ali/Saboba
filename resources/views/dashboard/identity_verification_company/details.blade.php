@@ -11,7 +11,9 @@
                 <div class="form-group">
                     <div class="scrollable">
                         @if($verification->user->getFirstMediaUrl('userImages'))
-                        <img src="{{$verification->user->getFirstMediaUrl('userImages')}}" alt="company Image" width="200" height="150" style="text-align: center">
+                            <div style="text-align: center;">
+                            <img src="{{$verification->user->getFirstMediaUrl('userImages')}}" alt="company Image" width="200" height="150" style="text-align: center">
+                            </div>
                         @else
                             <div style="text-align: center;">
                             <img src="https://marketplace.canva.com/EAE0rNNM2Fg/1/0/1600w/canva-letter-c-trade-marketing-logo-design-template-r9VFYrbB35Y.jpg" alt="company Image" width="200" height="150" >
@@ -33,7 +35,7 @@
 <style>
     .scrollable {
         width: 468px;
-        height: 350px;
+        height: 400px;
         padding: 10px;
         border: 2px solid #ccc;
         overflow-y: auto; /* Makes the paragraph scrollable vertically */
