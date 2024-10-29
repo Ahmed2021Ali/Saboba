@@ -18,8 +18,14 @@
                         <source src="{{$image->getFullUrl()}}" type="video/mp4">
                     </video>
                 @else
-                    {{$image->getFullUrl()}}
 
+                    <iframe
+                        src="{{$image->getFullUrl()}}"
+                        width="100%"
+                        height="600px"
+                        loading="lazy"
+                        title="PDF-file"
+                    ></iframe>
                     <p> File format not supported for display.</p>
                 @endif
             @endforeach
