@@ -43,7 +43,11 @@
                                                     <td>{{ ++$key }}</td>
                                                     <td> {{ $verification->user->name}}</td>
                                                     <td>
-                                                        <a  href="https://google.com" class="btn btn-sm btn-secondary">تفاصيل الموسسة</a>
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                                data-target="#imageModal_details_{{$verification->id}}">
+                                                            <i class="fa fa-edit"></i> تفاصيل الموسسة
+                                                        </button>
+                                                        @include('dashboard.identity_verification_company.details',['verification'=>$verification])
                                                     </td>
                                                     <td> {{ $verification->status ===1 ? " تم اثبات ملكية الحساب " : " لم يتم الاثبات الملكية حتي الان " }}</td>
 
