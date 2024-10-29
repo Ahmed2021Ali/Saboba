@@ -96,6 +96,29 @@
                 </a>
             </li>
 
+            <li class="nav-item dropdown">
+                <a href="#verification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fe fe-file-text fe-16"></i>
+                    <span class="ml-3 item-text">الاثبات الهوية </span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="verification">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('verification.index')}}">
+                            <i class="fe fe-check-square fe-16"></i>
+                            <span class="ml-1 item-text"> الموسسات بانتظار المراجعة  </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="./form_advanced.html">
+                            <i class="fe fe-sliders fe-16"></i>
+                            <span class="ml-1 item-text"> الموسسات تمت اثباتها </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            
             <!-- Existing Stores Section -->
             <li class="nav-item dropdown">
                 <a href="#stores" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
@@ -113,28 +136,6 @@
                         <a class="nav-link pl-3" href="">
                             <i class="fe fe-plus-circle fe-16"></i>
                             <span class="ml-1 item-text">إضافة مخزن</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-
-            <li class="nav-item dropdown">
-                <a href="#verification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-file-text fe-16"></i>
-                    <span class="ml-3 item-text">الاثبات الهوية </span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="verification">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('verification.index')}}">
-                            <i class="fe fe-check-square fe-16"></i>
-                            <span class="ml-1 item-text"> الموسسات بانتظار المراجعة  </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_advanced.html">
-                            <i class="fe fe-sliders fe-16"></i>
-                            <span class="ml-1 item-text"> الموسسات تمت اثباتها </span>
                         </a>
                     </li>
                 </ul>
