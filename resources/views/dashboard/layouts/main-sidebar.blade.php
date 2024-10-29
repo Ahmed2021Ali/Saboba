@@ -81,10 +81,18 @@
                     @endcan
                 </ul>
             </li>
+            
             <li class="nav-item">
                 <a class="nav-link" href="{{route('categories.index')}}">
                     <i class="fe fe-folder fe-16"></i>
                     <span class="ml-1 item-text">الفئات</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('ads.index')}}">
+                    <i class="fe fe-shopping-cart fe-16"></i>
+                    <span class="ml-1 item-text">المنتجات</span>
                 </a>
             </li>
 
@@ -119,12 +127,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('ads.index')}}">
-                    <i class="fe fe-shopping-cart fe-16"></i>
-                    <span class="ml-1 item-text">المنتجات</span>
-                </a>
-            </li>
+
 
             <!-- Existing Stores Section -->
             <li class="nav-item dropdown">
