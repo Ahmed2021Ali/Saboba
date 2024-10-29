@@ -10,7 +10,7 @@ class IdentityVerificationController extends Controller
     public function watting_identity_verification_companies()
     {
         $companies = CompanyIdentityVerification::where('status', 0)->get();
-
+        return view('dashboard.identity_verification.index', compact('companies'));
     }
 
     public function completed_identity_verification_companies()

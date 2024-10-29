@@ -37,47 +37,47 @@
         <ul class="collapse list-unstyled pl-4 w-100" id="auth">
           <li class="nav-item">
             <a class="nav-link pl-3" href="{{route('users.index')}}">
-              <i class="fe fe-eye fe-16"></i>
-              <span class="ml-1 item-text">عرض المستخدمين</span>
+                <i class="fe fe-eye fe-16"></i>
+                <span class="ml-1 item-text">عرض المستخدمين</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('users.create')}}">
-              <i class="fe fe-user-plus fe-16"></i>
-              <span class="ml-1 item-text">إضافة مستخدم</span>
-            </a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link pl-3" href="{{route('users.create')}}">
+                    <i class="fe fe-user-plus fe-16"></i>
+                    <span class="ml-1 item-text">إضافة مستخدم</span>
+                </a>
+            </li>
         </ul>
       </li>
 
-      <!-- Existing Roles Section -->
+        <!-- Existing Roles Section -->
 
 
         <li class="nav-item dropdown">
-          <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-            <i class="fe fe-shield fe-16"></i>
-            <span class="ml-3 item-text">الأدوار</span>
-          </a>
+            <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <i class="fe fe-shield fe-16"></i>
+                <span class="ml-3 item-text">الأدوار</span>
+            </a>
 
-          <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
-            @can('عرض الأدوار')
-              <li class="nav-item">
-                <a class="nav-link pl-3" href="{{ route('roles.index') }}">
-                  <i class="fe fe-eye fe-16"></i>
-                  <span class="ml-1 item-text">عرض الأدوار</span>
-                </a>
-              </li>
-            @endcan
+            <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
+                @can('عرض الأدوار')
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{ route('roles.index') }}">
+                            <i class="fe fe-eye fe-16"></i>
+                            <span class="ml-1 item-text">عرض الأدوار</span>
+                        </a>
+                    </li>
+                @endcan
 
-            @can('إضافة دور')
-              <li class="nav-item">
-                <a class="nav-link pl-3" href="{{ route('roles.create') }}">
-                  <i class="fe fe-plus-circle fe-16"></i>
-                  <span class="ml-1 item-text">إضافة دور</span>
-                </a>
-              </li>
-            @endcan
-          </ul>
+                @can('إضافة دور')
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{ route('roles.create') }}">
+                            <i class="fe fe-plus-circle fe-16"></i>
+                            <span class="ml-1 item-text">إضافة دور</span>
+                        </a>
+                    </li>
+                @endcan
+            </ul>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route('categories.index')}}">
@@ -86,14 +86,19 @@
             </a>
         </li>
 
-      <!-- Existing Addresses Section -->
-      <li class="nav-item dropdown">
-        <a href="{{route('country.index')}}" class="nav-link">
-          <i class="fe fe-map-pin fe-16"></i>
-          <span class="ml-3 item-text">الدول و المدن</span>
-        </a>
-      </li>
-
+        <!-- Existing Addresses Section -->
+        <li class="nav-item dropdown">
+            <a href="{{route('country.index')}}" class="nav-link">
+                <i class="fe fe-map-pin fe-16"></i>
+                <span class="ml-3 item-text">الدول و المدن</span>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a href="{{route('identity-verification.index')}}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <i class="fe fe-file-text fe-16"></i>
+                <span class="ml-3 item-text">النماذج</span>
+            </a>
+        </li>
       <!-- Existing Stores Section -->
       <li class="nav-item dropdown">
         <a href="#stores" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
