@@ -21,6 +21,12 @@ class IdentityVerificationController extends Controller
         return redirect()->route('verifications.index');
     }
 
+    public function show($id)
+    {
+        $verifications = CompanyIdentityVerification::where('status', 1)->get();
+        return view('dashboard.identity_verification_company.show', compact('verifications'));
+    }
+
     public function destroy(Request $request, CompanyIdentityVerification $verification)
     {
         //dd($request->reason);
