@@ -33,7 +33,6 @@
                                                 <th> اسم الموسسة</th>
                                                 <th> حالة الموسسة</th>
                                                 <th> العمليات</th>
-
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -56,7 +55,6 @@
                                                            data-target="#accept_verification_{{$verification->id}}"
                                                            data-whatever="@mdo" style="color: #000000"><i class="fa-solid fa-pen-to-square"></i>
                                                             قبول اثبات الهوية </button>
-
                                                         @include('dashboard.identity_verification_company.accept',['verification'=>$verification])                                                    </td>
 
 
