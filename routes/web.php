@@ -2,14 +2,15 @@
 
 use App\Http\Controllers\web\AuthController;
 use App\Http\Controllers\web\CategoryController;
+use App\Http\Controllers\web\CityController;
+use App\Http\Controllers\web\CountryController;
+use App\Http\Controllers\web\IdentityVerificationController;
 use App\Http\Controllers\web\RoleController;
 use App\Http\Controllers\web\SubCategoryController;
 use App\Http\Controllers\web\UserController;
+use App\Http\Controllers\web\AdController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\web\CountryController;
-use App\Http\Controllers\web\CityController;
-use \App\Http\Controllers\IdentityVerificationController;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -57,8 +58,11 @@ Route::group([
         // City Routes
         Route::resource('city', CityController::class);
 
-        // identity-verification Routes  // Not Completed
+        // identity-verification Routes
         Route::resource('verifications', IdentityVerificationController::class);
+
+        // identity-verification Routes
+        Route::resource('ads', AdController::class);
 
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
