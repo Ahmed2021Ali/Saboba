@@ -103,7 +103,7 @@
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="verification">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="{{route('verification.index')}}">
+                        <a class="nav-link pl-3" href="{{route('verifications.index')}}">
                             <i class="fe fe-sliders fe-16"></i>
 
                             <span class="ml-1 item-text"> الموسسات بانتظار المراجعة  </span>
