@@ -14,7 +14,7 @@
                 <h4 style="text-align: center"> هل تريد رفض هذا الاثبات  {{$verification->user->name}}</h4>
                 <div class="form-group">
                     <label for="message-text" class="col-form-label">  سبب رفض  </label>
-                    <textarea class="form-control" name="reason" id="message-text">{{$country->name}}</textarea>
+                    <textarea class="form-control" name="reason" id="message-text"></textarea>
                 </div>
 
                 <div class="modal-footer">
