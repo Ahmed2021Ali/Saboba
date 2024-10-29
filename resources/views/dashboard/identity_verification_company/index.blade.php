@@ -52,9 +52,6 @@
 
 
 
-
-
-
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                            data-target="#accept_verification_{{$verification->id}}"
                                                            data-whatever="@mdo" style="color: #000000"><i class="fa-solid fa-pen-to-square"></i>
@@ -66,34 +63,10 @@
                                                     <button type="button" class="btn btn-sm btn-danger"
                                                             data-toggle="modal"
                                                             data-target="#delete_latest_news_{{$verification->id}}">
-                                                        <i class="fa-solid fa-trash"></i> رفض اثبات الهوية 
+                                                        <i class="fa-solid fa-trash"></i> رفض اثبات الهوية
                                                     </button>
                                                     @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
-
-                                                    <td>
-
-                                                        {{--
-                                                                                                                <a class="btn btn-sm btn-info" href="{{ route('country.show', $country) }}">
-                                                                                                                    <i class="fa-solid fa-list"></i>  عرض المدن لهذه الدولة
-                                                                                                                </a>
-
-                                                                                                               <a class="btn btn-sm btn-warning" data-toggle="modal"
-                                                                                                                   data-target="#edit_latest_news_{{$country->id}}"
-                                                                                                                   data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>
-                                                                                                                    تعديل</a>
-                                                                                                                @include('dashboard.country.edit',['country'=>$country])
-
-
-                                                                                                                <button type="button" class="btn btn-sm btn-danger"
-                                                                                                                        data-toggle="modal"
-                                                                                                                        data-target="#delete_latest_news_{{$country->id}}"><i
-                                                                                                                        class="fa-solid fa-trash"></i> حذف
-                                                                                                                </button>
-                                                                                                                @include('dashboard.country.delete',['country'=>$country,])
-
-                                                        --}}
-
-                                                    </td>
+                                                    
                                                 </tr>
                                             @endforeach
                                             </tbody>
