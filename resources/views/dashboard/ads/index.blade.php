@@ -50,7 +50,9 @@
                                         @forelse($ads as $key => $ad)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ $ad->name }}</td>
+                                                <td>{{ $ad->category->name }}</td>
+                                                <td>{{ $ad->city->name }}</td>
+                                                <td>{{ $ad->price }}</td>
 
                                                 <td>
                                                     {{--
