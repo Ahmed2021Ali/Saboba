@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 
-@section('title', '  الدول ')
+@section('title', '   اثبات هوية الموسسات قيد المراجهة ')
 
 @section('css')
 
@@ -12,14 +12,15 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title text-center" style="text-align: center"> اثبات هوية الموسسات</h2>
+                    <h2 class="mb-2 page-title text-center" style="text-align: center"> اثبات هوية الموسسات قيد
+                        المراجهة </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
                         </div>
                     @endif
 
-                    @if($companies->IsNotempty())
+                    @if($verifications->IsNotempty())
 
                         <div class="row my-4">
                             <div class="col-md-12">
@@ -31,22 +32,31 @@
                                                 <th></th>
                                                 <th> اسم الموسسة</th>
                                                 <th> حالة الموسسة</th>
+                                                <th> العمليات</th>
 
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach ($companies as $key => $company)
+                                            @foreach ($verifications as $key => $verification)
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
-                                                    <td> {{ $company->user->name}}</td>
-                                                    <td> {{ $company->status ===1 ? " تم اثبات ملكية الحساب " : " لم يتم الاثبات الملكية حتي الان " }}</td>
+                                                    <td> {{ $verification->user->name}}</td>
+                                                    <td> {{ $verification->status ===1 ? " تم اثبات ملكية الحساب " : " لم يتم الاثبات الملكية حتي الان " }}</td>
 
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                data-target="#imageModal_{{$company->id}}">
-                                                            <i class="fa fa-edit"></i> عرض  ملفات الاثبات
+                                                                data-target="#imageModal_{{$verification->id}}">
+                                                            <i class="fa fa-edit"></i> عرض ملفات الاثبات
                                                         </button>
-                                                        @include('dashboard.images.index', ['model' => $company, 'folder' => 'documentationFiles'])
+                                                        @include('dashboard.images.index', ['model' => $verification, 'folder' => 'documentationFiles'])
+
+                                                        <a class="btn btn-sm btn-warning" data-toggle="modal"
+                                                           data-target="#edit_latest_news_{{$verification->id}}"
+                                                           data-whatever="@mdo"><i
+                                                                class="fa-solid fa-pen-to-square"></i>
+                                                            رفض اثبات الهوية </a>
+                                                        @include('dashboard.identity_verification_company.edit',['company'=>$verification])
+
                                                     </td>
 
                                                     <td>
