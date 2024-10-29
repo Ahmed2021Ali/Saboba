@@ -23,6 +23,8 @@ class IdentityVerificationController extends Controller
                 flash()->error('  تم اثبات ملكية هذ الموسسة من قبل  ');
                 return redirect()->back();
             } else {
+                $company->status = 1;
+                $company->save();
                 flash()->success('  تم اثبات ملكية الموسسة بنجاح ');
                 return redirect()->back();
             }
