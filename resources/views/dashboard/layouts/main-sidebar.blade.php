@@ -29,6 +29,7 @@
         <p class="text-muted nav-heading mt-4 mb-1">
             <span>المكونات</span>
         </p>
+
         <ul class="navbar-nav flex-fill w-100 mb-2">
 
             {{-- Category--}}
@@ -38,7 +39,6 @@
                     <span class="ml-1 item-text">الفئات</span>
                 </a>
             </li>
-
 
             {{--Ads --}}
             <li class="nav-item">
