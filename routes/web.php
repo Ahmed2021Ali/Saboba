@@ -58,7 +58,7 @@ Route::group([
         Route::resource('city', CityController::class);
 
         // identity-verification Routes  // Not Completed
-        Route::resource('identity-verification', IdentityVerificationController::class);
+        Route::resource('verification', IdentityVerificationController::class);
 
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
