@@ -30,6 +30,24 @@
             <span>المكونات</span>
         </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
+            
+            {{-- Category--}}
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('categories.index')}}">
+                    <i class="fe fe-folder fe-16"></i>
+                    <span class="ml-1 item-text">الفئات</span>
+                </a>
+            </li>
+
+
+            {{--Ads --}}
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('ads.index')}}">
+                    <i class="fe fe-shopping-cart fe-16"></i>
+                    <span class="ml-1 item-text">المنتجات</span>
+                </a>
+            </li>
+
             <!-- Existing Users Section -->
             <li class="nav-item dropdown">
                 <a href="#auth" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
@@ -53,8 +71,6 @@
             </li>
 
             <!-- Existing Roles Section -->
-
-
             <li class="nav-item dropdown">
                 <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="fe fe-shield fe-16"></i>
@@ -82,21 +98,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('categories.index')}}">
-                    <i class="fe fe-folder fe-16"></i>
-                    <span class="ml-1 item-text">الفئات</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('ads.index')}}">
-                    <i class="fe fe-shopping-cart fe-16"></i>
-                    <span class="ml-1 item-text">المنتجات</span>
-                </a>
-            </li>
-
-            <!-- Existing Addresses Section -->
+            <!-- Existing Country and City Section -->
             <li class="nav-item dropdown">
                 <a href="{{route('country.index')}}" class="nav-link">
                     <i class="fe fe-map-pin fe-16"></i>
@@ -104,6 +106,7 @@
                 </a>
             </li>
 
+            <!-- Existing Verification Company Section -->
             <li class="nav-item dropdown">
                 <a href="#verification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="fe fe-file-text fe-16"></i>
@@ -127,21 +130,13 @@
                 </ul>
             </li>
 
-
-
-
+            <!-- Existing Block User Section -->
             <li class="nav-item w-100">
                 <a class="nav-link" href="">
                     <i class="fe fe-star fe-16"></i>
                     <span class="ml-3 item-text">حظر المستخدمين</span>
                 </a>
             </li>
-
-
-
-
-
-
 
 
         </ul>
