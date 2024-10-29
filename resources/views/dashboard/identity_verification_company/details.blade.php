@@ -13,7 +13,7 @@
                         @if($verification->user->getFirstMediaUrl('userImages'))
                         <img class="mySlides" src="{{$verification->user->getFirstMediaUrl('userImages')}}" alt="company Image" width="200" height="150" style="text-align: center">
                         @else
-                            <img class="mySlides" src="https://marketplace.canva.com/EAE0rNNM2Fg/1/0/1600w/canva-letter-c-trade-marketing-logo-design-template-r9VFYrbB35Y.jpg" alt="company Image" width="200" height="100" style="text-align: center">
+                            <img class="mySlides" src="https://marketplace.canva.com/EAE0rNNM2Fg/1/0/1600w/canva-letter-c-trade-marketing-logo-design-template-r9VFYrbB35Y.jpg" alt="company Image" width="200" height="150" style="text-align: center">
                         @endif
                         <h4> اسم  : {{$verification->user->name}} </h4>
                         <h4> الاميل  : {{$verification->user->email}} </h4>
