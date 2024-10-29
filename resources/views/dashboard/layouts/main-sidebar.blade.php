@@ -110,7 +110,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_advanced.html">
+                        <a class="nav-link pl-3" href="{{route('verifications.show',5)}}">
                             <i class="fe fe-check-square fe-16"></i>
 
                             <span class="ml-1 item-text"> الموسسات تمت اثباتها </span>
