@@ -145,7 +145,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{route('ads.index')}}">
                     <i class="fe fe-shopping-cart fe-16"></i>
                     <span class="ml-1 item-text">المنتجات</span>
                 </a>
