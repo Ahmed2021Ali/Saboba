@@ -10,6 +10,8 @@ return [
     'add' => '    اضافة قسام    ',
     'edit' => '   تعديل  ',
     'delete' => '   حذف  ',
+    'image' => '   الصورة  ',
+
     'show_sub_categories' => '   عرض الاقسام الفرعية   ',
 
     /* module delete */

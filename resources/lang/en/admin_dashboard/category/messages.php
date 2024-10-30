@@ -8,6 +8,7 @@ return [
     'operations' => '   Operations  ',
     'show_images' => '   Show Images   ',
     'add' => '     Add Category    ',
+    'image' => '   Image  ',
 
     'edit' => '   Edit  ',
     'delete' => '   Delete  ',
