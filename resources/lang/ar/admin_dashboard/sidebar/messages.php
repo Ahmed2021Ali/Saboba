@@ -27,7 +27,7 @@ return [
     /*  Identity Verification*/
     'identity_verification' => ' اثبات الهوية ',
     'waiting_review' => ' بانتظار المراجعة ',
-    'verified' => 'تمت اثبات هويتها .',
+    'verified' => 'تمت اثبات هويتها',
 
 
     /* Countries and cities */
