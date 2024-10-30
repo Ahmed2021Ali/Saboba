@@ -7,14 +7,12 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title">قائمة الفئات</h2>
-                <div class="pull-right mb-2">
+                <h2 class="mb-2 page-title">{{ __('admin_dashboard/category/messages.show_all_category') }}</h2>
+{{--                <div class="pull-right mb-2">
                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#createCategoryModal">
                         <i class="fa fa-plus"></i> إضافة فئة رائيسية
                     </button>
-
-                </div>
-
+                </div>--}}
 
                 <!-- Success Messages -->
                 @if (session('success'))
@@ -42,8 +40,8 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>اسم الفئة</th>
-                                            <th>الإجراءات</th>
+                                            <th>{{ __('admin_dashboard/category/messages.name') }}</th>
+                                            <th>{{ __('admin_dashboard/category/messages.operations') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,31 +54,31 @@
 
 
                                                     <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{$category->id}}">
-                                                        <i class="fa fa-edit"></i> عرض صور
+                                                        <i class="fa fa-edit"></i>  {{ __('admin_dashboard/category/messages.show_images') }}
                                                     </button>
                                                     @include('dashboard.images.index', ['model' => $category, 'folder' => 'categoryImages'])
 
 
                                                     <!-- Edit Button Modal Trigger -->
-                                                   <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editCategoryModal{{ $category->id }}">
-                                                        <i class="fa fa-edit"></i> تعديل
-                                                    </button>
+{{--                                                   <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editCategoryModal{{ $category->id }}">
+                                                        <i class="fa fa-edit"></i> {{ __('admin_dashboard/category/messages.edit') }}
+                                                    </button>--}}
 
                                                     <!-- Delete Button Modal Trigger -->
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCategoryModal{{ $category->id }}">
-                                                        <i class="fa fa-trash"></i> حذف
+                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/category/messages.delete') }}
                                                     </button>
 
                                                     <a class="btn btn-sm btn-info" href="{{ route('sub_categories.index', $category) }}">
-                                                        <i class="fa-solid fa-list"></i>  عرض الاقسام الفرعية
+                                                        <i class="fa-solid fa-list"></i>  {{ __('admin_dashboard/category/messages.show_sub_categories') }}
                                                     </a>
                                                 </td>
                                             </tr>
                                             @include('dashboard.categories.delete')
 
+{{--
                                          @include('dashboard.categories.edit')
-
-
+--}}
                                         @empty
                                             <tr>
                                                 <td colspan="8" class="text-center text-danger">لا توجد فئات متاحة</td>
