@@ -17,16 +17,16 @@ return [
     'show_roles' => ' Show Roles ',
     'add_role' => ' Add Role ',
 
+    /*  Identity Verification*/
+    'identity_verification' => ' Identity Verification ',
+    'waiting_review' => ' Waiting for review ',
+    'verified.'=> 'Verified.',
 
+    /* Countries and cities */
+    'countries_cities' => 'الدول و المدن',
 
-
-
-
-
-
-
-
-
+    /* Block users */
+    'block_users' => ' حظر المستخدمين ',
 
 
 

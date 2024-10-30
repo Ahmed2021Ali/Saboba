@@ -103,21 +103,21 @@
             <li class="nav-item dropdown">
                 <a href="#verification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="fe fe-file-text fe-16"></i>
-                    <span class="ml-3 item-text">الاثبات الهوية </span>
+                    <span class="ml-3 item-text"> {{ __('admin_dashboard/sidebar/messages.identity_verification') }} </span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="verification">
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('verifications.index')}}">
                             <i class="fe fe-sliders fe-16"></i>
 
-                            <span class="ml-1 item-text"> الموسسات بانتظار المراجعة  </span>
+                            <span class="ml-1 item-text">   {{ __('admin_dashboard/sidebar/messages.waiting_review') }}  </span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('verifications.show',5)}}">
                             <i class="fe fe-check-square fe-16"></i>
 
-                            <span class="ml-1 item-text"> الموسسات تمت اثباتها </span>
+                            <span class="ml-1 item-text">   {{ __('admin_dashboard/sidebar/messages.verified') }} </span>
                         </a>
                     </li>
                 </ul>
@@ -127,7 +127,7 @@
             <li class="nav-item dropdown">
                 <a href="{{route('country.index')}}" class="nav-link">
                     <i class="fe fe-map-pin fe-16"></i>
-                    <span class="ml-3 item-text">الدول و المدن</span>
+                    <span class="ml-3 item-text"> {{ __('admin_dashboard/sidebar/messages.countries_cities') }}</span>
                 </a>
             </li>
 
@@ -135,7 +135,7 @@
             <li class="nav-item w-100">
                 <a class="nav-link" href="">
                     <i class="fe fe-star fe-16"></i>
-                    <span class="ml-3 item-text">حظر المستخدمين</span>
+                    <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.block_users') }}</span>
                 </a>
             </li>
 
