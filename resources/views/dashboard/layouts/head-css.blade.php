@@ -20,11 +20,12 @@
 
 <!-- App CSS -->
 @if (Config::get('app.locale') === 'ar')
-    <link rel="stylesheet" href="{{ asset('assets/css2/app-light.css') }}" id="lightTheme">
-    <link rel="stylesheet" href="{{ asset('assets/css2/app-dark.css') }}" id="darkTheme" disabled>
-@else
     <link rel="stylesheet" href="{{ asset('assets/css/app-light.css') }}" id="lightTheme">
     <link rel="stylesheet" href="{{ asset('assets/css/app-dark.css') }}" id="darkTheme" disabled>
+
+@else
+    <link rel="stylesheet" href="{{ asset('assets/css2/app-light.css') }}" id="lightTheme">
+    <link rel="stylesheet" href="{{ asset('assets/css2/app-dark.css') }}" id="darkTheme" disabled>
 @endif
 
 
