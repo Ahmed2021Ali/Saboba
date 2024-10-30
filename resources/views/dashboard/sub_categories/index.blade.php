@@ -7,11 +7,11 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title">قائمة الفئات</h2>
+                    <h2 class="mb-2 page-title"> {{ __('admin_dashboard/category/messages.show_all_category') }}</h2>
                     <div class="pull-right mb-2">
 
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#createCategoryModal2">
-                            <i class="fa fa-plus"></i> إضافة فئة فرعية
+                            <i class="fa fa-plus"></i>   {{ __('admin_dashboard/category/messages.add') }}
                         </button>
                     </div>
 
@@ -42,8 +42,8 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>اسم الفئة</th>
-                                            <th>الإجراءات</th>
+                                            <th>{{ __('admin_dashboard/category/messages.name') }}</th>
+                                            <th>{{ __('admin_dashboard/category/messages.operations') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -56,7 +56,7 @@
 
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
                                                             data-target="#imageModal_{{$subCategory->id}}">
-                                                        <i class="fa fa-edit"></i> عرض صور
+                                                        <i class="fa fa-edit"></i>  {{ __('admin_dashboard/category/messages.show_images') }}
                                                     </button>
                                                     @include('dashboard.images.index', ['model' => $subCategory, 'folder' => 'categoryImages'])
 
@@ -65,18 +65,18 @@
                                                     <!-- Edit Button Modal Trigger -->
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#editCategoryModal{{ $subCategory->id }}">
-                                                        <i class="fa fa-edit"></i> تعديل
+                                                        <i class="fa fa-edit"></i> {{ __('admin_dashboard/category/messages.edit') }}
                                                     </button>
 
                                                     <!-- Delete Button Modal Trigger -->
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                                             data-target="#deleteCategoryModal{{ $subCategory->id }}">
-                                                        <i class="fa fa-trash"></i> حذف
+                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/category/messages.delete') }}
                                                     </button>
 
                                                     <a class="btn btn-sm btn-info"
                                                        href="{{ route('sub_categories.index', $subCategory) }}">
-                                                        <i class="fa-solid fa-list"></i> عرض الاقسام الفرعية
+                                                        <i class="fa-solid fa-list"></i>   {{ __('admin_dashboard/category/messages.show_sub_categories') }}
                                                     </a>
                                                 </td>
                                             </tr>
@@ -84,7 +84,7 @@
                                             @include('dashboard.sub_categories.edit')
                                         @empty
                                             <tr>
-                                                <td colspan="8" class="text-center text-danger">لا توجد فئات متاحة</td>
+                                                <td colspan="8" class="text-center text-danger">{{ __('admin_dashboard/category/messages.no_categories') }}   </td>
                                             </tr>
                                         @endforelse
                                         </tbody>
