@@ -92,7 +92,7 @@
                                         <label for="userMerchantSelect"><strong>اختر نوع المستخدم:</strong></label>
                                         <select name="type" id="userMerchantSelect" class="form-control">
                                             <option value="" disabled {{ old('type', $user->type) === null ? 'selected' : '' }}>اختر نوع المستخدم...</option>
-                                            <option value="أدمن" {{ old('type', $user->type) === 'admin' ? 'selected' : '' }}>admin</option>
+                                            <option value="أدمن" {{ old('type', $user->type) === 'admin_dashboard' ? 'selected' : '' }}>admin</option>
                                             <option value="تاجر" {{ old('type', $user->type) === 'company' ? 'selected' : '' }}>company</option>
                                             <option value="مستخدم" {{ old('type', $user->type) === 'personal' ? 'selected' : '' }}>personal</option>
                                         </select>

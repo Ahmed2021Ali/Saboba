@@ -35,7 +35,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         //dd($request->validated());
-        if ($request->type !== "admin") {
+        if ($request->type !== "admin_dashboard") {
             if ($request->role) {
                 flash()->error('لا يمكن ان تعطي دور لغير الادمن ');
                 return redirect()->back();
@@ -73,7 +73,7 @@ class UserController extends Controller
 
     public function update(UserRequest $request, $id)
     {
-        if ($request->type !== "admin") {
+        if ($request->type !== "admin_dashboard") {
             if ($request->role) {
                 flash()->error('لا يمكن ان تعطي دور لغير الادمن ');
                 return redirect()->back();

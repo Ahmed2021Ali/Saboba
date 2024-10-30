@@ -21,7 +21,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="fe fe-home fe-16"></i>
-                    <span class="ml-1 item-text">لوحة التحكم</span>
+                    <span class="ml-1 item-text">{{ trans('admin_dashboard.messages.welcome') }}</span>
                 </a>
             </li>
         </ul>

@@ -20,7 +20,7 @@ class UserRequest extends FormRequest
             'phone' => 'required|digits_between:10,15|unique:users,phone,' . $id,
             // Make password optional if not provided during update
             'password' => 'nullable|string|min:6|max:20|confirmed',
-            'type' => 'required|in:company,admin,personal',
+            'type' => 'required|in:company,admin_dashboard,personal',
             'country_id' => 'nullable|integer|exists:countries,id',
             'role' => 'required|string|exists:roles,name',
             'images.*' => ['nullable', 'max:10000'],

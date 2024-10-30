@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('phone')->index();
 
             $table->text('overview')->nullable();
-            $table->enum('type', ['personal', 'company', 'admin']);
+            $table->enum('type', ['personal', 'company', 'admin_dashboard']);
             $table->bigInteger('country_id')->unsigned()->nullable()->index();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->string('contact_number')->nullable();
