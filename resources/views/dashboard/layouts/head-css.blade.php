@@ -16,9 +16,12 @@
 <link rel="stylesheet" href="{{ asset('assets/css/quill.snow.css') }}">
 <!-- Date Range Picker CSS -->
 <link rel="stylesheet" href="{{ asset('assets/css/daterangepicker.css') }}">
+
 <!-- App CSS -->
-<link rel="stylesheet" href="{{ asset('assets/css/app-light.css') }}" id="lightTheme">
-<link rel="stylesheet" href="{{ asset('assets/css/app-dark.css') }}" id="darkTheme" disabled>
+<link rel="stylesheet" href="{{ asset('assets/css2/app-light.css') }}" id="lightTheme">
+
+<link rel="stylesheet" href="{{ asset('assets/css2/app-dark.css') }}" id="darkTheme" disabled>
+
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}"> <!-- ملف CSS الخاص بك -->
 <style>
