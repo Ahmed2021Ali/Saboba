@@ -23,10 +23,11 @@ return [
     'verified.'=> 'Verified.',
 
     /* Countries and cities */
-    'countries_cities' => 'الدول و المدن',
+    'countries_cities' => 'Countries and cities',
+
 
     /* Block users */
-    'block_users' => ' حظر المستخدمين ',
+    'block_users' => 'Block users  ',
 
 
 

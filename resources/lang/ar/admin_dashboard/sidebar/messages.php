@@ -30,12 +30,16 @@ return [
     'verified.' => 'تمت اثبات هويتها .',
 
 
-    /* Countries and cities */
-    'countries_cities' => 'Countries and cities',
 
+
+
+    /* Countries and cities */
+    'countries_cities' => 'الدول و المدن',
 
     /* Block users */
-    'block_users' => 'Block users  ',
+    'block_users' => ' حظر المستخدمين ',
+
+
 
 
     // Login Message
