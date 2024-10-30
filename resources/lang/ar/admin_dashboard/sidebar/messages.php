@@ -30,9 +30,6 @@ return [
     'verified.' => 'تمت اثبات هويتها .',
 
 
-
-
-
     /* Countries and cities */
     'countries_cities' => 'الدول و المدن',
 
