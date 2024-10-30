@@ -20,7 +20,7 @@ return [
     /*  Identity Verification*/
     'identity_verification' => ' Identity Verification ',
     'waiting_review' => ' Waiting for review ',
-    'verified.'=> 'Verified.',
+    'verified'=> 'Verified.',
 
     /* Countries and cities */
     'countries_cities' => 'Countries and cities',
