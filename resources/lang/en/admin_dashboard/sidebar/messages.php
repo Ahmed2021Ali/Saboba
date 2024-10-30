@@ -1,10 +1,36 @@
 <?php
 
 return [
-    'control_panel'=> ' Control Panel ',
-    'welcome' => '  Welcome Back ',
-    'auth_success' => '  You have been registered successfully ',
-    'auth_error' => '  Email & Password does not match with our record',
+
+    /* SideBar */
+
+    'control_panel' => ' Control Panel ',
+    'components' => ' Components ',
+    'sections' => ' Sections ',
+    'ads' => ' ads ',
+    /* Users */
+    'users' => ' Users ',
+    'show_users' => ' Show Users ',
+    'add_user' => ' Add Users ',
+    /* Roles */
+    'roles' => ' Roles ',
+    'show_roles' => ' Show Roles ',
+    'add_role' => ' Add Role ',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Login Message
     'failed' => 'These credentials do not match our records.',

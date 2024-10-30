@@ -21,13 +21,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="fe fe-home fe-16"></i>
-                    <span class="ml-1 item-text">{{ __('messages.control_panel') }}</span>
+                    <span class="ml-1 item-text">{{ __('admin_dashboard/sidebar/messages.control_panel') }}</span>
                 </a>
             </li>
         </ul>
 
         <p class="text-muted nav-heading mt-4 mb-1">
-            <span>المكونات</span>
+            <span>{{ __('messages.components') }}</span>
         </p>
 
         <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -36,7 +36,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('categories.index')}}">
                     <i class="fe fe-folder fe-16"></i>
-                    <span class="ml-1 item-text">الفئات</span>
+                    <span class="ml-1 item-text">{{ __('messages.sections') }}</span>
                 </a>
             </li>
 
@@ -44,7 +44,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('ads.index')}}">
                     <i class="fe fe-shopping-cart fe-16"></i>
-                    <span class="ml-1 item-text">الاعلانات</span>
+                    <span class="ml-1 item-text">{{ __('messages.ads') }}</span>
                 </a>
             </li>
 
@@ -52,19 +52,19 @@
             <li class="nav-item dropdown">
                 <a href="#auth" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="fe fe-users fe-16"></i>
-                    <span class="ml-3 item-text">المستخدمين</span>
+                    <span class="ml-3 item-text">{{ __('messages.users') }}</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="auth">
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('users.index')}}">
                             <i class="fe fe-eye fe-16"></i>
-                            <span class="ml-1 item-text">عرض المستخدمين</span>
+                            <span class="ml-1 item-text"> {{ __('messages.show_users') }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link pl-3" href="{{route('users.create')}}">
                             <i class="fe fe-user-plus fe-16"></i>
-                            <span class="ml-1 item-text">إضافة مستخدم</span>
+                            <span class="ml-1 item-text"> {{ __('messages.add_user') }}</span>
                         </a>
                     </li>
                 </ul>
@@ -74,7 +74,7 @@
             <li class="nav-item dropdown">
                 <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="fe fe-shield fe-16"></i>
-                    <span class="ml-3 item-text">الأدوار</span>
+                    <span class="ml-3 item-text">{{ __('messages.roles') }}</span>
                 </a>
 
                 <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
@@ -82,7 +82,7 @@
                         <li class="nav-item">
                             <a class="nav-link pl-3" href="{{ route('roles.index') }}">
                                 <i class="fe fe-eye fe-16"></i>
-                                <span class="ml-1 item-text">عرض الأدوار</span>
+                                <span class="ml-1 item-text"> {{ __('messages.show_roles') }}</span>
                             </a>
                         </li>
                     @endcan
@@ -91,12 +91,14 @@
                         <li class="nav-item">
                             <a class="nav-link pl-3" href="{{ route('roles.create') }}">
                                 <i class="fe fe-plus-circle fe-16"></i>
-                                <span class="ml-1 item-text">إضافة دور</span>
+                                <span class="ml-1 item-text"> {{ __('messages.add_role') }}</span>
                             </a>
                         </li>
                     @endcan
                 </ul>
             </li>
+
+
             <!-- Existing Verification Company Section -->
             <li class="nav-item dropdown">
                 <a href="#verification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
