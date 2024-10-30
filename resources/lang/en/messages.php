@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'control_panel'=> ' Control Panel ',
     'welcome' => '  Welcome Back ',
     'auth_success' => '  You have been registered successfully ',
     'auth_error' => '  Email & Password does not match with our record',
