@@ -21,7 +21,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="">
                     <i class="fe fe-home fe-16"></i>
-                    <span class="ml-1 item-text">{{ __('messages.welcome') }}</span>
+                    <span class="ml-1 item-text">{{ __('messages.control_panel') }}</span>
                 </a>
             </li>
         </ul>
