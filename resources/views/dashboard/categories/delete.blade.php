@@ -15,7 +15,7 @@
                 <form action="{{ route('categories.destroy', $category) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/category/messages.close') }}</button>
                     <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/category/messages.delete') }}</button>
                 </form>
             </div>

@@ -12,7 +12,8 @@ return [
     'show_sub_categories' => '   Show Sub Categories   ',
 
     /* module delete */
-    'sure_delete' => 'Are you sure to delete?'
+    'sure_delete' => 'Are you sure to delete?',
+    'close'=>'   Close '
 
 
 ];

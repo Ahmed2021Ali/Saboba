@@ -12,6 +12,7 @@ return [
     'show_sub_categories' => '   عرض الاقسام الفرعية   ',
 
     /* module delete */
-    'sure_delete'=>'هل انت متاكد من الحذف  ؟'
+    'sure_delete'=>'هل انت متاكد من الحذف  ؟',
+    'close'=>'   اغلاق '
 
 ];
