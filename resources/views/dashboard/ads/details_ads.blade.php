@@ -34,7 +34,7 @@
                             {{-- Ads--}}
                             <div class="card shadow mb-4">
                                 <div class="card-header">
-                                    <strong class="card-title">{{$ad->name}}</strong>
+                                    <strong class="card-title">{{$ad->name ?? "null"}}</strong>
                                     <span class="float-right">
                                         <span class="badge badge-pill @if($ad->status ===0) badge-danger @else badge-success  @endif text-white"> {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span>
                                     </span>
@@ -43,28 +43,29 @@
                                     <dl class="row align-items-center mb-0">
                                         <dt class="col-sm-2 mb-3">{{ __('admin_dashboard/ads/messages.department') }}</dt>
                                         <dd class="col-sm-4 mb-3">
-                                            <strong>{{$ad->category->name}}</strong>
+                                            <strong>{{$ad->category->name ?? "null"}}</strong>
                                         </dd>
+
                                         <dt class="col-sm-2 mb-3">{{ __('admin_dashboard/ads/messages.assigned_to') }} </dt>
                                         <dd class="col-sm-4 mb-3">
-                                            <strong>{{$ad->user->name}}</strong>
+                                            <strong>{{$ad->user->name??"null"}}</strong>
                                         </dd>
                                     </dl>
                                     <dl class="row mb-0">
                                         <dt class="col-sm-2 mb-3">{{ __('admin_dashboard/ads/messages.city') }}</dt>
-                                        <dd class="col-sm-4 mb-3">{{$ad->city->name}}</dd>
+                                        <dd class="col-sm-4 mb-3">{{$ad->city->name??"null"}}</dd>
 
                                         <dt class="col-sm-2 mb-3">{{ __('admin_dashboard/ads/messages.price') }}</dt>
-                                        <dd class="col-sm-4 mb-3">{{$ad->price}}</dd>
+                                        <dd class="col-sm-4 mb-3">{{$ad->price??"null"}}</dd>
 
                                         <dt class="col-sm-2 mb-3">{{ __('admin_dashboard/ads/messages.create_on') }}</dt>
-                                        <dd class="col-sm-4 mb-3">{{$ad->crated_at}}</dd>
+                                        <dd class="col-sm-4 mb-3">{{$ad->crated_at??"null"}}</dd>
 
                                         <dt class="col-sm-2 mb-3">{{ __('admin_dashboard/ads/messages.status') }}</dt>
                                         <dd class="col-sm-4 mb-3">{{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</dd>
 
                                         <dt class="col-sm-2 ">{{ __('admin_dashboard/ads/messages.description') }}</dt>
-                                        <dd class="col-sm-10">{{$ad->description}} </dl>
+                                        <dd class="col-sm-10">{{$ad->description??"null"}} </dl>
                                 </div>
                             </div>
 
@@ -77,8 +78,8 @@
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
                                         @foreach($ad->adFields(Config::get('app.locale')) as $adFiled)
-                                            <dt class="col-sm-2 mb-3 ">{{$adFiled->field_name}}</dt>
-                                            <dd class="col-sm-4 mb-3"><strong>{{$adFiled->field_value}}</strong></dd>
+                                            <dt class="col-sm-2 mb-3 ">{{$adFiled->field_name??"null"}}</dt>
+                                            <dd class="col-sm-4 mb-3"><strong>{{$adFiled->field_value??"null"}}</strong></dd>
                                        @endforeach
 
                                 </div>
