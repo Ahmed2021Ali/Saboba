@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="varyModalLabel"> قبول اثبات الهوية </h5>
+                <h5 class="modal-title" id="varyModalLabel">{{ __('admin_dashboard/verification/messages.verify_identity') }} </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -13,11 +13,11 @@
                     @method('put')
                     @csrf
                     <br>
-                    <h4 style="text-align: center"> هل تريد قبول مستندات هذه الموسسة   {{$verification->user->name}}</h4>
+                    <h4 style="text-align: center"> {{ __('admin_dashboard/verification/messages.Do_you_want_to_accept_this_institution_documents?') }}   {{$verification->user->name}}</h4>
                     <br>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn mb-2 btn-primary">  قبول اثبات الهوية  </button>
+                        <button type="submit" class="btn mb-2 btn-primary"> {{ __('admin_dashboard/verification/messages.verify_identity') }}  </button>
                     </div>
                 </form>
             </div>

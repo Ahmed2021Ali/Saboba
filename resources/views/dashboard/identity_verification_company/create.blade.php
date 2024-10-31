@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="varyModalLabel"> اثبات الهوية </h5>
+                <h5 class="modal-title" id="varyModalLabel"> {{ __('admin_dashboard/verification/messages.verify_identity') }} </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -13,7 +13,7 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="storeStatus"><strong> اختار الموسسة </strong></label>
+                        <label for="storeStatus"><strong> {{ __('admin_dashboard/verification/messages.select_the_institution') }} </strong></label>
                         <select name="company_id" id="storeStatus" class="form-control">
                             @foreach($companies as $company)
                                 <option value="{{$company->id}}">{{$company->name}}</option>
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn mb-2 btn-primary">  تأكيد اثبات الهوية </button>
+                        <button type="submit" class="btn mb-2 btn-primary">  {{ __('admin_dashboard/verification/messages.verify_identity') }} </button>
                     </div>
                 </form>
             </div>
