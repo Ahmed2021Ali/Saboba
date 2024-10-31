@@ -29,13 +29,13 @@
                                 </div>
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
-                                        <dt class="col-sm-2 mb-3 text-muted">Reported by</dt>
+                                        <dt class="col-sm-2 mb-3 text-muted">Category </dt>
                                         <dd class="col-sm-4 mb-3">
-                                            <strong>Brown Asher</strong>
+                                            <strong>{{$ad->category->name}}</strong>
                                         </dd>
                                         <dt class="col-sm-2 mb-3 text-muted">Assigned to</dt>
                                         <dd class="col-sm-4 mb-3">
-                                            <strong>Kelley Sonya</strong>
+                                            <strong>{{$ad->user->name}}</strong>
                                         </dd>
                                     </dl>
                                     <dl class="row mb-0">
