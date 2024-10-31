@@ -54,10 +54,7 @@
                 <p class="text-center text-primary"><small>دليل بواسطة ItSolutionStuff.com</small></p>
             </div> <!-- /.col -->
         </div> <!-- /.row -->
-    </div> <!-- /.container-fluid -->
+    </div>
 </main>
 @endsection
 
-@section('js')
-  <!-- You can add specific JavaScript files for this page here -->
-@endsection

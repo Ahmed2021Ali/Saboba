@@ -12,8 +12,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title text-center" style="text-align: center"> اثبات هوية الموسسات قيد
-                        المراجعة </h2>
+                    <h2 class="mb-2 page-title text-center" style="text-align: center"> {{ __('admin_dashboard/verification/messages.Proof_of_identity_of_the_institutions_under_review') }} </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -29,12 +28,11 @@
                                         <table class="table datatables" id="dataTable-1">
                                             <thead>
                                             <tr>
-                                                <th></th>
-                                                <th> اسم الموسسة</th>
-                                                <th> تفاصيل الموسسة</th>
-
-                                                <th> حالة الموسسة</th>
-                                                <th> العمليات</th>
+                                                <th>#</th>
+                                                <th> {{ __('admin_dashboard/verification/messages.name') }} </th>
+                                                <th> {{ __('admin_dashboard/verification/messages.details') }} </th>
+                                                <th> {{ __('admin_dashboard/verification/messages.status') }} </th>
+                                                <th> {{ __('admin_dashboard/verification/messages.operations') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -45,7 +43,7 @@
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#imageModal_details_{{$verification->id}}">
-                                                            <i class="fa fa-edit"></i> تفاصيل الموسسة
+                                                            <i class="fa fa-edit"></i> {{ __('admin_dashboard/verification/messages.details') }}
                                                         </button>
                                                         @include('dashboard.identity_verification_company.details',['verification'=>$verification])
                                                     </td>
@@ -55,7 +53,7 @@
 
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#imageModal_{{$verification->id}}">
-                                                            <i class="fa fa-edit"></i> عرض ملفات الاثبات
+                                                            <i class="fa fa-edit"></i> {{ __('admin_dashboard/verification/messages.show_files') }}
                                                         </button>
                                                         @include('dashboard.images.index', ['model' => $verification, 'folder' => 'documentationFiles'])
 
@@ -63,7 +61,7 @@
                                                         <button type="button" class="btn btn-sm btn-danger"
                                                                 data-toggle="modal"
                                                                 data-target="#delete_latest_news_{{$verification->id}}">
-                                                            <i class="fa-solid fa-trash"></i> رفض اثبات الهوية
+                                                            <i class="fa-solid fa-trash"></i>{{ __('admin_dashboard/verification/messages.reject') }}
                                                         </button>
                                                         @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
 
@@ -72,7 +70,7 @@
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#accept_verification_{{$verification->id}}"
                                                                 data-whatever="@mdo" style="color: #000000"><i class="fa-solid fa-pen-to-square"></i>
-                                                            قبول اثبات الهوية </button>
+                                                            {{ __('admin_dashboard/verification/messages.accept') }} </button>
                                                         @include('dashboard.identity_verification_company.accept',['verification'=>$verification])                                                    </td>
 
 
