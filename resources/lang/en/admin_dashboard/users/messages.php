@@ -10,6 +10,7 @@ return [
 
     'phone_number' => 'Phone Number',
     'roles' => 'Role',
+    'select_role' => 'Select Role User',
     'country' => 'Country',
     'operations' => 'Operations',
     'image' => 'Image User',
@@ -23,6 +24,6 @@ return [
     'select_type'=>' Select Type User ',
     'user'=>'User',
     'admin'=>'Admin',
-    'company'=>'Company'
+    'company'=>'Company',
 
 ];

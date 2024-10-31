@@ -9,6 +9,7 @@ return [
     'password_confirmation'=>'ناكيد كلمة المرور',
     'phone_number' => 'رقم الهاتف ',
     'roles' => 'الادوار',
+    'select_role' => 'اختر دور المستخدم ',
     'country' => 'الدولة',
     'operations' => 'الاجراءات',
     'image' => 'صورة المستخدم ',

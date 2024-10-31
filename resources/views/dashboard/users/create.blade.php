@@ -107,9 +107,9 @@
                                     <!-- Role Selection -->
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="roles"><strong>الدور:</strong></label>
+                                            <label for="roles"><strong>{{ __('admin_dashboard/users/messages.roles') }}:</strong></label>
                                             <select name="role" id="roles" class="form-control" required>
-                                                <option style="display: none"> اختر دور المستخدم </option>
+                                                <option style="display: none">   {{ __('admin_dashboard/users/messages.select_role') }} </option>
                                             @foreach($roles as $role)
                                                     @if($role !== 'manager')
                                                         <!-- Exclude manager role -->
@@ -126,16 +126,15 @@
                                     <!-- Image Selection -->
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="files">الصور</label>
-                                            <input type="file" name="images[]" id="files" class="form-control" multiple
-                                                   accept="image/*" required>
+                                            <label for="files">{{ __('admin_dashboard/users/messages.image') }}</label>
+                                            <input type="file" name="images[]" id="files" class="form-control" multiple accept="image/*" required>
                                         </div>
                                     </div>
 
                                     <!-- Submit Button -->
                                     <div class="col-md-12 text-center">
                                         <button type="submit" class="btn btn-primary btn-sm mb-3">
-                                            <i class="fa-solid fa-floppy-disk"></i> تأكيد
+                                            <i class="fa-solid fa-floppy-disk"></i> {{ __('admin_dashboard/users/messages.add') }}
                                         </button>
                                     </div>
                                 </div>
