@@ -92,7 +92,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="type"><strong>{{ __('admin_dashboard/users/messages.type') }} :</strong></label>
-                                            <select name="type" id="type" class="form-control">
+                                            <select name="type" class="form-control" id="sectionChooser">
                                                 <option style="display: none"> {{ __('admin_dashboard/users/messages.select_type') }} </option>
                                                 <option value="admin"> {{ __('admin_dashboard/users/messages.admin') }}</option>
                                                 <option value="personal"> {{ __('admin_dashboard/users/messages.user') }}</option>
@@ -102,7 +102,7 @@
                                     </div>
 
                                     <!-- Role Selection -->
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 LoginForm" id="admin">
                                         <div class="form-group mb-3">
                                             <label for="roles"><strong>{{ __('admin_dashboard/users/messages.roles') }}:</strong></label>
                                             <select name="role" id="roles" class="form-control" required>
@@ -144,4 +144,14 @@
             </div> <!-- /.row -->
         </div> <!-- /.container-fluid -->
     </main>
+@endsection
+@section('js')
+    <script>
+        $('#sectionChooser').change(function () {
+            var myID = $(this).val();
+            $('.LoginForm').each(function () {
+                myID === $(this).attr('id') ? $(this).show() : $(this).hide();
+            });
+        });
+    </script>
 @endsection

@@ -34,19 +34,15 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        //dd($request->validated());
-        if ($request->type !== "admin_dashboard") {
-            if ($request->role) {
-                flash()->error('لا يمكن ان تعطي دور لغير الادمن ');
-                return redirect()->back();
-            }
-        }
         $validatedData = $request->validated();
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        if (isset($validatedData['password'])) {
+            $validatedData['password'] = Hash::make($validatedData['password']);
+        }
         $user = User::create($validatedData);
         $this->downloadImages($request->images, $user, 'userImages');
-        // Assign the role(s) to the user
-        $user->assignRole($validatedData['role']); // Use 'role' instead of 'roles'
+        if ($validatedData['type'] === 'أدمن') {
+            $user->assignRole($validatedData['role']);
+        }
         flash()->success('تم اضافة مستخدم بنجاح');
         return redirect()->route('users.index');
     }
@@ -73,24 +69,19 @@ class UserController extends Controller
 
     public function update(UserRequest $request, $id)
     {
-        if ($request->type !== "admin_dashboard") {
-            if ($request->role) {
-                flash()->error('لا يمكن ان تعطي دور لغير الادمن ');
-                return redirect()->back();
-            }
-        }
         $user = User::findOrFail($id);
         $this->updateImages($request->images, $user, 'userImages');
         $validatedData = $request->validated();
-
         if (!empty($validatedData['password'])) {
             $validatedData['password'] = Hash::make($validatedData['password']);
         } else {
             unset($validatedData['password']);
         }
         $user->update($validatedData);
-        if (isset($validatedData['role'])) {
+        if ($validatedData['type'] === 'أدمن' && isset($validatedData['role'])) {
             $user->syncRoles($validatedData['role']);
+        } else {
+            $user->syncRoles([]);
         }
         flash()->success('تم تحديث المستخدم بنجاح');
         return redirect()->route('users.index');
