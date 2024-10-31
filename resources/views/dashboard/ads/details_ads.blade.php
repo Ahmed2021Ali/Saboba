@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
-                                        <dt class="col-sm-2 mb-3 text-muted">Category </dt>
+                                        <dt class="col-sm-2 mb-3 text-muted">Department </dt>
                                         <dd class="col-sm-4 mb-3">
                                             <strong>{{$ad->category->name}}</strong>
                                         </dd>
@@ -39,10 +39,11 @@
                                         </dd>
                                     </dl>
                                     <dl class="row mb-0">
-                                        <dt class="col-sm-2 mb-3 text-muted">Plan</dt>
-                                        <dd class="col-sm-4 mb-3">Basic</dd>
-                                        <dt class="col-sm-2 mb-3 text-muted">Department</dt>
-                                        <dd class="col-sm-4 mb-3">Support</dd>
+                                        <dt class="col-sm-2 mb-3 text-muted">City</dt>
+                                        <dd class="col-sm-4 mb-3">{{$ad->city->name}}</dd>
+
+                                        <dt class="col-sm-2 mb-3 text-muted">Price</dt>
+                                        <dd class="col-sm-4 mb-3">{{$ad->price}}</dd>
                                         <dt class="col-sm-2 mb-3 text-muted">Priority</dt>
                                         <dd class="col-sm-4 mb-3">
                                             <span class="badge badge-pill badge-danger">High</span>
