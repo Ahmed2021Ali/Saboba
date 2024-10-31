@@ -59,14 +59,15 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{ $user->id }}">
-                                                        <i class="fa fa-edit"></i>   {{ __('admin_dashboard/users/messages.image') }}
-                                                    </button>
+
                                                     @include('dashboard.images.index', ['model' => $user, 'folder' => 'userImages'])
 
                                                     @if ($user->email === 'saboba@gmail.com' && $user->hasRole('manager'))
                                                         <!-- Hide edit and delete buttons for the specific manager -->
                                                     @else
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{ $user->id }}">
+                                                            <i class="fa fa-edit"></i>   {{ __('admin_dashboard/users/messages.image') }}
+                                                        </button>
                                                     <a class="btn btn-sm btn-info" href="{{ route('users.show', $user->id) }}">
                                                         <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/users/messages.show') }}
                                                     </a>
