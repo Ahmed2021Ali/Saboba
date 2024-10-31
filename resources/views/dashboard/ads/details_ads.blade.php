@@ -62,9 +62,8 @@
                             {{-- Ads Filds--}}
                             <div class="card shadow mb-4">
                                 <div class="card-header">
-                                    <strong class="card-title">{{$ad->name}}</strong>
-                                    <span class="float-right"><i class="fe fe-flag mr-2"></i><span
-                                            class="badge badge-pill badge-success text-white">                                                    {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span></span>
+                                    <strong class="card-title">Ad Filed Additions</strong>
+                                    <span class="float-right"><i class="fe fe-flag mr-2"></i><span class="badge badge-pill badge-success text-white">                                                    {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span></span>
                                 </div>
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
