@@ -23,6 +23,7 @@
 
                     <div class="row my-4">
                         <div class="col-md-12">
+                            {{-- Ads--}}
                             <div class="card shadow mb-4">
                                 <div class="card-header">
                                     <strong class="card-title">{{$ad->name}}</strong>
@@ -58,81 +59,34 @@
                                 </div>
                             </div>
 
-
+                            {{-- Ads Filds--}}
                             <div class="card shadow mb-4">
                                 <div class="card-header">
-                                    <strong class="card-title">Ticket Thread</strong>
-                                    <span class="float-right"><i class="fe fe-message-circle mr-2"></i>4</span>
+                                    <strong class="card-title">{{$ad->name}}</strong>
+                                    <span class="float-right"><i class="fe fe-flag mr-2"></i><span
+                                            class="badge badge-pill badge-success text-white">                                                    {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span></span>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row align-items-center mb-4">
-                                        <div class="col-auto">
-                                            <div class="avatar avatar-sm mb-3 mx-4">
-                                                <img src="" alt="..." class="avatar-img rounded-circle">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <strong>Hester Nissim</strong>
-                                            <div class="mb-2">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</div>
-                                            <div class="card mb-3 bg-light w-50">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col-md-2 text-center">
-                                                        <img src="" alt="..." class="img-fluid rounded m-1">
-                                                    </div>
-                                                    <div class="col-md-10">
-                                                        <div class="card-body py-0">
-                                                            <p class="card-title mb-0">New screenshot-12.png</p>
-                                                            <div class="card-text my-0 text-muted small"><span class="mr-2">1.2M</span><span class="mr-2">SVG</span></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <small class="text-muted">2020-04-21 08:48:18</small>
-                                        </div>
-                                        <div class="col-auto">
-                          <span class="circle circle-sm bg-light">
-                            <i class="fe fe-corner-down-left"></i>
-                          </span>
-                                        </div>
-                                    </div> <!-- .row-->
-                                    <div class="row align-items-center mb-4">
-                                        <div class="col-auto">
-                                            <div class="avatar avatar-sm mb-3 mx-4">
-                                                <img src="./assets/avatars/face-4.jpg" alt="..." class="avatar-img rounded-circle">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <strong>Kelley Sonya</strong>
-                                            <div class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin luctus pretium. <br>Pellentesque porta massa ac nibh finibus iaculis. Maecenas vel interdum urna. Integer auctor ultrices faucibus. Aliquam consequat et ligula nec sodales.</div>
-                                            <small class="text-muted">2020-04-21 12:01:22</small>
-                                        </div>
-                                        <div class="col-auto">
-                          <span class="circle circle-sm bg-light">
-                            <i class="fe fe-corner-down-left"></i>
-                          </span>
-                                        </div>
-                                    </div> <!-- .row-->
-                                    <hr class="my-4">
-                                    <h6 class="mb-3">Response</h6>
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlTextarea1" class="sr-only">Your Message</label>
-                                            <textarea class="form-control bg-light" id="exampleFormControlTextarea1" rows="2"></textarea>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="form-check form-check-inline ml-1">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                <label class="form-check-label" for="inlineCheckbox1">Email Notification</label>
-                                            </div>
-                                            <div class="flex-fill mr-2 text-right">
-                                                <a href="#" class="btn"><i class="fe fe-upload"></i></a>
-                                                <a href="#" class="btn"><i class="fe fe-at-sign"></i></a>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                    </form>
-                                </div> <!-- .card-body -->
-                            </div> <!-- .card -->
+                                    <dl class="row align-items-center mb-0">
+                                        <dt class="col-sm-2 mb-3 text-muted">Department</dt>
+                                        <dd class="col-sm-4 mb-3">
+                                            <strong>{{$ad->category->name}}</strong>
+                                        </dd>
+                                        <dt class="col-sm-2 mb-3 text-muted">Assigned to</dt>
+                                        <dd class="col-sm-4 mb-3">
+                                            <strong>{{$ad->user->name}}</strong>
+                                        </dd>
+                                    </dl>
+                                    <dl class="row mb-0">
+                                        @foreach($ad->adFields as $adFiled)
+
+                                            <dt class="col-sm-2 text-muted">{{$adFiled->field_name}}</dt>
+                                            <dd class="col-sm-10">{{$adFiled->field_value}} </dl>
+                                    @endforeach
+
+                                </div>
+                            </div>
+
                         </div>
 
 
@@ -142,11 +96,21 @@
                                     <h3 class="h5 mb-1">Integrations</h3>
                                     <p class="text-muted mb-4">How to integrate the theme?</p>
                                     <ul class="list-unstyled">
-                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Lorem ipsum dolor sit amet</li>
-                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Consectetur adipiscing elit</li>
-                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Integer molestie lorem</li>
-                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Facilisis in pretium</li>
-                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Nulla volutpat aliquam velit</li>
+                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Lorem ipsum
+                                            dolor sit amet
+                                        </li>
+                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Consectetur
+                                            adipiscing elit
+                                        </li>
+                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Integer molestie
+                                            lorem
+                                        </li>
+                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Facilisis in
+                                            pretium
+                                        </li>
+                                        <li class="my-1"><i class="fe fe-file-text mr-2 text-muted"></i>Nulla volutpat
+                                            aliquam velit
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

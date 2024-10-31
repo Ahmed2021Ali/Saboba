@@ -61,4 +61,9 @@ class Ad extends Model implements HasMedia
     {
         return $this->belongsTo(City::class);
     }
+
+    public function adFields()
+    {
+        return $this->hasMany(AdField::class);
+    }
 }
