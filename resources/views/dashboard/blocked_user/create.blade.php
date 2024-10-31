@@ -14,7 +14,7 @@
                         <label for="message-text" class="col-form-label"> اختار  المستخدم الذي ستيم حظرة  </label>
                         <select name="user_id"  class="form-control" required>
                             @foreach($users as $user)
-                                @if ($user->email === 'mahmoudawaga@gmail.com' && $user->hasRole('manager'))
+                                @if ($user->email === 'saboba@gmail.com' && $user->hasRole('manager'))
                                     <!-- Hide edit and delete buttons for the specific manager -->
                                 @else
                                 <option value="{{$user->id}}">{{$user->name}}</option>
