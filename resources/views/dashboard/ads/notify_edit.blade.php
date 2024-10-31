@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editCategoryModalLabel"> اشعار بالتعديل  </h5>
+                <h5 class="modal-title" id="editCategoryModalLabel"> {{ __('admin_dashboard/ads/messages.notify_edit') }}  </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,7 +11,7 @@
             <form action="{{ route('notify_edit', $ad) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <br>
-                <h3 class="text-center"> اعلان  {{$ad->name}}</h3>
+                <h3 class="text-center"> {{ __('admin_dashboard/ads/messages.ad') }}  {{$ad->name}}</h3>
                 <div class="modal-body">
                     <div class="form-group">
                         <label> رسالة التعديل  </label>
@@ -19,8 +19,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-                    <button type="submit" class="btn btn-primary"> التأكيد الارسال  </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/ads/messages.close') }}</button>
+                    <button type="submit" class="btn btn-primary"> {{ __('admin_dashboard/ads/messages.notify_edit') }}  </button>
                 </div>
             </form>
         </div>
