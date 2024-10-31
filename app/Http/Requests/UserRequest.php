@@ -22,7 +22,7 @@ class UserRequest extends FormRequest
             'password' => 'nullable|string|min:6|max:20|confirmed',
             'type' => 'required|in:company,admin_dashboard,personal',
             'country_id' => 'nullable|integer|exists:countries,id',
-            'role' => 'required|string|exists:roles,name',
+            'role' => 'nullable|string|exists:roles,name',
             'images.*' => ['nullable', 'max:10000'],
         ];
     }
