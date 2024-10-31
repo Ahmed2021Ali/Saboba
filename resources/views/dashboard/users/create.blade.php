@@ -150,6 +150,11 @@
             </div> <!-- /.row -->
         </div> <!-- /.container-fluid -->
     </main>
+    <style>
+        .LoginForm {
+            display: none;
+        }
+    </style>
 @endsection
 @section('js')
     <script>
