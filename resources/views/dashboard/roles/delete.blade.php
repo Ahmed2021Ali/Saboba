@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteRoleModalLabel_{{ $role->id }}">تأكيد الحذف</h5>
+                <h5 class="modal-title" id="deleteRoleModalLabel_{{ $role->id }}">{{ __('admin_dashboard/roles/messages.delete') }} </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -12,11 +12,11 @@
                 @csrf
                 @method('DELETE')
                 <div class="modal-body">
-                    <h4 style="text-align: center">هل أنت متأكد من أنك تريد حذف الدور: <span style="color: red">{{ $role->name }}</span></</strong>؟</h4>
+                    <h4 style="text-align: center">{{ __('admin_dashboard/roles/messages.sure_delete') }}: <span style="color: red">{{ $role->name }}</span></h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
-                    <button type="submit" class="btn btn-danger">تأكيد الحذف</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/roles/messages.close') }}</button>
+                    <button type="submit" class="btn btn-danger"> {{ __('admin_dashboard/roles/messages.delete') }}</button>
                 </div>
             </form>
         </div>

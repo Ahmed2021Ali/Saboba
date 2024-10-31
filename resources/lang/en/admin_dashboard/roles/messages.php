@@ -10,6 +10,8 @@ return [
     'show' => 'Show Role',
     'no_roles'=>'  No Roles Available ',
     'permissions' => 'Permissions',
+    'close' => 'Close',
+    'sure_delete' => 'Are you sure to delete?',
 
 /*    'role_description' => 'Role Description',
     'role_permissions' => 'Role Permissions',
