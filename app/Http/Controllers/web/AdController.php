@@ -20,8 +20,9 @@ class AdController extends Controller
         //  $adFields = AdField::where('ad_id', $ad->id)->get();
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        dd($request);
         return view('dashboard.ads.create');
     }
 

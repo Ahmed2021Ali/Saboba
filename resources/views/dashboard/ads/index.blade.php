@@ -33,8 +33,12 @@
                             </ul>
                         </div>
                     @endif
-                    <a class="btn btn-primary btn-lg" href="{{route('ads.create')}}">اضافة اعلان </a>
                     <div class="row my-4">
+                        <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                data-target="#select_category">
+                            <i class="fa fa-edit"></i>  اضافة اعلان
+                        </button>
+                        @include('dashboard.ads.select_category')
                         <div class="col-md-12">
 
                             <div class="card shadow">
