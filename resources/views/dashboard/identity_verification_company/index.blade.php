@@ -87,7 +87,7 @@
                         </div>
 
                     @else
-                        <h1 style="text-align: center"> لا يوجد شركات قيد المراجعة </h1>
+                        <h1 style="text-align: center">{{ __('admin_dashboard/verification/messages.There_are_no_companies_under_review') }} </h1>
                     @endif
                     <p class="text-center text-primary"><small>دليل من ItSolutionStuff.com</small></p>
                 </div>
