@@ -36,7 +36,6 @@
                                 <div class="card-header">
                                     <strong class="card-title">{{$ad->name}}</strong>
                                     <span class="float-right">
-                                        <i class="fe fe-flag mr-2"></i>
                                         <span class="badge badge-pill @if($ad->status ===0) badge-danger @else badge-success  @endif text-white"> {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span>
                                     </span>
                                 </div>
@@ -73,7 +72,7 @@
                             <div class="card shadow mb-4">
                                 <div class="card-header">
                                     <strong class="card-title">{{ __('admin_dashboard/ads/messages.ad_filed_Addition') }}</strong>
-                                    <span class="float-right"><i class="fe fe-flag mr-2"></i><span class="badge badge-pill @if($ad->status ===0) badge-danger @else badge-success  @endif text-white">  {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span></span>
+                                    <span class="float-right"><span class="badge badge-pill @if($ad->status ===0) badge-danger @else badge-success  @endif text-white">  {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span></span>
                                 </div>
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
