@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <label for="roleName"><strong>{{ __('admin_dashboard/users/messages.name') }}:</strong></label>
+                                        <label for="roleName"><strong>{{ __('admin_dashboard/roles/messages.name') }}:</strong></label>
                                         <input type="text" name="name" id="roleName" placeholder="الاسم" class="form-control">
                                     </div>
                                 </div>
