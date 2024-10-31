@@ -11,10 +11,20 @@ return [
     'show_ad_details' => '   عرض تفاصيل الاعلان  ',
     'not_approve'=>' لم يتم الموافقه علية ',
     'approve'=>' تم الموافقة',
+    'reference_number'=>' الرقم المرجعي ',
+    'show_images'=>'  عرض صور الاعلان  ',
+    'show_reals'=>'  عرض الريلز ',
+
+    'department'=>'  القسم ',
+    'assigned_to'=>' صاحب الاعلان ',
+    'price'=>'  السعر ',
+    'description'=>'   الوصف ',
+    'ad_filed_Addition'=>'  معلومات اضافية ',
+    'create_on'=>'   تاريخ انشاء الاعلان ',
+
 
 
     'name' => '  الاسم   ',
-    'show_images' => '   عرض صور   ',
     'add' => '    اضافة قسام    ',
     'edit' => '   تعديل  ',
     'delete' => '   حذف  ',

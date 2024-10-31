@@ -11,9 +11,20 @@ return [
     'show_ad_details' => '  Show Advertising Details  ',
     'not_approve'=>'Not approved',
     'approve'=>'approved',
+    'reference_number'=>' Reference Number  ',
+    'show_images'=>'  Show  Images  ',
+    'show_reals'=>' Show  Reals  ',
+
+    'department'=>'  Category ',
+    'assigned_to'=>'  Assigned to ',
+    'price'=>'  Price ',
+    'description'=>'   Description ',
+    'ad_filed_Addition'=>'   Ad Filed Addition ',
+    'create_on'=>' Create On ',
+
+
 
     'name' => '  الاسم   ',
-    'show_images' => '   عرض صور   ',
     'add' => '    اضافة قسام    ',
     'edit' => '   تعديل  ',
     'delete' => '   حذف  ',
