@@ -1,9 +1,8 @@
 @extends('dashboard.layouts.master')
 
-@section('title', 'إنشاء دور جديد') <!-- Title in Arabic for "Create New Role" -->
+@section('title', 'إنشاء دور جديد')
 
 @section('css')
-  <!-- You can add specific CSS files for this page here -->
 @endsection
 
 @section('content')
@@ -11,12 +10,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="page-title">إنشاء دور جديد</h2> <!-- Page title in Arabic -->
-                <div class="text-muted mb-4">
-                    <a class="btn btn-primary btn-sm mb-2" href="{{ route('roles.index') }}">
-                        <i class="fa fa-arrow-left"></i> العودة
-                    </a>
-                </div>
+                <h2 class="page-title">{{ __('admin_dashboard/users/messages.add') }}</h2> 
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
