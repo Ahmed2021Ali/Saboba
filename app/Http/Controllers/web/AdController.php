@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class AdController extends Controller
 {
+
     public function index()
     {
         $ads = Ad::all();
@@ -17,6 +18,11 @@ class AdController extends Controller
         //dd($ads);
         // $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
         //  $adFields = AdField::where('ad_id', $ad->id)->get();
+    }
+
+    public function create()
+    {
+        return view('dashboard.ads.create');
     }
 
     public function show(Ad $ad)
