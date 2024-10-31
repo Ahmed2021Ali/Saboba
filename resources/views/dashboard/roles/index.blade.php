@@ -25,7 +25,6 @@
                                 <table class="table datatables" id="dataTable-1">
                                     <thead>
                                         <tr>
-                                            <th></th>
                                             <th>#</th>
                                             <th>{{ __('admin_dashboard/roles/messages.name') }}</th>
                                             <th>{{ __('admin_dashboard/roles/messages.operations') }}</th>
@@ -35,12 +34,6 @@
                                         @forelse ($roles as $key => $role)
                                             @if ($role->name !== 'manager' || auth()->user()->hasRole('manager'))
                                                 <tr>
-                                                    <td>
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="role-{{ $role->id }}">
-                                                            <label class="custom-control-label" for="role-{{ $role->id }}"></label>
-                                                        </div>
-                                                    </td>
                                                     <td>{{ ++$key }}</td>
                                                     <td>{{ $role->name }}</td>
                                                     <td>

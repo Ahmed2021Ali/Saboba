@@ -9,7 +9,7 @@ return [
     'operations' => 'Operations',
     'show' => 'Show Role',
     'no_roles'=>'  No Roles Available ',
-
+    'permissions' => 'Permissions',
 
 /*    'role_description' => 'Role Description',
     'role_permissions' => 'Role Permissions',

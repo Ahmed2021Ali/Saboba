@@ -24,22 +24,19 @@
                 @endif
 
                 <div class="card shadow mb-4">
-                    <div class="card-header">
-                        <strong class="card-title">نموذج الدور</strong>
-                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('roles.store') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <label for="roleName"><strong>الاسم:</strong></label>
+                                        <label for="roleName"><strong>{{ __('admin_dashboard/users/messages.name') }}:</strong></label>
                                         <input type="text" name="name" id="roleName" placeholder="الاسم" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <label><strong>الصلاحيات:</strong></label>
+                                        <label><strong>{{ __('admin_dashboard/users/messages.permissions') }}:</strong></label>
                                         <br />
                                         <div class="row">
                                             @foreach($permission as $index => $value)

@@ -10,6 +10,7 @@ return [
     'operations' => 'الاجراءا',
     'show' => 'عرض',
     'no_roles'=>'   لا توجد ادوار متاحة ',
+    'permissions' => 'الصلاحيات',
 
 
 
