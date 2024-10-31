@@ -23,7 +23,7 @@ return [
     'create_on'=>'Create On',
     'reject' => '    Reject Ad  ',
     'close' => '   اغلاق ',
-    'sure_delete' => 'هل انت متاكد من الحذف  ؟',
+    'sure_delete' => 'Are you sure to delete?',
 
 
 
