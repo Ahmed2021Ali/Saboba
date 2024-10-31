@@ -11,7 +11,8 @@
                     {{-- Refernce Number--}}
                     <div class="row align-items-center mb-4">
                         <div class="col">
-                            <h2 class="h5 page-title"><small class="text-muted text-uppercase">Reference Number</small><br>#{{$ad->reference_number}}</h2>
+                            <h2 class="h5 page-title"><small class="text-muted text-uppercase">Reference
+                                    Number</small><br>#{{$ad->reference_number}}</h2>
                         </div>
                         <div class="col-auto">
                             <button type="button" class="btn btn-secondary">Close</button>
@@ -25,11 +26,12 @@
                             <div class="card shadow mb-4">
                                 <div class="card-header">
                                     <strong class="card-title">{{$ad->name}}</strong>
-                                    <span class="float-right"><i class="fe fe-flag mr-2"></i><span class="badge badge-pill badge-success text-white">Payment</span></span>
+                                    <span class="float-right"><i class="fe fe-flag mr-2"></i><span
+                                            class="badge badge-pill badge-success text-white">                                                    {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span></span>
                                 </div>
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
-                                        <dt class="col-sm-2 mb-3 text-muted">Department </dt>
+                                        <dt class="col-sm-2 mb-3 text-muted">Department</dt>
                                         <dd class="col-sm-4 mb-3">
                                             <strong>{{$ad->category->name}}</strong>
                                         </dd>
@@ -44,40 +46,15 @@
 
                                         <dt class="col-sm-2 mb-3 text-muted">Price</dt>
                                         <dd class="col-sm-4 mb-3">{{$ad->price}}</dd>
-                                        <dt class="col-sm-2 mb-3 text-muted">Priority</dt>
-                                        <dd class="col-sm-4 mb-3">
-                                            <span class="badge badge-pill badge-danger">High</span>
-                                            <div class="dropdown d-inline">
-                                                <button class="btn btn-sm p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="sr-only">Change Priority</span>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                                    <a class="dropdown-item" href="#">High</a>
-                                                    <a class="dropdown-item" href="#">Meddium</a>
-                                                    <a class="dropdown-item" href="#">Low</a>
-                                                </div>
-                                            </div>
-                                        </dd>
-                                        <dt class="col-sm-2 mb-3 text-muted">Status</dt>
-                                        <dd class="col-sm-4 mb-3">
-                                            <span class="dot dot-md bg-warning mr-2"></span> Open <div class="dropdown d-inline">
-                                                <button class="btn btn-sm p-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="sr-only">Change status</span>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                                    <a class="dropdown-item" href="#">Close</a>
-                                                    <a class="dropdown-item" href="#">Assigned</a>
-                                                    <a class="dropdown-item" href="#">Wait</a>
-                                                </div>
-                                            </div>
-                                        </dd>
+
                                         <dt class="col-sm-2 mb-3 text-muted">Created On</dt>
-                                        <dd class="col-sm-4 mb-3">2020-04-21 00:38:38</dd>
-                                        <dt class="col-sm-2 mb-3 text-muted">Last Update</dt>
-                                        <dd class="col-sm-4 mb-3">2020-04-21 08:48:18</dd>
+                                        <dd class="col-sm-4 mb-3">{{$ad->crated_at}}</dd>
+
+                                        <dt class="col-sm-2 mb-3 text-muted">Status</dt>
+                                        <dd class="col-sm-4 mb-3">{{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</dd>
+                                        
                                         <dt class="col-sm-2 text-muted">Description</dt>
-                                        <dd class="col-sm-10"> Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </dd>
-                                    </dl>
+                                        <dd class="col-sm-10">{{$ad->description}} </dl>
                                 </div>
                             </div>
 
