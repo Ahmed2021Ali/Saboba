@@ -36,7 +36,7 @@
 
                     <div class="row my-4">
                         <div class="col-md-12">
-                            <a class="btn btn-sm btn-success" href="">اضافة اعلان  </a>
+                            <a class="btn btn-primary btn-lg" href="">اضافة اعلان  </a>
                             <div class="card shadow">
                                 <div class="card-body">
                                     <table class="table datatables" id="dataTable-1">
