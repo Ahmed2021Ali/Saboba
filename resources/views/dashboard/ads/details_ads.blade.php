@@ -52,16 +52,16 @@
                                         <dt class="col-sm-2 mb-3 text-muted">City</dt>
                                         <dd class="col-sm-4 mb-3">{{$ad->city->name}}</dd>
 
-                                        <dt class="col-sm-2 mb-3 text-muted">Price</dt>
+                                        <dt class="col-sm-2 mb-3">Price</dt>
                                         <dd class="col-sm-4 mb-3">{{$ad->price}}</dd>
 
-                                        <dt class="col-sm-2 mb-3 text-muted">Created On</dt>
+                                        <dt class="col-sm-2 mb-3">Created On</dt>
                                         <dd class="col-sm-4 mb-3">{{$ad->crated_at}}</dd>
 
-                                        <dt class="col-sm-2 mb-3 text-muted">Status</dt>
+                                        <dt class="col-sm-2 mb-3">Status</dt>
                                         <dd class="col-sm-4 mb-3">{{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</dd>
 
-                                        <dt class="col-sm-2 text-muted">Description</dt>
+                                        <dt class="col-sm-2 ">Description</dt>
                                         <dd class="col-sm-10">{{$ad->description}} </dl>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
                                         @foreach($ad->adFields('en') as $adFiled)
-                                            <dt class="col-sm-2 mb-3 text-muted">{{$adFiled->field_name}}</dt>
+                                            <dt class="col-sm-2 mb-3 ">{{$adFiled->field_name}}</dt>
                                             <dd class="col-sm-4 mb-3">
                                                 <strong>{{$adFiled->field_value}}</strong>
                                             </dd>
