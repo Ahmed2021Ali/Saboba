@@ -19,11 +19,9 @@
                     @csrf
                     @method('DELETE')
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label>  {{ __('admin_dashboard/ads/messages.reason_reject') }}  </label>
+                          <label>  {{ __('admin_dashboard/ads/messages.reason_reject') }}  </label>
                             <textarea type="text" name="reason" class="form-control" required></textarea>
-                        </div>
-                    </div>
+                   </div>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/ads/messages.close') }}</button>
                     <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/ads/messages.reject') }}</button>
                 </form>
