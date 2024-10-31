@@ -78,9 +78,7 @@
                                     <dl class="row align-items-center mb-0">
                                         @foreach($ad->adFields(Config::get('app.locale')) as $adFiled)
                                             <dt class="col-sm-2 mb-3 ">{{$adFiled->field_name}}</dt>
-                                            <dd class="col-sm-4 mb-3">
-                                                <strong>{{$adFiled->field_value}}</strong>
-                                            </dd>
+                                            <dd class="col-sm-4 mb-3"><strong>{{$adFiled->field_value}}</strong></dd>
                                        @endforeach
 
                                 </div>
