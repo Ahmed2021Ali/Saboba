@@ -39,17 +39,17 @@
                                 </div>
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
-                                        <dt class="col-sm-2 mb-3 text-muted">Department</dt>
+                                        <dt class="col-sm-2 mb-3">Department</dt>
                                         <dd class="col-sm-4 mb-3">
                                             <strong>{{$ad->category->name}}</strong>
                                         </dd>
-                                        <dt class="col-sm-2 mb-3 text-muted">Assigned to</dt>
+                                        <dt class="col-sm-2 mb-3">Assigned to</dt>
                                         <dd class="col-sm-4 mb-3">
                                             <strong>{{$ad->user->name}}</strong>
                                         </dd>
                                     </dl>
                                     <dl class="row mb-0">
-                                        <dt class="col-sm-2 mb-3 text-muted">City</dt>
+                                        <dt class="col-sm-2 mb-3">City</dt>
                                         <dd class="col-sm-4 mb-3">{{$ad->city->name}}</dd>
 
                                         <dt class="col-sm-2 mb-3">Price</dt>
