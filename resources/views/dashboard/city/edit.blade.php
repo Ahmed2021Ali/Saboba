@@ -12,10 +12,12 @@
                 <form action="{{route('city.update',$city)}}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
-                    <h3 class="text-center"> {{ __('admin_dashboard/country/messages.name') }}  {{$country->name}}   </h3>
+
+                    <h3 class="text-center">  {{$country->name}}   </h3>
                     <div class="form-group">
                         <input type="hidden" name="country_id" value="{{ $country->id }}">
                     </div>
+
                     <div class="form-group">
                         <label for="message-text" class="col-form-label"> {{ __('admin_dashboard/city/messages.name') }} </label>
                         <textarea class="form-control" name="name" id="message-text">{{$city->name}}</textarea>

@@ -35,7 +35,7 @@
                                         <table class="table datatables" id="dataTable-1">
                                             <thead>
                                             <tr>
-                                                <th></th>
+                                                <th>#</th>
                                                 <th> {{ __('admin_dashboard/city/messages.name') }}</th>
                                                 <th> {{ __('admin_dashboard/city/messages.operation') }}</th>
                                             </tr>
