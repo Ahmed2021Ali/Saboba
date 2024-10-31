@@ -2,6 +2,7 @@
 
 return [
     /* en */
+    'cities' => 'Cities',
 
     'add' => 'add city',
     'edit' => 'edit city',
