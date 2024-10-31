@@ -16,7 +16,7 @@
 
                 @csrf
                 @method('DELETE')
-                <h4 style="text-align: center"> {{ __('admin_dashboard/city/messages.do_you_want_to_delete_this_country') }} {{$city->name}}</h4>
+                <h4 style="text-align: center"> {{ __('admin_dashboard/city/messages.do_you_want_to_delete_this_city') }} {{$city->name}}</h4>
                 <div class="modal-footer">
                     <button type="submit" class="btn mb-2 btn-primary " >{{ __('admin_dashboard/city/messages.delete') }}</button>
                 </div>

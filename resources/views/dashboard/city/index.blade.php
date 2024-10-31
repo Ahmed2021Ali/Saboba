@@ -78,7 +78,7 @@
                         </div>
 
                     @else
-                        <h1 style="text-align: center"> لا يوجد مدن  مضافة </h1>
+                        <h1 style="text-align: center"> {{ __('admin_dashboard/city/messages.no_cities_added') }} </h1>
                     @endif
                     <p class="text-center text-primary"><small>دليل من ItSolutionStuff.com</small></p>
                 </div>
