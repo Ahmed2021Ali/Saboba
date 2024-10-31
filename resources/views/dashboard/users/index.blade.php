@@ -5,10 +5,10 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title">إدارة المستخدمين</h2>
+                <h2 class="mb-2 page-title">{{ __('admin_dashboard/users/messages.management_users') }} <span style="color: red">{{ $ad->name }}</span></h2>
                 <div class="pull-right mb-2">
                     <a class="btn btn-success btn-sm" href="{{ route('users.create') }}">
-                        <i class="fa fa-plus"></i> إنشاء مستخدم جديد
+                        <i class="fa fa-plus"></i> {{ __('admin_dashboard/users/messages.add') }}
                     </a>
                 </div>
                 @if (session('success'))
@@ -24,13 +24,13 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th>الرقم</th>
-                                            <th>الاسم</th>
-                                            <th>البريد الإلكتروني</th>
-                                            <th> الدولة </th>
-                                            <th> رقم الهاتف</th>
-                                            <th>الأدوار</th>
-                                            <th>الإجراء</th>
+                                            <th></th>
+                                            <th>{{ __('admin_dashboard/users/messages.name') }}</th>
+                                            <th> {{ __('admin_dashboard/users/messages.email') }}</th>
+                                            <th> {{ __('admin_dashboard/users/messages.country') }} </th>
+                                            <th> {{ __('admin_dashboard/users/messages.phone_number') }}</th>
+                                            <th>{{ __('admin_dashboard/users/messages.roles') }}</th>
+                                            <th>{{ __('admin_dashboard/users/messages.operations') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,28 +60,28 @@
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{ $user->id }}">
-                                                        <i class="fa fa-edit"></i>  صور المستخدم
+                                                        <i class="fa fa-edit"></i>   {{ __('admin_dashboard/users/messages.image') }}
                                                     </button>
                                                     @include('dashboard.images.index', ['model' => $user, 'folder' => 'userImages'])
 
 
                                                     <a class="btn btn-sm btn-info" href="{{ route('users.show', $user->id) }}">
-                                                        <i class="fa-solid fa-list"></i> عرض
+                                                        <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/users/messages.show') }}
                                                     </a>
 
                                                         <a class="btn btn-sm btn-warning" href="{{ route('users.edit', $user->id) }}">
-                                                            <i class="fa-solid fa-pen-to-square"></i> تعديل
+                                                            <i class="fa-solid fa-pen-to-square"></i> {{ __('admin_dashboard/users/messages.edit') }}
                                                         </a>
 
                                                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">
-                                                            <i class="fa-solid fa-trash"></i> حذف
+                                                            <i class="fa-solid fa-trash"></i> {{ __('admin_dashboard/users/messages.delete') }}
                                                         </button>
                                                     @include('dashboard.users.delete')
                                                 </td>
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="6" class="text-center text-danger">لا توجد بيانات لعرضها.</td>
+                                                <td colspan="6" class="text-center text-danger">{{ __('admin_dashboard/users/messages.no_data') }}/td>
                                             </tr>
                                         @endforelse
                                     </tbody>
