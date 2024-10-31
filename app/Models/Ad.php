@@ -64,6 +64,6 @@ class Ad extends Model implements HasMedia
 
     public function adFields($locale)
     {
-        return $this->hasMany(AdField::class)->where('locale', $locale)->get();
+        return $this->hasMany(AdField::class)->where('locale', $locale === "ar" ?? "en")->get();
     }
 }
