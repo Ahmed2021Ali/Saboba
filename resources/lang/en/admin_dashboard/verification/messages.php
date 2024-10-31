@@ -25,6 +25,7 @@ return [
 
     'There_are_no_companies_verified'=>'There are no companies verified ',
 
+    'Institutions_that_have_been_successfully_verified'=>'Institutions that have been successfully verified'
 
 
 

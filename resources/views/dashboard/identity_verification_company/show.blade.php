@@ -12,8 +12,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title text-center" style="text-align: center"> موسسات تمت اثبات هويتها
-                        بنجاح </h2>
+                    <h2 class="mb-2 page-title text-center" style="text-align: center"> {{ __('admin_dashboard/verification/messages.Institutions_that_have_been_successfully_verified') }} </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}

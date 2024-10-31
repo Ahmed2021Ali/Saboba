@@ -22,7 +22,7 @@ return [
     'whatsApp_number'=>' رقم الواتس اب ',
     'state_the_reason_for_the_institution_rejection_of_the_evidence'=>' اذكر سبب رفض الاثبات الموسسة ',
     'There_are_no_companies_verified'=>' لا يوجد شركات مثبته ',
-
+    'Institutions_that_have_been_successfully_verified'=>'موسسات تمت اثبات هويتها بنجاح'
 
 
 
