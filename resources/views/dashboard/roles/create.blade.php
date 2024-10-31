@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="page-title">{{ __('admin_dashboard/users/messages.add') }}</h2>
+                <h2 class="page-title">{{ __('admin_dashboard/roles/messages.add') }}</h2>
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -31,7 +31,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
                                         <label for="roleName"><strong>{{ __('admin_dashboard/roles/messages.name') }}:</strong></label>
-                                        <input type="text" name="name" id="roleName" placeholder="الاسم" class="form-control">
+                                        <input type="text" name="name" id="roleName" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">

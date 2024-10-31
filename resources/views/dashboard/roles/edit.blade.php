@@ -3,7 +3,6 @@
 @section('title', 'تعديل الدور') <!-- Title in Arabic for "Edit Role" -->
 
 @section('css')
-  <!-- You can add specific CSS files for this page here -->
 @endsection
 
 @section('content')
@@ -11,12 +10,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="page-title"> تحديث دور {{ $role->name }}</h2> <!-- Page title in Arabic -->
-                <div class="text-muted mb-4">
-                    <a class="btn btn-primary btn-sm mb-2" href="{{ route('roles.index') }}">
-                        <i class="fa fa-arrow-left"></i> العودة
-                    </a>
-                </div>
+                <h2 class="page-title"> {{ __('admin_dashboard/roles/messages.edit') }} {{ $role->name }}</h2> <!-- Page title in Arabic -->
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -30,9 +24,6 @@
                 @endif
 
                 <div class="card shadow mb-4">
-                    <div class="card-header">
-                        <strong class="card-title">نموذج تعديل الدور</strong>
-                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('roles.update', $role->id) }}">
                             @csrf
@@ -41,13 +32,13 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <label for="roleName"><strong>الاسم:</strong></label>
-                                        <input type="text" name="name" id="roleName" placeholder="الاسم" class="form-control" value="{{ $role->name }}">
+                                        <label for="roleName"><strong>{{ __('admin_dashboard/roles/messages.name') }}:</strong></label>
+                                        <input type="text" name="name" id="roleName"  class="form-control" value="{{ $role->name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <label><strong>الصلاحيات:</strong></label>
+                                        <label><strong>{{ __('admin_dashboard/roles/messages.permissions') }}:</strong></label>
                                         <br />
                                         <div class="row">
                                             @foreach($permission as $index => $value)
