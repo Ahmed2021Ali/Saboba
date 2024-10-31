@@ -65,12 +65,14 @@
                                                 </td>
 
                                                 <td>
+
+                                                    <!--  Reject Button Modal Trigger -->
+                                                    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCategoryModal{{ $ad->id }}">
+                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/ads/messages.reject') }}
+                                                    </button>
+
                                                     {{--
 
-                                                                                                        <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{$category->id}}">
-                                                                                                            <i class="fa fa-edit"></i> عرض صور
-                                                                                                        </button>
-                                                                                                        @include('dashboard.images.index', ['model' => $category, 'folder' => 'categoryImages'])
 
 
                                                                                                         <!-- Edit Button Modal Trigger -->
@@ -78,17 +80,15 @@
                                                                                                             <i class="fa fa-edit"></i> تعديل
                                                                                                         </button>
 
-                                                                                                        <!-- Delete Button Modal Trigger -->
-                                                                                                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCategoryModal{{ $category->id }}">
-                                                                                                            <i class="fa fa-trash"></i> حذف
-                                                                                                        </button>
+
 
                                                                                                         <a class="btn btn-sm btn-info" href="{{ route('sub_categories.index', $category) }}">
                                                                                                             <i class="fa-solid fa-list"></i>  عرض الاقسام الفرعية
                                                                                                         </a>--}}
                                                 </td>
                                             </tr>
-                                            {{--                                            @include('dashboard.categories.delete')
+                                            @include('dashboard.ads.delete')
+                                            {{--
 
                                                                                      @include('dashboard.categories.edit')--}}
 
