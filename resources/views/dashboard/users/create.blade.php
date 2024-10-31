@@ -1,7 +1,13 @@
 @extends('dashboard.layouts.master')
 
 @section('title', 'إنشاء مستخدم جديد') <!-- Title in Arabic for "Create New User" -->
-
+@section('cs')
+    <style>
+        .LoginForm {
+            display: none;
+        }
+    </style>
+@endsection
 @section('content')
     <main role="main" class="main-content">
         <div class="container-fluid">
