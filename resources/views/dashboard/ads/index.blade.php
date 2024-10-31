@@ -78,7 +78,7 @@
                                                             data-target="#notify_edit{{ $ad->id }}">
                                                         <i class="fa fa-edit"></i> اشعار بالتعديل
                                                     </button>
-                                                    @include('dashboard.ads.notify_edit')
+                                                    @include('dashboard.ads.notify_edit',['ad'=>$ad])
 
 
                                                     {{--<a class="btn btn-sm btn-info" href="{{ route('sub_categories.index', $category) }}">

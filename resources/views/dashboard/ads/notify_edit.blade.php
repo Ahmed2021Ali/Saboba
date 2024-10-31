@@ -11,7 +11,8 @@
             </div>
             <form action="{{ route('notify_edit', $ad) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <h3 class="text-center">{{$ad->name}}</h3>
+                <br>
+                <h3 class="text-center"> اعلان  {{$ad->name}}</h3>
                 <div class="modal-body">
                     <div class="form-group">
                         <label> رسالة التعديل  </label>
