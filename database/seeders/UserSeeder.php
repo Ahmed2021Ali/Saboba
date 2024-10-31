@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
     {
             // إنشاء المستخدم الأول مع صلاحيات ودور
             $user = User::create([
-                'name' => 'mahmoudawaga',
-                'email' => 'mahmoudawaga@gmail.com',
+                'name' => 'saboba',
+                'email' => 'saboba@gmail.com',
                 'password' => Hash::make('password'),
                 'type' => 'admin',
                 'country_id' => 1,
@@ -26,8 +26,8 @@ class UserSeeder extends Seeder
 
             // إنشاء المستخدم الثاني بدون أي صلاحيات أو دور
             $user2 = User::create([
-                'name' => 'ahmednaser',
-                'email' => 'ahmednaser@gmail.com',
+                'name' => 'saboba1',
+                'email' => 'saboba1@gmail.com',
                 'password' => Hash::make('password'),
                 'type' => 'personal',
                 'country_id' => 1,
