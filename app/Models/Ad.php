@@ -62,8 +62,8 @@ class Ad extends Model implements HasMedia
         return $this->belongsTo(City::class);
     }
 
-    public function adFields()
+    public function adFields($locale)
     {
-        return $this->hasMany(AdField::class);
+        return $this->hasMany(AdField::class)->where('locale', $locale)->get();
     }
 }

@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
-                                        @foreach($ad->adFields as $adFiled)
+                                        @foreach($ad->adFields('en') as $adFiled)
                                             <dt class="col-sm-2 mb-3 text-muted">{{$adFiled->field_name}}</dt>
                                             <dd class="col-sm-4 mb-3">
                                                 <strong>{{$adFiled->field_value}}</strong>
