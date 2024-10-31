@@ -13,12 +13,10 @@
                 <br>
                 <h3 class="text-center"> {{ __('admin_dashboard/ads/messages.ad') }}  {{$ad->name}}</h3>
                 <div class="modal-body">
-                    <div class="modal-body">
-                    <div class="form-group">
+
                         <label>  {{ __('admin_dashboard/ads/messages.reason_edit') }}  </label>
                         <textarea type="text" name="reason" class="form-control" required></textarea>
-                    </div>
-                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/ads/messages.close') }}</button>
