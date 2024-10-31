@@ -4,6 +4,8 @@ return [
     /* en */
 
     'add' => 'add country',
+    'image' => 'image',
+
     'edit' => 'edit country',
     'delete' => 'delete country',
     'name' => 'name',
