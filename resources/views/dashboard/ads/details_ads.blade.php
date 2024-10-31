@@ -15,7 +15,7 @@
                                     Number</small><br>#{{$ad->reference_number}}</h2>
                         </div>
                         <div class="col-auto">
-                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{$ad->id}}">
+                            <button class="btn btn-success" data-toggle="modal" data-target="#imageModal_{{$ad->id}}">
                                 <i class="fa fa-edit"></i>  Images
                             </button>
                             @include('dashboard.images.index', ['model' => $ad, 'folder' => 'ad_main_image'])
