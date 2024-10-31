@@ -91,8 +91,8 @@
 
 
                 </div>
-            </div> <!-- .col-12 -->
-        </div> <!-- .row -->
+            </div>
+        </div>
     </main>
 
 @endsection
