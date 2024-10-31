@@ -15,8 +15,8 @@
                                     Number</small><br>#{{$ad->reference_number}}</h2>
                         </div>
                         <div class="col-auto">
-                            <button type="button" class="btn btn-secondary">Close</button>
-                            <button type="button" class="btn btn-primary">Assign</button>
+                            <button type="button" class="btn btn-secondary">Images</button>
+                            <button type="button" class="btn btn-primary"> Reals </button>
                         </div>
                     </div>
 
