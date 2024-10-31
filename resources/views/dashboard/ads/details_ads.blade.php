@@ -14,14 +14,15 @@
                             <h2 class="h5 page-title"><small class="text-muted text-uppercase">Reference
                                     Number</small><br>#{{$ad->reference_number}}</h2>
                         </div>
+
                         <div class="col-auto">
                             <button class="btn btn-secondary" data-toggle="modal" data-target="#imageModal_{{$ad->id}}">
-                                <i class="fa fa-edit"></i>  Images
+                                <i class="fa fa-edit"></i> Images
                             </button>
                             @include('dashboard.images.index', ['model' => $ad, 'folder' => 'ad_images'])
 
                             <button class="btn btn-success" data-toggle="modal" data-target="#imageModal_{{$ad->id}}">
-                                <i class="fa fa-edit"></i>  Images
+                                <i class="fa fa-edit"></i> Reals
                             </button>
                             @include('dashboard.images.index', ['model' => $ad, 'folder' => 'reals'])
                         </div>
@@ -62,7 +63,7 @@
                                         <dt class="col-sm-2 mb-3 text-muted">Status</dt>
                                         <dd class="col-sm-4 mb-3">{{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</dd>
 
-                                        <dt class="col-sm-2 text-muted">Description</dt>
+                                        <dt crlass="col-sm-2 text-muted">Description</dt>
                                         <dd class="col-sm-10">{{$ad->description}} </dl>
                                 </div>
                             </div>
@@ -71,7 +72,14 @@
                             <div class="card shadow mb-4">
                                 <div class="card-header">
                                     <strong class="card-title">Ad Filed Additions</strong>
-                                    <span class="float-right"><i class="fe fe-flag mr-2"></i><span class="badge badge-pill badge-success text-white">                                                    {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span></span>
+                                    <span class="float-right"><i class="fe fe-flag mr-2"></i>
+                                        @if ($ad->status ===0)
+                                            <span class="badge badge-pill badge-danger text-white">  {{__('admin_dashboard/ads/messages.not_approve')}}</span>
+                                        @else
+                                            <span class="badge badge-pill badge-success text-white"> {{__('admin_dashboard/ads/messages.approve') }}}}</span>
+                                        @endif
+
+                                    </span>
                                 </div>
                                 <div class="card-body">
                                     <dl class="row align-items-center mb-0">
@@ -80,7 +88,7 @@
                                             <dd class="col-sm-4 mb-3">
                                                 <strong>{{$adFiled->field_value}}</strong>
                                             </dd>
-                                       @endforeach
+                                    @endforeach
 
                                 </div>
                             </div>
