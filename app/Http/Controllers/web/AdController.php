@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use App\Models\AdField;
 use App\Models\AdTranslation;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AdController extends Controller
@@ -14,7 +15,10 @@ class AdController extends Controller
     public function index()
     {
         $ads = Ad::all();
-        return view('dashboard.ads.index', compact('ads'));
+        return view('dashboard.ads.index', [
+            'ads' => $ads,
+            'categories'=>Category::where('parent_id',0)->get(),
+        ]);
         //dd($ads);
         // $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
         //  $adFields = AdField::where('ad_id', $ad->id)->get();
