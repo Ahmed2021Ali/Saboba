@@ -67,12 +67,13 @@
                                             class="badge badge-pill badge-success text-white">                                                    {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span></span>
                                 </div>
                                 <div class="card-body">
-                                    <dl class="row mb-0">
+                                    <dl class="row align-items-center mb-0">
                                         @foreach($ad->adFields as $adFiled)
-
-                                            <dt class="col-sm-2 text-muted">{{$adFiled->field_name}}</dt>
-                                            <dd class="col-sm-10">{{$adFiled->field_value}} </dl>
-                                    @endforeach
+                                            <dt class="col-sm-2 mb-3 text-muted">{{$adFiled->field_name}}</dt>
+                                            <dd class="col-sm-4 mb-3">
+                                                <strong>{{$adFiled->field_value}}</strong>
+                                            </dd>
+                                       @endforeach
 
                                 </div>
                             </div>
