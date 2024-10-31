@@ -22,7 +22,7 @@ return [
     'ad_filed_Addition'=>' Ad Filed Addition ',
     'create_on'=>'Create On',
     'reject' => '    Reject Ad  ',
-    'close' => '   اغلاق ',
+    'close' => '   Close ',
     'sure_delete' => 'Are you sure to delete?',
 
 
