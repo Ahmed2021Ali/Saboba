@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title text-center" style="text-align: center"> اضافة مدينة جديد داخل دولة  {{$country->name}}  </h2>
+                    <h2 class="mb-2 page-title text-center" style="text-align: center"> {{ __('admin_dashboard/city/messages.add') }}  {{$country->name}}  </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -21,7 +21,7 @@
                     <div class="pull-right mb-2">
                         <br>
                         <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
-                                data-target="#varyModal" data-whatever="@mdo">اضافة مدينة جديد
+                                data-target="#varyModal" data-whatever="@mdo">{{ __('admin_dashboard/city/messages.add') }}
                         </button>
                         @include('dashboard.city.create',['country'=>$country])
                     </div>
@@ -36,7 +36,7 @@
                                             <thead>
                                             <tr>
                                                 <th></th>
-                                                <th> اسم المدينة</th>
+                                                <th> {{ __('admin_dashboard/city/messages.name') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -52,14 +52,14 @@
                                                            data-target="#edit_latest_news_{{$city->id}}"
                                                            data-whatever="@mdo"><i
                                                                 class="fa-solid fa-pen-to-square"></i>
-                                                            تعديل</a>
+                                                            {{ __('admin_dashboard/city/messages.edit') }}</a>
                                                         @include('dashboard.city.edit',['city'=>$city ,'country'=>$country])
 
 
                                                         <button type="button" class="btn btn-sm btn-danger"
                                                                 data-toggle="modal"
                                                                 data-target="#delete_latest_news_{{$city->id}}"><i
-                                                                class="fa-solid fa-trash"></i> حذف
+                                                                class="fa-solid fa-trash"></i> {{ __('admin_dashboard/city/messages.delete') }}
                                                         </button>
                                                         @include('dashboard.city.delete',['city'=>$city,])
 

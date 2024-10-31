@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="varyModalLabel">تحديث الدولة </h5>
+                <h5 class="modal-title" id="varyModalLabel">{{ __('admin_dashboard/country/messages.edit') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -14,17 +14,17 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label"> اسم الدولة </label>
+                        <label for="message-text" class="col-form-label"> {{ __('admin_dashboard/country/messages.name') }} </label>
                         <textarea class="form-control" name="name" id="message-text">{{$country->name}}</textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="files">الصور</label>
+                        <label for="files">{{ __('admin_dashboard/country/messages.image') }}</label>
                         <input type="file" name="image" id="files" class="form-control" multiple accept="image/*">
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn mb-2 btn-primary"> تحديث الدولة </button>
+                        <button type="submit" class="btn mb-2 btn-primary"> {{ __('admin_dashboard/country/messages.edit') }} </button>
                     </div>
                 </form>
             </div>

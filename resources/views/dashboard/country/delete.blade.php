@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="verticalModalTitle">تاكيد الحذف </h5>
+                <h5 class="modal-title" id="verticalModalTitle">{{ __('admin_dashboard/country/messages.delete') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -11,9 +11,9 @@
 
                 @csrf
                 @method('DELETE')
-                <h4 style="text-align: center"> هل تريد حذف هذا الدولة {{$country->name}}</h4>
+                <h4 style="text-align: center"> {{ __('admin_dashboard/country/messages.do_you_want_to_delete_this_country') }} {{$country->name}}</h4>
                 <div class="modal-footer">
-                    <button type="submit" class="btn mb-2 btn-primary " >تاكيد الحذف </button>
+                    <button type="submit" class="btn mb-2 btn-primary " >{{ __('admin_dashboard/country/messages.delete') }}</button>
                 </div>
             </form>
         </div>
