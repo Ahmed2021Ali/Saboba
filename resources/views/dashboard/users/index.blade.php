@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title">{{ __('admin_dashboard/users/messages.management_users') }} <span style="color: red">{{ $ad->name }}</span></h2>
+                <h2 class="mb-2 page-title">{{ __('admin_dashboard/users/messages.management_users') }}</h2>
                 <div class="pull-right mb-2">
                     <a class="btn btn-success btn-sm" href="{{ route('users.create') }}">
                         <i class="fa fa-plus"></i> {{ __('admin_dashboard/users/messages.add') }}
