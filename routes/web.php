@@ -11,7 +11,8 @@ use App\Http\Controllers\web\UserController;
 use App\Http\Controllers\web\AdController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use \App\Http\Controllers\web\BlockUserController;
+use App\Http\Controllers\web\BlockUserController;
+use App\Http\Controllers\web\ReportController;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -32,7 +33,7 @@ Route::group([
     });
 
 // Roles Management Routes
-    Route::group(['middleware' => ['AuthMiddleware']], function () {
+    Route::group(['middleware' => ['auth']], function () {
 
         Route::controller(AuthController::class)->group(function () {
             Route::get('home', 'home')->name('home');
@@ -44,6 +45,9 @@ Route::group([
 
         // Block  Routes
         Route::resource('blocked_user', BlockUserController::class);
+
+        // Reports  Routes
+        Route::get('report_ads-ads', [ReportController::class, 'reportAds'])->name('report_ads.ads');
 
 
         // sub_categories Routes

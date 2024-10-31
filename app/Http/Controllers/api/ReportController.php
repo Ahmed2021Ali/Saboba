@@ -36,7 +36,7 @@ class ReportController extends Controller
         ]);
 
         if ($validationData['receiver_id'] == Auth::id()) {
-            return response()->json(['message' => 'You cannot send a report to yourself.'], 500);
+            return response()->json(['message' => 'You cannot send a report_ads to yourself.'], 500);
         }
 
         $checkReport = Report::where('receiver_id', $validationData['receiver_id'])->where('sender_id', Auth::id())->first();
@@ -48,6 +48,26 @@ class ReportController extends Controller
 
         $report = Report::create(['content' => $validationData['content'],
             'receiver_id' => $validationData['receiver_id'], 'sender_id' => Auth::id()
+        ]);
+        return response()->json(['Data' => $report, 'message' => 'Report added successfully'], 201);
+    }
+
+    public function sendReportComment(Request $request)
+    {
+        $validationData = $request->validate([
+            'content' => 'required|string',
+            'comment_id' => 'required|exists:comments,id'
+        ]);
+
+        $checkReport = Report::where('comment_id', $validationData['comment_id'])->where('sender_id', Auth::id())->first();
+        if ($checkReport) {
+            $checkReport->content = $validationData['content'];
+            $checkReport->save();
+            return response()->json(['Data' => $checkReport, 'message' => 'Report Update successfully'], 200);
+        }
+
+        $report = Report::create(['content' => $validationData['content'],
+            'comment_id' => $validationData['comment_id'], 'sender_id' => Auth::id()
         ]);
         return response()->json(['Data' => $report, 'message' => 'Report added successfully'], 201);
     }
