@@ -28,7 +28,7 @@ return [
     'notify_edit' => '     Notify Edit  ',
 
     'no_ads'=>' No Ads Available ',
-    'ads' => '     Ad  ',
+    'ad' => '     Ad  ',
 
 
     /* module delete */
