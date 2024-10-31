@@ -1,5 +1,6 @@
 <!-- Edit Category Modal -->
-<div class="modal fade" id="editCategoryModal{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="notify_edit{{ $ad->id }}" tabindex="-1" role="dialog" aria-labelledby="notify_edit"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,22 +9,19 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('notify_edit', $ad) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>اسم الفئة</label>
-                        <input type="text" name="name" class="form-control" value="{{ $category->name }}" required>
+                        <label> رسالة التعديل  </label>
+                        <textarea type="text" name="name" class="form-control" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="files">الصور</label>
-                        <input type="file" name="images[]" id="files" class="form-control">
-                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
-                    <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+                    <button type="submit" class="btn btn-primary"> التأكيد الارسال  </button>
                 </div>
             </form>
         </div>
