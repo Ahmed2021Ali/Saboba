@@ -23,6 +23,7 @@ return [
     'whatsApp_number'=>' WhatsApp Number ',
     'state_the_reason_for_the_institution_rejection_of_the_evidence'=>' State the reason for the institution rejection of the evidence. ',
 
+    'There_are_no_companies_verified'=>'There are no companies verified ',
 
 
 

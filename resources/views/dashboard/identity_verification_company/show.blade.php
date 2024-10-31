@@ -23,7 +23,7 @@
                     <div class="pull-right mb-2">
                         <br>
                         <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
-                                data-target="#varyModal" data-whatever="@mdo">اثبات ملكية موسسة
+                                data-target="#varyModal" data-whatever="@mdo">{{ __('admin_dashboard/verification/messages.verify_identity') }}
                         </button>
                         @include('dashboard.identity_verification_company.create',['companies'=>$companies])
                     </div>
@@ -35,11 +35,11 @@
                                         <thead>
                                         <tr>
                                             <th></th>
-                                            <th> اسم الموسسة</th>
-                                            <th> تفاصيل الموسسة</th>
+                                            <th> {{ __('admin_dashboard/verification/messages.name') }}</th>
+                                            <th>  {{ __('admin_dashboard/verification/messages.details') }}</th>
 
-                                            <th> حالة الموسسة</th>
-                                            <th> العمليات</th>
+                                            <th> {{ __('admin_dashboard/verification/messages.status') }}</th>
+                                            <th> {{ __('admin_dashboard/verification/messages.operations') }}</th>
                                         </tr>
                                         </thead>
 
@@ -54,7 +54,7 @@
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#imageModal_details_{{$verification->id}}">
-                                                            <i class="fa fa-edit"></i> تفاصيل الموسسة
+                                                            <i class="fa fa-edit"></i>{{ __('admin_dashboard/verification/messages.details') }}
                                                         </button>
                                                         @include('dashboard.identity_verification_company.details',['verification'=>$verification])
                                                     </td>
@@ -63,14 +63,14 @@
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#imageModal_{{$verification->id}}">
-                                                            <i class="fa fa-edit"></i> عرض ملفات الاثبات
+                                                            <i class="fa fa-edit"></i> {{ __('admin_dashboard/verification/messages.show_files') }}
                                                         </button>
                                                         @include('dashboard.images.index', ['model' => $verification, 'folder' => 'documentationFiles'])
 
                                                         <button type="button" class="btn btn-sm btn-danger"
                                                                 data-toggle="modal"
                                                                 data-target="#delete_latest_news_{{$verification->id}}">
-                                                            <i class="fa-solid fa-trash"></i> رفض اثبات الهوية
+                                                            <i class="fa-solid fa-trash"></i> {{ __('admin_dashboard/verification/messages.reject') }}
                                                         </button>
                                                     @include('dashboard.identity_verification_company.reject',['verification'=>$verification])
                                             </tr>
