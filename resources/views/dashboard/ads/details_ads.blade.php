@@ -23,8 +23,8 @@
 
                     <div class="row my-4">
                         <div class="col-md-12">
-                            
-                            <div class="col-md-12">
+
+                            <div class="col-md-4">
                                 <div class="card shadow mb-4">
                                     <div class="card-body">
                                         <h3 class="h5 mb-1">Integrations</h3>
