@@ -24,16 +24,11 @@ return [
     'reject' => '    Reject Ad  ',
     'close' => '   Close ',
     'sure_delete' => 'Are you sure to delete?',
+    'add' => ' Add Ad  ',
+    'notify_edit' => '     Notify Edit  ',
 
+    'no_ads'=>' No Ads Available ',
 
-
-    'name' => '  الاسم ',
-    'add' => ' اضافة قسام ',
-    'edit' => ' تعديل  ',
-    'delete' => ' حذف  ',
-    'image' => ' الصورة  ',
-
-    'show_sub_categories' => '   عرض الاقسام الفرعية   ',
 
     /* module delete */
     'no_categories' => '   لا توجد اقسام متاحة '

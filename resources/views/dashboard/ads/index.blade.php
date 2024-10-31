@@ -36,7 +36,7 @@
                     <br>
                     <button class="btn btn-lg btn-warning" data-toggle="modal"
                             data-target="#select_category">
-                        <i class="fa fa-edit"></i>  اضافة اعلان
+                        <i class="fa fa-edit"></i>   {{ __('admin_dashboard/ads/messages.add') }}
                     </button>
                     @include('dashboard.ads.select_category',['categories'=>$categories])
                     <div class="row my-4">
@@ -84,7 +84,7 @@
 
                                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                             data-target="#notify_edit{{ $ad->id }}">
-                                                        <i class="fa fa-edit"></i> اشعار بالتعديل
+                                                        <i class="fa fa-edit"></i> {{ __('admin_dashboard/ads/messages.notify_edit') }}
                                                     </button>
                                                     @include('dashboard.ads.notify_edit',['ad'=>$ad])
 
@@ -112,7 +112,7 @@
 
                                         @empty
                                             <tr>
-                                                <td colspan="8" class="text-center text-danger">لا توجد فئات متاحة</td>
+                                                <td colspan="8" class="text-center text-danger">{{ __('admin_dashboard/ads/messages.no_ads') }}</td>
                                             </tr>
                                         @endforelse
                                         </tbody>
