@@ -67,16 +67,6 @@
                                             class="badge badge-pill badge-success text-white">                                                    {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</span></span>
                                 </div>
                                 <div class="card-body">
-                                    <dl class="row align-items-center mb-0">
-                                        <dt class="col-sm-2 mb-3 text-muted">Department</dt>
-                                        <dd class="col-sm-4 mb-3">
-                                            <strong>{{$ad->category->name}}</strong>
-                                        </dd>
-                                        <dt class="col-sm-2 mb-3 text-muted">Assigned to</dt>
-                                        <dd class="col-sm-4 mb-3">
-                                            <strong>{{$ad->user->name}}</strong>
-                                        </dd>
-                                    </dl>
                                     <dl class="row mb-0">
                                         @foreach($ad->adFields as $adFiled)
 
