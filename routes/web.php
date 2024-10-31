@@ -32,7 +32,7 @@ Route::group([
     });
 
 // Roles Management Routes
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['AuthMiddleware']], function () {
 
         Route::controller(AuthController::class)->group(function () {
             Route::get('home', 'home')->name('home');
