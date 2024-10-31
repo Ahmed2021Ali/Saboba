@@ -25,6 +25,7 @@
                                 <table class="table datatables" id="dataTable-1">
                                     <thead>
                                         <tr>
+                                            <th></th>
                                             <th>#</th>
                                             <th>{{ __('admin_dashboard/roles/messages.name') }}</th>
                                             <th>{{ __('admin_dashboard/roles/messages.operations') }}</th>
