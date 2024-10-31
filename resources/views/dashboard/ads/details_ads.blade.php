@@ -15,12 +15,15 @@
                                     Number</small><br>#{{$ad->reference_number}}</h2>
                         </div>
                         <div class="col-auto">
+                            <button class="btn btn-secondary" data-toggle="modal" data-target="#imageModal_{{$ad->id}}">
+                                <i class="fa fa-edit"></i>  Images
+                            </button>
+                            @include('dashboard.images.index', ['model' => $ad, 'folder' => 'ad_images'])
+
                             <button class="btn btn-success" data-toggle="modal" data-target="#imageModal_{{$ad->id}}">
                                 <i class="fa fa-edit"></i>  Images
                             </button>
-                            @include('dashboard.images.index', ['model' => $ad, 'folder' => 'ad_main_image'])
-
-                            <button type="button" class="btn btn-success"> Reals </button>
+                            @include('dashboard.images.index', ['model' => $ad, 'folder' => 'reals'])
                         </div>
                     </div>
 
