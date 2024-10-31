@@ -46,7 +46,7 @@
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td>{{ $user->country }}</td>
+                                                <td>{{ $user->country->name }}</td>
                                                 <td>{{ $user->phone }}</td>
 
                                                 <td style="color: white">
