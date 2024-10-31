@@ -60,7 +60,7 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-sm btn-info" href="{{route('ads.show',$ad)}}">
-                                                        <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/ads/messages.operations') }}
+                                                        <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/ads/messages.show_ad_details') }}
                                                     </a>
                                                 </td>
 
