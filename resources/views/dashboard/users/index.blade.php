@@ -50,13 +50,13 @@
                                                 <td>{{ $user->phone }}</td>
 
                                                 <td style="color: white">
-                                                    @if($user->getRoleNames()->isNotEmpty())
+{{--                                                    @if($user->getRoleNames()->isNotEmpty())
                                                         @foreach($user->getRoleNames() as $v)
                                                             <label class="badge bg-success">{{ $v }}</label>
                                                         @endforeach
                                                     @else
                                                         <label class="badge bg-danger">لا توجد أدوار</label>
-                                                    @endif
+                                                    @endif--}}
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_{{ $user->id }}">

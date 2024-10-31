@@ -67,6 +67,7 @@ Route::group([
         Route::post('ad-create', [AdController::class, 'create'])->name('ad.create');
 
 
+
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
             ->middleware('permission:عرض الأدوار');
 
