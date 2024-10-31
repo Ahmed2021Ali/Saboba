@@ -17,7 +17,7 @@ class AdController extends Controller
         $ads = Ad::all();
         return view('dashboard.ads.index', [
             'ads' => $ads,
-            'categories'=>Category::with('translations')->where('parent_id',0)->get(),
+            'categories' => Category::with(['translations'])->where('parent_id', 0)->get(),
         ]);
         //dd($ads);
         // $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
@@ -34,7 +34,8 @@ class AdController extends Controller
     {
         return view('dashboard.ads.details_ads', ['ad' => $ad]);
     }
-    public function notify_edit(Request $request ,$ad)
+
+    public function notify_edit(Request $request, $ad)
     {
         dd($ad);
     }
