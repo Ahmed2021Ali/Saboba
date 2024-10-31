@@ -11,7 +11,7 @@
                     {{-- Refernce Number--}}
                     <div class="row align-items-center mb-4">
                         <div class="col">
-                            <h2 class="h5 page-title"><small class="text-muted text-uppercase">Reference Number</small><br>#342</h2>
+                            <h2 class="h5 page-title"><small class="text-muted text-uppercase">Reference Number</small><br>#{{$ad->reference_number}}</h2>
                         </div>
                         <div class="col-auto">
                             <button type="button" class="btn btn-secondary">Close</button>
@@ -24,7 +24,7 @@
                         <div class="col-md-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header">
-                                    <strong class="card-title">Donec id elit non mi porta gravida at eget metus.</strong>
+                                    <strong class="card-title">{{$ad->name}}</strong>
                                     <span class="float-right"><i class="fe fe-flag mr-2"></i><span class="badge badge-pill badge-success text-white">Payment</span></span>
                                 </div>
                                 <div class="card-body">
@@ -77,8 +77,10 @@
                                         <dt class="col-sm-2 text-muted">Description</dt>
                                         <dd class="col-sm-10"> Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </dd>
                                     </dl>
-                                </div> <!-- .card-body -->
-                            </div> <!-- .card -->
+                                </div>
+                            </div>
+
+
                             <div class="card shadow mb-4">
                                 <div class="card-header">
                                     <strong class="card-title">Ticket Thread</strong>
@@ -88,7 +90,7 @@
                                     <div class="row align-items-center mb-4">
                                         <div class="col-auto">
                                             <div class="avatar avatar-sm mb-3 mx-4">
-                                                <img src="./assets/avatars/face-3.jpg" alt="..." class="avatar-img rounded-circle">
+                                                <img src="" alt="..." class="avatar-img rounded-circle">
                                             </div>
                                         </div>
                                         <div class="col">
@@ -97,7 +99,7 @@
                                             <div class="card mb-3 bg-light w-50">
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col-md-2 text-center">
-                                                        <img src="./assets/products/p1.jpg" alt="..." class="img-fluid rounded m-1">
+                                                        <img src="" alt="..." class="img-fluid rounded m-1">
                                                     </div>
                                                     <div class="col-md-10">
                                                         <div class="card-body py-0">
@@ -153,7 +155,9 @@
                                     </form>
                                 </div> <!-- .card-body -->
                             </div> <!-- .card -->
-                        </div> <!-- .col-md -->
+                        </div>
+
+
                         <div class="col-md-12">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
@@ -168,7 +172,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div> <!-- .col-md -->
+                        </div>
                     </div>
 
 
