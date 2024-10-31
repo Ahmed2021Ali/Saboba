@@ -34,6 +34,7 @@
                                         <tr>
                                             <th>الرقم</th>
                                             <th> تم حظر</th>
+                                            <th>تاريخ  الحظر</th>
                                             <th> حظره بواسطة</th>
                                             <th> سبب الحظر</th>
                                             <th> فك الحظر</th>
@@ -46,7 +47,9 @@
                                             <tr>
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $blockedUser->user->name }}</td>
+                                                <td>{{ $blockedUser->blocked_at??null }}</td>
                                                 <td>{{ $blockedUser->blockedBy->name }}</td>
+
                                                 <td>{{ $blockedUser->reason }}</td>
                                                 <td>{{ $blockedUser->unlockedBy->name??null }}</td>
                                                 <td>{{ $blockedUser->unblocked_at/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
