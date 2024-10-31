@@ -37,6 +37,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th> {{ __('admin_dashboard/city/messages.name') }}</th>
+                                                <th> {{ __('admin_dashboard/city/messages.operation') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
