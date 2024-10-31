@@ -130,7 +130,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="files">{{ __('admin_dashboard/users/messages.image') }}</label>
-                                            <input type="file" name="images[]" id="files" class="form-control" multiple accept="image/*" required>
+                                            <input type="file" name="images[]" id="files" class="form-control">
                                         </div>
                                     </div>
 
