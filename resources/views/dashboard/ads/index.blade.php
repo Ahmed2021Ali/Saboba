@@ -36,6 +36,9 @@
 
                     <div class="row my-4">
                         <div class="col-md-12">
+                            <a class="btn btn-sm btn-info" href="">
+                                <i class="fa-solid fa-list"></i> اضافة اعلان
+                            </a>
                             <div class="card shadow">
                                 <div class="card-body">
                                     <table class="table datatables" id="dataTable-1">
@@ -81,9 +84,7 @@
                                                     @include('dashboard.ads.notify_edit',['ad'=>$ad])
 
 
-                                                    {{--<a class="btn btn-sm btn-info" href="{{ route('sub_categories.index', $category) }}">
-                                                        <i class="fa-solid fa-list"></i>  عرض الاقسام الفرعية
-                                                    </a>--}}
+
 
 
                                                     {{--

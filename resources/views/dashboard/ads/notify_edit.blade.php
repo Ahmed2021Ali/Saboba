@@ -17,7 +17,6 @@
                         <label> رسالة التعديل  </label>
                         <textarea type="text" name="name" class="form-control" required></textarea>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
