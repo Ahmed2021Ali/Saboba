@@ -14,8 +14,8 @@
                 <h3 class="text-center"> {{ __('admin_dashboard/ads/messages.ad') }}  {{$ad->name}}</h3>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label> رسالة التعديل  </label>
-                        <textarea type="text" name="name" class="form-control" required></textarea>
+                        <label>  {{ __('admin_dashboard/ads/messages.reason_edit') }}  </label>
+                        <textarea type="text" name="reason" class="form-control" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

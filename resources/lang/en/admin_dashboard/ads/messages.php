@@ -30,6 +30,8 @@ return [
     'no_ads'=>' No Ads Available ',
     'ad' => '     Ad  ',
 
+    'reason_reject'=>' Reason  Reject  ',
+    'reason_edit'=>'   Message  Edit   ',
 
     /* module delete */
     'no_categories' => '   لا توجد اقسام متاحة '
