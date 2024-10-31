@@ -40,7 +40,7 @@ class UserController extends Controller
         }
         $user = User::create($validatedData);
         $this->downloadImages($request->images, $user, 'userImages');
-        if ($validatedData['type'] === 'أدمن') {
+        if ($validatedData['type'] === 'admin') {
             $user->assignRole($validatedData['role']);
         }
         flash()->success('تم اضافة مستخدم بنجاح');
@@ -58,11 +58,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-
         $countries = Country::all();
         $roles = Role::pluck('name')->all();
         $userRole = $user->roles->pluck('name')->first();
-
         return view('dashboard.users.edit', compact('user', 'roles', 'userRole', 'countries'));
     }
 
@@ -78,7 +76,7 @@ class UserController extends Controller
             unset($validatedData['password']);
         }
         $user->update($validatedData);
-        if ($validatedData['type'] === 'أدمن' && isset($validatedData['role'])) {
+        if ($validatedData['type'] === 'admin' && isset($validatedData['role'])) {
             $user->syncRoles($validatedData['role']);
         } else {
             $user->syncRoles([]);
