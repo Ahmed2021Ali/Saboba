@@ -13,6 +13,7 @@ return [
     'permissions' => 'الصلاحيات',
     'close' => 'الاغلاق',
     'sure_delete'=>'هل انت متاكد من الحذف  ؟',
+    'no_permission'=>'  لا يوجد صلاحيات متاحة',
 
 
 

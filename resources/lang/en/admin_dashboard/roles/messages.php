@@ -12,6 +12,7 @@ return [
     'permissions' => 'Permissions',
     'close' => 'Close',
     'sure_delete' => 'Are you sure to delete?',
+    'no_permission'=>'  No Permissions Available ',
 
 /*    'role_description' => 'Role Description',
     'role_permissions' => 'Role Permissions',
