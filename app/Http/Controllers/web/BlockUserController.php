@@ -12,9 +12,10 @@ class BlockUserController extends Controller
 {
     public function index()
     {
+        $blockUsers = BlockUser::all();
         return view('dashboard.blocked_user.index', [
             'blockedUsers' => BlockUser::paginate(8),
-            'users' => User::all(),
+            'users' => User::whereNotIn('id',$blockUsers->pluck('user_id')->toArray())->get(),
         ]);
     }
 
