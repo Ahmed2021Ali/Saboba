@@ -9,7 +9,7 @@
             </div>
             <form method="POST" action="{{ route('city.destroy', $city) }}" style="display:inline">
 
-                <h3 class="text-center"> الدولة  {{$country->name}}   </h3>
+                <h3 class="text-center">   {{$country->name}}   </h3>
                 <div class="form-group">
                     <input type="hidden" name="country_id" value="{{ $country->id }}">
                 </div>
