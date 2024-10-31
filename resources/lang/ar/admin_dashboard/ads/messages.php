@@ -21,20 +21,20 @@ return [
     'description'=>'   الوصف ',
     'ad_filed_Addition'=>'  معلومات اضافية ',
     'create_on'=>'   تاريخ انشاء الاعلان ',
+    'reject' => '   رفض الاعلان  ',
+    'close'=>'   اغلاق ',
+    'sure_delete'=>'هل انت متاكد من الحذف  ؟',
 
 
 
     'name' => '  الاسم   ',
     'add' => '    اضافة قسام    ',
     'edit' => '   تعديل  ',
-    'delete' => '   حذف  ',
     'image' => '   الصورة  ',
 
     'show_sub_categories' => '   عرض الاقسام الفرعية   ',
 
     /* module delete */
-    'sure_delete'=>'هل انت متاكد من الحذف  ؟',
-    'close'=>'   اغلاق ',
     'no_categories'=>'   لا توجد اقسام متاحة '
 
 

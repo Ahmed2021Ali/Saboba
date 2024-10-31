@@ -21,6 +21,9 @@ return [
     'description'=>' Description',
     'ad_filed_Addition'=>' Ad Filed Addition ',
     'create_on'=>'Create On',
+    'reject' => '    Reject Ad  ',
+    'close' => '   اغلاق ',
+    'sure_delete' => 'هل انت متاكد من الحذف  ؟',
 
 
 
@@ -33,8 +36,6 @@ return [
     'show_sub_categories' => '   عرض الاقسام الفرعية   ',
 
     /* module delete */
-    'sure_delete' => 'هل انت متاكد من الحذف  ؟',
-    'close' => '   اغلاق ',
     'no_categories' => '   لا توجد اقسام متاحة '
 
 
