@@ -22,9 +22,6 @@
 
                     <!-- User Form -->
                     <div class="card shadow mb-4">
-                        <div class="card-header">
-                            <strong class="card-title">نموذج المستخدم</strong>
-                        </div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
                                 @csrf
