@@ -21,6 +21,7 @@ return [
     'number_contact'=>' رقم الهاتف ',
     'whatsApp_number'=>' رقم الواتس اب ',
     'state_the_reason_for_the_institution_rejection_of_the_evidence'=>' اذكر سبب رفض الاثبات الموسسة ',
+    'There_are_no_companies_verified'=>' لا يوجد شركات مثبته ',
 
 
 

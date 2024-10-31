@@ -77,7 +77,7 @@
                                             @endforeach
 
                                         @else
-                                            <h1 style="text-align: center"> لا يوجد شركات مثبته</h1>
+                                            <h1 style="text-align: center">{{ __('admin_dashboard/verification/messages.There_are_no_companies_verified') }}</h1>
                                         @endif
                                         </tbody>
                                     </table>
