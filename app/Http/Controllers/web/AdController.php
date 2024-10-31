@@ -19,9 +19,6 @@ class AdController extends Controller
             'ads' => $ads,
             'categories' => Category::with(['translations'])->where('parent_id', null)->get(),
         ]);
-        //dd($ads);
-        // $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
-        //  $adFields = AdField::where('ad_id', $ad->id)->get();
     }
 
     public function create(Request $request)

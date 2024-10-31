@@ -61,10 +61,11 @@ Route::group([
         // identity-verification Routes
         Route::resource('verifications', IdentityVerificationController::class);
 
-        // ads Routes
+        // ads Routes  -> Not Completed
         Route::resource('ads', AdController::class);
         Route::post('notify_edit/{ad}', [AdController::class, 'notify_edit'])->name('notify_edit');
         Route::post('ad-create', [AdController::class, 'create'])->name('ad.create');
+
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
             ->middleware('permission:عرض الأدوار');
