@@ -5,11 +5,11 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title">{{ __('admin_dashboard/users/messages.manage_roles') }}</h2>
+                <h2 class="mb-2 page-title">{{ __('admin_dashboard/roles/messages.manage_roles') }}</h2>
                 @can('إضافة دور')
                 <div class="pull-right mb-2">
                     <a class="btn btn-success btn-sm" href="{{ route('roles.create') }}">
-                        <i class="fa fa-plus"></i> {{ __('admin_dashboard/users/messages.add') }}
+                        <i class="fa fa-plus"></i> {{ __('admin_dashboard/roles/messages.add') }}
                     </a>
                 </div>
                 @endcan
@@ -27,8 +27,8 @@
                                         <tr>
                                             <th></th>
                                             <th></th>
-                                            <th>{{ __('admin_dashboard/users/messages.name') }}</th>
-                                            <th>{{ __('admin_dashboard/users/messages.operations') }}</th>
+                                            <th>{{ __('admin_dashboard/roles/messages.name') }}</th>
+                                            <th>{{ __('admin_dashboard/roles/messages.operations') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,24 +47,24 @@
                                                         @if ($role->name === 'manager')
                                                             @can('عرض دور')
                                                             <a class="btn btn-sm btn-primary" href="{{ route('roles.show', $role->id) }}">
-                                                                <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/users/messages.show') }}
+                                                                <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/roles/messages.show') }}
                                                             </a>
                                                             @endcan
                                                         @else
                                                             @can('عرض دور')
                                                             <a class="btn btn-sm btn-primary" href="{{ route('roles.show', $role->id) }}">
-                                                                <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/users/messages.show') }}
+                                                                <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/roles/messages.show') }}
                                                             </a>
                                                             @endcan
 
                                                             @can('تعديل دور')
                                                             <a class="btn btn-sm btn-warning" href="{{ route('roles.edit', $role->id) }}">
-                                                                <i class="fa-solid fa-pen-to-square"></i> {{ __('admin_dashboard/users/messages.edit') }}
+                                                                <i class="fa-solid fa-pen-to-square"></i> {{ __('admin_dashboard/roles/messages.edit') }}
                                                             </a>
                                                             @endcan
                                                             @can('حذف دور')
                                                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteRoleModal_{{ $role->id }}">
-                                                                <i class="fa-solid fa-trash"></i> {{ __('admin_dashboard/users/messages.delete') }}
+                                                                <i class="fa-solid fa-trash"></i> {{ __('admin_dashboard/roles/messages.delete') }}
                                                             </button>
                                                             @endcan
                                                         @endif

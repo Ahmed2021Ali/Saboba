@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="page-title">{{ __('admin_dashboard/users/messages.add') }}</h2> 
+                <h2 class="page-title">{{ __('admin_dashboard/users/messages.add') }}</h2>
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
