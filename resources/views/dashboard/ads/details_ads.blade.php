@@ -61,7 +61,7 @@
                                         <dt class="col-sm-2 mb-3 text-muted">Status</dt>
                                         <dd class="col-sm-4 mb-3">{{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}</dd>
 
-                                        <dt crlass="col-sm-2 text-muted">Description</dt>
+                                        <dt class="col-sm-2 text-muted">Description</dt>
                                         <dd class="col-sm-10">{{$ad->description}} </dl>
                                 </div>
                             </div>
