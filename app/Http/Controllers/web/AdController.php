@@ -17,7 +17,7 @@ class AdController extends Controller
         $ads = Ad::all();
         return view('dashboard.ads.index', [
             'ads' => $ads,
-            'categories' => Category::with(['translations'])->where('parent_id', 0)->get(),
+            'categories' => Category::with(['translations'])->where('parent_id', null)->get(),
         ]);
         //dd($ads);
         // $adTranslations = AdTranslation::where('ad_id', $ad->id)->get();
