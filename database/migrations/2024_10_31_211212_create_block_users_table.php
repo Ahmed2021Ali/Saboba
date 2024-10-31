@@ -12,15 +12,18 @@ return new class extends Migration
         Schema::create('block_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+
             $table->foreignId('blocked_by_user_id')->constrained('users')->onDelete('cascade');
-            $table->timestamp('blocked_at')->nullable();
+            $table->date('blocked_at')->nullable();
+
             $table->foreignId('unlocked_by_user_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->timestamp('unblocked_at')->nullable();
+            $table->date('unblocked_at')->nullable();
+
             $table->text('reason')->nullable();
-            $table->timestamps();
-            $table->index('user_id');
-            $table->index('blocked_by_user_id');
-            $table->timestamps();
+
+         //   $table->timestamps();
+
+
         });
     }
 

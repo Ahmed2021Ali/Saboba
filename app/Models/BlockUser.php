@@ -9,10 +9,13 @@ class BlockUser extends Model
 
     protected $fillable = [
         'user_id',
+
         'blocked_by_user_id',
         'blocked_at',
+
         'unlocked_by_user_id',
         'unblocked_at',
+
         'reason',
     ];
 
