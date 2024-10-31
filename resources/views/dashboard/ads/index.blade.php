@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title">قائمة الاعلانات</h2>
+                    <h2 class="mb-2 page-title"> {{ __('admin_dashboard/ads/messages.show_all_ads') }}</h2>
                     {{--                    <div class="pull-right mb-2">
                                             <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#createCategoryModal">
                                                 <i class="fa fa-plus"></i> إضافة فئة رائيسية
@@ -42,12 +42,11 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th> قسم الاعلان</th>
-                                            <th> المدينة</th>
-                                            <th> الحالة</th>
-                                            <th> تفاصيل الاعلان</th>
-
-                                            <th>الإجراءات</th>
+                                            <th>{{ __('admin_dashboard/ads/messages.category_ads') }}</th>
+                                            <th> {{ __('admin_dashboard/ads/messages.city') }}</th>
+                                            <th> {{ __('admin_dashboard/ads/messages.status') }}</th>
+                                            <th>  {{ __('admin_dashboard/ads/messages.show_ad_details') }}</th>
+                                            <th>{{ __('admin_dashboard/ads/messages.operations') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -56,10 +55,12 @@
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $ad->category->name ?? "no" }}</td>
                                                 <td>{{ $ad->city->name ?? "no" }}</td>
-                                                <td>{{ $ad->status ===0 ? " لم يتم الموافقه علية " :" تم الموافقة " }}</td>
+                                                <td>
+                                                    {{ $ad->status ===0 ?  __('admin_dashboard/ads/messages.not_approve')  : __('admin_dashboard/ads/messages.approve') }}
+                                                </td>
                                                 <td>
                                                     <a class="btn btn-sm btn-info" href="{{route('ads.show',$ad)}}">
-                                                        <i class="fa-solid fa-list"></i> عرض تفاصيل الاعلان
+                                                        <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/ads/messages.operations') }}
                                                     </a>
                                                 </td>
 
