@@ -13,7 +13,7 @@
             <form action="{{ route('ads.destroy', $ad) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <div class="modal-body">
+                <div class="modal-body" style="text-align: center">
                     {{ __('admin_dashboard/ads/messages.sure_delete') }} <span style="color: red">{{ $ad->name }}</span>
                 </div>
                 <div class="modal-body">
