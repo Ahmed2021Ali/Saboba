@@ -7,17 +7,21 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
+
+                    {{-- Refernce Number--}}
                     <div class="row align-items-center mb-4">
                         <div class="col">
-                            <h2 class="h5 page-title"><small class="text-muted text-uppercase">Ticket</small><br>#342</h2>
+                            <h2 class="h5 page-title"><small class="text-muted text-uppercase">Reference Number</small><br>#342</h2>
                         </div>
                         <div class="col-auto">
                             <button type="button" class="btn btn-secondary">Close</button>
                             <button type="button" class="btn btn-primary">Assign</button>
                         </div>
-                    </div> <!-- .row -->
+                    </div>
+
+
                     <div class="row my-4">
-                        <div class="col-md-9">
+                        <div class="col-md-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header">
                                     <strong class="card-title">Donec id elit non mi porta gravida at eget metus.</strong>
@@ -150,7 +154,7 @@
                                 </div> <!-- .card-body -->
                             </div> <!-- .card -->
                         </div> <!-- .col-md -->
-                        <div class="col-md-3">
+                        <div class="col-md-12">
                             <div class="card shadow mb-4">
                                 <div class="card-body">
                                     <h3 class="h5 mb-1">Integrations</h3>
@@ -165,7 +169,9 @@
                                 </div>
                             </div>
                         </div> <!-- .col-md -->
-                    </div> <!-- .col-md -->
+                    </div>
+
+
                 </div>
             </div> <!-- .col-12 -->
         </div> <!-- .row -->
