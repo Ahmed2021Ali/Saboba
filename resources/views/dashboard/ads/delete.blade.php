@@ -10,22 +10,26 @@
                 </button>
             </div>
 
-            <div class="modal-body">
-                {{ __('admin_dashboard/ads/messages.sure_delete') }} <span style="color: red">{{ $ad->name }}</span>
-            </div>
-
-            <div class="modal-footer">
-                <form action="{{ route('ads.destroy', $ad) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <div class="modal-body">
-                          <label>  {{ __('admin_dashboard/ads/messages.reason_reject') }}  </label>
-                            <textarea type="text" name="reason" class="form-control" required></textarea>
-                   </div>
+            <form action="{{ route('ads.destroy', $ad) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    {{ __('admin_dashboard/ads/messages.sure_delete') }} <span style="color: red">{{ $ad->name }}</span>
+                </div>
+                <div class="modal-body">
+                    <label>  {{ __('admin_dashboard/ads/messages.reason_reject') }}  </label>
+                    <textarea type="text" name="reason" class="form-control" required></textarea>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/ads/messages.close') }}</button>
                     <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/ads/messages.reject') }}</button>
-                </form>
-            </div>
+
+                </div>
+            </form>
+
+
+
+
         </div>
     </div>
 </div>
