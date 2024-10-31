@@ -26,8 +26,29 @@ class AdController extends Controller
 
     public function create(Request $request)
     {
-        dd($request);
-        return view('dashboard.ads.create');
+        $validationData = $request->validate(['category_id' => 'required|exists:categories,id',]);
+        if ($validationData['category_id'] == 1) {
+            return view('dashboard.ads.create');
+
+        } elseif ($validationData['category_id'] == 2) {
+            return view('dashboard.ads.create');
+
+        } elseif ($validationData['category_id'] == 3) {
+            return view('dashboard.ads.create');
+
+        } elseif ($validationData['category_id'] == 4) {
+            return view('dashboard.ads.create');
+
+        } elseif ($validationData['category_id'] == 5) {
+            return view('dashboard.ads.create');
+
+        } elseif ($validationData['category_id'] == 6) {
+            return view('dashboard.ads.create');
+
+        } else {
+            flash()->success(' هذا القسم لا يوجد له اي اعلانات  ');
+            return redirect()->back();
+        }
     }
 
     public function show(Ad $ad)

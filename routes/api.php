@@ -52,7 +52,6 @@ Route::middleware([JwtMiddleware::class])->group(function () {
     Route::get('ads/main-category/{categoryId}', [AdsController::class, 'getAdsByMainCategory']);
     Route::get('ads/{ad_id}/main-category', [AdsController::class, 'getMainCategoryByAdId']);
     Route::delete('delete-ad/{ad_id}', [AdsController::class, 'deleteAdById']);
-
     Route::get('main-categories-with-subcategories', [CategoryController::class, 'getAllMainCategoriesWithSubcategories']);
     Route::get('categories/{categoryId}/subcategories', [CategoryController::class, 'getSubCategories']);
 
