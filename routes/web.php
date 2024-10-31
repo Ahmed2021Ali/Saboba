@@ -68,39 +68,39 @@ Route::group([
 
 
 
-        Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
-         //   ->middleware('permission:عرض الأدوار');
+        Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
+            ->middleware('permission:عرض الأدوار');
 
-        Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
-       //     ->middleware('permission:عرض الأدوار');
+        Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
+            ->middleware('permission:عرض الأدوار');
 
-    //    Route::middleware('permission:إضافة دور')->group(function () {
+        Route::middleware('permission:إضافة دور')->group(function () {
             Route::get('roles/create', [RoleController::class, 'create'])->name('roles.create');
             Route::post('roles', [RoleController::class, 'store'])->name('roles.store');
-    //    });
+        });
 
 
-        Route::get('roles/{role}', [RoleController::class, 'show'])->name('roles.show');
-       //     ->middleware('permission:عرض دور');
+        Route::get('roles/{role}', [RoleController::class, 'show'])->name('roles.show')
+            ->middleware('permission:عرض دور');
 
-   //     Route::middleware('permission:تعديل دور')->group(function () {
+        Route::middleware('permission:تعديل دور')->group(function () {
             Route::get('roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
             Route::put('roles/{role}', [RoleController::class, 'update'])->name('roles.update');
-     //   });
+        });
 
-      //  Route::middleware('permission:حذف دور')->group(function () {
+        Route::middleware('permission:حذف دور')->group(function () {
             Route::delete('roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
-     //   });
+        });
 
         // User Management Routes
-    //    Route::middleware('permission:تعديل دور')->group(function () {
+        Route::middleware('permission:تعديل دور')->group(function () {
             Route::get('roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
             Route::put('roles/{role}', [RoleController::class, 'update'])->name('roles.update');
-      //  });
+        });
 
-      //  Route::middleware('permission:حذف دور')->group(function () {
+        Route::middleware('permission:حذف دور')->group(function () {
             Route::delete('roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
-       // });
+        });
 
 
     });

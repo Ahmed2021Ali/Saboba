@@ -78,23 +78,31 @@
                 </a>
 
                 <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
+{{--
                     @can('عرض الأدوار')
+--}}
                         <li class="nav-item">
                             <a class="nav-link pl-3" href="{{ route('roles.index') }}">
                                 <i class="fe fe-eye fe-16"></i>
                                 <span class="ml-1 item-text"> {{ __('admin_dashboard/sidebar/messages.show_roles') }}</span>
                             </a>
                         </li>
+{{--
                     @endcan
+--}}
 
+{{--
                     @can('إضافة دور')
+--}}
                         <li class="nav-item">
                             <a class="nav-link pl-3" href="{{ route('roles.create') }}">
                                 <i class="fe fe-plus-circle fe-16"></i>
                                 <span class="ml-1 item-text"> {{ __('admin_dashboard/sidebar/messages.add_role') }}</span>
                             </a>
                         </li>
+{{--
                     @endcan
+--}}
                 </ul>
             </li>
 
