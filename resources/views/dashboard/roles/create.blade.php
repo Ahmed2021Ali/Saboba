@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <label><strong>{{ __('admin_dashboard/users/messages.permissions') }}:</strong></label>
+                                        <label><strong>{{ __('admin_dashboard/roles/messages.permissions') }}:</strong></label>
                                         <br />
                                         <div class="row">
                                             @foreach($permission as $index => $value)
