@@ -64,7 +64,9 @@
                                                     </button>
                                                     @include('dashboard.images.index', ['model' => $user, 'folder' => 'userImages'])
 
-
+                                                    @if ($user->email === 'saboba@gmail.com' && $user->hasRole('manager'))
+                                                        <!-- Hide edit and delete buttons for the specific manager -->
+                                                    @else
                                                     <a class="btn btn-sm btn-info" href="{{ route('users.show', $user->id) }}">
                                                         <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/users/messages.show') }}
                                                     </a>
@@ -76,6 +78,7 @@
                                                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">
                                                             <i class="fa-solid fa-trash"></i> {{ __('admin_dashboard/users/messages.delete') }}
                                                         </button>
+                                                    @endif
                                                     @include('dashboard.users.delete')
                                                 </td>
                                             </tr>
