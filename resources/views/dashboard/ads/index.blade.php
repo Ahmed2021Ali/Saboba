@@ -33,7 +33,7 @@
                             </ul>
                         </div>
                     @endif
-                    <a class="btn btn-primary btn-lg" href="">اضافة اعلان  </a>
+                    <a class="btn btn-primary btn-lg" href="{{route('ads.create')}}">اضافة اعلان </a>
                     <div class="row my-4">
                         <div class="col-md-12">
 
@@ -102,8 +102,6 @@
                                                                                                         --}}
                                                 </td>
                                             </tr>
-
-
 
                                         @empty
                                             <tr>
