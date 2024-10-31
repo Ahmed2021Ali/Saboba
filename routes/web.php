@@ -63,7 +63,7 @@ Route::group([
 
         // ads Routes
         Route::resource('ads', AdController::class);
-
+        Route::post('notify_edit/{ad}', [AdController::class, 'notify_edit'])->name('notify_edit');
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
             ->middleware('permission:عرض الأدوار');

@@ -67,9 +67,24 @@
                                                 <td>
 
                                                     <!--  Reject Button Modal Trigger -->
-                                                    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCategoryModal{{ $ad->id }}">
+                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                            data-target="#deleteCategoryModal{{ $ad->id }}">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/ads/messages.reject') }}
                                                     </button>
+                                                    @include('dashboard.ads.delete')
+
+
+                                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                                            data-target="#notify_edit{{ $ad->id }}">
+                                                        <i class="fa fa-edit"></i> اشعار بالتعديل
+                                                    </button>
+                                                    @include('dashboard.ads.notify_edit')
+
+
+                                                    {{--<a class="btn btn-sm btn-info" href="{{ route('sub_categories.index', $category) }}">
+                                                        <i class="fa-solid fa-list"></i>  عرض الاقسام الفرعية
+                                                    </a>--}}
+
 
                                                     {{--
 
@@ -84,13 +99,12 @@
 
                                                                                                         <a class="btn btn-sm btn-info" href="{{ route('sub_categories.index', $category) }}">
                                                                                                             <i class="fa-solid fa-list"></i>  عرض الاقسام الفرعية
-                                                                                                        </a>--}}
+                                                                                                        </a>
+                                                                                                        --}}
                                                 </td>
                                             </tr>
-                                            @include('dashboard.ads.delete')
-                                            {{--
 
-                                                                                     @include('dashboard.categories.edit')--}}
+
 
                                         @empty
                                             <tr>
@@ -99,9 +113,9 @@
                                         @endforelse
                                         </tbody>
                                     </table>
-{{--
-                                    {!! $categories->links('pagination::bootstrap-5') !!}
---}}
+                                    {{--
+                                                                        {!! $categories->links('pagination::bootstrap-5') !!}
+                                    --}}
                                 </div>
                             </div>
                         </div>

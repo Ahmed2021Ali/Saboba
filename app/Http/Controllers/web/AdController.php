@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use App\Models\AdField;
 use App\Models\AdTranslation;
+use Illuminate\Http\Request;
 
 class AdController extends Controller
 {
@@ -21,5 +22,9 @@ class AdController extends Controller
     public function show(Ad $ad)
     {
         return view('dashboard.ads.details_ads', ['ad' => $ad]);
+    }
+    public function notify_edit(Request $request ,$ad)
+    {
+        dd($ad);
     }
 }
