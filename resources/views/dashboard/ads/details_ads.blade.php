@@ -14,9 +14,9 @@
                             <h2 class="h5 page-title"><small class="text-muted text-uppercase">Reference
                                     Number</small><br>#{{$ad->reference_number}}</h2>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-md-12">
                             <button type="button" class="btn btn-secondary">Images</button>
-                            <button type="button" class="btn btn-primary"> Reals </button>
+                            <button type="button" class="btn btn-success"> Reals </button>
                         </div>
                     </div>
 
