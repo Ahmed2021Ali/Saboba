@@ -11,6 +11,7 @@ use App\Http\Controllers\web\UserController;
 use App\Http\Controllers\web\AdController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use \App\Http\Controllers\web\BlockUserController;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -40,6 +41,10 @@ Route::group([
 
         // categories  Routes
         Route::resource('categories', CategoryController::class);
+
+        // Block  Routes
+        Route::resource('blocked_user', BlockUserController::class);
+
 
         // sub_categories Routes
         Route::controller(SubCategoryController::class)->group(function () {

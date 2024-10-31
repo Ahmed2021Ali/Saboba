@@ -133,7 +133,7 @@
 
             <!-- Existing Block User Section -->
             <li class="nav-item w-100">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{route('blocked_user.index')}}">
                     <i class="fe fe-star fe-16"></i>
                     <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.block_users') }}</span>
                 </a>
