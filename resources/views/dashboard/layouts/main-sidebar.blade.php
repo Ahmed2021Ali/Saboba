@@ -143,7 +143,7 @@
             <li class="nav-item w-100">
                 <a class="nav-link" href="{{route('report_ads.index')}}">
                     <i class="fe fe-star fe-16"></i>
-                    <span class="ml-3 item-text">>{{ __('admin_dashboard/sidebar/messages.report_ads') }}</span>
+                    <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.report_ads') }}</span>
                 </a>
             </li>
 

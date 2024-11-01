@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title"> حظر المستخدمين </h2>
+                    <h2 class="mb-2 page-title">{{ __('admin_dashboard/block_user/messages.Block users') }} </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -21,7 +21,7 @@
                     <div class="pull-right mb-2">
                         <br>
                         <button type="button" class="btn mb-2 btn-outline-secondary" data-toggle="modal"
-                                data-target="#varyModal" data-whatever="@mdo">حظر مستخدم
+                                data-target="#varyModal" data-whatever="@mdo">{{ __('admin_dashboard/block_user/messages.Add Block user') }}
                         </button>
                         @include('dashboard.blocked_user.create',['users'=>$users])
                     </div>
@@ -32,17 +32,18 @@
                                     <table class="table datatables" id="dataTable-1">
                                         <thead>
                                         <tr>
-                                            <th>الرقم</th>
-                                            <th> تم حظر</th>
-                                            <th>تاريخ  الحظر</th>
-                                            <th> حظره بواسطة</th>
-                                            <th> سبب الحظر</th>
-                                            <th> فك الحظر</th>
-                                            <th>تاريخ فك الحظر</th>
-                                            <th>فك حظره بواسطة</th>
+                                            <th>#</th>
+                                            <th> {{ __('admin_dashboard/block_user/messages.Blocked') }}</th>
+                                            <th>{{ __('admin_dashboard/block_user/messages.Date Blocked') }}</th>
+                                            <th>{{ __('admin_dashboard/block_user/messages.Blocked by') }}</th>
+                                            <th> {{ __('admin_dashboard/block_user/messages.Reason for Block') }}</th>
+                                            <th> {{ __('admin_dashboard/block_user/messages.Unblock') }}</th>
+                                            <th>{{ __('admin_dashboard/block_user/messages.Unblocking date') }}</th>
+                                            <th>{{ __('admin_dashboard/block_user/messages.Unblock it by') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @if($blockedUsers->isNotEmpty())
                                         @foreach ($blockedUsers as $key => $blockedUser)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
@@ -57,15 +58,14 @@
                                                     @if(!$blockedUser->unblocked_at)
                                                     <a class="btn btn-sm btn-warning" data-toggle="modal"
                                                        data-target="#edit_blocked_user_{{$blockedUser->id}}"
-                                                       data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>قك
-                                                        حظر </a>
+                                                       data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>{{ __('admin_dashboard/block_user/messages.Unblock') }}</a>
                                                     @include('dashboard.blocked_user.edit',['blockedUser'=>$blockedUser,'users'=>$users])
                                                     @endif
 
                                                     <button type="button" class="btn btn-sm btn-danger"
                                                             data-toggle="modal"
                                                             data-target="#delete_latest_news_{{$blockedUser->id}}"><i
-                                                            class="fa-solid fa-trash"></i> حذف
+                                                            class="fa-solid fa-trash"></i> {{ __('admin_dashboard/block_user/messages.delete') }}
                                                     </button>
                                                     @include('dashboard.blocked_user.delete',['latest_news'=>$blockedUser])
 
@@ -73,6 +73,9 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                        @else
+                                            <h1 class="text-center"> {{ __('admin_dashboard/block_user/messages.There are no users in the block list.') }} </h1>
+                                        @endif
                                         </tbody>
                                     </table>
                                     {{--
