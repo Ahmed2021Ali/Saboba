@@ -15,6 +15,10 @@ return [
     'Add Block user'=>'اضافة مستخدم للحظر',
     'There are no users in the block list.'=>'لا يوجد مستخدمين في قائمة الحظر',
     'operations' => 'عمليات',
+    'Select the user you want to block'=>' اختار  المستخدم الذي ستيم حظرة',
+    'sure_delete' => ' هل تريد الحذف ؟ ',
+    'Do you want to unblock the user?'=>' هل تريد فك حظر المستخدم  '
+
 
 
 

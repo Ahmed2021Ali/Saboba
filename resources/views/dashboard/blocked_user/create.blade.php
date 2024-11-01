@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="varyModalLabel">إنشاء بوست جديد</h5>
+                <h5 class="modal-title" id="varyModalLabel">{{ __('admin_dashboard/block_user/messages.Add Block user') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -11,7 +11,7 @@
                 <form action="{{route('blocked_user.store')}}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label"> اختار  المستخدم الذي ستيم حظرة  </label>
+                        <label for="message-text" class="col-form-label">{{ __('admin_dashboard/block_user/messages.Select the user you want to block') }}  </label>
                         <select name="user_id"  class="form-control" required>
                             @foreach($users as $user)
                                 @if ($user->email === 'saboba@gmail.com' && $user->hasRole('manager'))
@@ -23,12 +23,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">سبب الجظر</label>
+                        <label for="message-text" class="col-form-label">{{ __('admin_dashboard/block_user/messages.Reason for Block') }}</label>
                         <textarea class="form-control" name="reason" id="message-text"></textarea>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn mb-2 btn-primary">حظر المستخدم</button>
+                        <button type="submit" class="btn mb-2 btn-primary">{{ __('admin_dashboard/block_user/messages.Add Block user') }}</button>
                     </div>
                 </form>
             </div>

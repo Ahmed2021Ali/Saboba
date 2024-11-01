@@ -16,5 +16,8 @@ return [
     'Add Block user' => 'Add Block user',
     'There are no users in the block list.'=>'There are no users in the block list.',
     'operations' => 'Operations',
+    'Select the user you want to block'=>'Select the user you want to block.',
+    'sure_delete' => 'Are you sure to delete?',
+    'Do you want to unblock the user?'=>'Do you want to unblock the user?'
 
 ];

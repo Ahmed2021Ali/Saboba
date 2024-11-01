@@ -50,17 +50,19 @@
                                                 <td>{{ ++$key }}</td>
                                                 <td>{{ $blockedUser->user->name }}</td>
                                                 <td>{{ $blockedUser->blocked_at??null }}</td>
-                                                <td>{{ $blockedUser->blockedBy->name }}</td>
-                                                <td>{{ $blockedUser->reason }}</td>
-                                                <td>{{ $blockedUser->unblocked_at/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
-                                                <td>{{ $blockedUser->unblockedBy->name/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
+                                                <td>{{ $blockedUser->blockedBy->name??null }}</td>
+                                                <td>{{ $blockedUser->reason??null }}</td>
+                                                <td>{{ $blockedUser->unblocked_at??null/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
+                                                <td>{{ $blockedUser->unblockedBy->name??null/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
 
                                                 <td>
                                                     @if(!$blockedUser->unblocked_at)
+
                                                     <a class="btn btn-sm btn-warning" data-toggle="modal"
                                                        data-target="#edit_blocked_user_{{$blockedUser->id}}"
                                                        data-whatever="@mdo"><i class="fa-solid fa-pen-to-square"></i>{{ __('admin_dashboard/block_user/messages.Unblock') }}</a>
                                                     @include('dashboard.blocked_user.edit',['blockedUser'=>$blockedUser,'users'=>$users])
+
                                                     @endif
 
                                                     <button type="button" class="btn btn-sm btn-danger"
