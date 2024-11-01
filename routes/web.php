@@ -68,7 +68,7 @@ Route::group([
             Route::get('report-comments', 'commentsReport')->name('commentsReport');
             Route::get('report-user', 'commentUser')->name('commentUser');
         });
-        Route::post('notify{user_id}', [NotifyController::class])->name('notify');
+        Route::post('notify{user_id}', [NotifyController::class,'notify'])->name('notify');
 
 
         /*  Role and permission */

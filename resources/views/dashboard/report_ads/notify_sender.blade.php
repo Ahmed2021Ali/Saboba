@@ -12,7 +12,7 @@
                 </button>
             </div>
 
-            <form action="{{ route('report_ads.notify', $reportAd->ad->user->id) }}" method="POST">
+            <form action="{{ route('notify', $reportAd->ad->user->id) }}" method="POST">
                 @csrf
                 <div class="modal-body" style="text-align: center">
                     <h3>{{ __('admin_dashboard/report/messages.Reply to the report') }} <span style="color: red">{{ $reportAd->sender->name }}</span></h3>

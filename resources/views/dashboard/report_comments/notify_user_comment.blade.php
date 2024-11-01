@@ -10,7 +10,7 @@
                 </button>
             </div>
 
-            <form action="{{ route('report_ads.notify', $reportComment->comment->user->id) }}" method="POST">
+            <form action="{{ route('notify', $reportComment->comment->user->id) }}" method="POST">
                 @csrf
                 <div class="modal-body" style="text-align: center">
                     <h3> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}  <span style="color: red">{{ $reportComment->comment->user->name }}</span></h3>

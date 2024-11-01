@@ -6,5 +6,8 @@ use App\Http\Controllers\Controller;
 
 class NotifyController extends Controller
 {
-    //
+    public function notify()
+    {
+
+    }
 }
