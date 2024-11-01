@@ -13,7 +13,9 @@ return [
     'delete' => 'حذف ',
     'Block users' => ' حظر المستخدمين ',
     'Add Block user'=>'اضافة مستخدم للحظر',
-    'There are no users in the block list.'=>'لا يوجد مستخدمين في قائمة الحظر'
+    'There are no users in the block list.'=>'لا يوجد مستخدمين في قائمة الحظر',
+    'operations' => 'عمليات',
+
 
 
 ];

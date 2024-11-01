@@ -40,6 +40,8 @@
                                             <th> {{ __('admin_dashboard/block_user/messages.Unblock') }}</th>
                                             <th>{{ __('admin_dashboard/block_user/messages.Unblocking date') }}</th>
                                             <th>{{ __('admin_dashboard/block_user/messages.Unblock it by') }}</th>
+                                            <th>{{ __('admin_dashboard/block_user/messages.operations') }}</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>

@@ -14,6 +14,7 @@ return [
     'delete' => 'delete',
     'Block users' => 'Block users',
     'Add Block user' => 'Add Block user',
-    'There are no users in the block list.'=>'There are no users in the block list.'
+    'There are no users in the block list.'=>'There are no users in the block list.',
+    'operations' => 'Operations',
 
 ];
