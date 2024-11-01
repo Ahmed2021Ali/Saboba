@@ -77,10 +77,9 @@
                                                     </button>
                                                     @include('dashboard.report_comments.block_user_comment')
 
-
-                                                    {{--                                                      {{-- رسالة تحذير  --}}
+                                                    {{-- رسالة تحذير  --}}
                                                     <button class="btn btn-sm btn-secondary" data-toggle="modal"
-                                                            data-target="#notify_user_comment{{ $reportAd->id  }}">
+                                                            data-target="#notify_user_comment{{ $reportComment->id  }}">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}
                                                     </button>
                                                     @include('dashboard.report_comments.notify_user_comment')
