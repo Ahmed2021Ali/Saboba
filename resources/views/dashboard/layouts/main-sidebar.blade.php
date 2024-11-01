@@ -141,7 +141,7 @@
 
             <!-- Existing Report Ads Section -->
             <li class="nav-item w-100">
-                <a class="nav-link" href="{{route('report_ads.index')}}">
+                <a class="nav-link" href="{{route('adsReport')}}">
                     <i class="fe fe-star fe-16"></i>
                     <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.report_ads') }}</span>
                 </a>
@@ -149,7 +149,7 @@
 
             <!-- Existing Report Comments Section -->
             <li class="nav-item w-100">
-                <a class="nav-link" href="{{route('report_comments.index')}}">
+                <a class="nav-link" href="{{route('commentsReport')}}">
                     <i class="fe fe-star fe-16"></i>
                     <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.report_comments') }}</span>
                 </a>

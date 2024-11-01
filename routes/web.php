@@ -7,13 +7,13 @@ use App\Http\Controllers\web\CategoryController;
 use App\Http\Controllers\web\CityController;
 use App\Http\Controllers\web\CountryController;
 use App\Http\Controllers\web\IdentityVerificationController;
-use App\Http\Controllers\web\ReportAdsController;
-use App\Http\Controllers\web\ReportCommentController;
+use App\Http\Controllers\web\NotifyController;
 use App\Http\Controllers\web\RoleController;
 use App\Http\Controllers\web\SubCategoryController;
 use App\Http\Controllers\web\UserController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use \App\Http\Controllers\web\ReportController;
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -39,11 +39,7 @@ Route::group([
         Route::resource('categories', CategoryController::class);
         // Block  Routes
         Route::resource('blocked_user', BlockUserController::class);
-        // Reports  Routes
-        Route::controller(ReportAdsController::class)->group(function () {
-            Route::get('report-ads/index', 'index')->name('report_ads.index');
-            Route::post('report-ads/notify/{id}', 'notify')->name('report_ads.notify');
-        });
+
         // sub_categories Routes
         Route::controller(SubCategoryController::class)->group(function () {
             Route::get('sub_categories/{category}', 'index')->name('sub_categories.index');
@@ -65,10 +61,14 @@ Route::group([
             Route::get('notify_edit/{ad}', 'notify_edit')->name('notify_edit');
             Route::post('ad-create', 'create')->name('ad.create');
         });
-        /* Comment Routes */
-        Route::controller(ReportCommentController::class)->group(function () {
-            Route::get('report-comments/index', 'index')->name('report_comments.index');
+
+        /* Report*/
+        Route::controller(ReportController::class)->group(function () {
+            Route::get('report-ads', 'adsReport')->name('adsReport');
+            Route::get('report-comments', 'commentsReport')->name('commentsReport');
+            Route::get('report-user', 'commentUser')->name('commentUser');
         });
+        Route::post('notify{user_id}', [NotifyController::class])->name('notify');
 
 
         /*  Role and permission */
