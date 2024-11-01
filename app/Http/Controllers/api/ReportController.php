@@ -56,10 +56,10 @@ class ReportController extends Controller
     {
         $validationData = $request->validate([
             'content' => 'required|string',
-            'comment_id' => 'required|exists:comments,id'
+            'ad_id' => 'required|exists:ads,id'
         ]);
 
-        $checkReport = Report::where('comment_id', $validationData['comment_id'])->where('sender_id', Auth::id())->first();
+        $checkReport = Report::where('ad_id', $validationData['ad_id'])->where('sender_id', Auth::id())->first();
         if ($checkReport) {
             $checkReport->content = $validationData['content'];
             $checkReport->save();
