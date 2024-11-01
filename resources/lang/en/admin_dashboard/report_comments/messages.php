@@ -14,7 +14,7 @@ return [
     'No reports' => 'No reports',
 
 
-    'comment_content'=>'comment details',
+    'comment_content'=>'Comment Content',
     'report_content'=>'Report Content ',
 
 
