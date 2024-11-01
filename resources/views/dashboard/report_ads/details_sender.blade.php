@@ -24,7 +24,6 @@
 
                         <h4> {{ __('admin_dashboard/verification/messages.name') }}  : {{$reportAd->sender->name}} </h4>
                         <h4> {{ __('admin_dashboard/verification/messages.email') }}  : {{$reportAd->sender->email}} </h4>
-                        <h4> {{ __('admin_dashboard/verification/messages.overview') }}  : {{$reportAd->sender->overview}} </h4>
                         <h4> {{ __('admin_dashboard/verification/messages.country') }}  : {{$reportAd->sender->country->name}} </h4>
                         <h4> {{ __('admin_dashboard/verification/messages.number_contact') }}  : {{$reportAd->sender->contact_number}} </h4>
                         <h4>  {{ __('admin_dashboard/verification/messages.whatsApp_number') }}  : {{$reportAd->sender->whatsapp_number}} </h4>
