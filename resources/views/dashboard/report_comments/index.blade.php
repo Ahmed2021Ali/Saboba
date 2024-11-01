@@ -46,7 +46,12 @@
                                                     @include('dashboard.report_comments.details_sender')
 
                                                 </td>
-                                                <td>{{ $reportComment->content }}</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#content_content{{$reportComment->id}}">
+                                                        <i class="fa fa-edit"></i>{{ $reportComment->content }}
+                                                    </button>
+                                                    @include('dashboard.report_comments.content_content')
+                                                </td>
 
                                                 <td>
                                                     <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#content_comment{{$reportComment->id}}">
