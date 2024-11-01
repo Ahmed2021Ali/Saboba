@@ -53,7 +53,7 @@
                                                 <td>{{ $blockedUser->blockedBy->name }}</td>
                                                 <td>{{ $blockedUser->reason }}</td>
                                                 <td>{{ $blockedUser->unblocked_at/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
-                                                <td>{{ $blockedUser->unlockedBy->name/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
+                                                <td>{{ $blockedUser->unblockedBy->name/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
 
                                                 <td>
                                                     @if(!$blockedUser->unblocked_at)
