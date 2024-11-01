@@ -57,10 +57,11 @@
 
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                data-target="#content_comment{{$reportComment->id}}">
+                                                                data-target="#content_report{{$key+2}}">
                                                             <i class="fa fa-edit"></i>{{ __('admin_dashboard/report_comments/messages.comment_content') }}
                                                         </button>
-                                                        @include('dashboard.report_comments.content_comment')
+                                                        @include('dashboard.addition.content_report.content_report',['moduleId'=>$key+2,'content'=>$reportComment->comment->content])
+
 
                                                     </td>
                                                     <td>
