@@ -47,7 +47,7 @@ Route::group([
         Route::resource('blocked_user', BlockUserController::class);
 
         // Reports  Routes
-        Route::get('report_ads-ads', [ReportController::class, 'reportAds'])->name('report_ads.ads');
+        Route::get('report-ads', [ReportController::class, 'index'])->name('report_ads.index');
 
 
         // sub_categories Routes
