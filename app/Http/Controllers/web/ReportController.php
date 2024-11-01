@@ -14,8 +14,8 @@ class ReportController extends Controller
         return view('dashboard.report_ads.index', compact('reportAds'));
     }
 
-    public function notify(Request $request)
+    public function notify(Request $request,$id)
     {
-        dd($request->reason);
+        dd($request->reason,$id);
     }
 }

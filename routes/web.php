@@ -49,7 +49,7 @@ Route::group([
         // Reports  Routes
         Route::controller(ReportController::class)->group(function () {
             Route::get('report-ads', 'index')->name('report_ads.index');
-            Route::post('report-ads/notify/{user}', 'notify')->name('report_ads.notify');
+            Route::post('report-ads/notify/{id}', 'notify')->name('report_ads.notify');
         });
 
         // sub_categories Routes
