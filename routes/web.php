@@ -48,7 +48,7 @@ Route::group([
 
         // Reports  Routes
         Route::get('report-ads', [ReportController::class, 'index'])->name('report_ads.index');
-      //  Route::get('report-ads', [ReportController::class, 'destroy'])->name('report_ads.destroy');
+        Route::get('report-ads/notify', [ReportController::class, 'notify'])->name('report_ads.notify');
 
 
         // sub_categories Routes
