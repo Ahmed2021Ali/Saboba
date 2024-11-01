@@ -46,7 +46,6 @@
                                                     @include('dashboard.report_comments.details_sender')
 
                                                 </td>
-
                                                 <td>{{ $reportComment->content }}</td>
 
                                                 <td>

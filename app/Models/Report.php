@@ -20,7 +20,7 @@ class Report extends Model
 
     public function comment()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Comment::class);
     }
 
     public function ad()
