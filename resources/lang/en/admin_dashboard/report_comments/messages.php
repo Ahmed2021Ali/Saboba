@@ -11,7 +11,7 @@ return [
     'Block the Comment user' => 'Block the Comment user',
     'Warning message to the commenter' => 'Warning message to the commenter',
     'Notification to the complainant' => 'Notification to the complainant',
-    'No reports' => 'No reports',
+    'No reports' => 'No Reports',
 
 
     'comment_content'=>'Comment Content',
