@@ -65,13 +65,13 @@
 
                                                     {{-- حظر مستخدم صاحب الاعلان + اشعار  --}}
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                                            data-target="#block_user_id{{ $reportAd->id }}">
+                                                            data-target="#block_user_ad{{ $reportAd->id }}">
                                                         <i class="fa fa-trash"></i>{{ __('admin_dashboard/report/messages.Block the advertiser user') }}
                                                     </button>
                                                     @include('dashboard.report_ads.block_user_ad')
 
                                                     {{--                                                      {{-- رسالة تحذير  --}}
-                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                    <button class="btn btn-sm btn-secondary" data-toggle="modal"
                                                             data-target="#notify_user_ads{{ $reportAd->id  }}">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Advertiser warning message') }}
                                                     </button>
