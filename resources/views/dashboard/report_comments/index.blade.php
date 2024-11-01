@@ -94,7 +94,7 @@
                                                                 data-target="#notify_sender{{$reportComment->sender_id}}">
                                                             <i class="fa fa-trash"></i> {{$reportComment->sender_id}} {{ __('admin_dashboard/report_comments/messages.Notification to the complainant') }}
                                                         </button>
-                                                        @include('dashboard.notify.notify',['moduleId'=>$reportComment->sender_id,'user'=>$reportComment->sender,'message'=>  __('admin_dashboard/report_comments/messages.Warning message to the commenter')   ])
+                                                        @include('dashboard.notify.notify',['moduleId'=>$reportComment->sender_id,'user'=>$reportComment->sender,'message'=>  __('admin_dashboard/report_comments/messages.Notification to the complainant')  ])
 
 
                                                     </td>
