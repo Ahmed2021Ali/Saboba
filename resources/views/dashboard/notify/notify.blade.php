@@ -1,5 +1,5 @@
 <!-- Delete Category Modal -->
-<div class="modal fade" id="notify_sender{{ $model->id }}" tabindex="-1" role="dialog"
+<div class="modal fade" id="notify_sender{{ $model }}" tabindex="-1" role="dialog"
      aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
