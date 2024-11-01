@@ -71,17 +71,17 @@
 
                                                     {{--                                                      {{-- رسالة تحذير  --}}
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                                            data-target="#notify_user_ads{{ $reportAd->ad_id }}">
+                                                            data-target="#notify_user_ads{{ $reportAd->id  }}">
                                                         <i class="fa fa-trash"></i> رسالة تحذيرية لصاحب الاعلان
                                                     </button>
                                                     @include('dashboard.report_ads.notify_user_ads')
 
                                                     {{-- اشعار رد لصاحب الابلاغ  --}}
-                                                    {{--                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                                                                                                data-target="#deleteCategoryModal{{ $reportAd->ad_id }}">
-                                                                                                            <i class="fa fa-trash"></i> اشعار لصاحب الابلاغ
-                                                                                                        </button>
-                                                                                                        @include('dashboard.report_ads.notify_sender')--}}
+                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                            data-target="#notify_sender{{ $reportAd->id }}">
+                                                        <i class="fa fa-trash"></i> اشعار لصاحب الابلاغ
+                                                    </button>
+                                                    @include('dashboard.report_ads.notify_sender')
                                                 </td>
                                             </tr>
                                         @endforeach
