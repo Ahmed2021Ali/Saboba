@@ -32,8 +32,9 @@
                                             <th> {{ __('admin_dashboard/report_comments/messages.Operations') }}</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
                                         @if($reportComments->isNotEmpty())
+
+                                        <tbody>
                                         @foreach ($reportComments as $key => $reportComment)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
@@ -87,10 +88,11 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+
+                                        </tbody>
                                         @else
                                             <h3>{{ __('admin_dashboard/report_comments/messages.No reports') }}</h3>
                                         @endif
-                                        </tbody>
                                     </table>
                                     {{--
                                                                         {!! $subAddresses->links/*('pagination::bootstrap-5')*/ !!}
