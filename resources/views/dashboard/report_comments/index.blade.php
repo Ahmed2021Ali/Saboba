@@ -52,7 +52,7 @@
                                                                 data-target="#content_report{{$reportComment->id}}">
                                                             <i class="fa fa-edit"></i>{{ __('admin_dashboard/report_comments/messages.report_content') }}
                                                         </button>
-                                                        @include('dashboard.addition.content_report.content_report',['moduleId'=>$reportComment->id,'content'=>$reportComment->content])
+                                                        @include('dashboard.addition.content.content',['moduleId'=>$reportComment->id,'content'=>$reportComment->content])
                                                     </td>
 
                                                     <td>
@@ -60,8 +60,7 @@
                                                                 data-target="#content_report{{$key+2}}">
                                                             <i class="fa fa-edit"></i>{{ __('admin_dashboard/report_comments/messages.comment_content') }}
                                                         </button>
-                                                        @include('dashboard.addition.content_report.content_report',['moduleId'=>$key+2,'content'=>$reportComment->comment->content])
-
+                                                        @include('dashboard.addition.content.content',['moduleId'=>$key+2,'content'=>$reportComment->comment->content])
 
                                                     </td>
                                                     <td>
