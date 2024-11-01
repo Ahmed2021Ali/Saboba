@@ -6,7 +6,7 @@
 
             <div class="modal-header">
                 <h5 class="modal-title"
-                    id="deleteCategoryModalLabel">{{ __('admin_dashboard/ads/messages.reject') }}</h5>
+                    id="deleteCategoryModalLabel">{{ __('admin_dashboard/report/messages.Complaint sender notification') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -16,15 +16,15 @@
                 @csrf
                 @method('DELETE')
                 <div class="modal-body" style="text-align: center">
-                    <h3>الرد علي الابلاغ <span style="color: red">{{ $reportAd->sender->name }}</span></h3>
+                    <h3>{{ __('admin_dashboard/report/messages.Reply to the report') }} <span style="color: red">{{ $reportAd->sender->name }}</span></h3>
                 </div>
                 <div class="modal-body">
                     <label> اشعار </label>
                     <textarea type="text" name="reason" class="form-control" required></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
-                    <button type="submit" class="btn btn-danger">تاكيد</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/report/messages.close') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/report/messages.Complaint sender notification') }}</button>
                 </div>
             </form>
 
