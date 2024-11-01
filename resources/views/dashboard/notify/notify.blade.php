@@ -15,10 +15,11 @@
             <form action="{{ route('notify', $user->id) }}" method="POST">
                 @csrf
 
-                <div class="modal-body" style="text-align: center"> {{$message}}
-                    <h3><span style="color: red">{{ $user->name }}</span></h3>
+                <div class="modal-body" style="text-align: center">
+                    <h3> {{$message}}
+                        <span style="color: red">{{ $user->name }}</span></h3>
                 </div>
-
+                
                 <div class="modal-body">
                     <label> {{ __('admin_dashboard/notify/messages.User newsletter') }} </label>
                     <textarea type="text" name="reason" class="form-control" required></textarea>

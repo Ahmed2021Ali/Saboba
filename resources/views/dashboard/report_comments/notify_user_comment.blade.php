@@ -13,7 +13,8 @@
             <form action="{{ route('notify', $reportComment->comment->user->id) }}" method="POST">
                 @csrf
                 <div class="modal-body" style="text-align: center">
-                    <h3> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}  <span style="color: red">{{ $reportComment->comment->user->name }}</span></h3>
+                    <h3> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}
+                        <span style="color: red">{{ $reportComment->comment->user->name }}</span></h3>
                 </div>
                 <div class="modal-body">
                     <label>  {{ __('admin_dashboard/report_comments/messages.User newsletter') }}   </label>
