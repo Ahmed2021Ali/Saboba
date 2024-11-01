@@ -40,10 +40,10 @@
                                                     <td>{{ ++$key }}</td>
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                data-target="#imageModal_details_{{$reportAd->id}}">
-                                                            <i class="fa fa-edit"></i>{{ $reportAd->sender->name }}
+                                                                data-target="#user_details{{$reportAd->id}}">
+                                                            <i class="fa fa-edit"></i> {{ $reportAd->sender->name }}
                                                         </button>
-                                                        @include('dashboard.report_ads.details_sender',['reportAd'=>$reportAd])
+                                                        @include('dashboard.addition.user_details.user_details',['moduleId'=>$reportAd->id,'user'=>$reportAd->sender])
                                                     </td>
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
