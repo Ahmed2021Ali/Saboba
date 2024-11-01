@@ -27,7 +27,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th> مرسل الابلاغ</th>
-                                            <th>  تفاصيل مرسل الابلاغ </th>
                                             <th> محتوي الابلاغ</th>
                                             <th> الاعلان</th>
                                         </tr>
@@ -36,14 +35,14 @@
                                         @foreach ($reportAds as $key => $reportAd)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ $reportAd->sender->name }}</td>
                                                 <td>
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
                                                             data-target="#imageModal_details_{{$reportAd->id}}">
-                                                        <i class="fa fa-edit"></i> تفاصيل المرسل
+                                                        <i class="fa fa-edit"></i>{{ $reportAd->sender->name }}
                                                     </button>
                                                     @include('dashboard.report_ads.details_sender',['reportAd'=>$reportAd])
                                                 </td>
+
 
                                                 <td>{{ $reportAd->content }}</td>
                                                 <td>
