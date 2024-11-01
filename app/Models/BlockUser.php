@@ -29,7 +29,7 @@ class BlockUser extends Model
         return $this->belongsTo(User::class, 'blocked_by_user_id');
     }
 
-    public function unlockedBy()
+    public function unblockedBy()
     {
         return $this->belongsTo(User::class, 'unlocked_by_user_id');
     }
