@@ -77,25 +77,28 @@
                                                     </button>
                                                     @include('dashboard.report_comments.block_user_comment')
 
-                                                    {{-- رسالة تحذير  --}}
-{{--                                                    <button class="btn btn-sm btn-secondary" data-toggle="modal"
-                                                            data-target="#notify_user_comment{{ $reportComment->id  }}">
-                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}
-                                                    </button>
-                                                    @include('dashboard.report_comments.notify_user_comment')--}}
-
+                                                    {{-- رسالة تحذير  لصاحب التعليق  --}}
                                                     <button class="btn btn-sm btn-secondary" data-toggle="modal"
                                                             data-target="#notify_sender{{ $reportComment->id  }}">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}
                                                     </button>
                                                     @include('dashboard.notify.notify',['model'=>$reportComment,'user'=>$reportComment->comment->user,'message'=> __('admin_dashboard/report_comments/messages.Warning message to the commenter') ])
 
+
                                                     {{-- اشعار رد لصاحب الابلاغ  --}}
+                                                    <button class="btn btn-sm btn-secondary" data-toggle="modal"
+                                                            data-target="#notify_sender{{ $reportComment->id  }}">
+                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Notification to the complainant') }}
+                                                    </button>
+                                                    @include('dashboard.notify.notify',['model'=>$reportComment,'user'=>$reportComment->sender,'message'=>  __('admin_dashboard/report_comments/messages.Notification to the complainant')  ])
+
+
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
                                                             data-target="#notify_sender{{ $reportComment->id }}">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Notification to the complainant') }}
                                                     </button>
                                                     @include('dashboard.report_comments.notify_sender')
+
                                                 </td>
                                             </tr>
                                         @endforeach
