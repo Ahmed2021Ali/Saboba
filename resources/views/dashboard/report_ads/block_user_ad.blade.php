@@ -1,10 +1,9 @@
-<!-- Delete Category Modal -->
-<div class="modal fade" id="block_user_id{{ $reportAd->id }}" tabindex="-1" role="dialog" aria-labelledby="block_user_id" aria-hidden="true">
+<div class="modal fade" id="block_user_ad{{ $reportAd->id }}" tabindex="-1" role="dialog" aria-labelledby="block_user_id" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteCategoryModalLabel">حظر المستخدم </h5>
+                <h5 class="modal-title" id="deleteCategoryModalLabel">{{ __('admin_dashboard/report/messages.Block the advertiser user') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,16 +12,13 @@
             <form action="{{ route('blocked_user.destroy', $reportAd->ad->user) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <div class="modal-body" style="text-align: center">
-                    <h3>حظر المستخدم  <span style="color: red">{{ $reportAd->ad->user->name }}</span></h3>
-                </div>
                 <div class="modal-body">
-                    <label>  سبب الحظر  </label>
+                    <label>  {{ __('admin_dashboard/report/messages.User newsletter') }}  </label>
                     <textarea type="text" name="reason" class="form-control" required></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق </button>
-                    <button type="submit" class="btn btn-danger">حظر المستخدم </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/report/messages.close') }} </button>
+                    <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/report/messages.Block the advertiser user') }}</button>
                 </div>
             </form>
 
