@@ -26,10 +26,10 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th> {{ __('admin_dashboard/report/messages.Sender') }}</th>
-                                            <th> {{ __('admin_dashboard/report/messages.Content') }}</th>
-                                            <th> {{ __('admin_dashboard/report/messages.Comments') }}</th>
-                                            <th> {{ __('admin_dashboard/report/messages.Operations') }}</th>
+                                            <th> {{ __('admin_dashboard/report-comments/messages.Sender') }}</th>
+                                            <th> {{ __('admin_dashboard/report-comments/messages.Content') }}</th>
+                                            <th> {{ __('admin_dashboard/report-comments/messages.Comments') }}</th>
+                                            <th> {{ __('admin_dashboard/report-comments/messages.Operations') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
