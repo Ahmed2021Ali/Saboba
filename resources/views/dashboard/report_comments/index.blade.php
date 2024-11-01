@@ -39,10 +39,10 @@
                                             <tr>
                                                 <td>{{ ++$key }}</td>
                                                 <td>
-{{--                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_details_{{$reportComment->id}}">
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#imageModal_details_{{$reportComment->id}}">
                                                         <i class="fa fa-edit"></i>{{ $reportComment->sender->name }}
                                                     </button>
-                                                    @include('dashboard.report_ads.details_sender',['reportAd'=>$reportAd])--}}
+                                                    @include('dashboard.report_comments.details_sender')
 
                                                 </td>
 
