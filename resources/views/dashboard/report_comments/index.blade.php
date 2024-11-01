@@ -86,7 +86,7 @@
 
                                                     {{-- اشعار رد لصاحب الابلاغ  --}}
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#notify_sender{{ $report_comments->id }}">
+                                                            data-target="#notify_sender{{ $reportComment->id }}">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Notification to the complainant') }}
                                                     </button>
                                                     @include('dashboard.report_comments.notify_sender')
