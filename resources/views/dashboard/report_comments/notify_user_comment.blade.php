@@ -20,8 +20,8 @@
                     <textarea type="text" name="reason" class="form-control" required></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/report/messages.close') }}</button>
-                    <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/report_comments/Warning message to the commenter') }} </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/report_comments/messages.close') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }} </button>
                 </div>
             </form>
 
