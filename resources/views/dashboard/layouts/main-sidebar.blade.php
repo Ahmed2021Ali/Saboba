@@ -147,6 +147,13 @@
                 </a>
             </li>
 
+            <!-- Existing Report Comments Section -->
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{route('report_comments.index')}}">
+                    <i class="fe fe-star fe-16"></i>
+                    <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.report_comments') }}</span>
+                </a>
+            </li>
 
         </ul>
     </nav>

@@ -29,7 +29,9 @@ return [
     /* Block users */
     'block_users' => 'Block users  ',
 
+
     'report_ads' => '  Report ads ',
+    'report_comments' => '  Report Comments ',
 
 
 ];

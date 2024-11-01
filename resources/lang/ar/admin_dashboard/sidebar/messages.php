@@ -37,6 +37,7 @@ return [
     'block_users' => ' حظر المستخدمين ',
 
     'report_ads' => '  ابلاغات  الاعلانات  ',
+    'report_comments' => ' ابلاغات التعليقات ',
 
 
 ];
