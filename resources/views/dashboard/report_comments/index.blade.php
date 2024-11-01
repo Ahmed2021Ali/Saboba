@@ -69,20 +69,14 @@
 
                                                 <td>
 
-                                                    {{-- حذف الاعلان + اشعار لصاحب الاعلان --}}
-{{--                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                                            data-target="#deleteCategoryModal{{ $reportAd->ad_id }}">
-                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Delete Ad') }}
-                                                    </button>
-                                                    @include('dashboard.report_ads.delete_ad')--}}
 
-
-                                                    {{-- حظر مستخدم صاحب الاعلان + اشعار  --}}
-{{--                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                                            data-target="#block_user_ad{{ $reportAd->id }}">
-                                                        <i class="fa fa-trash"></i>{{ __('admin_dashboard/report/messages.Block the advertiser user') }}
+                                                    {{-- حظر مستخدم صاحب التعليق + اشعار  --}}
+                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                            data-target="#block_user_comment{{ $reportComment->id }}">
+                                                        <i class="fa fa-trash"></i>{{ __('admin_dashboard/report-comments/messages.Block the Comment user') }}
                                                     </button>
-                                                    @include('dashboard.report_ads.block_user_ad')--}}
+                                                    @include('dashboard.report_comments.block_user_comment')
+
 
                                                     {{--                                                      {{-- رسالة تحذير  --}}
 {{--                                                    <button class="btn btn-sm btn-secondary" data-toggle="modal"
