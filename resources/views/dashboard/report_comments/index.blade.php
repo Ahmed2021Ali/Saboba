@@ -29,6 +29,7 @@
                                             <th> {{ __('admin_dashboard/report_comments/messages.Sender') }}</th>
                                             <th> {{ __('admin_dashboard/report_comments/messages.Content') }}</th>
                                             <th> {{ __('admin_dashboard/report_comments/messages.Comments') }}</th>
+                                            <th> {{ __('admin_dashboard/report/messages.Advertisement') }}</th>
                                             <th> {{ __('admin_dashboard/report_comments/messages.Operations') }}</th>
                                         </tr>
                                         </thead>
@@ -54,10 +55,12 @@
                                                     </button>
                                                     @include('dashboard.report_comments.content_comment')
 
-{{--                                                    <a class="btn btn-sm btn-info"
-                                                       href="{{route('ads.show',$reportComment->ad)}}">
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-sm btn-info"
+                                                       href="{{route('ads.show',$reportComment->comment->ad)}}">
                                                         <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/ads/messages.show_ad_details') }}
-                                                    </a>--}}
+                                                    </a>
                                                 </td>
 
                                                 <td>
