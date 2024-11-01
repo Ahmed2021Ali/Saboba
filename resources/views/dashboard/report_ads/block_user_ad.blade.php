@@ -13,7 +13,6 @@
 
             <form action="{{ route('blocked_user.store') }}" method="POST">
                 @csrf
-                @method('DELETE')
                 <div class="modal-body">
                     <input type="hidden" name="user_id" value="{{$reportAd->ad->user->id}}">
                 </div>
