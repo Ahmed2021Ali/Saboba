@@ -36,7 +36,7 @@
 <style>
     .scrollable {
         width: 468px;
-        height: 400px;
+        height: 350px;
         padding: 10px;
         border: 2px solid #ccc;
         overflow-y: auto; /* Makes the paragraph scrollable vertically */
