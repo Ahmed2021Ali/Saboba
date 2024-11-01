@@ -50,7 +50,7 @@
                                                             data-target="#content_report{{$reportAd->id}}">
                                                         <i class="fa fa-edit"></i>{{ __('admin_dashboard/report_comments/messages.report_content') }}
                                                     </button>
-                                                    @include('dashboard.addition.content_report.content_report',['content'=>$reportAd->content])
+                                                    @include('dashboard.addition.content_report.content_report',['moduleId'=>$reportAd->id,'content'=>$reportAd->content])
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-sm btn-info"
