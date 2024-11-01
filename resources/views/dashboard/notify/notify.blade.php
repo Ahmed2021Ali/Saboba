@@ -19,7 +19,7 @@
                     <h3> {{$message}}
                         <span style="color: red">{{ $user->name }}</span></h3>
                 </div>
-                
+
                 <div class="modal-body">
                     <label> {{ __('admin_dashboard/notify/messages.User newsletter') }} </label>
                     <textarea type="text" name="reason" class="form-control" required></textarea>
