@@ -14,7 +14,7 @@
                 @csrf
                 @method('DELETE')
                 <div class="modal-body" style="text-align: center">
-                    <h3>{{ __('admin_dashboard/ads/messages.sure_delete') }} <span style="color: red">{{ $ad->name }}</span></h3>
+                    <h3>{{ __('admin_dashboard/ads/messages.sure_delete') }} <span style="color: red">{{ $reportAd->ad->name }}</span></h3>
                 </div>
                 <div class="modal-body">
                     <label>  {{ __('admin_dashboard/ads/messages.reason_reject') }}  </label>
