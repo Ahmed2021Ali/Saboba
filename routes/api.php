@@ -73,9 +73,9 @@ Route::middleware([JwtMiddleware::class])->group(function () {
 
     Route::resource('comment', CommentController::class);
 
-    Route::post('send-report_ads-Ad', [ReportController::class, 'sendReportAd']);
-    Route::post('send-report_ads-user', [ReportController::class, 'sendReportUser']);
-    Route::post('send-report_ads-comment', [ReportController::class, 'sendReportComment']);
+    Route::post('send-report-Ad', [ReportController::class, 'sendReportAd']);
+    Route::post('send-report-user', [ReportController::class, 'sendReportUser']);
+    Route::post('send-report-comment', [ReportController::class, 'sendReportComment']);
 
 });
 
