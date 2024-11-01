@@ -14,15 +14,15 @@
                 @csrf
                 @method('DELETE')
                 <div class="modal-body" style="text-align: center">
-                    <h3> رسالة تحظير لصاحب هذا الاعلان  <span style="color: red">{{ $reportAd->ad->user->name }}</span></h3>
+                    <h3> رسالة تحذير لصاحب هذا الاعلان  <span style="color: red">{{ $reportAd->ad->user->name }}</span></h3>
                 </div>
                 <div class="modal-body">
                     <label>  رسالة حظر   </label>
                     <textarea type="text" name="reason" class="form-control" required></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/ads/messages.close') }}</button>
-                    <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/ads/messages.reject') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اعلاق</button>
+                    <button type="submit" class="btn btn-danger">تاكيد </button>
                 </div>
             </form>
 
