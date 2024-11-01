@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <div class="scrollable">
-                        <h4> {{$reportComment->comment}} </h4>
+                        <h4> {{$reportComment->comment->content}} </h4>
                     </div>
                 </div>
             </div>

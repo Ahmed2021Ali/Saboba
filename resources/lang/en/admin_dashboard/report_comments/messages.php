@@ -13,6 +13,11 @@ return [
     'Notification to the complainant' => 'Notification to the complainant',
     'No reports' => 'No reports',
 
+
+    'comment_content'=>'comment details',
+    'report_content'=>'Report Content ',
+
+
 //    delete Ads
     'Are you sure you want to delete the ad?' => 'Are you sure you want to delete the ad?',
     'Do you want to block the advertising user?' => 'Do you want to block the advertising user?',
