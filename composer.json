@@ -5,6 +5,7 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
+        "kreait/laravel-firebase": "^5.0",
         "php": "^8.2",
         "api-platform/laravel": "^4.0",
         "astrotomic/laravel-translatable": "^11.15",
