@@ -68,13 +68,12 @@
                                                     @include('dashboard.report_ads.delete_ad')
 
 
-
                                                     {{-- حظر مستخدم صاحب الاعلان + اشعار  --}}
                                                     <button class="btn btn-sm btn-secondary" data-toggle="modal"
                                                             data-target="#notify_sender{{$reportAd->ad->user->id}}">
-                                                        <i class="fa fa-trash"></i>  {{  __('admin_dashboard/report/messages.Block the advertiser user') }}
+                                                        <i class="fa fa-trash"></i>  {{ __('admin_dashboard/report/messages.Block the advertiser user') }}
                                                     </button>
-                                                    @include('dashboard.addition.block.block_user',['moduleId'=>$reportAd->ad->user->id,'user'=>$reportAd->ad->user,'message'=>   __('admin_dashboard/report/messages.Block the advertiser user')  ])
+                                                    @include('dashboard.addition.block.block_user',['moduleId'=>$reportAd->ad->user->id,'user'=>$reportAd->ad->user,'message'=>   __('admin_dashboard/report/messages.Block the advertiser user') ])
 
 
 
