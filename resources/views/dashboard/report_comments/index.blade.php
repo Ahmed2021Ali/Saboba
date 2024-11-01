@@ -79,11 +79,11 @@
 
 
                                                     {{--                                                      {{-- رسالة تحذير  --}}
-{{--                                                    <button class="btn btn-sm btn-secondary" data-toggle="modal"
-                                                            data-target="#notify_user_ads{{ $reportAd->id  }}">
-                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Advertiser warning message') }}
+                                                    <button class="btn btn-sm btn-secondary" data-toggle="modal"
+                                                            data-target="#notify_user_comment{{ $reportAd->id  }}">
+                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}
                                                     </button>
-                                                    @include('dashboard.report_ads.notify_user_ads')--}}
+                                                    @include('dashboard.report_comments.notify_user_comment')
 
                                                     {{-- اشعار رد لصاحب الابلاغ  --}}
 {{--                                                    <button class="btn btn-sm btn-success" data-toggle="modal"

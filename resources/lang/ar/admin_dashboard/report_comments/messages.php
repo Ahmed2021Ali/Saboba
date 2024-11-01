@@ -9,7 +9,7 @@ return [
     'Delete Comment' => 'حذف التعليق',
 
     'Block the Comment user' => 'حظر مستخدم التعليق ',
-    'Comment warning message' => 'تحذير مستخدم التعليق',
+    'Warning message to the commenter' => 'تحذير مستخدم التعليق',
 
     'Notification to the complainant' => 'اشعار لمرسل الشكوي ',
     'No reports' => ' لا يوجد ابلاغات  ',

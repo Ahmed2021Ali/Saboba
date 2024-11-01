@@ -9,7 +9,7 @@ return [
     'Operations' => 'Operations',
     'Delete Comment' => 'Delete Comment',
     'Block the Comment user' => 'Block the Comment user',
-    'Comment warning message' => 'Comment warning message',
+    'Warning message to the commenter' => 'Warning message to the commenter',
     'Notification to the complainant' => 'Notification to the complainant',
     'No reports' => 'No reports',
 
