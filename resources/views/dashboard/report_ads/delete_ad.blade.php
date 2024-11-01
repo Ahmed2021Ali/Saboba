@@ -17,7 +17,7 @@
                     <h3>{{ __('admin_dashboard/report/messages.Are you sure you want to delete the ad?') }} <span style="color: red">{{ $reportAd->ad->name }}</span></h3>
                 </div>
                 <div class="modal-body">
-                    <label>  {{ __('admin_dashboard/ads/messages.reason_reject') }}  </label>
+                    <label>  {{ __('admin_dashboard/report/User newsletter') }}  </label>
                     <textarea type="text" name="reason" class="form-control" required></textarea>
                 </div>
                 <div class="modal-footer">
