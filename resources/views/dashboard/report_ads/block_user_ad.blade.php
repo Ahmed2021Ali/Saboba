@@ -14,7 +14,7 @@
                 @csrf
                 @method('DELETE')
                 <div class="modal-body" style="text-align: center">
-                    <h3>{{ __('admin_dashboard/ads/messages.sure_delete') }} <span style="color: red">{{ $reportAd->ad->user->name }}</span></h3>
+                    <h3>حظر المستخدم  <span style="color: red">{{ $reportAd->ad->user->name }}</span></h3>
                 </div>
                 <div class="modal-body">
                     <label>  سبب الحظر  </label>
