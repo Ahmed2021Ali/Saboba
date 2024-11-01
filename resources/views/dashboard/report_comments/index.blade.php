@@ -82,7 +82,7 @@
 
 
                                                         {{-- رسالة تحذير  لصاحب التعليق  --}}
-                                                        <button class="btn btn-sm btn-secondary" data-toggle="modal"
+                                                        <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#notify_sender{{$reportComment->comment->user->id}}">
                                                             <i class="fa fa-trash"></i> {{$reportComment->comment->user->id}} {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}
                                                         </button>
