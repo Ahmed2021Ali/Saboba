@@ -52,7 +52,7 @@
                                                                 data-target="#content_content{{$reportComment->id}}">
                                                             <i class="fa fa-edit"></i>{{ __('admin_dashboard/report_comments/messages.report_content') }}
                                                         </button>
-                                                        @include('dashboard.report_comments.content_content')
+                                                        @include('dashboard.report_comments.content_report')
                                                     </td>
 
                                                     <td>
@@ -80,7 +80,6 @@
                                                         @include('dashboard.addition.block.block_user',['moduleId'=>$reportComment->comment->user->id,'user'=>$reportComment->comment->user,'message'=>  __('admin_dashboard/report_comments/messages.Block the Comment user') ])
 
 
-
                                                         {{-- رسالة تحذير  لصاحب التعليق  --}}
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
                                                                 data-target="#notify_sender{{$reportComment->comment->user->id}}">
@@ -95,9 +94,6 @@
                                                             <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Notification to the complainant') }}
                                                         </button>
                                                         @include('dashboard.addition.notify.notify',['moduleId'=>$reportComment->sender_id,'user'=>$reportComment->sender,'message'=>  __('admin_dashboard/report_comments/messages.Notification to the complainant')  ])
-
-
-
 
                                                     </td>
                                                 </tr>
