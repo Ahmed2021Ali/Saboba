@@ -13,7 +13,7 @@
             <form action="{{ route('report_ads.notify', $reportAd->ad->user->id) }}" method="POST">
                 @csrf
                 <div class="modal-body" style="text-align: center">
-                    <h3> {{ __('admin_dashboard/report/messages.Advertiser warning message?') }}  <span style="color: red">{{ $reportAd->ad->user->name }}</span></h3>
+                    <h3> {{ __('admin_dashboard/report/messages.Advertiser warning message') }}  <span style="color: red">{{ $reportAd->ad->user->name }}</span></h3>
                 </div>
                 <div class="modal-body">
                     <label>  {{ __('admin_dashboard/report/messages.User newsletter') }}   </label>
