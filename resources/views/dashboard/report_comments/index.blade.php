@@ -49,6 +49,11 @@
                                                 <td>{{ $reportComment->content }}</td>
 
                                                 <td>
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#content_comment{{$reportComment->id}}">
+                                                        <i class="fa fa-edit"></i>{{ $reportComment->content }}
+                                                    </button>
+                                                    @include('dashboard.report_comments.content_comment')
+
 {{--                                                    <a class="btn btn-sm btn-info"
                                                        href="{{route('ads.show',$reportComment->ad)}}">
                                                         <i class="fa-solid fa-list"></i> {{ __('admin_dashboard/ads/messages.show_ad_details') }}
