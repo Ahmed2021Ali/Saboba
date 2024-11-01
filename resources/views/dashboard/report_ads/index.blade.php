@@ -68,26 +68,32 @@
                                                     @include('dashboard.report_ads.delete_ad')
 
 
+
                                                     {{-- حظر مستخدم صاحب الاعلان + اشعار  --}}
-                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                                            data-target="#block_user_ad{{ $reportAd->id }}">
-                                                        <i class="fa fa-trash"></i>{{ __('admin_dashboard/report/messages.Block the advertiser user') }}
+                                                    <button class="btn btn-sm btn-secondary" data-toggle="modal"
+                                                            data-target="#notify_sender{{$reportAd->ad->user->id}}">
+                                                        <i class="fa fa-trash"></i>  {{  __('admin_dashboard/report/messages.Block the advertiser user') }}
                                                     </button>
-                                                    @include('dashboard.report_ads.block_user_ad')
+                                                    @include('dashboard.addition.block.block_user',['moduleId'=>$reportAd->ad->user->id,'user'=>$reportAd->ad->user,'message'=>   __('admin_dashboard/report/messages.Block the advertiser user')  ])
+
+
 
                                                     {{--                                                      {{-- رسالة تحذير  --}}
                                                     <button class="btn btn-sm btn-secondary" data-toggle="modal"
-                                                            data-target="#notify_user_ads{{ $reportAd->id  }}">
-                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Advertiser warning message') }}
+                                                            data-target="#notify_sender{{$reportAd->ad->user->id}}">
+                                                        <i class="fa fa-trash"></i>  {{  __('admin_dashboard/report/messages.Advertiser warning message') }}
                                                     </button>
-                                                    @include('dashboard.report_ads.notify_user_ads')
+                                                    @include('dashboard.addition.notify.notify',['moduleId'=>$reportAd->ad->user->id,'user'=>$reportAd->ad->user,'message'=>   __('admin_dashboard/report/messages.Advertiser warning message')  ])
+
+
 
                                                     {{-- اشعار رد لصاحب الابلاغ  --}}
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#notify_sender{{ $reportAd->id }}">
-                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Notification to the complainant') }}
+                                                            data-target="#notify_sender{{$reportAd->sender_id}}">
+                                                        <i class="fa fa-trash"></i>  {{ __('admin_dashboard/report/messages.Notification to the complainant') }}
                                                     </button>
-                                                    @include('dashboard.report_ads.notify_sender')
+                                                    @include('dashboard.addition.notify.notify',['moduleId'=>$reportAd->sender_id,'user'=>$reportAd->sender,'message'=>  __('admin_dashboard/report/messages.Notification to the complainant')  ])
+
                                                 </td>
                                             </tr>
                                         @endforeach
