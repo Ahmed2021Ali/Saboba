@@ -19,7 +19,7 @@
                     <h3>{{ __('admin_dashboard/report/messages.Reply to the report') }} <span style="color: red">{{ $reportAd->sender->name }}</span></h3>
                 </div>
                 <div class="modal-body">
-                    <label> اشعار </label>
+                    <label> {{ __('admin_dashboard/report/messages.User newsletter') }} </label>
                     <textarea type="text" name="reason" class="form-control" required></textarea>
                 </div>
                 <div class="modal-footer">
