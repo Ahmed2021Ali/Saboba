@@ -9,6 +9,6 @@ return [
 
 
     /* block User */
-    'Confirm sending block' => 'تأكيد ارسال  حظر للمستخدم',
+    'Confirm sending Block' => 'تأكيد ارسال  حظر للمستخدم',
 
 ];

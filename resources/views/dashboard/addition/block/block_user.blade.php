@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('admin_dashboard/notify/messages.close') }}</button>
-                    <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/notify/messages.Confirm sending block') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('admin_dashboard/notify/messages.Confirm sending Block') }}</button>
                 </div>
             </form>
 
