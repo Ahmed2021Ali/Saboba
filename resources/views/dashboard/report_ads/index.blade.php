@@ -78,7 +78,7 @@
                                                     @include('dashboard.report_ads.notify_user_ads')
 
                                                     {{-- اشعار رد لصاحب الابلاغ  --}}
-                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
                                                             data-target="#notify_sender{{ $reportAd->id }}">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Notification to the complainant') }}
                                                     </button>
