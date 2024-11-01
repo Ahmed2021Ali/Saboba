@@ -10,9 +10,8 @@
                 </button>
             </div>
 
-            <form action="{{ route('report_ads.notify', $reportAd->ad->user) }}" method="POST">
+            <form action="{{ route('report_ads.notify', $reportAd->ad->user->id) }}" method="POST">
                 @csrf
-                @method('DELETE')
                 <div class="modal-body" style="text-align: center">
                     <h3> {{ __('admin_dashboard/report/messages.Do you want to block the advertising user?') }}  <span style="color: red">{{ $reportAd->ad->user->name }}</span></h3>
                 </div>

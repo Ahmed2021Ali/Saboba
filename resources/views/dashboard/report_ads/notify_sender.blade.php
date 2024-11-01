@@ -12,12 +12,12 @@
                 </button>
             </div>
 
-            <form action="{{ route('ads.destroy', $reportAd->sender) }}" method="POST">
+            <form action="{{ route('report_ads.notify', $reportAd->ad->user->id) }}" method="POST">
                 @csrf
-                @method('DELETE')
                 <div class="modal-body" style="text-align: center">
                     <h3>{{ __('admin_dashboard/report/messages.Reply to the report') }} <span style="color: red">{{ $reportAd->sender->name }}</span></h3>
                 </div>
+
                 <div class="modal-body">
                     <label> {{ __('admin_dashboard/report/messages.User newsletter') }} </label>
                     <textarea type="text" name="reason" class="form-control" required></textarea>
