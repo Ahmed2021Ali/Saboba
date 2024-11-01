@@ -18,7 +18,6 @@ class ReportController extends Controller
         $validationData = $request->validate([
             'content' => 'required|string', 'ad_id' => 'required|exists:ads,id',
         ]);
-
         $ad = ad::find($validationData['ad_id']);
         if (Auth::id() === $ad->user_id) {
             return response()->json(['message' => 'You cannot report your ad'], 500);

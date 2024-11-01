@@ -98,7 +98,7 @@
                                                 </tr>
                                             @endforeach
                                         @else
-                                            <h3>{{ __('admin_dashboard/report/messages.No reports') }}</h3>
+                                            <h3 class="text-center">{{ __('admin_dashboard/report_comments/messages.No reports') }}</h3>
                                         @endif
                                         </tbody>
                                     </table>
