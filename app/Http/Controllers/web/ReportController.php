@@ -7,7 +7,7 @@ use App\Models\Report;
 
 class ReportController extends Controller
 {
-    public function reportAds()
+    public function index()
     {
         $reportAds = Report::where('ad_id', '!=', null)->get();
         return view('dashboard.report_ads.index', compact('reportAds'));
