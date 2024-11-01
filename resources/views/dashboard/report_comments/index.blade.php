@@ -79,19 +79,19 @@
 
                                                     {{-- رسالة تحذير  لصاحب التعليق  --}}
                                                     <button class="btn btn-sm btn-secondary" data-toggle="modal"
-                                                            data-target="#notify_sender{{ $reportComment->comment->user->id  }}">
+                                                            data-target="#notify_sender1">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}
                                                     </button>
-                                                    @include('dashboard.notify.notify',['model'=>$reportComment->comment->user,'user'=>$reportComment->comment->user,'message'=> __('admin_dashboard/report_comments/messages.Warning message to the commenter') ])
+                                                    @include('dashboard.notify.notify',['model'=>1,'user'=>$reportComment->comment->user,'message'=> __('admin_dashboard/report_comments/messages.Warning message to the commenter') ])
 
 
                                                     {{-- اشعار رد لصاحب الابلاغ  --}}
 
                                                     <button class="btn btn-sm btn-secondary" data-toggle="modal"
-                                                            data-target="#notify_sender{{ $reportComment->sender->id  }}">
+                                                            data-target="#notify_sender2">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Notification to the complainant') }}
                                                     </button>
-                                                    @include('dashboard.notify.notify',['model'=>$reportComment->sender,'user'=>$reportComment->sender,'message'=>  __('admin_dashboard/report_comments/messages.Notification to the complainant')  ])
+                                                    @include('dashboard.notify.notify',['model'=>2,'user'=>$reportComment->sender,'message'=>  __('admin_dashboard/report_comments/messages.Notification to the complainant')  ])
 
 
                                                     <button class="btn btn-sm btn-success" data-toggle="modal"
