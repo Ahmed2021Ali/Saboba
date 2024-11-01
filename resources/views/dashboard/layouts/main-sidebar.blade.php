@@ -123,14 +123,6 @@
                 </ul>
             </li>
 
-            <!-- Existing Country and City Section -->
-            <li class="nav-item dropdown">
-                <a href="{{route('country.index')}}" class="nav-link">
-                    <i class="fe fe-map-pin fe-16"></i>
-                    <span class="ml-3 item-text"> {{ __('admin_dashboard/sidebar/messages.countries_cities') }}</span>
-                </a>
-            </li>
-
             <!-- Existing Report Section -->
 
             <li class="nav-item dropdown">
@@ -156,6 +148,16 @@
                     </li>
                 </ul>
             </li>
+
+            <!-- Existing Country and City Section -->
+            <li class="nav-item dropdown">
+                <a href="{{route('country.index')}}" class="nav-link">
+                    <i class="fe fe-map-pin fe-16"></i>
+                    <span class="ml-3 item-text"> {{ __('admin_dashboard/sidebar/messages.countries_cities') }}</span>
+                </a>
+            </li>
+
+
 
 
             <!-- Existing Block User Section -->
