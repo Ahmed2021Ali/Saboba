@@ -23,4 +23,7 @@ return [
     'Reply to the report' => 'Reply to the report',
 
 
+    'report_ads' => '    Report Ads  ',
+
+
 ];

@@ -36,6 +36,7 @@ return [
     /* Block users */
     'block_users' => ' حظر المستخدمين ',
 
+    'report_ads' => '  ابلاغات  الاعلانات  ',
 
 
 ];
