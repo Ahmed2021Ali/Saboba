@@ -45,7 +45,12 @@
                                                     </button>
                                                     @include('dashboard.report_ads.details_sender',['reportAd'=>$reportAd])
                                                 </td>
-                                                <td>{{ $reportAd->content }}</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#content_content{{$reportAd->id}}">
+                                                        <i class="fa fa-edit"></i>{{ __('admin_dashboard/report_comments/messages.report_content') }}
+                                                    </button>
+                                                    @include('dashboard.report_comments.content_content')
+                                                </td>
                                                 <td>
                                                     <a class="btn btn-sm btn-info"
                                                        href="{{route('ads.show',$reportAd->ad)}}">
