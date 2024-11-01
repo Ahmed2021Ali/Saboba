@@ -21,7 +21,7 @@ class BlockUserController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate(['reason' => 'nullable|string', 'user_id' => 'required|exists:users,id',]);
+        $validated = $request->validate(['reason' => 'nullable|string', 'user_id' => 'required|exists:users,id']);
         BlockUser::create([...$validated, 'blocked_by_user_id' => Auth::id(),'blocked_at'=>date('Y-m-d H:i:s')]);
         return redirect()->route('blocked_user.index')->with('success', 'تم اضافة الحظر بنجاح');
     }

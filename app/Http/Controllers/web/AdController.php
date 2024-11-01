@@ -14,9 +14,8 @@ class AdController extends Controller
 
     public function index()
     {
-        $ads = Ad::all();
         return view('dashboard.ads.index', [
-            'ads' => $ads,
+            'ads' => Ad::all(),
             'categories' => Category::with(['translations'])->where('parent_id', null)->get(),
         ]);
     }
@@ -65,12 +64,13 @@ class AdController extends Controller
         // Request -> $request->reason
     }
 
-    public function edit(Request $request, Ad $ad)
+    public function destroy(Request $request, Ad $ad)
     {
         // Notify User reason Reject
         // Request -> $request->reason
+
         $ad->delete();
-        flash()->success(' هذا القسم لا يوجد له اي اعلانات  ');
+        flash()->success('تم رفض هذا الاعلان   ');
         return redirect()->back();
     }
 }
