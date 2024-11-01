@@ -33,5 +33,6 @@ return [
     'report_ads' => '  Report ads ',
     'report_comments' => '  Report Comments ',
 
+    'reports' => ' Reports ',
 
 ];

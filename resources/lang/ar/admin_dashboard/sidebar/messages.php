@@ -40,4 +40,7 @@ return [
     'report_comments' => ' ابلاغات التعليقات ',
 
 
+    'reports' => ' ابلاغات ',
+
+
 ];

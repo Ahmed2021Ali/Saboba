@@ -139,20 +139,31 @@
                 </a>
             </li>
 
-            <!-- Existing Report Ads Section -->
-            <li class="nav-item w-100">
-                <a class="nav-link" href="{{route('adsReport')}}">
-                    <i class="fe fe-star fe-16"></i>
-                    <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.report_ads') }}</span>
-                </a>
-            </li>
 
-            <!-- Existing Report Comments Section -->
-            <li class="nav-item w-100">
-                <a class="nav-link" href="{{route('commentsReport')}}">
-                    <i class="fe fe-star fe-16"></i>
-                    <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.report_comments') }}</span>
+
+
+            <li class="nav-item dropdown">
+                <a href="#report" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fe fe-file-text fe-16"></i>
+                    <span class="ml-3 item-text"> {{ __('admin_dashboard/sidebar/messages.reports') }} </span>
                 </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="report">
+                    <!-- Existing Report Ads Section -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('adsReport')}}">
+                            <i class="fe fe-star fe-16"></i>
+                            <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.report_ads') }}</span>
+                        </a>
+                    </li>
+
+                    <!-- Existing Report Comments Section -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('commentsReport')}}">
+                            <i class="fe fe-star fe-16"></i>
+                            <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.report_comments') }}</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
         </ul>
