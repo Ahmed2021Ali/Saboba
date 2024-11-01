@@ -21,9 +21,12 @@ class CommentController extends Controller
     {
         $validatedData = $request->validate(['ad_id' => 'required|exists:ads,id', 'content' => 'required|string']);
         $ad = Ad::where('id', $validatedData['ad_id'])->first();
-        dd($ad->user_id, Auth::id());
         if (Auth::id() === $ad->user_id) {
             return response()->json(['message' => 'Your ad cannot be commented on.'], 500);
+        }
+        $comment = Comment::where('user_id', Auth::id())->where('ad_id', $validatedData['ad_id'])->first();
+        if ($comment) {
+            return response()->json(['message' => 'You cannot comment twice on the same ad.'], 500);
         }
         $comment = Comment::create([...$validatedData, 'user_id' => Auth::id()]);
         return response()->json(['Data' => $comment, 'message' => 'comment added successfully'], 201);
