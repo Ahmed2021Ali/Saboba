@@ -26,9 +26,11 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th> مرسل الابلاغ</th>
-                                            <th> محتوي الابلاغ</th>
+                                            <th> مرسل </th>
+                                            <th> محتوي </th>
                                             <th> الاعلان</th>
+                                            <th> العمليات</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -42,8 +44,6 @@
                                                     </button>
                                                     @include('dashboard.report_ads.details_sender',['reportAd'=>$reportAd])
                                                 </td>
-
-
                                                 <td>{{ $reportAd->content }}</td>
                                                 <td>
                                                     <a class="btn btn-sm btn-info"
@@ -55,11 +55,11 @@
                                                 <td>
 
                                                     {{-- حذف الاعلان + اشعار لصاحب الاعلان --}}
-{{--                                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                                   <button class="btn btn-sm btn-danger" data-toggle="modal"
                                                             data-target="#deleteCategoryModal{{ $reportAd->ad_id }}">
                                                         <i class="fa fa-trash"></i> {{ __('admin_dashboard/ads/messages.reject') }}
                                                     </button>
-                                                    @include('dashboard.report_ads.deleteAd')--}}
+                                                    @include('dashboard.report_ads.delete_ad')
 
 
                                                     {{-- حظر مستخدم صاحب الاعلان + اشعار  --}}

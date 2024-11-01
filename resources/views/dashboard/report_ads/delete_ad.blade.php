@@ -1,5 +1,5 @@
 <!-- Delete Category Modal -->
-<div class="modal fade" id="deleteCategoryModal{{ $ad->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteCategoryModal{{ $reportAd->ad_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
@@ -10,7 +10,7 @@
                 </button>
             </div>
 
-            <form action="{{ route('ads.destroy', $ad) }}" method="POST">
+            <form action="{{ route('ads.destroy', $reportAd->ad) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="modal-body" style="text-align: center">
