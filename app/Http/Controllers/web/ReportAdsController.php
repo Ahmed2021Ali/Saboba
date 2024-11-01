@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Report;
 use Illuminate\Http\Request;
 
-class ReportController extends Controller
+class ReportAdsController extends Controller
 {
+
     public function index()
     {
         $reportAds = Report::where('ad_id', '!=', null)->get();
@@ -18,4 +19,6 @@ class ReportController extends Controller
     {
         dd($request->reason,$id);
     }
+
+
 }
