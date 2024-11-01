@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title">  {{ __('admin_dashboard/report-comments/messages.Comments Reports') }} </h2>
+                    <h2 class="mb-2 page-title">  {{ __('admin_dashboard/report_comments/messages.Comments Reports') }} </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -26,10 +26,10 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th> {{ __('admin_dashboard/report-comments/messages.Sender') }}</th>
-                                            <th> {{ __('admin_dashboard/report-comments/messages.Content') }}</th>
-                                            <th> {{ __('admin_dashboard/report-comments/messages.Comments') }}</th>
-                                            <th> {{ __('admin_dashboard/report-comments/messages.Operations') }}</th>
+                                            <th> {{ __('admin_dashboard/report_comments/messages.Sender') }}</th>
+                                            <th> {{ __('admin_dashboard/report_comments/messages.Content') }}</th>
+                                            <th> {{ __('admin_dashboard/report_comments/messages.Comments') }}</th>
+                                            <th> {{ __('admin_dashboard/report_comments/messages.Operations') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -88,7 +88,7 @@
                                             </tr>
                                         @endforeach
                                         @else
-                                            <h3>{{ __('admin_dashboard/report-comments/messages.No reports') }}</h3>
+                                            <h3>{{ __('admin_dashboard/report_comments/messages.No reports') }}</h3>
                                         @endif
                                         </tbody>
                                     </table>
