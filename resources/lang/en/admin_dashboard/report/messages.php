@@ -11,7 +11,7 @@ return [
     'Block the advertiser user' => 'Block the advertiser user',
     'Advertiser warning message' => 'Advertiser warning message',
     'Notification to the complainant' => 'Notification to the complainant',
-    'No reports' => 'No reports',
+    'No reports' => 'No Reports',
 
 //    delete Ads
     'Are you sure you want to delete the ad?' => 'Are you sure you want to delete the ad?',
