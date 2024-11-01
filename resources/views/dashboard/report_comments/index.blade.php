@@ -73,7 +73,7 @@
                                                     {{-- حظر مستخدم صاحب التعليق + اشعار  --}}
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                                             data-target="#block_user_comment{{ $reportComment->id }}">
-                                                        <i class="fa fa-trash"></i>{{ __('admin_dashboard/report-comments/messages.Block the Comment user') }}
+                                                        <i class="fa fa-trash"></i>{{ __('admin_dashboard/report_comments/messages.Block the Comment user') }}
                                                     </button>
                                                     @include('dashboard.report_comments.block_user_comment')
 
