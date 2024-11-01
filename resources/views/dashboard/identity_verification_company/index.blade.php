@@ -42,10 +42,12 @@
                                                     <td> {{ $verification->user->name}}</td>
                                                     <td>
                                                         <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                                data-target="#imageModal_details_{{$verification->id}}">
+                                                                data-target="#user_details{{$verification->id}}">
                                                             <i class="fa fa-edit"></i> {{ __('admin_dashboard/verification/messages.details') }}
                                                         </button>
-                                                        @include('dashboard.identity_verification_company.details',['verification'=>$verification])
+                                                        @include('dashboard.addition.user_details.user_details',['moduleId'=>$verification->id,'user'=>$verification->user])
+
+
                                                     </td>
                                                     <td> {{ $verification->status ===1 ? " تم اثبات ملكية الحساب " : " لم يتم الاثبات الملكية حتي الان " }}</td>
 
