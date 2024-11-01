@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <h2 class="mb-2 page-title"> ابلاغات الاعلانات </h2>
+                    <h2 class="mb-2 page-title">  {{ __('admin_dashboard/report/messages.Advertisements Reports') }} </h2>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -26,14 +26,15 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th> مرسل</th>
-                                            <th> محتوي</th>
-                                            <th> الاعلان</th>
-                                            <th> العمليات</th>
+                                            <th> {{ __('admin_dashboard/report/messages.Sender') }}</th>
+                                            <th> {{ __('admin_dashboard/report/messages.Content') }}</th>
+                                            <th> {{ __('admin_dashboard/report/messages.Advertisement') }}</th>
+                                            <th> {{ __('admin_dashboard/report/messages.Operations') }}</th>
 
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @if($reportAds->isNotEmpty())
                                         @foreach ($reportAds as $key => $reportAd)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
@@ -57,7 +58,7 @@
                                                     {{-- حذف الاعلان + اشعار لصاحب الاعلان --}}
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                                             data-target="#deleteCategoryModal{{ $reportAd->ad_id }}">
-                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/ads/messages.reject') }}
+                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Delete Ad') }}
                                                     </button>
                                                     @include('dashboard.report_ads.delete_ad')
 
@@ -65,26 +66,29 @@
                                                     {{-- حظر مستخدم صاحب الاعلان + اشعار  --}}
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                                             data-target="#block_user_id{{ $reportAd->id }}">
-                                                        <i class="fa fa-trash"></i> حظر مستخدم صاحب الاعلان
+                                                        <i class="fa fa-trash"></i>{{ __('admin_dashboard/report/messages.Block the advertiser user') }}
                                                     </button>
                                                     @include('dashboard.report_ads.block_user_ad')
 
                                                     {{--                                                      {{-- رسالة تحذير  --}}
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                                             data-target="#notify_user_ads{{ $reportAd->id  }}">
-                                                        <i class="fa fa-trash"></i> رسالة تحذيرية لصاحب الاعلان
+                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Advertiser warning message') }}
                                                     </button>
                                                     @include('dashboard.report_ads.notify_user_ads')
 
                                                     {{-- اشعار رد لصاحب الابلاغ  --}}
                                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                                             data-target="#notify_sender{{ $reportAd->id }}">
-                                                        <i class="fa fa-trash"></i> اشعار لصاحب الابلاغ
+                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Notification to the complainant') }}
                                                     </button>
                                                     @include('dashboard.report_ads.notify_sender')
                                                 </td>
                                             </tr>
                                         @endforeach
+                                        @else
+                                            <h3>{{ __('admin_dashboard/report/messages.No reports') }}</h3>
+                                        @endif
                                         </tbody>
                                     </table>
                                     {{--

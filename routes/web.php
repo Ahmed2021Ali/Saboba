@@ -47,9 +47,10 @@ Route::group([
         Route::resource('blocked_user', BlockUserController::class);
 
         // Reports  Routes
-        Route::get('report-ads', [ReportController::class, 'index'])->name('report_ads.index');
-        Route::Post('report-ads/notify/{user}', [ReportController::class, 'notify'])->name('report_ads.notify');
-
+        Route::controller(ReportController::class)->group(function () {
+            Route::get('report-ads', 'index')->name('report_ads.index');
+            Route::post('report-ads/notify/{user}', 'notify')->name('report_ads.notify');
+        });
 
         // sub_categories Routes
         Route::controller(SubCategoryController::class)->group(function () {
@@ -75,7 +76,6 @@ Route::group([
         Route::resource('ads', AdController::class);
         Route::post('notify_edit/{ad}', [AdController::class, 'notify_edit'])->name('notify_edit');
         Route::post('ad-create', [AdController::class, 'create'])->name('ad.create');
-
 
 
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index')
