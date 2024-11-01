@@ -16,4 +16,9 @@ return [
     'Do you want to block the advertising user?' => '  هل تريد حظر مستخدم الاعلانات ؟ ',
     'User newsletter' => 'رسالة اخبارية للمستخدم ',
     'close' => 'اغلاق',
+
+
+    'Complaint sender notification' => 'اشعار لمرسل الشكوي ',
+    'Reply to the report' => 'الرد علي هذه الشكوي',
+
 ];
