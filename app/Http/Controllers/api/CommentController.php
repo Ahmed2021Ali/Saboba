@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ad;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,10 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate(['ad_id' => 'required|exists:ads,id', 'content' => 'required|string']);
+        $ad = Ad::where('id', $validatedData['ad_id'])->first();
+        if (Auth::id() === $ad->user_id) {
+            return response()->json(['message' => 'Your ad cannot be commented on.'], 500);
+        }
         $comment = Comment::create([...$validatedData, 'user_id' => Auth::id()]);
         return response()->json(['Data' => $comment, 'message' => 'comment added successfully'], 201);
     }
