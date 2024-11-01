@@ -131,16 +131,7 @@
                 </a>
             </li>
 
-            <!-- Existing Block User Section -->
-            <li class="nav-item w-100">
-                <a class="nav-link" href="{{route('blocked_user.index')}}">
-                    <i class="fe fe-star fe-16"></i>
-                    <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.block_users') }}</span>
-                </a>
-            </li>
-
-
-
+            <!-- Existing Report Section -->
 
             <li class="nav-item dropdown">
                 <a href="#report" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
@@ -165,6 +156,20 @@
                     </li>
                 </ul>
             </li>
+
+
+            <!-- Existing Block User Section -->
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{route('blocked_user.index')}}">
+                    <i class="fe fe-star fe-16"></i>
+                    <span class="ml-3 item-text">{{ __('admin_dashboard/sidebar/messages.block_users') }}</span>
+                </a>
+            </li>
+
+
+
+
+
 
         </ul>
     </nav>
