@@ -37,7 +37,6 @@
                                             <th>{{ __('admin_dashboard/block_user/messages.Date Blocked') }}</th>
                                             <th>{{ __('admin_dashboard/block_user/messages.Blocked by') }}</th>
                                             <th> {{ __('admin_dashboard/block_user/messages.Reason for Block') }}</th>
-                                            <th> {{ __('admin_dashboard/block_user/messages.Unblock') }}</th>
                                             <th>{{ __('admin_dashboard/block_user/messages.Unblocking date') }}</th>
                                             <th>{{ __('admin_dashboard/block_user/messages.Unblock it by') }}</th>
                                             <th>{{ __('admin_dashboard/block_user/messages.operations') }}</th>
@@ -52,10 +51,10 @@
                                                 <td>{{ $blockedUser->user->name }}</td>
                                                 <td>{{ $blockedUser->blocked_at??null }}</td>
                                                 <td>{{ $blockedUser->blockedBy->name }}</td>
-
                                                 <td>{{ $blockedUser->reason }}</td>
-                                                <td>{{ $blockedUser->unlockedBy->name??null }}</td>
                                                 <td>{{ $blockedUser->unblocked_at/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
+                                                <td>{{ $blockedUser->unblockedBy/*->translatedFormat('l j F Y H:i:s')*/ }}</td>
+
                                                 <td>
                                                     @if(!$blockedUser->unblocked_at)
                                                     <a class="btn btn-sm btn-warning" data-toggle="modal"
