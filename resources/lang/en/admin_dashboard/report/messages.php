@@ -19,6 +19,8 @@ return [
     'User newsletter' => 'User newsletter',
     'close' => 'close',
 
+    'Complaint sender notification' => 'Complaint sender notification',
+    'Reply to the report' => 'Reply to the report',
 
 
 ];
