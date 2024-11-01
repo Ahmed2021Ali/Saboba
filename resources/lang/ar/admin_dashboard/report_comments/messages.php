@@ -14,6 +14,9 @@ return [
     'Notification to the complainant' => 'اشعار لمرسل الشكوي ',
     'No reports' => ' لا يوجد ابلاغات  ',
 
+    'comment_content'=>'محتوي التعليق ',
+    'report_content'=>'محتوي الابلاغ ',
+
 //    delete Ads
     'Are you sure you want to delete the ad?' => 'هل تريد حذف الاعلان ؟ ',
     'Do you want to block the advertising user?' => '  هل تريد حظر مستخدم الاعلانات ؟ ',

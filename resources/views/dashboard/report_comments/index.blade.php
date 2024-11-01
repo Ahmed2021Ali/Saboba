@@ -48,14 +48,14 @@
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#content_content{{$reportComment->id}}">
-                                                        <i class="fa fa-edit"></i>{{ $reportComment->content }}
+                                                        <i class="fa fa-edit"></i>{{ __('admin_dashboard/report_comments/messages.report_content') }}
                                                     </button>
                                                     @include('dashboard.report_comments.content_content')
                                                 </td>
 
                                                 <td>
                                                     <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#content_comment{{$reportComment->id}}">
-                                                        <i class="fa fa-edit"></i>{{ $reportComment->content }}
+                                                        <i class="fa fa-edit"></i>{{ __('admin_dashboard/report_comments/messages.comment_content') }}
                                                     </button>
                                                     @include('dashboard.report_comments.content_comment')
 
