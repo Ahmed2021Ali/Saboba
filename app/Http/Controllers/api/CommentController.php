@@ -21,7 +21,7 @@ class CommentController extends Controller
     {
         $validatedData = $request->validate(['ad_id' => 'required|exists:ads,id', 'content' => 'required|string']);
         $ad = Ad::where('id', $validatedData['ad_id'])->first();
-        dd($ad->user_id);
+        dd($ad->user_id, Auth::id());
         if (Auth::id() === $ad->user_id) {
             return response()->json(['message' => 'Your ad cannot be commented on.'], 500);
         }
