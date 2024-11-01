@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -15,7 +14,7 @@ class RoleController extends Controller
 {
     public function __construct()
     {
-     //    $this->middleware('permission:عرض الأدوار', ['only' => ['index']]);
+      //   $this->middleware('permission:عرض الأدوار', ['only' => ['index']]);
 
         //  Assign middleware directly in the constructor with the new permissions
         //    $this->middleware('permission:product|product2', ['only' => ['index', 'store']]);
