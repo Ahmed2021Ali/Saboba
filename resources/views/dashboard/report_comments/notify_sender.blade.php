@@ -1,5 +1,5 @@
 <!-- Delete Category Modal -->
-<div class="modal fade" id="notify_sender{{ $reportAd->id }}" tabindex="-1" role="dialog"
+<div class="modal fade" id="notify_sender{{ $report_comments->id }}" tabindex="-1" role="dialog"
      aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -12,10 +12,10 @@
                 </button>
             </div>
 
-            <form action="{{ route('report_ads.notify', $reportAd->ad->user->id) }}" method="POST">
+            <form action="{{ route('report_ads.notify', $report_comments->comment->user->id) }}" method="POST">
                 @csrf
                 <div class="modal-body" style="text-align: center">
-                    <h3>{{ __('admin_dashboard/report/messages.Reply to the report') }} <span style="color: red">{{ $reportAd->sender->name }}</span></h3>
+                    <h3>{{ __('admin_dashboard/report/messages.Reply to the report') }} <span style="color: red">{{ $report_comments->sender->name }}</span></h3>
                 </div>
 
                 <div class="modal-body">

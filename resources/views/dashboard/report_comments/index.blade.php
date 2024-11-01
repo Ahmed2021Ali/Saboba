@@ -85,11 +85,11 @@
                                                     @include('dashboard.report_comments.notify_user_comment')
 
                                                     {{-- اشعار رد لصاحب الابلاغ  --}}
-{{--                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
-                                                            data-target="#notify_sender{{ $reportAd->id }}">
-                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report/messages.Notification to the complainant') }}
+                                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                                            data-target="#notify_sender{{ $report_comments->id }}">
+                                                        <i class="fa fa-trash"></i> {{ __('admin_dashboard/report_comments/messages.Notification to the complainant') }}
                                                     </button>
-                                                    @include('dashboard.report_ads.notify_sender')--}}
+                                                    @include('dashboard.report_comments.notify_sender')
                                                 </td>
                                             </tr>
                                         @endforeach
