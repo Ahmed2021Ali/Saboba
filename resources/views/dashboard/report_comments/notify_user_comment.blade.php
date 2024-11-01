@@ -4,7 +4,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteCategoryModalLabel">{{ __('admin_dashboard/report_comments/messages.Advertiser warning message') }}</h5>
+                <h5 class="modal-title" id="deleteCategoryModalLabel">{{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,7 +13,7 @@
             <form action="{{ route('report_ads.notify', $reportComment->comment->user->id) }}" method="POST">
                 @csrf
                 <div class="modal-body" style="text-align: center">
-                    <h3> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}  <span style="color: red">{{ $reportAd->ad->user->name }}</span></h3>
+                    <h3> {{ __('admin_dashboard/report_comments/messages.Warning message to the commenter') }}  <span style="color: red">{{ $reportComment->comment->user->name }}</span></h3>
                 </div>
                 <div class="modal-body">
                     <label>  {{ __('admin_dashboard/report_comments/messages.User newsletter') }}   </label>
